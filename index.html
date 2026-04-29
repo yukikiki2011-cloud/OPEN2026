@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sesshuu design 窶・Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --crimson: #C8184A;
+      --crimson-dark: #9e1238;
+      --crimson-light: #f0e0e5;
+      --navy: #0F1629;
+      --navy-mid: #1A2340;
+      --sky: #7BAAB8;
+      --pink: #FF3385;
+      --white: #FAFAF8;
+      --gray-light: #F4F4F2;
+      --gray-mid: #E8E8E5;
+      --gray-text: #888880;
+      --text: #1A1A1A;
+      --font-en: 'Space Grotesk', sans-serif;
+      --font-jp: 'Noto Sans JP', sans-serif;
+      --font-serif: 'Cormorant Garamond', serif;
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-jp);
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--crimson); border-radius: 2px; }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(15, 22, 41, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 24, 74, 0.2);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.06em;
+    }
+    .nav-logo em { color: var(--crimson); font-style: italic; }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-en);
+      color: rgba(250,250,248,0.6);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--crimson); }
+    .nav-cta {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--crimson);
+      padding: 8px 20px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    .nav-cta:hover { background: var(--crimson-dark); }
+
+    /* ===== SECTION UTILITIES ===== */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .section-label-num {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--crimson);
+      letter-spacing: 0.2em;
+    }
+    .section-label-line {
+      width: 40px;
+      height: 1px;
+      background: var(--crimson);
+      opacity: 0.5;
+    }
+    .section-label-text {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--gray-text);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+    .section-heading em { color: var(--crimson); font-style: italic; }
+    .section-heading-white { color: var(--white); }
+    /* 謨ｰ蟄・窶・Cormorant Garamond 繧ｻ繝ｪ繝穂ｽ薙う繧ｿ繝ｪ繝・け */
+    .section-heading.has-num {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 0 10px;
+    }
+    .section-heading .num-highlight {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 5.5em;
+      line-height: 1;
+      color: var(--crimson);
+      letter-spacing: -0.03em;
+      flex-shrink: 0;
+    }
+    .section-heading-white .num-highlight { color: var(--sky); }
+    .section-heading .num-text-wrap {
+      display: block;
+      padding-top: 0.1em;
+    }
+    .accent-bar {
+      width: 48px;
+      height: 2px;
+      background: var(--crimson);
+      margin: 20px 0 24px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--crimson);
+      padding: 14px 32px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--crimson-dark); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: transparent;
+      padding: 13px 32px;
+      border: 1px solid rgba(250,250,248,0.4);
+      cursor: pointer;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .btn-outline:hover { border-color: var(--white); color: var(--white); }
+    .btn-outline-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      background: transparent;
+      padding: 13px 32px;
+      border: 1px solid var(--crimson);
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn-outline-dark:hover { background: var(--crimson); color: var(--white); }
+    .tag {
+      display: inline-block;
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      background: var(--crimson-light);
+      padding: 4px 12px;
+      border-radius: 1px;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,24,74,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,24,74,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-bg-glow {
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(200,24,74,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-bg-glow2 {
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(123,170,184,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 80px 80px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: center;
+      width: 100%;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--crimson);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--crimson);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 80px;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .hero-title-accent {
+      font-family: var(--font-serif);
+      font-size: 80px;
+      font-weight: 600;
+      color: var(--crimson);
+      font-style: italic;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+    .hero-name {
+      font-family: var(--font-jp);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--sky);
+      letter-spacing: 0.3em;
+      margin-bottom: 6px;
+    }
+    .hero-tagline {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(250,250,248,0.5);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    .hero-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hero-tag {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: rgba(250,250,248,0.4);
+      border: 1px solid rgba(250,250,248,0.12);
+      padding: 5px 14px;
+    }
+    .hero-img-wrap {
+      position: relative;
+    }
+    .hero-img-frame {
+      position: relative;
+      border-radius: 0;
+      overflow: hidden;
+    }
+    .hero-img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200,24,74,0.15) 0%, transparent 60%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-img-frame img {
+      width: 100%;
+      display: block;
+      filter: saturate(0.9);
+    }
+    .hero-img-accent {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      width: 80px;
+      height: 80px;
+      background: var(--crimson);
+      z-index: 2;
+    }
+    .hero-img-accent2 {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--sky);
+      z-index: 2;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.3);
+    }
+    .hero-scroll-line {
+      width: 48px;
+      height: 1px;
+      background: rgba(250,250,248,0.2);
+    }
+
+    /* ===== STORY (蜷榊絢騾｣蜍・ ===== */
+    #story {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .story-section-intro {
+      text-align: center;
+      padding: 80px 24px 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .story-section-title {
+      font-family: var(--font-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 12px;
+    }
+    .story-section-sub {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(250,250,248,0.4);
+      line-height: 1.8;
+    }
+    .story-connector {
+      display: flex;
+      justify-content: center;
+      padding: 48px 0;
+    }
+    .story-connector-line {
+      width: 1px;
+      height: 64px;
+      background: linear-gradient(to bottom, transparent, var(--crimson), transparent);
+    }
+    .story-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 70vh;
+      position: relative;
+    }
+    .story-block:nth-child(even) .story-img-wrap { order: 2; }
+    .story-block:nth-child(even) .story-content { order: 1; }
+    .story-img-wrap {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+    }
+    .story-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .story-block:hover .story-img-wrap img {
+      transform: scale(1.05);
+    }
+    .story-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,22,41,0.05) 0%, rgba(15,22,41,0.35) 100%);
+      pointer-events: none;
+    }
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 72px 56px;
+      background: var(--navy-mid);
+      position: relative;
+    }
+    .story-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--crimson), transparent);
+    }
+    .story-block:nth-child(even) .story-content::before {
+      left: auto;
+      right: 0;
+    }
+    .story-era {
+      font-family: var(--font-en);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .story-era::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--sky);
+    }
+    .story-heading {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      line-height: 1.3;
+    }
+    .story-bar {
+      width: 48px;
+      height: 2px;
+      background: var(--crimson);
+      margin: 24px 0 28px;
+    }
+    .story-text {
+      font-family: var(--font-jp);
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(250,250,248,0.65);
+      line-height: 2.2;
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      padding: 120px 0;
+      background: var(--white);
+    }
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-text {
+      font-family: var(--font-jp);
+      font-size: 14px;
+      font-weight: 300;
+      color: #555;
+      line-height: 2.0;
+      margin-bottom: 28px;
+    }
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--gray-mid);
+      border: 1px solid var(--gray-mid);
+      margin-bottom: 40px;
+    }
+    .stat-cell {
+      background: var(--white);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      font-weight: 600;
+      color: var(--crimson);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-unit {
+      font-family: var(--font-en);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--crimson);
+    }
+    .stat-label {
+      font-family: var(--font-jp);
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--gray-text);
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+    .timeline {
+      border-left: 1px solid var(--gray-mid);
+      padding-left: 24px;
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 28px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -29px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--crimson);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 1px var(--crimson);
+    }
+    .timeline-year {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--crimson);
+      letter-spacing: 0.15em;
+      margin-bottom: 4px;
+    }
+    .timeline-desc {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+    }
+    .timeline-sub {
+      font-family: var(--font-jp);
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--gray-text);
+      margin-top: 2px;
+    }
+
+    /* ===== EXPERTISE ===== */
+    #expertise {
+      padding: 120px 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .expertise-bg {
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 0%, rgba(200,24,74,0.05) 100%);
+      pointer-events: none;
+    }
+    .expertise-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 80px;
+    }
+    .expertise-header {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 60px;
+    }
+    .expertise-sub {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--sky);
+      line-height: 1.9;
+    }
+    .expertise-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 48px;
+    }
+    .expertise-card {
+      background: var(--navy-mid);
+      padding: 36px 28px;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s;
+      position: relative;
+    }
+    .expertise-card:hover { border-top-color: var(--crimson); }
+    .expertise-card-num {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(200,24,74,0.4);
+      letter-spacing: 0.2em;
+      margin-bottom: 20px;
+    }
+    .expertise-card-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .expertise-card-title {
+      font-family: var(--font-jp);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .expertise-card-list {
+      list-style: none;
+    }
+    .expertise-card-list li {
+      font-family: var(--font-jp);
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(250,250,248,0.5);
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      line-height: 1.6;
+    }
+    .expertise-card-list li:last-child { border-bottom: none; }
+    .expertise-badge {
+      display: inline-block;
+      font-family: var(--font-en);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      border: 1px solid rgba(200,24,74,0.4);
+      padding: 3px 10px;
+      margin-top: 12px;
+    }
+    .ai-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+    .ai-metric {
+      background: rgba(200,24,74,0.08);
+      padding: 32px;
+      text-align: center;
+      border-bottom: 2px solid rgba(200,24,74,0.3);
+    }
+    .ai-metric-num {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      font-weight: 600;
+      color: var(--crimson);
+      line-height: 1;
+    }
+    .ai-metric-label {
+      font-family: var(--font-jp);
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--sky);
+      margin-top: 8px;
+    }
+
+    /* ===== PHILOSOPHY ===== */
+    #philosophy {
+      padding: 120px 0;
+      background: var(--gray-light);
+    }
+    .philosophy-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 80px;
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .philosophy-sticky {
+      position: sticky;
+      top: 100px;
+    }
+    .philosophy-desc {
+      font-family: var(--font-jp);
+      font-size: 14px;
+      font-weight: 300;
+      color: #666;
+      line-height: 2.0;
+    }
+    .philosophy-list { list-style: none; }
+    .philosophy-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+    .philosophy-item:first-child { border-top: 1px solid var(--gray-mid); }
+    .philosophy-num {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      font-weight: 300;
+      color: var(--crimson);
+      opacity: 0.2;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 64px;
+    }
+    .philosophy-content {}
+    .philosophy-title {
+      font-family: var(--font-jp);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .philosophy-text {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      font-weight: 300;
+      color: #777;
+      line-height: 1.9;
+    }
+
+    /* ===== WORKS ===== */
+    #works {
+      padding: 120px 0;
+      background: var(--white);
+    }
+    .works-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 80px;
+    }
+    .works-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+    }
+    .works-filter {
+      display: flex;
+      gap: 0;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+    .filter-btn {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-text);
+      padding: 12px 24px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .filter-btn.active {
+      color: var(--crimson);
+      border-bottom-color: var(--crimson);
+    }
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .work-card {
+      background: var(--white);
+      border: 1px solid var(--gray-mid);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    }
+    .work-thumb {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-thumb-text {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      color: rgba(250,250,248,0.3);
+      letter-spacing: 0.1em;
+    }
+    .work-thumb-accent {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--crimson);
+    }
+    .work-info { padding: 20px; }
+    .work-cat {
+      font-family: var(--font-en);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 6px;
+    }
+    .work-title {
+      font-family: var(--font-jp);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .work-desc {
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 300;
+      color: #777;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .work-case-flow {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .work-case-item {
+      font-family: var(--font-en);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-text);
+      background: var(--gray-light);
+      padding: 3px 10px;
+    }
+    .work-case-arrow {
+      color: var(--gray-mid);
+      font-size: 10px;
+    }
+
+    /* ===== PROCESS ===== */
+    #process {
+      padding: 120px 0;
+      background: var(--navy);
+      position: relative;
+    }
+    .process-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 80px;
+    }
+    .process-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-bottom: 64px;
+      position: relative;
+    }
+    .process-flow::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 20px);
+      right: calc(12.5% + 20px);
+      height: 1px;
+      background: rgba(200,24,74,0.3);
+    }
+    .process-step {
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+    .process-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--navy-mid);
+      border: 1px solid rgba(200,24,74,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-family: var(--font-en);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--crimson);
+      position: relative;
+      z-index: 1;
+    }
+    .process-name {
+      font-family: var(--font-jp);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .process-desc {
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(250,250,248,0.4);
+      line-height: 1.7;
+    }
+    .services-section {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 48px;
+    }
+    .services-label {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 24px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+    .service-item {
+      background: var(--navy-mid);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .service-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--crimson);
+      flex-shrink: 0;
+    }
+    .service-text {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(250,250,248,0.7);
+    }
+    .service-note {
+      font-family: var(--font-jp);
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--crimson);
+      margin-top: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      padding: 120px 0;
+      background: var(--crimson);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .contact-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+    .contact-heading {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .contact-sub {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      line-height: 2.0;
+      margin-bottom: 40px;
+    }
+    .contact-form-label {
+      font-family: var(--font-en);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .contact-form-field {
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 12px 16px;
+      font-family: var(--font-jp);
+      font-size: 13px;
+      color: var(--white);
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .contact-form-field:focus { border-color: rgba(255,255,255,0.6); }
+    .contact-form-field::placeholder { color: rgba(255,255,255,0.3); }
+    .contact-form-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 12px 16px;
+      font-family: var(--font-jp);
+      font-size: 13px;
+      color: var(--white);
+      margin-bottom: 20px;
+      outline: none;
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color 0.2s;
+    }
+    .contact-form-textarea:focus { border-color: rgba(255,255,255,0.6); }
+    .contact-form-textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .btn-contact {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      background: var(--white);
+      padding: 14px 36px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-contact:hover { opacity: 0.9; }
+    .sns-links-title {
+      font-family: var(--font-en);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+    .sns-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .sns-link:hover { opacity: 0.75; }
+    .sns-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .sns-info {}
+    .sns-name {
+      font-family: var(--font-en);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+    .sns-handle {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+    .contact-meta {
+      margin-top: 32px;
+      font-family: var(--font-jp);
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.9;
+    }
+
+    /* ===== SNS / NOTE ===== */
+    #sns {
+      padding: 120px 0;
+      background: var(--white);
+    }
+    .sns-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 80px;
+    }
+    .note-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .note-card {
+      background: var(--white);
+      border: 1px solid var(--gray-mid);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .note-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    }
+    .note-thumb {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(135deg, var(--navy-mid) 0%, #2a3560 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .note-thumb-label {
+      font-family: var(--font-serif);
+      font-size: 11px;
+      color: rgba(250,250,248,0.3);
+      letter-spacing: 0.1em;
+    }
+    .note-thumb-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--crimson);
+    }
+    .note-info { padding: 18px; }
+    .note-mag {
+      font-family: var(--font-en);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 8px;
+    }
+    .note-title {
+      font-family: var(--font-jp);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .note-date {
+      font-family: var(--font-en);
+      font-size: 10px;
+      color: var(--gray-text);
+    }
+    .github-section {
+      background: var(--navy);
+      padding: 32px;
+      border-left: 3px solid var(--crimson);
+    }
+    .github-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .github-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-en);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .github-title {
+      font-family: var(--font-en);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.08em;
+    }
+    .github-sub {
+      font-family: var(--font-en);
+      font-size: 10px;
+      color: var(--sky);
+    }
+    .github-dots {
+      display: grid;
+      grid-template-columns: repeat(52, 1fr);
+      gap: 3px;
+    }
+    .gh-dot {
+      aspect-ratio: 1;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.05);
+    }
+    .gh-dot.l1 { background: rgba(200,24,74,0.2); }
+    .gh-dot.l2 { background: rgba(200,24,74,0.45); }
+    .gh-dot.l3 { background: rgba(200,24,74,0.7); }
+    .gh-dot.l4 { background: var(--crimson); }
+
+    /* ===== DANCE ===== */
+    #dance {
+      padding: 120px 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .dance-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .dance-text {
+      font-family: var(--font-jp);
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(250,250,248,0.6);
+      line-height: 2.0;
+      margin-bottom: 32px;
+    }
+    .essp-list { list-style: none; margin-bottom: 32px; }
+    .essp-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .essp-year-badge {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--crimson);
+      border: 1px solid rgba(200,24,74,0.4);
+      padding: 4px 12px;
+      flex-shrink: 0;
+      min-width: 80px;
+      text-align: center;
+    }
+    .essp-desc {
+      font-family: var(--font-jp);
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(250,250,248,0.7);
+    }
+    .essp-venue {
+      font-family: var(--font-en);
+      font-size: 10px;
+      color: var(--sky);
+      margin-top: 2px;
+    }
+    .dance-credentials {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+    }
+    .dance-cred-label {
+      font-family: var(--font-en);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 12px;
+    }
+    .dance-cred-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .dance-cred-tag {
+      font-family: var(--font-jp);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--sky);
+      border: 1px solid rgba(123,170,184,0.3);
+      padding: 5px 14px;
+    }
+    .ig-feed-label {
+      font-family: var(--font-en);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 16px;
+    }
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .ig-cell {
+      aspect-ratio: 1;
+      background: var(--navy-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 10px;
+      color: rgba(250,250,248,0.15);
+      letter-spacing: 0.05em;
+      position: relative;
+      overflow: hidden;
+    }
+    .ig-cell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200,24,74,0.05) 0%, transparent 100%);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0A0F1E;
+      padding: 40px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(200,24,74,0.15);
+    }
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.06em;
+    }
+    .footer-logo em { color: var(--crimson); font-style: italic; }
+    .footer-copy {
+      font-family: var(--font-en);
+      font-size: 10px;
+      color: rgba(250,250,248,0.25);
+      letter-spacing: 0.1em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--crimson); }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      /* Navigation */
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+
+      /* Hero */
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 100px 24px 60px;
+        gap: 40px;
+      }
+      .hero-title { font-size: 52px; }
+      .hero-title-accent { font-size: 52px; }
+      .hero-eyebrow { font-size: 11px; }
+      .hero-tagline { font-size: 12px; }
+      .hero-scroll { left: 24px; }
+      .hero-tags { justify-content: flex-start; }
+      .hero-cta { flex-direction: column; }
+      .hero-cta .btn-primary,
+      .hero-cta .btn-outline { width: 100%; justify-content: center; }
+
+      /* Story */
+      .story-block { grid-template-columns: 1fr; min-height: auto; }
+      .story-block:nth-child(even) .story-img-wrap { order: 1; }
+      .story-block:nth-child(even) .story-content { order: 2; }
+      .story-img-wrap { min-height: 56vw; }
+      .story-content { padding: 48px 24px; }
+      .story-content::before {
+        width: 100% !important;
+        height: 3px !important;
+        left: 0 !important;
+        right: auto !important;
+        background: linear-gradient(to right, transparent, var(--crimson), transparent) !important;
+      }
+      .story-heading { font-size: 28px; }
+      .story-connector { padding: 32px 0; }
+      .story-connector-line { height: 40px; }
+
+      /* About */
+      #about { padding: 80px 0; }
+      .about-inner { grid-template-columns: 1fr; padding: 0 24px; gap: 48px; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-heading { font-size: 24px; }
+      .section-heading .num-highlight { font-size: 3.5em; }
+
+      /* Expertise */
+      #expertise { padding: 80px 0; }
+      .expertise-inner { padding: 0 24px; }
+      .expertise-header { grid-template-columns: 1fr; }
+      .expertise-cards { grid-template-columns: 1fr; }
+      .ai-metrics { grid-template-columns: 1fr; }
+
+      /* Philosophy */
+      #philosophy { padding: 80px 0; }
+      .philosophy-inner { grid-template-columns: 1fr; padding: 0 24px; gap: 48px; }
+      .philosophy-sticky { position: static; }
+
+      /* Works */
+      #works { padding: 80px 0; }
+      .works-inner { padding: 0 24px; }
+      .works-grid { grid-template-columns: 1fr; }
+      .works-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .works-filter { flex-wrap: wrap; }
+
+      /* Process */
+      #process { padding: 80px 0; }
+      .process-inner { padding: 0 24px; }
+      .process-flow { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .process-flow::before { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+
+      /* Contact */
+      #contact { padding: 80px 0; }
+      .contact-inner { grid-template-columns: 1fr; padding: 0 24px; gap: 48px; }
+      .contact-heading { font-size: 36px; }
+
+      /* SNS */
+      #sns { padding: 80px 0; }
+      .sns-inner { padding: 0 24px; }
+      .note-grid { grid-template-columns: 1fr; }
+
+      /* Dance */
+      #dance { padding: 80px 0; }
+      .dance-inner { grid-template-columns: 1fr; padding: 0 24px; gap: 48px; }
+
+      /* Footer */
+      footer { flex-direction: column; padding: 32px 24px; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <div class="nav-logo">sesshuu <em>design</em></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#sns">Note</a></li>
+    <li><a href="#dance">Dance</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta" style="text-decoration:none; display:flex; align-items:center;">Contact</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow"></div>
+  <div class="hero-bg-glow2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">3遘偵〒諠ｹ縺阪▽縺代∵怙蠕後∪縺ｧ鬲・ｺ・☆繧九・窶・隕冶ｦ壽ｼ泌・繝・ぅ繝ｬ繧ｯ繧ｿ繝ｼ</div>
+      <div class="hero-title">sesshuu</div>
+      <div class="hero-title-accent">design</div>
+      <div class="hero-name">譁・怦 髮ｪ闊・/div>
+      <div class="hero-tagline">
+        繝・Ξ繝捺･ｭ逡後・譛蜑咲ｷ壹〒30蟷ｴ縲ゅ檎ｾ弱・驕比ｺｺ縲阪′莉墓寺縺代ｋ隕冶ｦ壽ｼ泌・ ﾃ・逕滓・AI縺ｧ縲・br>
+        縺ゅ↑縺溘・繝薙ず繝阪せ繧偵後▽縺・ｦ九◆縺上↑繧九ヶ繝ｩ繝ｳ繝峨阪∈譏・庄縺輔○縺ｾ縺吶・      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary" style="text-decoration:none;">縺雁撫縺・粋繧上○ 竊・/a>
+        <a href="#works" class="btn-outline" style="text-decoration:none;">Works 繧定ｦ九ｋ</a>
+      </div>
+      <div class="hero-tags">
+        <span class="hero-tag">Strategic Design</span>
+        <span class="hero-tag">AI ﾃ・SEO</span>
+        <span class="hero-tag">Illustration</span>
+        <span class="hero-tag">Logo Design</span>
+        <span class="hero-tag">Graphic Design</span>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="hero-img-frame">
+        <img src="assets/icon_new.jpg" alt="sesshuu design 窶・譁・怦髮ｪ闊・ />
+      </div>
+      <div class="hero-img-accent"></div>
+      <div class="hero-img-accent2"></div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ===== STORY (蜷榊絢騾｣蜍・ ===== -->
+<section id="story">
+  <div class="story-section-intro">
+    <div class="story-section-title">Story 窶・Past ﾂｷ Present ﾂｷ Future</div>
+    <p class="story-section-sub">30蟷ｴ縺ｮ隕冶ｦ壽ｼ泌・繧ｭ繝｣繝ｪ繧｢縺檎函繧薙□縲∝髪荳辟｡莠後・繧ｯ繝ｪ繧ｨ繧､繝・ぅ繝悶・/p>
+  </div>
+
+  <div class="story-connector">
+    <div class="story-connector-line"></div>
+  </div>
+
+  <!-- Block 1: PAST -->
+  <div class="story-block">
+    <div class="story-img-wrap">
+      <img src="assets/story_studio.jpg" alt="30蟷ｴ縺ｮ繧ｹ繧ｿ繧ｸ繧ｪ貍泌・邨碁ｨ・ />
+      <div class="story-img-overlay"></div>
+    </div>
+    <div class="story-content">
+      <div class="story-era">Past 窶・蜴溽せ</div>
+      <h3 class="story-heading">30 YEARS<br>EXPERIENCE</h3>
+      <div class="story-bar"></div>
+      <p class="story-text">
+        豁ｦ阡ｵ驥守ｾ手｡灘､ｧ蟄ｦ繧貞渕逶､縺ｫ縲√ユ繝ｬ繝捺･ｭ逡後・譛蜑咲ｷ壹〒螟ｧ蝙九う繝吶Φ繝医ｄ繧ｹ繧ｿ繧ｸ繧ｪ繧ｻ繝・ヨ縺ｮ貍泌・繝・じ繧､繝ｳ繧・0蟷ｴ縲よ焚逋ｾ荳・ｺｺ縺ｮ隕也ｷ壹ｒ驥倅ｻ倥￠縺ｫ縺励※縺阪◆縲∽ｸ迸ｬ縺ｧ蠢・ｒ謗ｴ繧縲梧ｼ泌・縺ｮ繝ｭ繧ｸ繝・け縲阪′遘√・蜴溽せ縺ｧ縺吶・      </p>
+    </div>
+  </div>
+
+  <div class="story-connector">
+    <div class="story-connector-line"></div>
+  </div>
+
+  <!-- Block 2: PRESENT -->
+  <div class="story-block">
+    <div class="story-img-wrap">
+      <img src="assets/story_pen.jpg" alt="逕滓・AI ﾃ・繝・じ繧､繝ｳ" />
+      <div class="story-img-overlay"></div>
+    </div>
+    <div class="story-content">
+      <div class="story-era">Present 窶・迴ｾ蝨ｨ</div>
+      <h3 class="story-heading">GENERATIVE AI<br>ﾃ・DESIGN</h3>
+      <div class="story-bar"></div>
+      <p class="story-text">
+        豬∬｡後ｊ縺ｮAI豢ｻ逕ｨ縺ｧ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲・0蟷ｴ縺ｮ貍泌・遏･隕九ｒAI縺ｫ蜷ｹ縺崎ｾｼ縺ｿ縲∫・騾溘°縺､鬮伜刀雉ｪ縺ｫ縲悟ｾ｡遉ｾ縺ｮ譛ｬ雉ｪ縲阪ｒ蜿ｯ隕門喧縺励∪縺吶ょ腰縺ｪ繧倶ｽ懈･ｭ莉｣陦後〒縺ｯ縺ｪ縺上∽ｸ邱偵↓譛ｪ譚･繧呈緒縺上◆繧√・縲梧眠縺励＞遲・阪〒縺吶・      </p>
+    </div>
+  </div>
+
+  <div class="story-connector">
+    <div class="story-connector-line"></div>
+  </div>
+
+  <!-- Block 3: FUTURE -->
+  <div class="story-block">
+    <div class="story-img-wrap">
+      <img src="assets/story_pine.jpg" alt="Visual Essence 窶・譛ｬ雉ｪ縺ｮ蜿ｯ隕門喧" />
+      <div class="story-img-overlay"></div>
+    </div>
+    <div class="story-content">
+      <div class="story-era">Future 窶・譛ｪ譚･</div>
+      <h3 class="story-heading">VISUAL<br>ESSENCE</h3>
+      <div class="story-bar"></div>
+      <p class="story-text">
+        螻句捷縺ｮ縲碁妛闊溘阪′譛蟆城剞縺ｮ蠅ｨ縺ｧ荳也阜繧呈緒縺・◆繧医≧縺ｫ縲∵ュ蝣ｱ縺ｮ螂疲ｵ√°繧峨悟ｾ｡遉ｾ縺縺代・闃ｯ縲阪ｒ隕九▽縺大・縺励∪縺吶ゅ御ｼ昴ｏ繧峨↑縺・阪ｒ縲後▽縺・ｦ九◆縺上↑繧九阪∈縲ゅン繧ｸ繝阪せ繧剃ｺｺ繧帝ｭ・ｺ・☆繧句ｑ菴懊∈螟芽ｲ後＆縺帙∪縺吶・      </p>
+    </div>
+  </div>
+
+  <div class="story-connector">
+    <div class="story-connector-line"></div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="about-inner">
+    <div>
+      <div class="section-label">
+        <span class="section-label-num">02</span>
+        <div class="section-label-line"></div>
+        <span class="section-label-text">About</span>
+      </div>
+      <h2 class="section-heading">蛻ｶ菴懊☆繧倶ｺｺ縺ｧ縺ｯ縺ｪ縺上・br><em>險ｭ險医〒縺阪ｋ莠ｺ縲・/em></h2>
+      <div class="accent-bar"></div>
+      <p class="about-text">
+        豁ｦ阡ｵ驥守ｾ手｡灘､ｧ蟄ｦ 遨ｺ髢捺ｼ泌・繝・じ繧､繝ｳ蟄ｦ遘托ｼ・994蟷ｴ蜊呈･ｭ・峨ｒ蝓ｺ逶､縺ｫ縲∝､ｧ謇九Γ繝・ぅ繧｢蛻ｶ菴應ｼ夂､ｾ縺ｫ縺ｦ25蟷ｴ莉･荳翫・繧ｭ繝｣繝ｪ繧｢繧堤ｩ阪∩縲√ヶ繝ｩ繝ｳ繝画姶逡･繝ｻ繝・・繧ｿ蛻・梵繝ｻAI蟆主・謗ｨ騾ｲ繧呈球蠖薙・005蟷ｴ縺ｫ縺ｯ繝倥Ν繧ｷ繝ｳ繧ｭ闃ｸ陦薙ョ繧ｶ繧､繝ｳ螟ｧ蟄ｦ・育樟繝ｻ繧｢繧｢繝ｫ繝亥､ｧ蟄ｦ・峨∈縺ｮ邨・ｹ皮蕗蟄ｦ繧堤ｵ碁ｨ薙＠縲√ヵ繧｣繝ｳ繝ｩ繝ｳ繝臥匱逾･縺ｮ繝・じ繧､繝ｳ諤晄Φ繧貞精蜿弱＠縺溷嵜髫帷噪縺ｪ隕也せ縺後∫樟蝨ｨ縺ｮ蛻ｶ菴懊↓豢ｻ縺阪※縺・∪縺吶・      </p>
+      <p class="about-text">
+        迴ｾ蝨ｨ縺ｯAIﾃ祐EOﾃ優esign繧呈ｨｪ譁ｭ縺吶ｋ繝上う繝悶Μ繝・ラ蝙九け繝ｪ繧ｨ繧､繧ｿ繝ｼ縺ｨ縺励※豢ｻ蜍輔ょ腰縺ｫ縲御ｽ懊ｋ縲阪・縺ｧ縺ｯ縺ｪ縺上∫岼逧・°繧蛾・ｮ励＠縺ｦ讒矩繧定ｨｭ險医☆繧九％縺ｨ繧剃ｿ｡譚｡縺ｨ縺励※縺・∪縺吶・      </p>
+      <div class="about-tags">
+        <span class="tag">逕滓・AI繝代せ繝昴・繝茨ｼ・025・・/span>
+        <span class="tag">譌･譛ｬ逹陬・卆蜷医・莨壼ｸｫ遽・・險ｱ・・020・・/span>
+        <span class="tag">繝倥Ν繧ｷ繝ｳ繧ｭ闃ｸ陦薙ョ繧ｶ繧､繝ｳ螟ｧ蟄ｦ逡吝ｭｦ・・005・・/span>
+        <span class="tag">豁ｦ阡ｵ驥守ｾ手｡灘､ｧ蟄ｦ 遨ｺ髢捺ｼ泌・繝・じ繧､繝ｳ蟄ｦ遘托ｼ・994・・/span>
+      </div>
+      <a href="#about" class="btn-outline-dark" style="text-decoration:none;">邨梧ｭｴ隧ｳ邏ｰ繧定ｦ九ｋ 竊・/a>
+    </div>
+    <div>
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-num">25<span class="stat-unit">+</span></div>
+          <div class="stat-label">蟷ｴ縺ｮ邨碁ｨ・/div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">300<span class="stat-unit">+</span></div>
+          <div class="stat-label">蛻ｶ菴懷ｮ溽ｸｾ</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">50<span class="stat-unit">+</span></div>
+          <div class="stat-label">繧ｯ繝ｩ繧､繧｢繝ｳ繝・/div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">100<span class="stat-unit">+</span></div>
+          <div class="stat-label">SEO險倅ｺ・/div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">85<span class="stat-unit">%</span></div>
+          <div class="stat-label">讀懃ｴ｢荳贋ｽ埼＃謌千紫</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">30<span class="stat-unit">+</span></div>
+          <div class="stat-label">繝励Ο繧ｸ繧ｧ繧ｯ繝・/div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1994</div>
+          <div class="timeline-desc">豁ｦ阡ｵ驥守ｾ手｡灘､ｧ蟄ｦ 遨ｺ髢捺ｼ泌・繝・じ繧､繝ｳ蟄ｦ遘・蜊呈･ｭ</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2000縲・/div>
+          <div class="timeline-desc">螟ｧ謇九Γ繝・ぅ繧｢蛻ｶ菴應ｼ夂､ｾ 蜈･遉ｾ</div>
+          <div class="timeline-sub">繝悶Λ繝ｳ繝画姶逡･繝ｻ繝・・繧ｿ蛻・梵繝ｻAI蟆主・謗ｨ騾ｲ繧呈球蠖・/div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2005</div>
+          <div class="timeline-desc">繝倥Ν繧ｷ繝ｳ繧ｭ闃ｸ陦薙ョ繧ｶ繧､繝ｳ螟ｧ蟄ｦ 邨・ｹ皮蕗蟄ｦ</div>
+          <div class="timeline-sub">迴ｾ繝ｻ繧｢繧｢繝ｫ繝亥､ｧ蟄ｦ 闃ｸ陦薙・繝・じ繧､繝ｳ繝ｻ蟒ｺ遽牙ｭｦ驛ｨ</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-desc">譌･譛ｬ逹陬・卆蜷医・莨・蟶ｫ遽・・險ｱ蜿門ｾ・/div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-desc">逕滓・AI繝代せ繝昴・繝亥叙蠕・/ ShiftAI PJ繝｡繝ｳ繝舌・</div>
+          <div class="timeline-sub">note縲窟I繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医・繧ｬ繧ｸ繝ｳ縲榊ｧ句虚</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERTISE ===== -->
+<section id="expertise">
+  <div class="expertise-bg"></div>
+  <div class="expertise-inner">
+    <div class="expertise-header">
+      <div>
+        <div class="section-label">
+          <span class="section-label-num" style="color:var(--sky);">03</span>
+          <div class="section-label-line" style="background:var(--sky);"></div>
+          <span class="section-label-text" style="color:var(--sky);">Expertise</span>
+        </div>
+        <h2 class="section-heading section-heading-white has-num"><span class="num-highlight">4</span><span class="num-text-wrap">縺､縺ｮ蟆る摩鬆伜沺縲・br><em>蜚ｯ荳縺ｮ繝昴ず繧ｷ繝ｧ繝ｳ</em></span></h2>
+      </div>
+      <p class="expertise-sub">
+        謌ｦ逡･險ｭ險医・SEO繝ｻ繝・じ繧､繝ｳ繝ｻAI豢ｻ逕ｨ縺ｮ4鬆伜沺繧呈ｨｪ譁ｭ縺ｧ縺阪ｋ繧ｯ繝ｪ繧ｨ繧､繧ｿ繝ｼ縺ｯ蟶悟ｰ代〒縺吶ゅ◎繧後◇繧後・蟆る摩諤ｧ縺檎嶌莠偵↓蠑ｷ蛹悶＠蜷医＞縲∝腰荳鬆伜沺縺ｧ縺ｯ螳溽樟縺ｧ縺阪↑縺・ｵｱ蜷育噪縺ｪ萓｡蛟､繧呈署萓帙＠縺ｾ縺吶・      </p>
+    </div>
+    <div class="expertise-cards">
+      <div class="expertise-card">
+        <div class="expertise-card-num">01</div>
+        <span class="expertise-card-icon">識</span>
+        <div class="expertise-card-title">謌ｦ逡･險ｭ險・/div>
+        <ul class="expertise-card-list">
+          <li>繝悶Λ繝ｳ繝画姶逡･遶区｡・/li>
+          <li>讀懃ｴ｢諢丞峙蛻・梵</li>
+          <li>諠・ｱ讒矩險ｭ險・/li>
+          <li>KPI險ｭ險医・謾ｹ蝟・署譯・/li>
+        </ul>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-card-num">02</div>
+        <span class="expertise-card-icon">笨搾ｸ・/span>
+        <div class="expertise-card-title">SEO / Web繝ｩ繧､繝・ぅ繝ｳ繧ｰ</div>
+        <ul class="expertise-card-list">
+          <li>5,000縲・0,000蟄苓ｨ倅ｺ・/li>
+          <li>BtoB蜷代￠SEO險倅ｺ・/li>
+          <li>蜀・Κ繝ｪ繝ｳ繧ｯ險ｭ險・/li>
+          <li>讀懃ｴ｢荳贋ｽ埼＃謌千紫 85%</li>
+        </ul>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-card-num">03</div>
+        <span class="expertise-card-icon">耳</span>
+        <div class="expertise-card-title">繝・じ繧､繝ｳ</div>
+        <ul class="expertise-card-list">
+          <li>SNS繝舌リ繝ｼ蛻ｶ菴・/li>
+          <li>繧ｰ繝ｩ繝輔ぅ繝・け繝・じ繧､繝ｳ</li>
+          <li>3D繝ｻ遨ｺ髢薙ョ繧ｶ繧､繝ｳ</li>
+          <li>荳也阜隕ｳ險ｭ險亥梛繝薙ず繝･繧｢繝ｫ</li>
+        </ul>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-card-num">04</div>
+        <span class="expertise-card-icon">､・/span>
+        <div class="expertise-card-title">AI豢ｻ逕ｨ繝ｻ繧ｳ繝ｳ繧ｵ繝ｫ</div>
+        <ul class="expertise-card-list">
+          <li>逕滓・AI繝代せ繝昴・繝茨ｼ・025・・/li>
+          <li>G讀懷ｮ壼叙蠕玲ｺ門ｙ荳ｭ</li>
+          <li>讌ｭ蜍吝柑邇・喧繝ｻ繝励Ο繝ｳ繝励ヨ險ｭ險・/li>
+          <li>ShiftAI PJ繝｡繝ｳ繝舌・</li>
+        </ul>
+        <div class="expertise-badge">逕滓・AI繝代せ繝昴・繝・/div>
+      </div>
+    </div>
+    <div class="ai-metrics">
+      <div class="ai-metric">
+        <div class="ai-metric-num">40%</div>
+        <div class="ai-metric-label">繧ｳ繝ｳ繝・Φ繝・宛菴懈凾髢・蜑頑ｸ・/div>
+      </div>
+      <div class="ai-metric">
+        <div class="ai-metric-num">50%</div>
+        <div class="ai-metric-label">蛻ｶ菴懊せ繝斐・繝・蜷台ｸ・/div>
+      </div>
+      <div class="ai-metric">
+        <div class="ai-metric-num">35%</div>
+        <div class="ai-metric-label">繝・じ繧､繝ｳ蜉ｹ邇・謾ｹ蝟・/div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHILOSOPHY ===== -->
+<section id="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-sticky">
+      <div class="section-label">
+        <span class="section-label-num">04</span>
+        <div class="section-label-line"></div>
+        <span class="section-label-text">Philosophy</span>
+      </div>
+      <h2 class="section-heading has-num"><span class="num-highlight">5</span><span class="num-text-wrap">縺､縺ｮ險ｭ險域晄Φ縺後・br><em>縺吶∋縺ｦ縺ｮ莉穂ｺ九ｒ雋ｫ縺・/em></span></h2>
+      <div class="accent-bar"></div>
+      <p class="philosophy-desc">
+        蜊倥↓縲御ｽ懊ｋ縲阪・縺ｧ縺ｯ縺ｪ縺上∫岼逧・°繧蛾・ｮ励＠縺ｦ讒矩繧定ｨｭ險医☆繧九ゅョ繧ｶ繧､繝ｳ繧４EO繧・I繧ゅ√☆縺ｹ縺ｦ縺ｯ謌先棡縺ｮ縺溘ａ縺ｮ謇区ｮｵ縺ｧ縺吶・      </p>
+    </div>
+    <ul class="philosophy-list">
+      <li class="philosophy-item">
+        <div class="philosophy-num">01</div>
+        <div class="philosophy-content">
+          <div class="philosophy-title">逶ｮ逧・°繧蛾・ｮ励＠縺ｦ險ｭ險医☆繧・/div>
+          <div class="philosophy-text">繝薙ず繝･繧｢繝ｫ縺ｮ鄒弱＠縺輔ｈ繧翫√∪縺壹御ｽ輔・縺溘ａ縺ｫ菴懊ｋ縺九阪ｒ蝠上＞縺ｾ縺吶ら岼逧・′譏守｢ｺ縺ｧ縺ゅｌ縺ｰ縲∵焔谿ｵ縺ｯ閾ｪ縺壹→螳壹∪繧翫∪縺吶・/div>
+        </div>
+      </li>
+      <li class="philosophy-item">
+        <div class="philosophy-num">02</div>
+        <div class="philosophy-content">
+          <div class="philosophy-title">讒矩繧呈紛縺医※謌先棡縺ｫ縺､縺ｪ縺偵ｋ</div>
+          <div class="philosophy-text">諠・ｱ縺ｮ讒矩縺梧ｭ｣縺励￠繧後・縲√ョ繧ｶ繧､繝ｳ縺ｯ閾ｪ辟ｶ縺ｫ讖溯・縺励∪縺吶りｦ九◆逶ｮ縺ｮ蜑阪↓縲∬ｫ也炊逧・↑鬪ｨ譬ｼ繧定ｨｭ險医＠縺ｾ縺吶・/div>
+        </div>
+      </li>
+      <li class="philosophy-item">
+        <div class="philosophy-num">03</div>
+        <div class="philosophy-content">
+          <div class="philosophy-title">繝・じ繧､繝ｳ縺ｯ陬・｣ｾ縺ｧ縺ｯ縺ｪ縺乗・譫懆ｨｭ險・/div>
+          <div class="philosophy-text">鄒弱＠縺輔→讖溯・諤ｧ縺ｯ蟇ｾ遶九＠縺ｾ縺帙ｓ縲ゅ・繝ｫ繧ｷ繝ｳ繧ｭ縺ｧ蟄ｦ繧薙□蛹玲ｬｧ繝・じ繧､繝ｳ諤晄Φ縺後√％縺ｮ菫｡蠢ｵ縺ｮ譬ｹ蠎輔↓縺ゅｊ縺ｾ縺吶・/div>
+        </div>
+      </li>
+      <li class="philosophy-item">
+        <div class="philosophy-num">04</div>
+        <div class="philosophy-content">
+          <div class="philosophy-title">SEO縺ｯ豬∝・縺ｧ縺ｯ縺ｪ縺・蜍慕ｷ夊ｨｭ險・</div>
+          <div class="philosophy-text">讀懃ｴ｢荳贋ｽ阪ｒ蜿悶ｋ縺薙→縺後ざ繝ｼ繝ｫ縺ｧ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲りｨｪ蝠剰・′閾ｪ辟ｶ縺ｫ谺｡縺ｮ繧｢繧ｯ繧ｷ繝ｧ繝ｳ縺ｸ騾ｲ繧蜍慕ｷ壹ｒ險ｭ險医☆繧九％縺ｨ縺梧悽雉ｪ縺ｧ縺吶・/div>
+        </div>
+      </li>
+      <li class="philosophy-item">
+        <div class="philosophy-num">05</div>
+        <div class="philosophy-content">
+          <div class="philosophy-title">AI縺ｯ莉｣譖ｿ縺ｧ縺ｯ縺ｪ縺剰・蜉帶僑蠑ｵ</div>
+          <div class="philosophy-text">AI縺ｯ莠ｺ髢薙・蜑ｵ騾諤ｧ繧貞･ｪ縺・・縺ｧ縺ｯ縺ｪ縺上∝｢怜ｹ・＆縺帙ｋ繝・・繝ｫ縺ｧ縺吶ら函謌植I繝代せ繝昴・繝医ｒ蜿門ｾ励＠縲∝ｮ溷漁縺ｧ縺ｮ豢ｻ逕ｨ繧呈律縲・ｷｱ繧√※縺・∪縺吶・/div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== WORKS ===== -->
+<section id="works">
+  <div class="works-inner">
+    <div class="works-header">
+      <div>
+        <div class="section-label">
+          <span class="section-label-num">05</span>
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Works</span>
+        </div>
+        <h2 class="section-heading has-num"><span class="num-highlight">300</span><span class="num-text-wrap">莉ｶ莉･荳翫・蛻ｶ菴懷ｮ溽ｸｾ縺瑚ｨｼ譏弱☆繧九・br><em>荳也阜隕ｳ險ｭ險亥鴨</em></span></h2>
+      </div>
+      <a href="#works" class="btn-outline-dark" style="text-decoration:none;">縺吶∋縺ｦ隕九ｋ 竊・/a>
+    </div>
+    <div class="works-filter">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Logo Design</button>
+      <button class="filter-btn">Graphic Design</button>
+      <button class="filter-btn">Illustration</button>
+      <button class="filter-btn">SNS Banner</button>
+    </div>
+    <div class="works-grid">
+      <div class="work-card">
+        <div class="work-thumb" style="padding:0;overflow:hidden;">
+          <img src="assets/glassdentistimage2025.jpg" alt="繝悶Λ繝ｳ繝峨い繧､繝・Φ繝・ぅ繝・ぅ險ｭ險・ style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="work-info">
+          <div class="work-cat">Logo Design</div>
+          <div class="work-title">繝悶Λ繝ｳ繝峨い繧､繝・Φ繝・ぅ繝・ぅ險ｭ險・/div>
+          <div class="work-desc">繧ｯ繝ｩ繧､繧｢繝ｳ繝医・荳也阜隕ｳ縺ｨ萓｡蛟､隕ｳ繧剃ｸ縺､縺ｮ繧ｷ繝ｳ繝懊Ν縺ｫ蜃晉ｸｮ縲ゅΟ繧ｴ縺ｯ蜊倥↑繧句峙蠖｢縺ｧ縺ｯ縺ｪ縺上√ヶ繝ｩ繝ｳ繝峨・蜩ｲ蟄ｦ繧定ｦ冶ｦ壼喧縺励◆繧ゅ・縺ｧ縺吶・/div>
+          <div class="work-case-flow">
+            <span class="work-case-item">隱ｲ鬘・/span>
+            <span class="work-case-arrow">竊・/span>
+            <span class="work-case-item">謠先｡・/span>
+            <span class="work-case-arrow">竊・/span>
+            <span class="work-case-item">謌先棡</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb" style="padding:0;overflow:hidden;position:relative;background:#0F1629;">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+            <div style="font-family:var(--font-en);font-size:11px;color:var(--sky);letter-spacing:0.1em;">PDF PREVIEW</div>
+            <div style="font-family:var(--font-jp);font-size:13px;color:white;font-weight:500;">SNS繝薙ず繝･繧｢繝ｫ繧ｳ繝溘Η繝九こ繝ｼ繧ｷ繝ｧ繝ｳ</div>
+            <a href="assets/SAAL_The_Operational_Engine_compressed.pdf" target="_blank" style="margin-top:8px;padding:6px 16px;border:1px solid var(--sky);color:var(--sky);font-family:var(--font-en);font-size:10px;letter-spacing:0.1em;text-decoration:none;">VIEW PDF 竊・/a>
+          </div>
+        </div>
+        <div class="work-info">
+          <div class="work-cat">Graphic Design</div>
+          <div class="work-title">SNS繝薙ず繝･繧｢繝ｫ繧ｳ繝溘Η繝九こ繝ｼ繧ｷ繝ｧ繝ｳ</div>
+          <div class="work-desc">隕冶ｪ肴ｧ縺ｨ鄒弱＠縺輔ｒ荳｡遶九＠縺溘ン繧ｸ繝･繧｢繝ｫ繧ｳ繝溘Η繝九こ繝ｼ繧ｷ繝ｧ繝ｳ縲ゅせ繧ｯ繝ｭ繝ｼ繝ｫ繧呈ｭ｢繧√ｋ迸ｬ髢鍋噪縺ｪ險ｴ豎ょ鴨繧定ｨｭ險医＠縺ｾ縺吶・/div>
+          <div class="work-case-flow">
+            <span class="work-case-item">隱ｲ鬘・/span>
+            <span class="work-case-arrow">竊・/span>
+            <span class="work-case-item">謠先｡・/span>
+            <span class="work-case-arrow">竊・/span>
+            <span class="work-case-item">謌先棡</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-card">
+        <div class="work-thumb" style="padding:0;overflow:hidden;">
+          <img src="assets/logo_fantasy.png" alt="繧ｭ繝｣繝ｩ繧ｯ繧ｿ繝ｼ繝ｻ荳也阜隕ｳ險ｭ險・ style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="work-info">
+          <div class="work-cat">Illustration</div>
+          <div class="work-title">繧ｭ繝｣繝ｩ繧ｯ繧ｿ繝ｼ繝ｻ荳也阜隕ｳ險ｭ險・/div>
+          <div class="work-desc">迢ｬ閾ｪ縺ｮ繧､繝ｩ繧ｹ繝医Ξ繝ｼ繧ｷ繝ｧ繝ｳ繧ｹ繧ｿ繧､繝ｫ縺ｧ繝悶Λ繝ｳ繝峨・蛟区ｧ繧定｡ｨ迴ｾ縲りｨ俶・縺ｫ谿九ｋ繝薙ず繝･繧｢繝ｫ繧｢繧､繝・Φ繝・ぅ繝・ぅ繧呈ｧ狗ｯ峨＠縺ｾ縺吶・/div>
+          <div class="work-case-flow">
+            <span class="work-case-item">隱ｲ鬘・/span>
+            <span class="work-case-arrow">竊・/span>
+            <span class="work-case-item">謠先｡・/span>
+            <span class="work-case-arrow">竊・/span>
+            <span class="work-case-item">謌先棡</span>
+          </div>
+        </div>
+      </div>
+      <a href="atelier-slide/index.html" target="_blank" rel="noopener noreferrer" class="work-card" style="text-decoration:none;color:inherit;display:block;">
+        <div class="work-thumb" style="padding:0;overflow:hidden;position:relative;background:#0F1629;">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;text-align:center;">
+            <div style="font-family:var(--font-en);font-size:11px;color:var(--sky);letter-spacing:0.1em;">WEB DECK</div>
+            <div style="font-family:var(--font-jp);font-size:13px;color:white;font-weight:500;">Claude Code 菴ｿ逕ｨ蜑・竊・菴ｿ逕ｨ蠕・/div>
+            <span style="margin-top:8px;padding:6px 16px;border:1px solid var(--sky);color:var(--sky);font-family:var(--font-en);font-size:10px;letter-spacing:0.1em;">OPEN SLIDE 竊・/span>
+          </div>
+        </div>
+        <div class="work-info">
+          <div class="work-cat">AI ﾃ・Web</div>
+          <div class="work-title">繝励Ξ繧ｼ繝ｳ繝・・繧ｷ繝ｧ繝ｳ・亥・逕ｻ髱｢繧ｹ繝ｩ繧､繝会ｼ・/div>
+          <div class="work-desc">GitHub Pages 縺ｧ蜈ｬ髢九ゅく繝ｼ繝懊・繝・竊・竊・縺ｾ縺溘・繧ｹ繝ｯ繧､繝励〒謫堺ｽ懊〒縺阪∪縺吶・/div>
+          <div class="work-case-flow">
+            <span class="work-case-item">蟇ｾ豈・/span>
+            <span class="work-case-arrow">竊・/span>
+            <span class="work-case-item">螳溯｣・/span>
+            <span class="work-case-arrow">竊・/span>
+            <span class="work-case-item">蜈ｬ髢・/span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="process">
+  <div class="process-inner">
+    <div class="section-label">
+      <span class="section-label-num" style="color:var(--sky);">06</span>
+      <div class="section-label-line" style="background:var(--sky);"></div>
+      <span class="section-label-text" style="color:var(--sky);">Process</span>
+    </div>
+    <h2 class="section-heading section-heading-white" style="margin-bottom:60px;">萓晞ｼ縺九ｉ邏榊刀縺ｾ縺ｧ縲・br><em>譏守｢ｺ縺ｪ繝輔Ο繝ｼ縺ｧ螳牙ｿ・・繝励Ο繧ｻ繧ｹ</em></h2>
+    <div class="process-flow">
+      <div class="process-step">
+        <div class="process-circle">1</div>
+        <div class="process-name">縺雁撫縺・粋繧上○</div>
+        <div class="process-desc">繝輔か繝ｼ繝縺ｾ縺溘・<br>繝｡繝ｼ繝ｫ縺ｧ縺秘｣邨｡</div>
+      </div>
+      <div class="process-step">
+        <div class="process-circle">2</div>
+        <div class="process-name">繝偵い繝ｪ繝ｳ繧ｰ</div>
+        <div class="process-desc">隱ｲ鬘後・逶ｮ讓吶ｒ<br>隧ｳ縺励￥縺贋ｼｺ縺・/div>
+      </div>
+      <div class="process-step">
+        <div class="process-circle">3</div>
+        <div class="process-name">謠先｡医・隕狗ｩ阪ｂ繧・/div>
+        <div class="process-desc">譛驕ｩ縺ｪ繝励Λ繝ｳ縺ｨ<br>縺願ｦ狗ｩ阪ｊ繧偵＃謠千､ｺ</div>
+      </div>
+      <div class="process-step">
+        <div class="process-circle">4</div>
+        <div class="process-name">繝励Ο繧ｸ繧ｧ繧ｯ繝磯幕蟋・/div>
+        <div class="process-desc">縺泌･醍ｴ・ｾ後・br>蛻ｶ菴懊せ繧ｿ繝ｼ繝・/div>
+      </div>
+    </div>
+    <div class="services-section">
+      <div class="services-label">Services</div>
+      <div class="services-grid">
+        <div class="service-item"><div class="service-dot"></div><span class="service-text">謌ｦ逡･險ｭ險医・繝悶Λ繝ｳ繝峨さ繝ｳ繧ｵ繝ｫ繝・ぅ繝ｳ繧ｰ</span></div>
+        <div class="service-item"><div class="service-dot"></div><span class="service-text">SEO繧ｳ繝ｳ繝・Φ繝・宛菴・/span></div>
+        <div class="service-item"><div class="service-dot"></div><span class="service-text">繝・じ繧､繝ｳ蛻ｶ菴懶ｼ医Ο繧ｴ繝ｻ繝舌リ繝ｼ繝ｻ繧ｰ繝ｩ繝輔ぅ繝・け・・/span></div>
+        <div class="service-item"><div class="service-dot"></div><span class="service-text">AI豢ｻ逕ｨ謾ｯ謠ｴ繝ｻ繝励Ο繝ｳ繝励ヨ險ｭ險・/span></div>
+      </div>
+      <div class="service-note">豕穂ｺｺ謠先｡・/ 邯咏ｶ壽｡井ｻｶ 豁楢ｿ・/div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="contact-bg"></div>
+  <div class="contact-inner">
+    <div>
+      <div class="section-label">
+        <span class="section-label-num" style="color:rgba(255,255,255,0.5);">07</span>
+        <div class="section-label-line" style="background:rgba(255,255,255,0.3);"></div>
+        <span class="section-label-text" style="color:rgba(255,255,255,0.4);">Contact</span>
+      </div>
+      <h2 class="contact-heading">縺ｾ縺壹・縲・br>縺頑ｰ苓ｻｽ縺ｫ<br>縺皮嶌隲・￥縺縺輔＞縲・/h2>
+      <p class="contact-sub">
+        AIﾃ祐EOﾃ優esign繧堤ｵｱ蜷医＠縺滓姶逡･險ｭ險医〒縲√≠縺ｪ縺溘・繝薙ず繝阪せ縺ｮ隱ｲ鬘後ｒ讒矩縺九ｉ隗｣豎ｺ縺励∪縺吶・      </p>
+      <div class="sns-links-title">SNS / Links</div>
+      <a href="https://note.com/sesshuu_2020/all" class="sns-link">
+        <div class="sns-icon">N</div>
+        <div class="sns-info">
+          <div class="sns-name">note</div>
+          <div class="sns-handle">AI繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医・繧ｬ繧ｸ繝ｳ</div>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/sesshuu_design/" class="sns-link">
+        <div class="sns-icon">IG</div>
+        <div class="sns-info">
+          <div class="sns-name">Instagram</div>
+          <div class="sns-handle">@sesshuu_design</div>
+        </div>
+      </a>
+      <a href="https://x.com/sesshuuX" class="sns-link">
+        <div class="sns-icon">X</div>
+        <div class="sns-info">
+          <div class="sns-name">X (Twitter)</div>
+          <div class="sns-handle">@sesshuuX 窶・譁・怦髮ｪ闊・/div>
+        </div>
+      </a>
+      <div class="contact-meta">
+        螟ｧ髦ｪ諡轤ｹ / 繝ｪ繝｢繝ｼ繝亥庄<br>
+        豕穂ｺｺ謠先｡医・邯咏ｶ壽｡井ｻｶ 豁楢ｿ・      </div>
+    </div>
+    <form action="mailto:yukikiki2011+work@gmail.com" method="post" enctype="text/plain">
+      <label class="contact-form-label">縺雁錐蜑・/label>
+      <input class="contact-form-field" type="text" name="name" placeholder="螻ｱ逕ｰ 螟ｪ驛・ />
+      <label class="contact-form-label">繝｡繝ｼ繝ｫ繧｢繝峨Ξ繧ｹ</label>
+      <input class="contact-form-field" type="email" name="email" placeholder="your@email.com" />
+      <label class="contact-form-label">莉ｶ蜷・/label>
+      <input class="contact-form-field" type="text" name="subject" placeholder="縺皮嶌隲・・螳ｹ繧偵・縺ｨ縺薙→縺ｧ" />
+      <label class="contact-form-label">繝｡繝・そ繝ｼ繧ｸ</label>
+      <textarea class="contact-form-textarea" name="message" placeholder="繝励Ο繧ｸ繧ｧ繧ｯ繝医・讎りｦ√√＃莠育ｮ励√せ繧ｱ繧ｸ繝･繝ｼ繝ｫ縺ｪ縺ｩ繧偵♀豌苓ｻｽ縺ｫ縺碑ｨ伜・縺上□縺輔＞縲・></textarea>
+      <button type="submit" class="btn-contact">騾∽ｿ｡縺吶ｋ 竊・/button>
+      <div style="margin-top:40px;width:100%;">
+        <img src="assets/welcome_banner.jpg" alt="Welcome @sesshuu design" style="width:100%;height:auto;display:block;object-fit:contain;" />
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== SNS / NOTE ===== -->
+<section id="sns">
+  <div class="sns-inner">
+    <div class="section-label">
+      <span class="section-label-num">08</span>
+      <div class="section-label-line"></div>
+      <span class="section-label-text">SNS / Note</span>
+    </div>
+    <h2 class="section-heading" style="margin-bottom:8px;">繧ｪ繝ｼ繝励Φ縺ｪ蛻ｶ菴懈ｴｻ蜍輔〒縲・br><em>菫｡鬆ｼ繧堤ｩ阪∩荳翫￡繧・/em></h2>
+    <div class="accent-bar"></div>
+    <p style="font-family:var(--font-jp);font-size:14px;font-weight:300;color:#666;line-height:2.0;margin-bottom:40px;">
+      note縲窟I繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医・繧ｬ繧ｸ繝ｳ縲榊ｧ句虚縲・I豢ｻ逕ｨ繝ｻ繝・じ繧､繝ｳ繝ｻ繧ｹ繝医Λ繝・ず繝ｼ縺ｫ髢｢縺吶ｋ遏･隕九ｒ邯咏ｶ夂匱菫｡縲よ律蟶ｸ逧・↑蟄ｦ縺ｳ縺ｨ諤晁・・繝励Ο繧ｻ繧ｹ繧貞・髢九☆繧九％縺ｨ縺ｧ縲∬ｨｪ蝠剰・↓菫｡鬆ｼ繧貞ｱ翫￠縺ｾ縺吶・    </p>
+    <div class="note-grid">
+      <a class="note-card" href="https://note.com/sesshuu/n/n" target="_blank" style="text-decoration:none;color:inherit;">
+        <div class="note-thumb" style="background:linear-gradient(135deg, #C8184A 0%, #9e1238 100%);display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;padding:16px;">
+            <div style="font-family:var(--font-serif);font-size:20px;color:white;font-style:italic;line-height:1.4;">AI Agent<br>Magazine</div>
+          </div>
+        </div>
+        <div class="note-info">
+          <div class="note-mag">AI繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医・繧ｬ繧ｸ繝ｳ</div>
+          <div class="note-title">Sesshuu design縲廣I繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝育函蟄俶姶逡･縲・/div>
+          <div class="note-date">note 窶・Sesshuu</div>
+        </div>
+      </a>
+      <a class="note-card" href="https://note.com/sesshuu/" target="_blank" style="text-decoration:none;color:inherit;">
+        <div class="note-thumb" style="background:linear-gradient(135deg, #1a2340 0%, #2d3a5e 100%);;display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;padding:16px;">
+            <div style="font-family:var(--font-en);font-size:13px;color:var(--sky);font-weight:600;line-height:1.5;">莉穂ｺ九・縲梧欠遉ｺ縲阪ｈ繧・br>縲瑚ｨｭ險医阪↓縺ｪ繧・/div>
+          </div>
+        </div>
+        <div class="note-info">
+          <div class="note-mag">AI繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医・繧ｬ繧ｸ繝ｳ</div>
+          <div class="note-title">AI繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝域凾莉｣縲∽ｻ穂ｺ九・縲梧欠遉ｺ縲阪ｈ繧翫瑚ｨｭ險医阪↓縺ｪ繧・/div>
+          <div class="note-date">note 窶・Sesshuu</div>
+        </div>
+      </a>
+      <a class="note-card" href="https://note.com/sesshuu/" target="_blank" style="text-decoration:none;color:inherit;">
+        <div class="note-thumb" style="background:linear-gradient(135deg, #2a1a2e 0%, #3d2a4a 100%);display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;padding:16px;">
+            <div style="font-family:var(--font-en);font-size:13px;color:#c8a0d8;font-weight:600;line-height:1.5;">AI縺ｨ荳邱偵↓騾ｲ蛹悶☆繧・br>Sesshuu繝・じ繧､繝ｳ</div>
+          </div>
+        </div>
+        <div class="note-info">
+          <div class="note-mag">AI繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医・繧ｬ繧ｸ繝ｳ</div>
+          <div class="note-title">AI縺ｨ荳邱偵↓騾ｲ蛹悶☆繧鬼esshuu繝・じ繧､繝ｳ・夊ｩｦ陦碁険隱､縺ｮ蜈ｨ險倬鹸</div>
+          <div class="note-date">note 窶・Sesshuu</div>
+        </div>
+      </a>
+    </div>
+    <div class="github-section">
+      <div class="github-header">
+        <div class="github-icon">GH</div>
+        <div>
+          <div class="github-title">sesshuu design 窶・GitHub</div>
+          <div class="github-sub">Contributions in the last year</div>
+        </div>
+      </div>
+      <div class="github-dots" id="ghDots2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DANCE ===== -->
+<section id="dance">
+  <div class="dance-inner">
+    <div>
+      <div class="section-label">
+        <span class="section-label-num" style="color:var(--sky);">09</span>
+        <div class="section-label-line" style="background:var(--sky);"></div>
+        <span class="section-label-text" style="color:var(--sky);">Subculture / Dance</span>
+      </div>
+      <h2 class="section-heading section-heading-white">霄ｫ菴薙〒陦ｨ迴ｾ縺吶ｋ<br><em>繝・じ繧､繝ｳ</em></h2>
+      <div class="accent-bar"></div>
+      <p class="dance-text">
+        繝上え繧ｹ・・ヲ繝・・繝帙ャ繝励ム繝ｳ繧ｵ繝ｼ縺ｨ縺励※縲∝､ｧ隕乗ｨ｡繝繝ｳ繧ｹ繧､繝吶Φ繝医窪SSP・・ast Side Spring Party・峨阪↓荳牙ｹｴ騾｣邯壹〒蜃ｺ貍斐りｺｫ菴薙〒陦ｨ迴ｾ縺吶ｋ繝・じ繧､繝ｳ繧剃ｽ鍋樟縺励√ン繧ｸ繝阪せ繧ｯ繝ｪ繧ｨ繧､繧ｿ繝ｼ縺ｨ縺励※縺ｮ螻､繧定ｶ・∴縺滉ｺｺ髢鍋噪縺ｪ蟷・ｒ遉ｺ縺励∪縺吶・      </p>
+      <ul class="essp-list">
+        <li class="essp-item">
+          <div class="essp-year-badge">ESSP 2023</div>
+          <div>
+            <div class="essp-desc">East Side Spring Party 蜃ｺ貍・/div>
+          </div>
+        </li>
+        <li class="essp-item">
+          <div class="essp-year-badge">ESSP 2024</div>
+          <div>
+            <div class="essp-desc">East Side Spring Party 蜃ｺ貍・/div>
+            <div class="essp-venue">2024.06.02 窶・CLUB CITTA'</div>
+          </div>
+        </li>
+        <li class="essp-item">
+          <div class="essp-year-badge">ESSP 2025</div>
+          <div>
+            <div class="essp-desc">East Side Spring Party 蜃ｺ貍・/div>
+          </div>
+        </li>
+      </ul>
+      <div class="dance-credentials">
+        <div class="dance-cred-label">Specialties 窶・逹陬・・莨晉ｵｱ譁・喧</div>
+        <div class="dance-cred-tags">
+          <span class="dance-cred-tag">譌･譛ｬ逹陬・卆蜷医・莨壼ｸｫ遽・・險ｱ・・020・・/span>
+          <span class="dance-cred-tag">蜥瑚｣・せ繧ｿ繧､繝ｪ繝ｳ繧ｰ</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px;">
+          <img src="assets/kimono01.jpg" alt="逹陬・ｽ懷刀1" style="width:100%;height:180px;object-fit:cover;display:block;border-radius:4px;" />
+          <img src="assets/kimono02.jpg" alt="逹陬・ｽ懷刀2" style="width:100%;height:180px;object-fit:cover;display:block;border-radius:4px;" />
+          <img src="assets/yuri_kai.png" alt="譌･譛ｬ逹陬・卆蜷井ｹ・ｼ・ style="width:100%;height:180px;object-fit:cover;display:block;border-radius:4px;" />
+        </div>
+        <div style="margin-top:16px;">
+          <a href="http://www.nihonchakusou-yurinokai.com/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid var(--sky);color:var(--sky);font-family:var(--font-en);font-size:11px;letter-spacing:0.1em;text-decoration:none;">
+            <span style="font-family:var(--font-jp);font-size:12px;">譌･譛ｬ逹陬・卆蜷井ｹ・ｼ・/span>
+            <span style="font-size:10px;">竊・蜈ｬ蠑上し繧､繝・/span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ig-feed-label">Instagram Feed 窶・@sesshuu_design</div>
+      <div class="ig-grid">
+        <div class="ig-cell" style="padding:0;overflow:hidden;"><img src="assets/dancer00.png" alt="dancer" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="ig-cell" style="padding:0;overflow:hidden;"><img src="assets/dancer01.png" alt="dancer" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="ig-cell" style="padding:0;overflow:hidden;"><img src="assets/noa_180419.png" alt="NOA IMPACT" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="ig-cell" style="padding:0;overflow:hidden;"><img src="assets/noa_180508.png" alt="NOA IMPACT" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="ig-cell" style="padding:0;overflow:hidden;"><img src="assets/noa_180731.png" alt="NOA IMPACT" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="ig-cell" style="padding:0;overflow:hidden;"><img src="assets/noa_180812.png" alt="NOA IMPACT" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+      </div>
+      <button class="btn-outline" style="font-size:11px;">Instagram 繧定ｦ九ｋ 竊・/button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-logo">sesshuu <em>design</em></div>
+  <div class="footer-copy">ﾂｩ 2025 譁・怦髮ｪ闊・/ sesshuu design. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#works">Works</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll for all anchor links (nav Contact button etc.)
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // GitHub contribution graph
+  const container = document.getElementById('ghDots2');
+  const levels = ['', 'l1', 'l2', 'l3', 'l4'];
+  for (let i = 0; i < 364; i++) {
+    const dot = document.createElement('div');
+    const r = Math.random();
+    let cls = 'gh-dot';
+    if (r > 0.88) cls += ' l4';
+    else if (r > 0.75) cls += ' l3';
+    else if (r > 0.60) cls += ' l2';
+    else if (r > 0.45) cls += ' l1';
+    dot.className = cls;
+    container.appendChild(dot);
+  }
+</script>
+</body>
+</html>
