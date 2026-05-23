@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Booking — 予約ガイド | Sakura Sands Suites Hotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans-jp);font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:root{
+  --bg:#fafaf8;--text:#464a41;--text-sub:#8a8c87;--border:#e8e8e4;
+  --white:#ffffff;--kogane:#e6b422;--sumi:#464a41;
+  --font-serif-jp:'Noto Serif JP',serif;--font-sans-jp:'Noto Sans JP',sans-serif;
+  --font-serif-en:'Cormorant Garamond',serif;--font-sans-en:'Inter',sans-serif;
+  --nav-h:72px;--max-w:1200px;
+  --sp-sm:1rem;--sp-md:2rem;--sp-lg:4rem;--sp-xl:8rem;
+}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+.section{padding:var(--sp-lg) 0}
+.section-lg{padding:var(--sp-xl) 0}
+.label{font-family:var(--font-sans-en);font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text-sub);display:block;margin-bottom:.5rem}
+.sec-title{font-family:var(--font-serif-en);font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;letter-spacing:.04em;margin-bottom:.5rem}
+.sec-subtitle{font-family:var(--font-sans-jp);font-size:.9375rem;color:var(--text-sub);margin-bottom:var(--sp-md)}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;font-family:var(--font-sans-en);font-size:.8125rem;font-weight:500;letter-spacing:.1em;cursor:pointer;transition:all .25s ease;border:none;text-decoration:none}
+.btn-dark{background:var(--text);color:var(--bg)}
+.btn-dark:hover{background:var(--kogane);color:var(--text);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--text)}
+.btn-outline:hover{background:var(--text);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-kogane{background:var(--kogane);color:var(--sumi)}
+.btn-kogane:hover{background:var(--white);color:var(--sumi);transform:translateY(-2px);box-shadow:0 8px 24px rgba(70,74,65,.2)}
+/* Nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;height:var(--nav-h);background:rgba(250,250,248,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav__logo{display:flex;flex-direction:column;line-height:1.25}
+.nav__logo-main{font-family:var(--font-serif-en);font-size:1.0625rem;font-weight:400;letter-spacing:.04em}
+.nav__logo-sub{font-family:var(--font-sans-en);font-size:.5625rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-sub)}
+.nav__links{display:flex;align-items:center;gap:2rem}
+.nav__link{font-family:var(--font-sans-en);font-size:.8125rem;letter-spacing:.06em;transition:color .2s}
+.nav__link:hover{color:var(--kogane)}
+.nav__link.active{color:var(--kogane);border-bottom:1px solid var(--kogane);padding-bottom:2px}
+.nav__right{display:flex;align-items:center;gap:1rem}
+.nav__cta{padding:.625rem 1.5rem}
+/* Page Hero */
+.page-hero{position:relative;padding-top:var(--nav-h);min-height:40vh;display:flex;align-items:center;background:var(--sumi);overflow:hidden}
+.page-hero--light{background:var(--bg)}
+.page-hero--kogane{background:linear-gradient(135deg,#2e2a1a 0%,#464010 50%,#2e2a1a 100%)}
+.page-hero__bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.25}
+.page-hero__overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(46,50,41,.85) 0%,rgba(46,50,41,.5) 100%)}
+.page-hero__content{position:relative;z-index:2;padding:var(--sp-lg) 0}
+.page-hero .label{color:var(--kogane)}
+.page-hero--light .label{color:var(--text-sub)}
+.page-hero__h1{font-family:var(--font-serif-en);font-size:clamp(2rem,5vw,3.75rem);font-weight:300;color:var(--white);line-height:1.15;letter-spacing:.04em;margin-bottom:.5rem}
+.page-hero--light .page-hero__h1{color:var(--text)}
+.page-hero__jp{font-family:var(--font-serif-jp);font-size:clamp(.9375rem,2vw,1.125rem);font-weight:300;color:rgba(255,255,255,.7);letter-spacing:.2em}
+.page-hero--light .page-hero__jp{color:var(--text-sub)}
+/* CTA Strip */
+.cta-strip{background:var(--sumi);padding:var(--sp-lg) 0;text-align:center}
+.cta-strip__title{font-family:var(--font-serif-en);font-size:clamp(1.25rem,2.5vw,2rem);font-weight:300;color:var(--white);letter-spacing:.06em;margin-bottom:.5rem}
+.cta-strip__sub{font-family:var(--font-sans-jp);font-size:.9375rem;color:rgba(255,255,255,.55);margin-bottom:var(--sp-md)}
+.cta-strip__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+/* Footer */
+.footer{background:var(--sumi);padding:var(--sp-md) 0}
+.footer__inner{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+.footer__logo{font-family:var(--font-serif-en);font-size:.9375rem;font-weight:400;letter-spacing:.08em;color:rgba(255,255,255,.7)}
+.footer__links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer__link{font-family:var(--font-sans-en);font-size:.75rem;letter-spacing:.08em;color:rgba(255,255,255,.45);transition:color .2s}
+.footer__link:hover{color:var(--kogane)}
+.footer__copy{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.06em;color:rgba(255,255,255,.3);text-align:center;padding-top:var(--sp-sm);border-top:1px solid rgba(255,255,255,.08)}
+/* Responsive */
+@media(max-width:768px){
+  .nav__links{display:none}
+  .container{padding:0 1.25rem}
+  .section{padding:2.5rem 0}
+  .section-lg{padding:4rem 0}
+  .page-hero__h1{font-size:clamp(1.625rem,6vw,2.25rem)}
+}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin:var(--sp-lg) 0;counter-reset:step}
+.step{text-align:center;padding:var(--sp-md);border:1px solid var(--border);position:relative}
+.step::before{counter-increment:step;content:counter(step);font-family:var(--font-serif-en);font-size:3.5rem;font-weight:300;color:var(--border);display:block;line-height:1;margin-bottom:.5rem}
+.step__title{font-family:var(--font-serif-jp);font-size:1.0625rem;font-weight:400;margin-bottom:.5rem}
+.step__desc{font-family:var(--font-sans-jp);font-size:.875rem;color:var(--text-sub);line-height:1.8}
+/* OTA buttons */
+.ota-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:var(--sp-lg) 0}
+.ota-btn{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border:1px solid var(--border);transition:all .25s;background:var(--white)}
+.ota-btn:hover{border-color:var(--kogane);box-shadow:0 4px 20px rgba(70,74,65,.08);transform:translateY(-2px)}
+.ota-btn__name{font-family:var(--font-sans-en);font-size:1rem;font-weight:500;letter-spacing:.02em}
+.ota-btn__note{font-family:var(--font-sans-jp);font-size:.75rem;color:var(--text-sub);margin-top:.125rem}
+.ota-btn__arr{font-size:1.25rem;color:var(--kogane)}
+/* Guide grid */
+.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:var(--sp-md)}
+.guide-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem;border:1px solid var(--border)}
+.guide-item__swatch{width:36px;height:36px;border-radius:50%;flex-shrink:0;margin-top:.2rem}
+.guide-item__mood{font-family:var(--font-sans-jp);font-size:.8125rem;color:var(--text-sub)}
+.guide-item__rooms{font-family:var(--font-serif-jp);font-size:.9375rem;font-weight:400}
+/* Kogane inquiry */
+.kogane-inquiry{background:var(--sumi);padding:var(--sp-lg);display:grid;grid-template-columns:1fr 1.4fr;gap:var(--sp-lg);align-items:start;margin:var(--sp-xl) 0}
+.kogane-inquiry .label{color:var(--kogane)}
+.kogane-inquiry__h2{font-family:var(--font-serif-en);font-size:clamp(1.375rem,2.5vw,2rem);font-weight:300;color:var(--white);margin-bottom:.5rem}
+.kogane-inquiry__jp{font-family:var(--font-serif-jp);color:rgba(255,255,255,.65);letter-spacing:.15em;margin-bottom:1rem}
+.kogane-inquiry__desc{font-family:var(--font-sans-jp);font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.9}
+.inquiry-form input,.inquiry-form textarea,.inquiry-form select{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);padding:.75rem 1rem;color:var(--white);font-family:var(--font-sans-jp);font-size:.875rem;margin-bottom:.75rem;outline:none;transition:border-color .2s}
+.inquiry-form input::placeholder,.inquiry-form textarea::placeholder{color:rgba(255,255,255,.3)}
+.inquiry-form input:focus,.inquiry-form textarea:focus{border-color:var(--kogane)}
+.inquiry-form textarea{height:100px;resize:vertical}
+.inquiry-form .btn{width:100%;justify-content:center}
+.notice{font-size:.8125rem;color:var(--text-sub);border-left:2px solid var(--border);padding-left:1rem;margin:var(--sp-md) 0}
+@media(max-width:900px){.steps,.ota-grid,.guide-grid,.kogane-inquiry{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav" role="navigation" aria-label="メインナビゲーション"><div class="container"><div class="nav__inner">
+<a href="index.html" class="nav__logo"><span class="nav__logo-main">Sakura Sands Suites</span><span class="nav__logo-sub">Hotel &mdash; Osaka</span></a>
+<ul class="nav__links" role="list"><li><a href="concept.html" class="nav__link">Concept</a></li><li><a href="rooms.html" class="nav__link">Rooms</a></li><li><a href="family.html" class="nav__link">Family Stay</a></li><li><a href="osaka.html" class="nav__link">Osaka</a></li><li><a href="faq.html" class="nav__link active">FAQ</a></li></ul>
+<div class="nav__right"><a href="booking.html" class="btn btn-dark nav__cta">Book Now</a></div>
+</div></div></nav>
+
+<div style="height:var(--nav-h)"></div>
+
+<section class="page-hero page-hero--kogane" style="min-height:40vh">
+  <div class="page-hero__content container">
+    <span class="label">Book Your Stay</span>
+    <h1 class="page-hero__h1">Your Journey Begins Here.</h1>
+    <p class="page-hero__jp">今日から、13色の旅へ。</p>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Steps -->
+  <div class="section">
+    <span class="label">How to Book</span>
+    <h2 class="sec-title">3ステップで予約完了。</h2>
+    <div class="steps">
+      <div class="step"><p class="step__title">色を選ぶ</p><p class="step__desc">Rooms ページで13色の部屋をご覧いただき、旅のテーマに合う色を見つけてください。</p><div style="margin-top:1rem"><a href="rooms.html" class="btn btn-outline" style="font-size:.75rem;padding:.625rem 1.25rem">Rooms を見る</a></div></div>
+      <div class="step"><p class="step__title">OTAで検索・予約</p><p class="step__desc">「Sakura Sands Suites」で検索、または下記のリンクから各予約サイトへ。日程・人数を入力してご予約ください。</p></div>
+      <div class="step"><p class="step__title">到着・チェックイン</p><p class="step__desc">15:00よりチェックイン可能。フロントは24時間対応。英語でのご案内も可能です。</p></div>
+    </div>
+    <p class="notice">現在、公式サイトでの直接予約は受け付けておりません。各OTAサイトよりご予約ください。OTAにて「Sakura Sands Suites Hotel」で検索するか、下記リンクをご利用ください。</p>
+  </div>
+
+  <!-- OTA Links -->
+  <div style="border-top:1px solid var(--border);padding-top:var(--sp-lg)">
+    <span class="label">Booking Sites</span>
+    <h2 class="sec-title">予約サイト一覧</h2>
+    <div class="ota-grid"><a href="https://www.booking.com/hotel/jp/sakura-sands-suites.ja.html" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">Booking.com</p><p class="ota-btn__note">最多レビュー・直感的な操作</p></div><span class="ota-btn__arr">→</span></a><a href="#" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">Airbnb</p><p class="ota-btn__note">ユニークなスイート体験として掲載</p></div><span class="ota-btn__arr">→</span></a><a href="#" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">Expedia</p><p class="ota-btn__note">海外からの予約に強い</p></div><span class="ota-btn__arr">→</span></a><a href="#" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">じゃらん net</p><p class="ota-btn__note">国内旅行者・日本語対応</p></div><span class="ota-btn__arr">→</span></a></div>
+  </div>
+
+  <!-- Room selection guide -->
+  <div class="section" style="border-top:1px solid var(--border)">
+    <span class="label">Room Selection Guide</span>
+    <h2 class="sec-title">どの色にするか迷ったら。</h2>
+    <p class="sec-subtitle">旅のテーマ・気分で絞り込めます。</p>
+    <div class="guide-grid"><div class="guide-item"><div class="guide-item__swatch" style="background:#f5f0e8;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood">落ち着いた旅・初めての大阪</p><p class="guide-item__rooms">鳥の子色・胡桃色</p></div></div><div class="guide-item"><div class="guide-item__swatch" style="background:#e8f0e0;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood">家族旅行・子ども連れ</p><p class="guide-item__rooms">若草色・菜の花色</p></div></div><div class="guide-item"><div class="guide-item__swatch" style="background:#fce8f0;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood">カップル・記念日</p><p class="guide-item__rooms">桜色・菖蒲色・薄紅</p></div></div><div class="guide-item"><div class="guide-item__swatch" style="background:#2a2d27;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood">クール・大人のひとり旅</p><p class="guide-item__rooms">墨色・瑠璃紺・深緑</p></div></div></div>
+    <div style="text-align:center;margin-top:var(--sp-lg)">
+      <a href="rooms.html" class="btn btn-outline">全13色を詳しく見る &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Kogane Special Inquiry -->
+<div id="kogane" class="kogane-inquiry">
+  <div>
+    <span class="label">14F Special Suite</span>
+    <h2 class="kogane-inquiry__h2">Kogane Room<br><span style="font-size:.65em">黄金色 / Radiant Gold</span></h2>
+    <p class="kogane-inquiry__jp">最上階は、お問い合わせ・審査制。</p>
+    <p class="kogane-inquiry__desc">14Fの黄金色スイートは、通常のOTA予約では受け付けておりません。お問い合わせフォームよりご連絡いただき、内容を確認のうえ担当者よりご案内いたします（ご希望に添えない場合もございます）。</p>
+  </div>
+  <form class="inquiry-form" action="#" method="post" onsubmit="return false;">
+    <input type="text"  name="name"  placeholder="お名前 / Your Name" required>
+    <input type="email" name="email" placeholder="メールアドレス / Email" required>
+    <input type="text"  name="dates" placeholder="ご希望日程 / Preferred Dates">
+    <textarea name="message" placeholder="ご要望・メッセージ / Message"></textarea>
+    <button type="submit" class="btn btn-kogane">送信する &rarr;</button>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.5rem;text-align:center">送信後、2営業日以内にご連絡いたします。</p>
+  </form>
+</div>
+
+<section class="cta-strip">
+  <div class="container">
+    <p class="cta-strip__title">13 Colors, One Journey.</p>
+    <p class="cta-strip__sub">大阪・心斎橋。日本の色を旅する、都市型ファミリーステイ。</p>
+    <div class="cta-strip__btns">
+      <a href="rooms.html" class="btn btn-kogane">お部屋を選ぶ &rarr;</a>
+      <a href="faq.html"   class="btn btn-ghost">よくある質問</a>
+    </div>
+  </div>
+</section>
+<footer class="footer" role="contentinfo"><div class="container">
+<div class="footer__inner">
+  <span class="footer__logo">Sakura Sands Suites Hotel</span>
+  <ul class="footer__links">
+    <li><a href="concept.html" class="footer__link">Concept</a></li>
+    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
+    <li><a href="faq.html" class="footer__link">FAQ</a></li>
+    <li><a href="booking.html" class="footer__link">Book Now</a></li>
+  </ul>
+</div>
+<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
+</div></footer>
+<footer class="footer" role="contentinfo"><div class="container">
+<div class="footer__inner">
+  <span class="footer__logo">Sakura Sands Suites Hotel</span>
+  <ul class="footer__links">
+    <li><a href="concept.html" class="footer__link">Concept</a></li>
+    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
+    <li><a href="faq.html" class="footer__link">FAQ</a></li>
+    <li><a href="booking.html" class="footer__link">Book Now</a></li>
+  </ul>
+</div>
+<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
+</div></footer>
+
+</body>
+</html>

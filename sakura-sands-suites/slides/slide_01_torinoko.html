@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>01 鳥の子色 — Sakura Sands Suites Hotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; background: #fafaf8; }
+
+  .slide {
+    width: 1280px; height: 720px;
+    display: grid; grid-template-rows: 52px 1fr;
+  }
+
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; background: #fafaf8;
+    border-bottom: 1px solid #e6b422; z-index: 10;
+  }
+  .header img { height: 56px; width: auto; }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 0.32em; color: #8a8c87; text-transform: uppercase;
+  }
+
+  .body { display: grid; grid-template-columns: 704px 1fr; height: 668px; }
+
+  /* ============================================================
+     ROOM SIDE
+     isolation: isolate で blend-mode を image 合成に限定
+  ============================================================ */
+  .room-side {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    width: 704px; height: 668px;
+  }
+
+  .room-base {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  /* JS で px 指定されるので % は initial だけ設定 */
+  .ov-curtain, .ov-linen {
+    position: absolute;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 2;
+    /* background は JS の直前で設定 */
+  }
+
+  .wall-art {
+    position: absolute;
+    z-index: 5;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 3px rgba(255,255,255,0.92),
+      0 0 0 5px rgba(185,158,100,0.55),
+      0 3px 14px rgba(0,0,0,0.35);
+    background: #f0ece4;
+  }
+  .wall-art img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+
+  .room-badge {
+    position: absolute; bottom: 18px; left: 18px; z-index: 6;
+    background: rgba(250,250,248,0.92);
+    padding: 5px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px; font-weight: 300;
+    letter-spacing: 0.28em; color: #464a41;
+  }
+
+  /* ============================================================
+     INFO PANEL
+  ============================================================ */
+  .info-side {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 44px 52px 36px;
+    background: #fff1cf;
+    position: relative; overflow: hidden;
+  }
+  .info-side::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.45) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .room-index {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px; font-weight: 300;
+    letter-spacing: 0.45em; color: #a09880;
+    margin-bottom: 18px; text-transform: uppercase;
+  }
+  .color-name-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 46px; font-weight: 300;
+    color: #464a41; line-height: 1.1;
+    letter-spacing: 0.06em; margin-bottom: 8px;
+  }
+  .color-name-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-weight: 300;
+    color: #7a7060; letter-spacing: 0.2em; margin-bottom: 36px;
+  }
+  .divider { width: 36px; height: 1px; background: #c8a84a; margin-bottom: 22px; }
+  .concept-kw {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px; font-weight: 300;
+    color: #7a7060; letter-spacing: 0.18em; margin-bottom: 14px;
+  }
+  .concept-body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px; font-weight: 300;
+    color: #464a41; line-height: 2; letter-spacing: 0.04em;
+  }
+  .footer-row {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: auto; padding-top: 28px;
+    border-top: 1px solid rgba(70,74,65,0.12);
+  }
+  .swatch {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #fff1cf; border: 1px solid rgba(70,74,65,0.18); flex-shrink: 0;
+  }
+  .hex { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 300; color: #a09880; letter-spacing: 0.14em; }
+  .floor { margin-left: auto; font-family: 'Cormorant Garamond', serif; font-size: 12px; font-weight: 300; color: #7a7060; letter-spacing: 0.22em; }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <header class="header">
+    <img src="assets/logo.svg" alt="Sakura Sands Suites Hotel">
+    <span class="header-title">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+  </header>
+
+  <div class="body">
+    <div class="room-side" id="roomSide">
+      <img src="Sakura Sands room image.jpg" class="room-base" id="roomBase" alt="Room">
+      <div class="ov-curtain" id="ovCurtain"></div>
+      <div class="ov-linen"   id="ovLinen"></div>
+      <div class="wall-art"   id="wallArt">
+        <img src="assets/illustrations/01_torinoko.jpg" alt="鳥の子色">
+      </div>
+      <div class="room-badge">2F — Torinoko Room</div>
+    </div>
+
+    <div class="info-side">
+      <div class="room-index">Room 01 of 13</div>
+      <div class="color-name-jp">鳥の子色</div>
+      <div class="color-name-en">Torinoko &nbsp;/&nbsp; Beige</div>
+      <div class="divider"></div>
+      <div class="concept-kw">素朴 × 卵の殻の優しさ</div>
+      <div class="concept-body">
+        赤ちゃんの肌のような温かみと、<br>
+        何も染まっていない安心感を与えるベージュ。<br>
+        2Fにご滞在いただく、最初の出発点の色。
+      </div>
+      <div class="footer-row">
+        <div class="swatch"></div>
+        <span class="hex">#fff1cf</span>
+        <span class="floor">2 F &nbsp;·&nbsp; Torinoko Room</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// アノテーションの座標を元画像の % で定義
+// 元画像: 1024×683px
+// object-fit: cover でコンテナ 704×668 に収める際の
+// クロップ量を自動計算して px で正確に配置する
+// ============================================================
+(function() {
+  var ROOM_COLOR = '#fff1cf';   // ← 各スライドで変える
+
+  // アノテーション座標（元画像に対する %）
+  var REGIONS = {
+    curtain: { x1: 34, y1: 17, x2: 62, y2: 68,  alpha: 0.82 },
+    linen:   { x1:  0, y1: 41, x2:100, y2: 97,  alpha: 0.68 },
+    wallArt: { x1:  3, y1:  4, x2: 21, y2: 33,  alpha: 1    }
+  };
+
+  var img       = document.getElementById('roomBase');
+  var container = document.getElementById('roomSide');
+  var ovC       = document.getElementById('ovCurtain');
+  var ovL       = document.getElementById('ovLinen');
+  var wArt      = document.getElementById('wallArt');
+
+  function positionAll() {
+    var cW = container.offsetWidth;   // 704
+    var cH = container.offsetHeight;  // 668
+    var iW = img.naturalWidth;        // 1024
+    var iH = img.naturalHeight;       // 683
+
+    // object-fit: cover のスケールとオフセットを計算
+    var scale = Math.max(cW / iW, cH / iH);
+    var sW = iW * scale;   // スケール後の画像幅
+    var sH = iH * scale;   // スケール後の画像高さ
+    var offX = (sW - cW) / 2;  // 左右それぞれのクロップ量(px)
+    var offY = (sH - cH) / 2;  // 上下それぞれのクロップ量(px)
+
+    // 元画像 % → コンテナ内 px に変換
+    function toPx(xPct, yPct) {
+      return {
+        x: (xPct / 100) * sW - offX,
+        y: (yPct / 100) * sH - offY
+      };
+    }
+
+    function applyRegion(el, r, color, alpha) {
+      var p1 = toPx(r.x1, r.y1);
+      var p2 = toPx(r.x2, r.y2);
+      var left   = Math.max(0, p1.x);
+      var top    = Math.max(0, p1.y);
+      var right  = Math.min(cW, p2.x);
+      var bottom = Math.min(cH, p2.y);
+      el.style.left    = left + 'px';
+      el.style.top     = top  + 'px';
+      el.style.width   = (right - left) + 'px';
+      el.style.height  = (bottom - top) + 'px';
+      if (color) {
+        el.style.background = color;
+        el.style.opacity    = alpha;
+      }
+    }
+
+    // 色変換は一旦オフ（写真そのまま）
+    // applyRegion(ovC,  REGIONS.curtain, ROOM_COLOR, REGIONS.curtain.alpha);
+    // applyRegion(ovL,  REGIONS.linen,   ROOM_COLOR, REGIONS.linen.alpha);
+    applyRegion(wArt, REGIONS.wallArt, null, 1);
+  }
+
+  if (img.complete && img.naturalWidth > 0) {
+    positionAll();
+  } else {
+    img.addEventListener('load', positionAll);
+  }
+})();
+</script>
+</body>
+</html>

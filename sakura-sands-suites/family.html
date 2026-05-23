@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Family Stay — ファミリーステイ | Sakura Sands Suites Hotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans-jp);font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:root{
+  --bg:#fafaf8;--text:#464a41;--text-sub:#8a8c87;--border:#e8e8e4;
+  --white:#ffffff;--kogane:#e6b422;--sumi:#464a41;
+  --font-serif-jp:'Noto Serif JP',serif;--font-sans-jp:'Noto Sans JP',sans-serif;
+  --font-serif-en:'Cormorant Garamond',serif;--font-sans-en:'Inter',sans-serif;
+  --nav-h:72px;--max-w:1200px;
+  --sp-sm:1rem;--sp-md:2rem;--sp-lg:4rem;--sp-xl:8rem;
+}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+.section{padding:var(--sp-lg) 0}
+.section-lg{padding:var(--sp-xl) 0}
+.label{font-family:var(--font-sans-en);font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text-sub);display:block;margin-bottom:.5rem}
+.sec-title{font-family:var(--font-serif-en);font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;letter-spacing:.04em;margin-bottom:.5rem}
+.sec-subtitle{font-family:var(--font-sans-jp);font-size:.9375rem;color:var(--text-sub);margin-bottom:var(--sp-md)}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;font-family:var(--font-sans-en);font-size:.8125rem;font-weight:500;letter-spacing:.1em;cursor:pointer;transition:all .25s ease;border:none;text-decoration:none}
+.btn-dark{background:var(--text);color:var(--bg)}
+.btn-dark:hover{background:var(--kogane);color:var(--text);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--text)}
+.btn-outline:hover{background:var(--text);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-kogane{background:var(--kogane);color:var(--sumi)}
+.btn-kogane:hover{background:var(--white);color:var(--sumi);transform:translateY(-2px);box-shadow:0 8px 24px rgba(70,74,65,.2)}
+/* Nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;height:var(--nav-h);background:rgba(250,250,248,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav__logo{display:flex;flex-direction:column;line-height:1.25}
+.nav__logo-main{font-family:var(--font-serif-en);font-size:1.0625rem;font-weight:400;letter-spacing:.04em}
+.nav__logo-sub{font-family:var(--font-sans-en);font-size:.5625rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-sub)}
+.nav__links{display:flex;align-items:center;gap:2rem}
+.nav__link{font-family:var(--font-sans-en);font-size:.8125rem;letter-spacing:.06em;transition:color .2s}
+.nav__link:hover{color:var(--kogane)}
+.nav__link.active{color:var(--kogane);border-bottom:1px solid var(--kogane);padding-bottom:2px}
+.nav__right{display:flex;align-items:center;gap:1rem}
+.nav__cta{padding:.625rem 1.5rem}
+/* Page Hero */
+.page-hero{position:relative;padding-top:var(--nav-h);min-height:40vh;display:flex;align-items:center;background:var(--sumi);overflow:hidden}
+.page-hero--light{background:var(--bg)}
+.page-hero--kogane{background:linear-gradient(135deg,#2e2a1a 0%,#464010 50%,#2e2a1a 100%)}
+.page-hero__bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:1}
+.page-hero__overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,.15) 0%,rgba(10,10,10,.55) 100%)}
+.page-hero__content{position:relative;z-index:2;padding:var(--sp-lg) 0}
+.page-hero .label{color:var(--kogane)}
+.page-hero--light .label{color:var(--text-sub)}
+.page-hero__h1{font-family:var(--font-serif-en);font-size:clamp(2rem,5vw,3.75rem);font-weight:300;color:var(--white);line-height:1.15;letter-spacing:.04em;margin-bottom:.5rem}
+.page-hero--light .page-hero__h1{color:var(--text)}
+.page-hero__jp{font-family:var(--font-serif-jp);font-size:clamp(.9375rem,2vw,1.125rem);font-weight:300;color:rgba(255,255,255,.7);letter-spacing:.2em}
+.page-hero--light .page-hero__jp{color:var(--text-sub)}
+/* CTA Strip */
+.cta-strip{background:var(--sumi);padding:var(--sp-lg) 0;text-align:center}
+.cta-strip__title{font-family:var(--font-serif-en);font-size:clamp(1.25rem,2.5vw,2rem);font-weight:300;color:var(--white);letter-spacing:.06em;margin-bottom:.5rem}
+.cta-strip__sub{font-family:var(--font-sans-jp);font-size:.9375rem;color:rgba(255,255,255,.55);margin-bottom:var(--sp-md)}
+.cta-strip__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+/* Footer */
+.footer{background:var(--sumi);padding:var(--sp-md) 0}
+.footer__inner{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+.footer__logo{font-family:var(--font-serif-en);font-size:.9375rem;font-weight:400;letter-spacing:.08em;color:rgba(255,255,255,.7)}
+.footer__links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer__link{font-family:var(--font-sans-en);font-size:.75rem;letter-spacing:.08em;color:rgba(255,255,255,.45);transition:color .2s}
+.footer__link:hover{color:var(--kogane)}
+.footer__copy{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.06em;color:rgba(255,255,255,.3);text-align:center;padding-top:var(--sp-sm);border-top:1px solid rgba(255,255,255,.08)}
+/* Responsive */
+@media(max-width:768px){
+  .nav__links{display:none}
+  .container{padding:0 1.25rem}
+  .section{padding:2.5rem 0}
+  .section-lg{padding:4rem 0}
+  .page-hero__h1{font-size:clamp(1.625rem,6vw,2.25rem)}
+}
+
+/* Suite vs Hotel */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);margin:var(--sp-lg) 0}
+.compare__col{padding:var(--sp-md)}
+.compare__col--ours{background:var(--sumi)}
+.compare__head{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:var(--sp-md);display:block}
+.compare__col--theirs .compare__head{color:var(--text-sub)}
+.compare__col--ours   .compare__head{color:var(--kogane)}
+.compare__item{display:flex;align-items:flex-start;gap:.75rem;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.9375rem;line-height:1.6}
+.compare__col--theirs .compare__item{border-color:var(--border);color:var(--text-sub)}
+.compare__col--ours   .compare__item{color:rgba(255,255,255,.8)}
+.compare__icon{flex-shrink:0;width:18px;height:18px;margin-top:.15rem;font-size:.9rem}
+/* Features grid */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:var(--sp-lg)}
+.feat-item{text-align:center;padding:1.5rem 1rem}
+.feat-item__icon{width:48px;height:48px;margin:0 auto var(--sp-sm);color:var(--kogane)}
+.feat-item__title{font-family:var(--font-serif-jp);font-size:1.0625rem;font-weight:400;margin-bottom:.5rem}
+.feat-item__en{font-family:var(--font-sans-en);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-sub);margin-bottom:.5rem}
+.feat-item__desc{font-size:.875rem;color:var(--text-sub);line-height:1.8}
+/* Recommended rooms */
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:var(--sp-md)}
+.rec-card{border:1px solid var(--border);overflow:hidden}
+.rec-card__img{aspect-ratio:4/3;overflow:hidden}
+.rec-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.rec-card:hover .rec-card__img img{transform:scale(1.04)}
+.rec-card__body{padding:1rem 1.25rem 1.25rem}
+.rec-card__swatch{height:4px}
+.rec-card__floor{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.15em;color:var(--text-sub)}
+.rec-card__jp{font-family:var(--font-serif-jp);font-size:1.0625rem;font-weight:400;margin:.25rem 0}
+.rec-card__reason{font-size:.8125rem;color:var(--text-sub);line-height:1.7}
+@media(max-width:900px){.feat-grid,.rec-grid{grid-template-columns:repeat(2,1fr)}.compare{grid-template-columns:1fr}}
+@media(max-width:600px){.feat-grid,.rec-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav" role="navigation" aria-label="メインナビゲーション"><div class="container"><div class="nav__inner">
+<a href="index.html" class="nav__logo"><span class="nav__logo-main">Sakura Sands Suites</span><span class="nav__logo-sub">Hotel &mdash; Osaka</span></a>
+<ul class="nav__links" role="list"><li><a href="concept.html" class="nav__link">Concept</a></li><li><a href="rooms.html" class="nav__link">Rooms</a></li><li><a href="family.html" class="nav__link active">Family Stay</a></li><li><a href="osaka.html" class="nav__link">Osaka</a></li><li><a href="faq.html" class="nav__link">FAQ</a></li></ul>
+<div class="nav__right"><a href="booking.html" class="btn btn-dark nav__cta">Book Now</a></div>
+</div></div></nav>
+
+<div style="height:var(--nav-h)"></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="min-height:50vh">
+  <div class="page-hero__bg" style="background-image:url('assets/images/family-hero.png')"></div>
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content container">
+    <span class="label">Family Stay</span>
+    <h1 class="page-hero__h1">家族で、大阪を。</h1>
+    <p class="page-hero__jp">Osaka, together. As a family.</p>
+    <div style="margin-top:1.5rem">
+      <a href="rooms.html" class="btn btn-kogane">お部屋を選ぶ &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Suite vs Hotel -->
+  <div class="section">
+    <span class="label">Why Choose a Suite</span>
+    <h2 class="sec-title">なぜ、スイートなのか。</h2>
+    <p class="sec-subtitle">一般ホテルとの決定的な違い。</p>
+    <div class="compare">
+      <div class="compare__col compare__col--theirs">
+        <span class="compare__head">一般ホテル</span>
+        <div class="compare__item"><span class="compare__icon">✗</span><span>狭い客室、ベッドが部屋の大半</span></div><div class="compare__item"><span class="compare__icon">✗</span><span>キッチンなし、外食のみ</span></div><div class="compare__item"><span class="compare__icon">✗</span><span>家族全員が同じ空間</span></div><div class="compare__item"><span class="compare__icon">✗</span><span>荷物を置く場所が限られる</span></div><div class="compare__item"><span class="compare__icon">✗</span><span>子どもが動ける場所がない</span></div>
+      </div>
+      <div class="compare__col compare__col--ours">
+        <span class="compare__head">Sakura Sands Suites</span>
+        <div class="compare__item"><span class="compare__icon" style="color:var(--kogane)">✓</span><span>広いリビング＋独立した寝室</span></div><div class="compare__item"><span class="compare__icon" style="color:var(--kogane)">✓</span><span>フルキッチンで自炊も可能</span></div><div class="compare__item"><span class="compare__icon" style="color:var(--kogane)">✓</span><span>寝室とリビングで生活を分ける</span></div><div class="compare__item"><span class="compare__icon" style="color:var(--kogane)">✓</span><span>収納・クローゼットが充実</span></div><div class="compare__item"><span class="compare__icon" style="color:var(--kogane)">✓</span><span>子どもがリビングで自由に遊べる</span></div>
+      </div>
+    </div>
+
+    <p style="font-family:var(--font-sans-jp);font-size:.8125rem;color:var(--text-sub);margin-top:.875rem;padding-left:.875rem;border-left:2px solid var(--border);line-height:1.8">※比較はあくまで一般的な参考情報です。施設・客室タイプによって仕様は異なります。具体的な設備・広さはご利用施設にご確認ください。</p>
+  </div>
+
+  <!-- Features -->
+  <div class="section" style="border-top:1px solid var(--border)">
+    <span class="label">Room Features</span>
+    <h2 class="sec-title">ファミリーのための6つの設備。</h2>
+    <div class="feat-grid"><div class="feat-item">
+<svg class="feat-item__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M 24 4 L 4 20 L 4 44 L 20 44 L 20 28 L 28 28 L 28 44 L 44 44 L 44 20 Z"/></svg>
+<p class="feat-item__title">広いリビング空間</p><p class="feat-item__en">Spacious Living</p><p class="feat-item__desc">大阪観光の疲れをリビングでゆっくり癒せる広さ。ソファ・テーブル・TV完備。</p></div><div class="feat-item">
+<svg class="feat-item__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M 10 10 L 38 10 L 38 36 L 28 36 L 28 44 L 20 44 L 20 36 L 10 36 Z M 22 10 L 22 6 M 26 10 L 26 6"/></svg>
+<p class="feat-item__title">フルキッチン</p><p class="feat-item__en">Full Kitchen</p><p class="feat-item__desc">IHコンロ・冷蔵庫・電子レンジ・食器。スーパーで食材を買って自炊も楽しめます。</p></div><div class="feat-item">
+<svg class="feat-item__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M 8 20 A 16 16 0 1 1 40 20 A 16 16 0 1 1 8 20 M 24 12 L 24 24 L 32 24"/></svg>
+<p class="feat-item__title">洗濯乾燥機</p><p class="feat-item__en">Washer & Dryer</p><p class="feat-item__desc">長期滞在も安心。洗濯乾燥機を全室完備。洗剤のご用意もあります。</p></div><div class="feat-item">
+<svg class="feat-item__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M 6 10 L 42 10 L 42 38 L 6 38 Z M 6 18 L 42 18"/></svg>
+<p class="feat-item__title">独立した寝室</p><p class="feat-item__en">Private Bedroom</p><p class="feat-item__desc">リビングと寝室が分かれているから、子どもが眠った後も大人の時間を。</p></div><div class="feat-item">
+<svg class="feat-item__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M 8 8 L 8 44 M 8 26 L 40 26 M 40 8 L 40 44"/></svg>
+<p class="feat-item__title">高速Wi-Fi</p><p class="feat-item__en">High-speed Wi-Fi</p><p class="feat-item__desc">全室無料・高速Wi-Fi完備。リモートワークや動画配信もストレスなし。</p></div><div class="feat-item">
+<svg class="feat-item__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M 24 6 L 24 6 M 10 20 Q 10 42 24 42 Q 38 42 38 20 L 38 12 L 10 12 Z"/></svg>
+<p class="feat-item__title">プライベート空間</p><p class="feat-item__en">Private Space</p><p class="feat-item__desc">ホテルの安心感と民泊の自由さを両立。フロントは24時間対応。</p></div></div>
+  </div>
+
+
+  <!-- Livingroom Gallery -->
+  <div class="section" style="border-top:1px solid var(--border)">
+    <span class="label">Suite Living Space</span>
+    <h2 class="sec-title">みんなで過ごせる、広いリビング。</h2>
+    <p class="sec-subtitle">ソファ・キッチン・ダイニングが一続き。家族の時間が、自然と生まれます。</p>
+    <div style="display:grid;grid-template-columns:3fr 2fr;gap:1rem;margin-top:var(--sp-md)">
+      <div style="overflow:hidden;aspect-ratio:4/3">
+        <img src="assets/living/koji.png" alt="12F柑子色 スイートリビング" loading="lazy"
+             style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:1rem">
+        <div style="overflow:hidden">
+          <img src="assets/living/ayame.png" alt="11F菖蒲色 スイートリビング" loading="lazy"
+               style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <div style="overflow:hidden">
+          <img src="assets/living/sumi.png" alt="13F墨色 スイートリビング" loading="lazy"
+               style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1rem;font-family:var(--font-sans-jp);font-size:.9375rem;color:var(--text-sub);line-height:1.9">
+      キッチン・洗濯乾燥機も完備。長期滞在でも、まるで自分たちの家のように。
+      各フロアで色のテーマが異なり、旅の記念になる部屋選びができます。
+    </p>
+  </div>
+
+  <!-- Recommended rooms -->
+  <div class="section" style="border-top:1px solid var(--border)">
+    <span class="label">Recommended for Families</span>
+    <h2 class="sec-title">家族旅行にぴったりの色。</h2>
+    <p class="sec-subtitle">穏やかな明色系は、初めての大阪に寄り添います。</p>
+    <div class="rec-grid"><a href="rooms/torinoko.html" class="rec-card"><div class="rec-card__img"><img src="assets/rooms/01_torinoko.png" alt="鳥の子色" loading="lazy"></div><div class="rec-card__swatch" style="background:#fff1cf"></div><div class="rec-card__body"><p class="rec-card__floor">2F</p><p class="rec-card__jp">鳥の子色</p><p class="rec-card__reason">はじめての大阪旅行に。卵殻のようなやわらかいベージュが初めての方を落ち着かせます。</p></div></a><a href="rooms/wakakusa.html" class="rec-card"><div class="rec-card__img"><img src="assets/rooms/04_wakakusa.png" alt="若草色" loading="lazy"></div><div class="rec-card__swatch" style="background:#d8e698"></div><div class="rec-card__body"><p class="rec-card__floor">5F</p><p class="rec-card__jp">若草色</p><p class="rec-card__reason">元気いっぱいの家族旅行に。春の萌黄が子どもたちの気持ちを明るくします。</p></div></a><a href="rooms/nanohana.html" class="rec-card"><div class="rec-card__img"><img src="assets/rooms/07_nanohana.jpg" alt="菜の花色" loading="lazy"></div><div class="rec-card__swatch" style="background:#ffec47"></div><div class="rec-card__body"><p class="rec-card__floor">8F</p><p class="rec-card__jp">菜の花色</p><p class="rec-card__reason">みんなで楽しい旅に。菜の花の黄色は家族全員が笑顔になれる明るさです。</p></div></a></div>
+    <div style="text-align:center;margin-top:var(--sp-lg)">
+      <a href="rooms.html" class="btn btn-outline">全13色を見る &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<section class="cta-strip">
+  <div class="container">
+    <p class="cta-strip__title">ご家族の、大阪の思い出を。</p>
+    <p class="cta-strip__sub">広いリビング、フルキッチン、独立した寝室。家族みんながゆっくりできる空間。</p>
+    <div class="cta-strip__btns">
+      <a href="booking.html" class="btn btn-kogane">予約する &rarr;</a>
+      <a href="faq.html" class="btn btn-ghost">よくある質問</a>
+    </div>
+  </div>
+</section>
+<footer class="footer" role="contentinfo"><div class="container">
+<div class="footer__inner">
+  <span class="footer__logo">Sakura Sands Suites Hotel</span>
+  <ul class="footer__links">
+    <li><a href="concept.html" class="footer__link">Concept</a></li>
+    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
+    <li><a href="faq.html" class="footer__link">FAQ</a></li>
+    <li><a href="booking.html" class="footer__link">Book Now</a></li>
+  </ul>
+</div>
+<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
+</div></footer>
+<footer class="footer" role="contentinfo"><div class="container">
+<div class="footer__inner">
+  <span class="footer__logo">Sakura Sands Suites Hotel</span>
+  <ul class="footer__links">
+    <li><a href="concept.html" class="footer__link">Concept</a></li>
+    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
+    <li><a href="faq.html" class="footer__link">FAQ</a></li>
+    <li><a href="booking.html" class="footer__link">Book Now</a></li>
+  </ul>
+</div>
+<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
+</div></footer>
+
+</body>
+</html>

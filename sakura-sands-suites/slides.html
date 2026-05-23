@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sakura Sands Suites Hotel — 13 Color Rooms</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+/* ================================================
+   RESET & BASE
+================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 1280px; height: 720px;
+  overflow: hidden;
+  background: #1a1a1a;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* ================================================
+   SLIDE DECK
+================================================ */
+.deck {
+  width: 1280px; height: 720px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 1280px; height: 720px;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ================================================
+   HEADER
+================================================ */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 36px;
+  background: #fafaf8;
+  border-bottom: 1px solid #e6b422;
+  z-index: 10;
+}
+.header-logo { height: 48px; width: auto; }
+.header-center {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 0.35em; color: #8a8c87;
+  text-transform: uppercase;
+}
+.header-nav {
+  display: flex; align-items: center; gap: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 300;
+  letter-spacing: 0.2em; color: #8a8c87;
+}
+.nav-btn {
+  cursor: pointer; padding: 4px 10px;
+  border: 1px solid #e8e8e4; background: none;
+  color: #8a8c87; font-family: inherit; font-size: 10px;
+  letter-spacing: 0.15em;
+  transition: all 0.2s;
+}
+.nav-btn:hover { border-color: #e6b422; color: #464a41; }
+
+/* ================================================
+   BODY
+================================================ */
+.body {
+  display: grid;
+  grid-template-columns: 700px 1fr;
+  height: 660px;
+}
+
+/* ================================================
+   ROOM PHOTO SIDE
+================================================ */
+.room-side {
+  position: relative;
+  overflow: hidden;
+}
+.room-photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.room-badge {
+  position: absolute; bottom: 20px; left: 20px;
+  background: rgba(250,250,248,0.92);
+  padding: 6px 18px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 0.3em; color: #464a41;
+}
+
+/* ================================================
+   INFO PANEL
+================================================ */
+.info-side {
+  display: flex; flex-direction: column;
+  padding: 36px 48px 32px;
+  position: relative; overflow: hidden;
+}
+.info-side::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(150deg, rgba(255,255,255,0.30) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Room number block */
+.room-no-block {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(70,74,65,0.12);
+}
+.room-no-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; font-weight: 300;
+  letter-spacing: 0.5em;
+  opacity: 0.55;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.room-no-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  opacity: 0.88;
+}
+.room-no-floor {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-weight: 300;
+  letter-spacing: 0.28em;
+  margin-top: 4px;
+  opacity: 0.65;
+}
+
+/* Color name */
+.color-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 40px; font-weight: 200;
+  line-height: 1.1; letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.color-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-weight: 300;
+  letter-spacing: 0.2em;
+  margin-bottom: 24px;
+  opacity: 0.75;
+}
+
+/* Divider */
+.divider { width: 32px; height: 1px; background: #e6b422; margin-bottom: 18px; }
+
+/* Concept */
+.concept-kw {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 10px; font-weight: 300;
+  letter-spacing: 0.2em; margin-bottom: 10px;
+  opacity: 0.65;
+}
+.concept-body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px; font-weight: 300;
+  line-height: 2; letter-spacing: 0.04em;
+}
+
+/* Footer */
+.footer-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: auto; padding-top: 20px;
+  border-top: 1px solid rgba(70,74,65,0.10);
+}
+.swatch {
+  width: 20px; height: 20px; border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid rgba(70,74,65,0.15);
+}
+.hex-code {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 200;
+  letter-spacing: 0.16em; opacity: 0.55;
+}
+.slide-count {
+  margin-left: auto;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 0.25em; opacity: 0.45;
+}
+
+/* 右上ロゴマーク＋テキスト */
+.info-mark-block {
+  position: absolute;
+  top: 20px; right: 24px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.info-mark {
+  width: 72px; height: 72px;
+  display: block;
+}
+.info-mark-name {
+  text-align: center;
+  line-height: 1.35;
+}
+.info-mark-name .line1 {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 9.5px; font-weight: 400;
+  letter-spacing: 0.22em;
+}
+.info-mark-name .line2 {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8px; font-weight: 300;
+  letter-spacing: 0.35em;
+  opacity: 0.75;
+}
+
+/* 正円イラスト */
+.art-circle {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: auto auto 16px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+}
+.art-circle img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* ================================================
+   COVER SLIDE
+================================================ */
+.cover-slide {
+  background: #2e3229;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  grid-template-rows: unset !important;
+}
+
+/* 13色カラーバー */
+.cover-colorbar {
+  display: flex;
+  height: 10px;
+  flex-shrink: 0;
+}
+.cover-colorbar span {
+  flex: 1;
+  display: block;
+}
+
+/* 中央コンテンツ */
+.cover-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 20px 0 10px;
+}
+.cover-mark {
+  width: 180px; height: 180px;
+  margin-bottom: 28px;
+  filter: drop-shadow(0 4px 24px rgba(230,180,34,0.22));
+}
+.cover-hotel-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 300;
+  color: #fafaf8;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.cover-hotel-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-weight: 300;
+  color: #e6b422;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.cover-divider {
+  width: 48px; height: 1px;
+  background: #e6b422;
+  margin-bottom: 24px;
+}
+.cover-tagline-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 300;
+  font-style: italic;
+  color: rgba(250,250,248,0.82);
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+.cover-tagline-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px; font-weight: 200;
+  color: rgba(250,250,248,0.5);
+  letter-spacing: 0.22em;
+}
+
+/* フッター */
+.cover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 16px 40px;
+  border-top: 1px solid rgba(230,180,34,0.2);
+  flex-shrink: 0;
+}
+.cover-footer-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px; font-weight: 300;
+  color: rgba(250,250,248,0.38);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.cover-footer-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 200;
+  color: rgba(250,250,248,0.3);
+  letter-spacing: 0.2em;
+}
+
+/* ================================================
+   NAVIGATION DOTS
+================================================ */
+.dots {
+  position: fixed; bottom: 12px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 6px; z-index: 100;
+}
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer; transition: all 0.3s;
+}
+.dot.active { background: #e6b422; transform: scale(1.3); }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- ================================================
+     COVER SLIDE — 表紙
+================================================ -->
+<div class="slide cover-slide active">
+
+  <!-- 上部 13色カラーバー -->
+  <div class="cover-colorbar">
+    <span style="background:#fff1cf"></span>
+    <span style="background:#ee827c"></span>
+    <span style="background:#967249"></span>
+    <span style="background:#d8e698"></span>
+    <span style="background:#89c3eb"></span>
+    <span style="background:#547443"></span>
+    <span style="background:#ffec47"></span>
+    <span style="background:#fef4f4"></span>
+    <span style="background:#4b61ba"></span>
+    <span style="background:#cc7eb1"></span>
+    <span style="background:#f6ad49"></span>
+    <span style="background:#464a41"></span>
+    <span style="background:#e6b422"></span>
+  </div>
+
+  <!-- 中央コンテンツ -->
+  <div class="cover-body">
+    <img src="assets/logo-mark.svg" class="cover-mark" alt="Sakura Sands mark">
+    <div class="cover-hotel-en">Sakura Sands</div>
+    <div class="cover-hotel-sub">Suites &nbsp;Hotel</div>
+    <div class="cover-divider"></div>
+    <div class="cover-tagline-en">13 Colors, One Journey.</div>
+    <div class="cover-tagline-jp">日本の色を旅する、都市型ファミリーステイ</div>
+  </div>
+
+  <!-- フッター -->
+  <div class="cover-footer">
+    <span class="cover-footer-label">Color Room Concept Presentation</span>
+    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+      <span class="cover-footer-label">Osaka &nbsp;·&nbsp; Sakura Sands Suites Hotel</span>
+      <span class="cover-footer-date">2026.05</span>
+    </div>
+  </div>
+
+  <!-- 下部 13色カラーバー（逆順） -->
+  <div class="cover-colorbar">
+    <span style="background:#e6b422"></span>
+    <span style="background:#464a41"></span>
+    <span style="background:#f6ad49"></span>
+    <span style="background:#cc7eb1"></span>
+    <span style="background:#4b61ba"></span>
+    <span style="background:#fef4f4"></span>
+    <span style="background:#ffec47"></span>
+    <span style="background:#547443"></span>
+    <span style="background:#89c3eb"></span>
+    <span style="background:#d8e698"></span>
+    <span style="background:#967249"></span>
+    <span style="background:#ee827c"></span>
+    <span style="background:#fff1cf"></span>
+  </div>
+
+</div>
+
+<!-- ================================================
+     SLIDE 01 — 鳥の子色 / Room 2001 / 2F
+================================================ -->
+<div class="slide" style="--c:#fff1cf; --txt:#464a41; --sub:#7a7060;">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/01_torinoko.png" class="room-photo" alt="鳥の子色 Room 2001">
+      <div class="room-badge">ROOM 2001 &nbsp;·&nbsp; 2F &nbsp;·&nbsp; Torinoko Room</div>
+    </div>
+    <div class="info-side" style="background:#fff1cf; color:#464a41;">
+      <div class="room-no-block">
+        <div class="room-no-label" style="color:#464a41;">Room No.</div>
+        <div class="room-no-number" style="color:#464a41;">2001</div>
+        <div class="room-no-floor" style="color:#464a41;">2 F &nbsp;·&nbsp; Torinoko Room</div>
+      </div>
+      <div class="color-jp" style="color:#464a41;">鳥の子色</div>
+      <div class="color-en" style="color:#7a7060;">Torinoko &nbsp;/&nbsp; Beige</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#464a41;">素朴 × 卵の殻の優しさ</div>
+      <div class="concept-body" style="color:#464a41;">赤ちゃんの肌のような温かみと、何も染まっていない安心感を与えるベージュ。</div>
+      <div class="footer-row">
+        <div class="swatch" style="background:#fff1cf;"></div>
+        <span class="hex-code" style="color:#464a41;">#fff1cf</span>
+        <span class="slide-count" style="color:#464a41;">01 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 02 — 薄紅 / Room 3001 / 3F
+================================================ -->
+<div class="slide" style="">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/02_usubeni.png" class="room-photo" alt="薄紅 Room 3001">
+      <div class="room-badge">ROOM 3001 &nbsp;·&nbsp; 3F &nbsp;·&nbsp; Usubeni Room</div>
+    </div>
+    <div class="info-side" style="background:#ee827c; color:#fafaf8;">
+      <div class="room-no-block" style="border-bottom-color:rgba(250,250,248,0.2);">
+        <div class="room-no-label" style="color:#fafaf8;">Room No.</div>
+        <div class="room-no-number" style="color:#fafaf8;">3001</div>
+        <div class="room-no-floor" style="color:#fafaf8;">3 F &nbsp;·&nbsp; Usubeni Room</div>
+      </div>
+      <div class="color-jp" style="color:#fafaf8;">薄紅</div>
+      <div class="color-en" style="color:rgba(250,250,248,0.75);">Usubeni &nbsp;/&nbsp; Pale Crimson</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#fafaf8;">愛情 × ふんわりとした頬の赤み</div>
+      <div class="concept-body" style="color:#fafaf8;">誰にでもスッと伝わる、光を透かしたような優しく淡い赤。透明感と人肌の温もりを感じさせる親しみやすい色。</div>
+      <div class="footer-row" style="border-top-color:rgba(250,250,248,0.15);">
+        <div class="swatch" style="background:#ee827c; border-color:rgba(250,250,248,0.3);"></div>
+        <span class="hex-code" style="color:#fafaf8;">#ee827c</span>
+        <span class="slide-count" style="color:#fafaf8;">02 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 03 — 胡桃色 / Room 4001 / 4F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/03_kurumi.png" class="room-photo" alt="胡桃色 Room 4001">
+      <div class="room-badge">ROOM 4001 &nbsp;·&nbsp; 4F &nbsp;·&nbsp; Kurumi Room</div>
+    </div>
+    <div class="info-side" style="background:#967249; color:#fafaf8;">
+      <div class="room-no-block" style="border-bottom-color:rgba(250,250,248,0.2);">
+        <div class="room-no-label" style="color:#fafaf8;">Room No.</div>
+        <div class="room-no-number" style="color:#fafaf8;">4001</div>
+        <div class="room-no-floor" style="color:#fafaf8;">4 F &nbsp;·&nbsp; Kurumi Room</div>
+      </div>
+      <div class="color-jp" style="color:#fafaf8;">胡桃色</div>
+      <div class="color-en" style="color:rgba(250,250,248,0.75);">Kurumi &nbsp;/&nbsp; Walnut Brown</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#fafaf8;">大地 × くるみの安らぎ</div>
+      <div class="concept-body" style="color:#fafaf8;">自然素材そのままの落ち着いたブラウン。良品計画の哲学に通じる、素朴で温かな安らぎ。</div>
+      <div class="footer-row" style="border-top-color:rgba(250,250,248,0.15);">
+        <div class="swatch" style="background:#967249; border-color:rgba(250,250,248,0.3);"></div>
+        <span class="hex-code" style="color:#fafaf8;">#967249</span>
+        <span class="slide-count" style="color:#fafaf8;">03 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 04 — 若草色 / Room 5001 / 5F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/04_wakakusa.png" class="room-photo" alt="若草色 Room 5001">
+      <div class="room-badge">ROOM 5001 &nbsp;·&nbsp; 5F &nbsp;·&nbsp; Wakakusa Room</div>
+    </div>
+    <div class="info-side" style="background:#d8e698; color:#464a41;">
+      <div class="room-no-block">
+        <div class="room-no-label" style="color:#464a41;">Room No.</div>
+        <div class="room-no-number" style="color:#464a41;">5001</div>
+        <div class="room-no-floor" style="color:#6a7060;">5 F &nbsp;·&nbsp; Wakakusa Room</div>
+      </div>
+      <div class="color-jp" style="color:#464a41;">若草色</div>
+      <div class="color-en" style="color:#6a7060;">Wakakusa &nbsp;/&nbsp; Pale Yellow-green</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#464a41;">萌芽 × 春の息吹</div>
+      <div class="concept-body" style="color:#464a41;">芽吹いたばかりの草花のような、瑞々しく透明感のある黄緑。</div>
+      <div class="footer-row">
+        <div class="swatch" style="background:#d8e698;"></div>
+        <span class="hex-code" style="color:#464a41;">#d8e698</span>
+        <span class="slide-count" style="color:#464a41;">04 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 05 — 勿忘草色 / Room 6001 / 6F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/05_wasurenagusa.png" class="room-photo" alt="勿忘草色 Room 6001">
+      <div class="room-badge">ROOM 6001 &nbsp;·&nbsp; 6F &nbsp;·&nbsp; Wasurenagusa Room</div>
+    </div>
+    <div class="info-side" style="background:#89c3eb; color:#464a41;">
+      <div class="room-no-block">
+        <div class="room-no-label" style="color:#464a41;">Room No.</div>
+        <div class="room-no-number" style="color:#464a41;">6001</div>
+        <div class="room-no-floor" style="color:#5a6870;">6 F &nbsp;·&nbsp; Wasurenagusa Room</div>
+      </div>
+      <div class="color-jp" style="color:#464a41;">勿忘草色</div>
+      <div class="color-en" style="color:#5a6870;">Wasurenagusa &nbsp;/&nbsp; Forget-me-not Blue</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#464a41;">誠実 × 澄み渡る空</div>
+      <div class="concept-body" style="color:#464a41;">大阪の空を切り取ったような、優しくクリアなスカイブルー。</div>
+      <div class="footer-row">
+        <div class="swatch" style="background:#89c3eb;"></div>
+        <span class="hex-code" style="color:#464a41;">#89c3eb</span>
+        <span class="slide-count" style="color:#464a41;">05 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 06 — 深緑 / Room 7001 / 7F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/06_fukamidori.jpg" class="room-photo" alt="深緑 Room 7001">
+      <div class="room-badge">ROOM 7001 &nbsp;·&nbsp; 7F &nbsp;·&nbsp; Fukamidori Room</div>
+    </div>
+    <div class="info-side" style="background:#547443; color:#fafaf8;">
+      <div class="room-no-block" style="border-bottom-color:rgba(250,250,248,0.2);">
+        <div class="room-no-label" style="color:#fafaf8;">Room No.</div>
+        <div class="room-no-number" style="color:#fafaf8;">7001</div>
+        <div class="room-no-floor" style="color:#fafaf8;">7 F &nbsp;·&nbsp; Fukamidori Room</div>
+      </div>
+      <div class="color-jp" style="color:#fafaf8;">深緑</div>
+      <div class="color-en" style="color:rgba(250,250,248,0.75);">Fukamidori &nbsp;/&nbsp; Deep Green</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#fafaf8;">癒やし × 深い森の静寂</div>
+      <div class="concept-body" style="color:#fafaf8;">彩度を落とした深い緑は、都会の中のオアシスとして、万人に直感的な安らぎを伝えます。</div>
+      <div class="footer-row" style="border-top-color:rgba(250,250,248,0.15);">
+        <div class="swatch" style="background:#547443; border-color:rgba(250,250,248,0.3);"></div>
+        <span class="hex-code" style="color:#fafaf8;">#547443</span>
+        <span class="slide-count" style="color:#fafaf8;">06 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 07 — 菜の花色 / Room 8001 / 8F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/07_nanohana.jpg" class="room-photo" alt="菜の花色 Room 8001">
+      <div class="room-badge">ROOM 8001 &nbsp;·&nbsp; 8F &nbsp;·&nbsp; Nanohana Room</div>
+    </div>
+    <div class="info-side" style="background:#ffec47; color:#464a41;">
+      <div class="room-no-block">
+        <div class="room-no-label" style="color:#464a41;">Room No.</div>
+        <div class="room-no-number" style="color:#464a41;">8001</div>
+        <div class="room-no-floor" style="color:#6a6030;">8 F &nbsp;·&nbsp; Nanohana Room</div>
+      </div>
+      <div class="color-jp" style="color:#464a41;">菜の花色</div>
+      <div class="color-en" style="color:#6a6030;">Nanohana &nbsp;/&nbsp; Canola Yellow</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#464a41;">希望 × 陽だまりの光</div>
+      <div class="concept-body" style="color:#464a41;">部屋をパッと明るくする、優しくもエネルギーに満ちたイエロー。</div>
+      <div class="footer-row">
+        <div class="swatch" style="background:#ffec47; border-color:rgba(70,74,65,0.3);"></div>
+        <span class="hex-code" style="color:#464a41;">#ffec47</span>
+        <span class="slide-count" style="color:#464a41;">07 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 08 — 桜色 / Room 9001 / 9F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/08_sakura.png" class="room-photo" alt="桜色 Room 9001">
+      <div class="room-badge">ROOM 9001 &nbsp;·&nbsp; 9F &nbsp;·&nbsp; Sakura Room</div>
+    </div>
+    <div class="info-side" style="background:#fef4f4; color:#464a41;">
+      <div class="room-no-block">
+        <div class="room-no-label" style="color:#464a41;">Room No.</div>
+        <div class="room-no-number" style="color:#464a41;">9001</div>
+        <div class="room-no-floor" style="color:#8a7878;">9 F &nbsp;·&nbsp; Sakura Room</div>
+      </div>
+      <div class="color-jp" style="color:#464a41;">桜色</div>
+      <div class="color-en" style="color:#8a7878;">Sakura &nbsp;/&nbsp; Cherry Blossom Pink</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#464a41;">祝福 × 舞い散る花びら</div>
+      <div class="concept-body" style="color:#464a41;">ブランド名「Sakura Sands」の象徴。限りなく白に近い、透き通るようなピンク。</div>
+      <div class="footer-row">
+        <div class="swatch" style="background:#fef4f4; border-color:#e0d0d0;"></div>
+        <span class="hex-code" style="color:#464a41;">#fef4f4</span>
+        <span class="slide-count" style="color:#464a41;">08 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 09 — 瑠璃紺 / Room 1001 / 10F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/09_ruri.png" class="room-photo" alt="瑠璃紺 Room 1001">
+      <div class="room-badge">ROOM 1001 &nbsp;·&nbsp; 10F &nbsp;·&nbsp; Ruri Room</div>
+    </div>
+    <div class="info-side" style="background:#4b61ba; color:#fafaf8;">
+      <div class="room-no-block" style="border-bottom-color:rgba(250,250,248,0.2);">
+        <div class="room-no-label" style="color:#fafaf8;">Room No.</div>
+        <div class="room-no-number" style="color:#fafaf8;">1001</div>
+        <div class="room-no-floor" style="color:#fafaf8;">10 F &nbsp;·&nbsp; Ruri Room</div>
+      </div>
+      <div class="color-jp" style="color:#fafaf8;">瑠璃紺</div>
+      <div class="color-en" style="color:rgba(250,250,248,0.75);">Ruri &nbsp;/&nbsp; Lapis Navy</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#fafaf8;">品格 × 夜明けの静寂</div>
+      <div class="concept-body" style="color:#fafaf8;">深く、かつ透明感のある紺色。大人数の中でも落ち着ける空間を作ります。</div>
+      <div class="footer-row" style="border-top-color:rgba(250,250,248,0.15);">
+        <div class="swatch" style="background:#4b61ba; border-color:rgba(250,250,248,0.3);"></div>
+        <span class="hex-code" style="color:#fafaf8;">#4b61ba</span>
+        <span class="slide-count" style="color:#fafaf8;">09 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 10 — 菖蒲色 / Room 1101 / 11F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/10_ayame.png" class="room-photo" alt="菖蒲色 Room 1101">
+      <div class="room-badge">ROOM 1101 &nbsp;·&nbsp; 11F &nbsp;·&nbsp; Ayame Room</div>
+    </div>
+    <div class="info-side" style="background:#cc7eb1; color:#fafaf8;">
+      <div class="room-no-block" style="border-bottom-color:rgba(250,250,248,0.2);">
+        <div class="room-no-label" style="color:#fafaf8;">Room No.</div>
+        <div class="room-no-number" style="color:#fafaf8;">1101</div>
+        <div class="room-no-floor" style="color:#fafaf8;">11 F &nbsp;·&nbsp; Ayame Room</div>
+      </div>
+      <div class="color-jp" style="color:#fafaf8;">菖蒲色</div>
+      <div class="color-en" style="color:rgba(250,250,248,0.75);">Ayame &nbsp;/&nbsp; Iris Purple</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#fafaf8;">優雅 × 凛とした佇まい</div>
+      <div class="concept-body" style="color:#fafaf8;">日本の伝統的な美しさを現代的に解釈した、上品で優しいパープル。</div>
+      <div class="footer-row" style="border-top-color:rgba(250,250,248,0.15);">
+        <div class="swatch" style="background:#cc7eb1; border-color:rgba(250,250,248,0.3);"></div>
+        <span class="hex-code" style="color:#fafaf8;">#cc7eb1</span>
+        <span class="slide-count" style="color:#fafaf8;">10 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 11 — 柑子色 / Room 1201 / 12F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/11_koji.png" class="room-photo" alt="柑子色 Room 1201">
+      <div class="room-badge">ROOM 1201 &nbsp;·&nbsp; 12F &nbsp;·&nbsp; Kōji Room</div>
+    </div>
+    <div class="info-side" style="background:#f6ad49; color:#464a41;">
+      <div class="room-no-block">
+        <div class="room-no-label" style="color:#464a41;">Room No.</div>
+        <div class="room-no-number" style="color:#464a41;">1201</div>
+        <div class="room-no-floor" style="color:#6a5030;">12 F &nbsp;·&nbsp; Kōji Room</div>
+      </div>
+      <div class="color-jp" style="color:#464a41;">柑子色</div>
+      <div class="color-en" style="color:#6a5030;">Kōji &nbsp;/&nbsp; Mandarin Orange</div>
+      <div class="divider"></div>
+      <div class="concept-kw" style="color:#464a41;">団らん × 柑橘の温もり</div>
+      <div class="concept-body" style="color:#464a41;">家族で囲む食卓のような、暖かなオレンジ。人との繋がりを象徴します。</div>
+      <div class="footer-row">
+        <div class="swatch" style="background:#f6ad49;"></div>
+        <span class="hex-code" style="color:#464a41;">#f6ad49</span>
+        <span class="slide-count" style="color:#464a41;">11 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 12 — 墨色 / Room 1301 / 13F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/12_sumi.png" class="room-photo" alt="墨色 Room 1301">
+      <div class="room-badge" style="background:rgba(70,74,65,0.88); color:#fafaf8;">ROOM 1301 &nbsp;·&nbsp; 13F &nbsp;·&nbsp; Sumi Room</div>
+    </div>
+    <div class="info-side" style="background:#464a41; color:#fafaf8;">
+      <div class="room-no-block" style="border-bottom-color:rgba(250,250,248,0.15);">
+        <div class="room-no-label" style="color:#fafaf8;">Room No.</div>
+        <div class="room-no-number" style="color:#fafaf8;">1301</div>
+        <div class="room-no-floor" style="color:rgba(250,250,248,0.6);">13 F &nbsp;·&nbsp; Sumi Room</div>
+      </div>
+      <div class="color-jp" style="color:#fafaf8;">墨色</div>
+      <div class="color-en" style="color:rgba(250,250,248,0.65);">Sumi &nbsp;/&nbsp; Ink Black</div>
+      <div class="divider" style="background:#e6b422;"></div>
+      <div class="concept-kw" style="color:#fafaf8;">知性 × 影の美学</div>
+      <div class="concept-body" style="color:#fafaf8;">真っ黒ではなく、墨を水で解いたような、奥行きと透明感のあるグレーブラック。</div>
+      <div class="footer-row" style="border-top-color:rgba(250,250,248,0.12);">
+        <div class="swatch" style="background:#464a41; border-color:rgba(250,250,248,0.3);"></div>
+        <span class="hex-code" style="color:#fafaf8;">#464a41</span>
+        <span class="slide-count" style="color:#fafaf8;">12 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================
+     SLIDE 13 — 黄金色 / Room 1401 / 14F
+================================================ -->
+<div class="slide">
+  <header class="header">
+    <img src="assets/logo.svg" class="header-logo" alt="Sakura Sands Suites Hotel">
+    <span class="header-center">Color Room Concept &nbsp;—&nbsp; 13 Colors, One Journey.</span>
+    <div class="header-nav">
+      <button class="nav-btn" onclick="prev()">← PREV</button>
+      <button class="nav-btn" onclick="next()">NEXT →</button>
+    </div>
+  </header>
+  <div class="body">
+    <div class="room-side">
+      <img src="assets/rooms/13_kogane.png" class="room-photo" alt="黄金色 Room 1401">
+      <div class="room-badge">ROOM 1401 &nbsp;·&nbsp; 14F &nbsp;·&nbsp; Kogane Room</div>
+    </div>
+    <div class="info-side" style="background:#e6b422; color:#464a41;">
+      <div class="room-no-block">
+        <div class="room-no-label" style="color:#464a41;">Room No.</div>
+        <div class="room-no-number" style="color:#464a41;">1401</div>
+        <div class="room-no-floor" style="color:#5a4810;">14 F &nbsp;·&nbsp; Kogane Room &nbsp;✦ Exclusive</div>
+      </div>
+      <div class="color-jp" style="color:#464a41;">黄金色</div>
+      <div class="color-en" style="color:#5a4810;">Kogane &nbsp;/&nbsp; Radiant Gold</div>
+      <div class="divider" style="background:#464a41;"></div>
+      <div class="concept-kw" style="color:#464a41;">豊穣 × 実りの輝き</div>
+      <div class="concept-body" style="color:#464a41;">派手な金ではなく、夕陽に照らされた稲穂のような、深みと輝きを持つゴールド。14Fの特別室。</div>
+      <div class="footer-row">
+        <div class="swatch" style="background:#e6b422; border-color:#c8940a;"></div>
+        <span class="hex-code" style="color:#464a41;">#e6b422</span>
+        <span class="slide-count" style="color:#464a41;">13 / 13</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- Navigation dots -->
+<div class="dots" id="dots"></div>
+
+<script>
+var current = 0;
+var slides  = document.querySelectorAll('.slide');
+var dotsEl  = document.getElementById('dots');
+
+// 右上ロゴマーク＋テキストを各スライドに挿入（表紙を除く）
+slides.forEach(function(slide) {
+  if (slide.classList.contains('cover-slide')) return;
+  var infoSide = slide.querySelector('.info-side');
+  if (!infoSide) return;
+
+  var block = document.createElement('div');
+  block.className = 'info-mark-block';
+
+  var mark = document.createElement('img');
+  mark.src = 'assets/logo-mark.svg';
+  mark.className = 'info-mark';
+  mark.alt = 'Sakura Sands mark';
+
+  var name = document.createElement('div');
+  name.className = 'info-mark-name';
+  // テキスト色はパネルの文字色に合わせる
+  var textColor = infoSide.style.color || '#464a41';
+  name.innerHTML =
+    '<span class="line1" style="color:' + textColor + '">SAKURA Sands</span>' +
+    '<span class="line2" style="color:' + textColor + '">Suites</span>';
+
+  block.appendChild(mark);
+  block.appendChild(name);
+  infoSide.appendChild(block);
+});
+
+// 正円イラストを各スライドに挿入（表紙を除く）
+var artFiles = [
+  '01_torinoko','02_usubeni','03_kurumi','04_wakakusa','05_wasurenagusa',
+  '06_fukamidori','07_nanohana','08_sakura','09_ruri',
+  '10_ayame','11_koji','12_sumi','13_kogane'
+];
+var artIdx = 0;
+slides.forEach(function(slide, i) {
+  if (slide.classList.contains('cover-slide')) return;
+  var circle = document.createElement('div');
+  circle.className = 'art-circle';
+  var img = document.createElement('img');
+  img.src = 'assets/chatgpt-art/' + artFiles[artIdx] + '.png';
+  img.alt = artFiles[artIdx];
+  artIdx++;
+  circle.appendChild(img);
+  var footer = slide.querySelector('.footer-row');
+  if (footer) footer.parentNode.insertBefore(circle, footer);
+});
+
+// Build dots
+slides.forEach(function(_, i) {
+  var d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = function() { goTo(i); };
+  dotsEl.appendChild(d);
+});
+
+function goTo(n) {
+  slides[current].classList.remove('active');
+  dotsEl.children[current].classList.remove('active');
+  current = (n + slides.length) % slides.length;
+  slides[current].classList.add('active');
+  dotsEl.children[current].classList.add('active');
+}
+function next() { goTo(current + 1); }
+function prev() { goTo(current - 1); }
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prev();
+});
+</script>
+</body>
+</html>

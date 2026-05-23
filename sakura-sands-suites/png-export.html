@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Logo PNG Export — Sakura Sands</title>
+<style>
+  body { background:#1a1a1a; font-family:sans-serif; padding:40px; color:#fff; }
+  h1 { font-size:14px; letter-spacing:.3em; margin-bottom:32px; color:#e6b422; }
+  .grid { display:flex; flex-wrap:wrap; gap:24px; }
+  .card { background:#2e2e2e; padding:24px; border-radius:4px; text-align:center; }
+  .card canvas { display:block; margin:0 auto 12px; }
+  .card .label { font-size:11px; color:#999; margin-bottom:10px; }
+  .btn {
+    display:inline-block; padding:8px 20px;
+    background:#e6b422; color:#1a1a1a;
+    font-size:11px; font-weight:bold; letter-spacing:.1em;
+    cursor:pointer; border:none; border-radius:2px; text-decoration:none;
+  }
+  #status { margin-top:24px; font-size:11px; color:#e6b422; }
+</style>
+</head>
+<body>
+<h1>SAKURA SANDS SUITES HOTEL — LOGO PNG EXPORT</h1>
+<p style="font-size:11px;color:#888;margin-bottom:24px;">
+  ※ このページは <code>python -m http.server 8080</code> で起動したサーバーで開いてください。<br>
+  　 ブラウザで <code>http://localhost:8080/png-export.html</code> を開き、ボタンをクリックするとPNGが保存されます。
+</p>
+<div class="grid" id="grid"></div>
+<div id="status"></div>
+
+<script>
+var EXPORTS = [
+  { id:'mark-500',   src:'assets/logo-mark.svg', w:500,  h:500,  bg:'#fafaf8', label:'ロゴマーク 500×500（白背景）' },
+  { id:'mark-500d',  src:'assets/logo-mark.svg', w:500,  h:500,  bg:'#2e3229', label:'ロゴマーク 500×500（墨背景）' },
+  { id:'mark-1000',  src:'assets/logo-mark.svg', w:1000, h:1000, bg:'#fafaf8', label:'ロゴマーク 1000×1000（白背景）' },
+  { id:'full-400',   src:'assets/logo.svg',      w:400,  h:480,  bg:'#fafaf8', label:'フルロゴ 400×480（白背景）' },
+  { id:'full-400d',  src:'assets/logo.svg',      w:400,  h:480,  bg:'#2e3229', label:'フルロゴ 400×480（墨背景）' },
+  { id:'full-800',   src:'assets/logo.svg',      w:800,  h:960,  bg:'#fafaf8', label:'フルロゴ 800×960（白背景）高解像度' },
+];
+
+var grid = document.getElementById('grid');
+
+EXPORTS.forEach(function(exp) {
+  var card = document.createElement('div');
+  card.className = 'card';
+
+  var previewScale = Math.min(160 / exp.w, 200 / exp.h);
+  var pw = Math.round(exp.w * previewScale);
+  var ph = Math.round(exp.h * previewScale);
+
+  card.innerHTML =
+    '<canvas id="preview-' + exp.id + '" width="' + pw + '" height="' + ph + '" style="background:' + exp.bg + ';border:1px solid #444"></canvas>' +
+    '<div class="label">' + exp.label + '<br>' + exp.w + '×' + exp.h + 'px</div>' +
+    '<button class="btn" onclick="exportPng(\'' + exp.id + '\')">PNG ダウンロード</button>';
+  grid.appendChild(card);
+
+  // Preview render
+  renderToCanvas('preview-' + exp.id, exp.src, pw, ph, exp.bg);
+});
+
+function renderToCanvas(canvasId, svgSrc, w, h, bg) {
+  fetch(svgSrc)
+    .then(function(r){ return r.text(); })
+    .then(function(svgText) {
+      var blob = new Blob([svgText], {type:'image/svg+xml;charset=utf-8'});
+      var url  = URL.createObjectURL(blob);
+      var img  = new Image();
+      img.onload = function() {
+        var canvas = document.getElementById(canvasId);
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+        URL.revokeObjectURL(url);
+      };
+      img.src = url;
+    });
+}
+
+function exportPng(id) {
+  var exp = EXPORTS.find(function(e){ return e.id === id; });
+  fetch(exp.src)
+    .then(function(r){ return r.text(); })
+    .then(function(svgText) {
+      var blob = new Blob([svgText], {type:'image/svg+xml;charset=utf-8'});
+      var url  = URL.createObjectURL(blob);
+      var img  = new Image();
+      img.onload = function() {
+        var canvas = document.createElement('canvas');
+        canvas.width  = exp.w;
+        canvas.height = exp.h;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = exp.bg;
+        ctx.fillRect(0, 0, exp.w, exp.h);
+        ctx.drawImage(img, 0, 0, exp.w, exp.h);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(function(blob) {
+          var a = document.createElement('a');
+          a.download = 'sakura-sands-' + exp.id + '.png';
+          a.href = URL.createObjectURL(blob);
+          a.click();
+          document.getElementById('status').textContent = '✓ 保存: sakura-sands-' + exp.id + '.png';
+        }, 'image/png');
+      };
+      img.src = url;
+    });
+}
+</script>
+</body>
+</html>

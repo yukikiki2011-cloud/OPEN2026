@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sakura Sands — Logo Preview v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #eeede8;
+    font-family: 'Inter', sans-serif;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+  .page-title {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: #8a8c87;
+    text-transform: uppercase;
+  }
+  .preview-row {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .panel-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: #8a8c87;
+    text-transform: uppercase;
+  }
+  .bg-light { background: #fafaf8; padding: 48px; }
+  .bg-dark  { background: #464a41; padding: 48px; }
+  .bg-sakura { background: #fef4f4; padding: 48px; }
+
+  /* Room tint demo */
+  .tint-demo { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .tint-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .tint-item span {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: #8a8c87;
+  }
+  .room-wrap {
+    position: relative;
+    width: 120px;
+    height: 80px;
+    overflow: hidden;
+  }
+  .room-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .room-wrap .tint {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: multiply;
+    opacity: 0.45;
+  }
+</style>
+</head>
+<body>
+
+<p class="page-title">Sakura Sands Suites Hotel — Logo Concept v1 &nbsp;|&nbsp; Design Consultant Preview</p>
+
+<!-- ========================================
+     LOGO PREVIEWS
+======================================== -->
+<div class="preview-row">
+
+  <!-- Light -->
+  <div class="panel">
+    <div class="bg-light">
+      <svg viewBox="0 0 300 330" xmlns="http://www.w3.org/2000/svg" width="240" height="264">
+
+        <!-- Outer gold ring (same radius as dots) -->
+        <circle cx="150" cy="148" r="93"
+                fill="none" stroke="#e6b422" stroke-width="0.8" opacity="0.55"/>
+
+        <!-- Inner separator ring -->
+        <circle cx="150" cy="148" r="60"
+                fill="none" stroke="#e6b422" stroke-width="0.5" opacity="0.30"/>
+
+        <!-- === 13 COLORED DOTS ===
+             Center: (150,148)  Radius: 93
+             Start: top (−90°), clockwise, step: 360/13 = 27.69°
+        -->
+        <!-- 01 鳥の子色 #fff1cf  (−90°)  -->
+        <circle cx="150" cy="55"  r="8.5" fill="#fff1cf" stroke="#c8bfa0" stroke-width="0.8"/>
+        <!-- 02 薄紅    #ee827c  (−62.3°) -->
+        <circle cx="193" cy="66"  r="8.5" fill="#ee827c"/>
+        <!-- 03 胡桃色  #967249  (−34.6°) -->
+        <circle cx="227" cy="95"  r="8.5" fill="#967249"/>
+        <!-- 04 若菜色  #d8e698  (−6.9°)  -->
+        <circle cx="242" cy="137" r="8.5" fill="#d8e698" stroke="#b8cc70" stroke-width="0.8"/>
+        <!-- 05 勿忘草色 #89c3eb  (20.8°)  -->
+        <circle cx="237" cy="181" r="8.5" fill="#89c3eb"/>
+        <!-- 06 深緑   #547443  (48.5°)  -->
+        <circle cx="212" cy="218" r="8.5" fill="#547443"/>
+        <!-- 07 菜の花色 #ffec47  (76.2°)  -->
+        <circle cx="172" cy="238" r="8.5" fill="#ffec47" stroke="#c8c030" stroke-width="0.8"/>
+        <!-- 08 桜色   #fef4f4  (103.8°) -->
+        <circle cx="128" cy="238" r="8.5" fill="#fef4f4" stroke="#d8c8c8" stroke-width="0.8"/>
+        <!-- 09 瑠璃紺  #4b61ba  (131.5°) -->
+        <circle cx="88"  cy="218" r="8.5" fill="#4b61ba"/>
+        <!-- 10 菖蒲色  #cc7eb1  (159.2°) -->
+        <circle cx="63"  cy="181" r="8.5" fill="#cc7eb1"/>
+        <!-- 11 柑子色  #f6ad49  (186.9°) -->
+        <circle cx="58"  cy="137" r="8.5" fill="#f6ad49"/>
+        <!-- 12 墨色   #464a41  (214.6°) -->
+        <circle cx="73"  cy="95"  r="8.5" fill="#464a41"/>
+        <!-- 13 黄金色  #e6b422  (242.3°) -->
+        <circle cx="107" cy="66"  r="8.5" fill="#e6b422"/>
+
+        <!-- === CHERRY BLOSSOM: 5 petals, Hotel Okura–style geometric ===
+             Petal path (pointing upward):
+             From base (150,146) → tip (150,98), width ±12 at midpoint
+             Slight curves for elegance, not purely organic
+        -->
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93"
+              transform="rotate(0, 150, 148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93"
+              transform="rotate(72, 150, 148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93"
+              transform="rotate(144, 150, 148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93"
+              transform="rotate(216, 150, 148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93"
+              transform="rotate(288, 150, 148)"/>
+
+        <!-- Center decoration: white bg → gold ring → gold dot -->
+        <circle cx="150" cy="148" r="17" fill="#fafaf8"/>
+        <circle cx="150" cy="148" r="15" fill="none" stroke="#e6b422" stroke-width="1.5"/>
+        <circle cx="150" cy="148" r="5"  fill="#e6b422"/>
+
+        <!-- === TYPOGRAPHY === -->
+        <text x="150" y="289"
+              text-anchor="middle"
+              font-family="'Cormorant Garamond', serif"
+              font-size="21" font-weight="400"
+              fill="#464a41"
+              style="letter-spacing: 0.16em">SAKURA SANDS</text>
+        <text x="150" y="309"
+              text-anchor="middle"
+              font-family="'Cormorant Garamond', serif"
+              font-size="10" font-weight="300"
+              fill="#8a8c87"
+              style="letter-spacing: 0.42em">SUITES HOTEL</text>
+      </svg>
+    </div>
+    <span class="panel-label">Light BG</span>
+  </div>
+
+  <!-- Dark -->
+  <div class="panel">
+    <div class="bg-dark">
+      <svg viewBox="0 0 300 330" xmlns="http://www.w3.org/2000/svg" width="240" height="264">
+        <circle cx="150" cy="148" r="93"
+                fill="none" stroke="#e6b422" stroke-width="0.8" opacity="0.55"/>
+        <circle cx="150" cy="148" r="60"
+                fill="none" stroke="#e6b422" stroke-width="0.5" opacity="0.30"/>
+
+        <circle cx="150" cy="55"  r="8.5" fill="#fff1cf" stroke="#c8bfa0" stroke-width="0.8"/>
+        <circle cx="193" cy="66"  r="8.5" fill="#ee827c"/>
+        <circle cx="227" cy="95"  r="8.5" fill="#967249"/>
+        <circle cx="242" cy="137" r="8.5" fill="#d8e698" stroke="#b8cc70" stroke-width="0.8"/>
+        <circle cx="237" cy="181" r="8.5" fill="#89c3eb"/>
+        <circle cx="212" cy="218" r="8.5" fill="#547443"/>
+        <circle cx="172" cy="238" r="8.5" fill="#ffec47"/>
+        <circle cx="128" cy="238" r="8.5" fill="#fef4f4" stroke="#d8c8c8" stroke-width="0.8"/>
+        <circle cx="88"  cy="218" r="8.5" fill="#4b61ba"/>
+        <circle cx="63"  cy="181" r="8.5" fill="#cc7eb1"/>
+        <circle cx="58"  cy="137" r="8.5" fill="#f6ad49"/>
+        <circle cx="73"  cy="95"  r="8.5" fill="#464a41" stroke="#6a6e64" stroke-width="0.8"/>
+        <circle cx="107" cy="66"  r="8.5" fill="#e6b422"/>
+
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(0,   150,148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(72,  150,148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(144, 150,148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(216, 150,148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(288, 150,148)"/>
+
+        <circle cx="150" cy="148" r="17" fill="#464a41"/>
+        <circle cx="150" cy="148" r="15" fill="none" stroke="#e6b422" stroke-width="1.5"/>
+        <circle cx="150" cy="148" r="5"  fill="#e6b422"/>
+
+        <text x="150" y="289"
+              text-anchor="middle"
+              font-family="'Cormorant Garamond', serif"
+              font-size="21" font-weight="400"
+              fill="#fafaf8"
+              style="letter-spacing: 0.16em">SAKURA SANDS</text>
+        <text x="150" y="309"
+              text-anchor="middle"
+              font-family="'Cormorant Garamond', serif"
+              font-size="10" font-weight="300"
+              fill="#e6b422"
+              style="letter-spacing: 0.42em">SUITES HOTEL</text>
+      </svg>
+    </div>
+    <span class="panel-label">Dark BG（墨色）</span>
+  </div>
+
+  <!-- Sakura background -->
+  <div class="panel">
+    <div class="bg-sakura">
+      <svg viewBox="0 0 300 330" xmlns="http://www.w3.org/2000/svg" width="240" height="264">
+        <circle cx="150" cy="148" r="93"
+                fill="none" stroke="#e6b422" stroke-width="0.8" opacity="0.55"/>
+        <circle cx="150" cy="148" r="60"
+                fill="none" stroke="#e6b422" stroke-width="0.5" opacity="0.30"/>
+
+        <circle cx="150" cy="55"  r="8.5" fill="#fff1cf" stroke="#c8bfa0" stroke-width="0.8"/>
+        <circle cx="193" cy="66"  r="8.5" fill="#ee827c"/>
+        <circle cx="227" cy="95"  r="8.5" fill="#967249"/>
+        <circle cx="242" cy="137" r="8.5" fill="#d8e698" stroke="#b8cc70" stroke-width="0.8"/>
+        <circle cx="237" cy="181" r="8.5" fill="#89c3eb"/>
+        <circle cx="212" cy="218" r="8.5" fill="#547443"/>
+        <circle cx="172" cy="238" r="8.5" fill="#ffec47"/>
+        <circle cx="128" cy="238" r="8.5" fill="#fef4f4" stroke="#d0b8b8" stroke-width="0.8"/>
+        <circle cx="88"  cy="218" r="8.5" fill="#4b61ba"/>
+        <circle cx="63"  cy="181" r="8.5" fill="#cc7eb1"/>
+        <circle cx="58"  cy="137" r="8.5" fill="#f6ad49"/>
+        <circle cx="73"  cy="95"  r="8.5" fill="#464a41"/>
+        <circle cx="107" cy="66"  r="8.5" fill="#e6b422"/>
+
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(0,   150,148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(72,  150,148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(144, 150,148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(216, 150,148)"/>
+        <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z"
+              fill="#e6b422" opacity="0.93" transform="rotate(288, 150,148)"/>
+
+        <circle cx="150" cy="148" r="17" fill="#fef4f4"/>
+        <circle cx="150" cy="148" r="15" fill="none" stroke="#e6b422" stroke-width="1.5"/>
+        <circle cx="150" cy="148" r="5"  fill="#e6b422"/>
+
+        <text x="150" y="289"
+              text-anchor="middle"
+              font-family="'Cormorant Garamond', serif"
+              font-size="21" font-weight="400"
+              fill="#464a41"
+              style="letter-spacing: 0.16em">SAKURA SANDS</text>
+        <text x="150" y="309"
+              text-anchor="middle"
+              font-family="'Cormorant Garamond', serif"
+              font-size="10" font-weight="300"
+              fill="#8a8c87"
+              style="letter-spacing: 0.42em">SUITES HOTEL</text>
+      </svg>
+    </div>
+    <span class="panel-label">Sakura BG（桜色）</span>
+  </div>
+
+</div>
+
+<!-- ========================================
+     ROOM TINTING CONCEPT DEMO
+======================================== -->
+<div style="width:100%; max-width:900px;">
+  <p style="font-size:10px; letter-spacing:0.25em; color:#8a8c87; text-transform:uppercase; margin-bottom:16px; text-align:center;">
+    Room Photo Tinting — CSS mix-blend-mode: multiply（全色、1枚のベース写真から生成）
+  </p>
+  <div class="tint-demo">
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#fff1cf"></div>
+      </div>
+      <span>鳥の子色</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#ee827c"></div>
+      </div>
+      <span>薄紅</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#967249"></div>
+      </div>
+      <span>胡桃色</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#d8e698"></div>
+      </div>
+      <span>若菜色</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#89c3eb"></div>
+      </div>
+      <span>勿忘草色</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#547443"></div>
+      </div>
+      <span>深緑</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#ffec47"></div>
+      </div>
+      <span>菜の花色</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#fef4f4"></div>
+      </div>
+      <span>桜色</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#4b61ba"></div>
+      </div>
+      <span>瑠璃紺</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#cc7eb1"></div>
+      </div>
+      <span>菖蒲色</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#f6ad49"></div>
+      </div>
+      <span>柑子色</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#464a41"></div>
+      </div>
+      <span>墨色</span>
+    </div>
+
+    <div class="tint-item">
+      <div class="room-wrap">
+        <img src="../Sakura Sands room image.jpg" alt="room">
+        <div class="tint" style="background:#e6b422"></div>
+      </div>
+      <span>黄金色</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========================================
+     DESIGN NOTES
+======================================== -->
+<div style="max-width: 640px; width:100%; padding: 28px; background: #fafaf8; border-left: 2px solid #e6b422;">
+  <p style="font-family:'Cormorant Garamond',serif; font-size:13px; color:#464a41; line-height:2; letter-spacing:0.02em;">
+    <strong>ロゴマーク構造 v1</strong><br>
+    外輪：13色ドット（各色のHEXで塗り分け）、時計回り・上から鳥の子色スタート<br>
+    花弁：5弁・黄金色（#e6b422）。Hotel Okura参考の幾何学的デザイン。<br>
+    中心：黄金色ドット ＋ 金輪。背景色に応じて白/墨色/桜色で切り替え。<br>
+    書体：Cormorant Garamond（英語セリフ）｜墨色または白<br><br>
+    <strong>調整候補</strong><br>
+    ① 花弁の先端に桜の切り込み（emarginate notch）を入れるか<br>
+    ② 外輪ドットのサイズ（現状r=8.5）を大きく／小さくするか<br>
+    ③ 日本語名「桜の砂　スイーツホテル」を加えるか<br>
+    ④ タグライン "13 Colors, One Journey." を入れるか
+  </p>
+</div>
+
+</body>
+</html>

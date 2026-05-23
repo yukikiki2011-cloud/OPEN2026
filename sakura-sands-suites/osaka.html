@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Osaka — ロケーション・アクセス | Sakura Sands Suites Hotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans-jp);font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:root{
+  --bg:#fafaf8;--text:#464a41;--text-sub:#8a8c87;--border:#e8e8e4;
+  --white:#ffffff;--kogane:#e6b422;--sumi:#464a41;
+  --font-serif-jp:'Noto Serif JP',serif;--font-sans-jp:'Noto Sans JP',sans-serif;
+  --font-serif-en:'Cormorant Garamond',serif;--font-sans-en:'Inter',sans-serif;
+  --nav-h:72px;--max-w:1200px;
+  --sp-sm:1rem;--sp-md:2rem;--sp-lg:4rem;--sp-xl:8rem;
+}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+.section{padding:var(--sp-lg) 0}
+.section-lg{padding:var(--sp-xl) 0}
+.label{font-family:var(--font-sans-en);font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text-sub);display:block;margin-bottom:.5rem}
+.sec-title{font-family:var(--font-serif-en);font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;letter-spacing:.04em;margin-bottom:.5rem}
+.sec-subtitle{font-family:var(--font-sans-jp);font-size:.9375rem;color:var(--text-sub);margin-bottom:var(--sp-md)}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;font-family:var(--font-sans-en);font-size:.8125rem;font-weight:500;letter-spacing:.1em;cursor:pointer;transition:all .25s ease;border:none;text-decoration:none}
+.btn-dark{background:var(--text);color:var(--bg)}
+.btn-dark:hover{background:var(--kogane);color:var(--text);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--text)}
+.btn-outline:hover{background:var(--text);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-kogane{background:var(--kogane);color:var(--sumi)}
+.btn-kogane:hover{background:var(--white);color:var(--sumi);transform:translateY(-2px);box-shadow:0 8px 24px rgba(70,74,65,.2)}
+/* Nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;height:var(--nav-h);background:rgba(250,250,248,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav__logo{display:flex;flex-direction:column;line-height:1.25}
+.nav__logo-main{font-family:var(--font-serif-en);font-size:1.0625rem;font-weight:400;letter-spacing:.04em}
+.nav__logo-sub{font-family:var(--font-sans-en);font-size:.5625rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-sub)}
+.nav__links{display:flex;align-items:center;gap:2rem}
+.nav__link{font-family:var(--font-sans-en);font-size:.8125rem;letter-spacing:.06em;transition:color .2s}
+.nav__link:hover{color:var(--kogane)}
+.nav__link.active{color:var(--kogane);border-bottom:1px solid var(--kogane);padding-bottom:2px}
+.nav__right{display:flex;align-items:center;gap:1rem}
+.nav__cta{padding:.625rem 1.5rem}
+/* Page Hero */
+.page-hero{position:relative;padding-top:var(--nav-h);min-height:40vh;display:flex;align-items:center;background:var(--sumi);overflow:hidden}
+.page-hero--light{background:var(--bg)}
+.page-hero--kogane{background:linear-gradient(135deg,#2e2a1a 0%,#464010 50%,#2e2a1a 100%)}
+.page-hero__bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.25}
+.page-hero__overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(46,50,41,.85) 0%,rgba(46,50,41,.5) 100%)}
+.page-hero__content{position:relative;z-index:2;padding:var(--sp-lg) 0}
+.page-hero .label{color:var(--kogane)}
+.page-hero--light .label{color:var(--text-sub)}
+.page-hero__h1{font-family:var(--font-serif-en);font-size:clamp(2rem,5vw,3.75rem);font-weight:300;color:var(--white);line-height:1.15;letter-spacing:.04em;margin-bottom:.5rem}
+.page-hero--light .page-hero__h1{color:var(--text)}
+.page-hero__jp{font-family:var(--font-serif-jp);font-size:clamp(.9375rem,2vw,1.125rem);font-weight:300;color:rgba(255,255,255,.7);letter-spacing:.2em}
+.page-hero--light .page-hero__jp{color:var(--text-sub)}
+/* CTA Strip */
+.cta-strip{background:var(--sumi);padding:var(--sp-lg) 0;text-align:center}
+.cta-strip__title{font-family:var(--font-serif-en);font-size:clamp(1.25rem,2.5vw,2rem);font-weight:300;color:var(--white);letter-spacing:.06em;margin-bottom:.5rem}
+.cta-strip__sub{font-family:var(--font-sans-jp);font-size:.9375rem;color:rgba(255,255,255,.55);margin-bottom:var(--sp-md)}
+.cta-strip__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+/* Footer */
+.footer{background:var(--sumi);padding:var(--sp-md) 0}
+.footer__inner{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+.footer__logo{font-family:var(--font-serif-en);font-size:.9375rem;font-weight:400;letter-spacing:.08em;color:rgba(255,255,255,.7)}
+.footer__links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer__link{font-family:var(--font-sans-en);font-size:.75rem;letter-spacing:.08em;color:rgba(255,255,255,.45);transition:color .2s}
+.footer__link:hover{color:var(--kogane)}
+.footer__copy{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.06em;color:rgba(255,255,255,.3);text-align:center;padding-top:var(--sp-sm);border-top:1px solid rgba(255,255,255,.08)}
+/* Responsive */
+@media(max-width:768px){
+  .nav__links{display:none}
+  .container{padding:0 1.25rem}
+  .section{padding:2.5rem 0}
+  .section-lg{padding:4rem 0}
+  .page-hero__h1{font-size:clamp(1.625rem,6vw,2.25rem)}
+}
+
+.map-wrap{aspect-ratio:16/9;width:100%;border:1px solid var(--border);margin:var(--sp-lg) 0;overflow:hidden}
+.map-wrap svg{display:block;width:100%;height:auto}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-lg);margin-top:var(--sp-lg)}
+.access-card{border:1px solid var(--border);padding:1.5rem}
+.access-card__icon{font-size:1.5rem;margin-bottom:.75rem;display:block}
+.access-card__from{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-sub);margin-bottom:.5rem}
+.access-card__route{font-family:var(--font-serif-jp);font-size:1rem;font-weight:400;margin-bottom:.375rem}
+.access-card__time{font-family:var(--font-sans-en);font-size:.8125rem;color:var(--kogane);letter-spacing:.04em}
+.nearby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:var(--sp-md)}
+.nearby-item{display:flex;align-items:center;gap:.75rem;padding:.875rem 1rem;border:1px solid var(--border)}
+.nearby-item__name{font-family:var(--font-serif-jp);font-size:.9375rem;font-weight:400}
+.nearby-item__time{font-family:var(--font-sans-en);font-size:.75rem;color:var(--text-sub);margin-top:.1rem}
+.hotel-info{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:var(--sp-lg)}
+.info-item{padding:1.25rem 1.5rem;border:1px solid var(--border)}
+.info-item__label{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-sub);margin-bottom:.375rem}
+.info-item__val{font-family:var(--font-serif-jp);font-size:1.0625rem;font-weight:400}
+.info-item__sub{font-family:var(--font-sans-en);font-size:.8125rem;color:var(--text-sub);margin-top:.25rem}
+@media(max-width:900px){.access-grid,.nearby-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.access-grid,.nearby-grid,.hotel-info{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav" role="navigation" aria-label="メインナビゲーション"><div class="container"><div class="nav__inner">
+<a href="index.html" class="nav__logo"><span class="nav__logo-main">Sakura Sands Suites</span><span class="nav__logo-sub">Hotel &mdash; Osaka</span></a>
+<ul class="nav__links" role="list"><li><a href="concept.html" class="nav__link">Concept</a></li><li><a href="rooms.html" class="nav__link">Rooms</a></li><li><a href="family.html" class="nav__link">Family Stay</a></li><li><a href="osaka.html" class="nav__link active">Osaka</a></li><li><a href="faq.html" class="nav__link">FAQ</a></li></ul>
+<div class="nav__right"><a href="booking.html" class="btn btn-dark nav__cta">Book Now</a></div>
+</div></div></nav>
+
+<div style="height:var(--nav-h)"></div>
+
+<section class="page-hero" style="min-height:36vh">
+  <div class="page-hero__content container">
+    <span class="label">Location &amp; Access</span>
+    <h1 class="page-hero__h1">Osaka, Japan.</h1>
+    <p class="page-hero__jp">大阪市中央区島之内 — 心斎橋・難波エリア</p>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Design Map -->
+  <div class="map-wrap" role="img" aria-label="Sakura Sands Suites Hotel アクセスマップ">
+    <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
+      <defs><filter id="sh2"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.12)"/></filter></defs>
+      <rect width="720" height="420" fill="#f5f2ec"/>
+      <!-- 御堂筋 -->
+      <rect x="196" y="0" width="26" height="420" fill="#d8d4cc"/>
+      <!-- 長堀通 -->
+      <rect x="0" y="116" width="720" height="10" fill="#d4d0c8"/>
+      <!-- 道頓堀川 -->
+      <rect x="0" y="280" width="720" height="16" fill="#b0c8d8" opacity=".78"/>
+      <!-- 心斎橋筋 -->
+      <rect x="306" y="0" width="6" height="282" fill="#dedad2"/>
+      <!-- Minor streets -->
+      <rect x="0" y="164" width="720" height="3" fill="#dedad2"/>
+      <rect x="0" y="210" width="720" height="3" fill="#dedad2"/>
+      <rect x="0" y="250" width="720" height="3" fill="#dedad2"/>
+      <rect x="0" y="330" width="720" height="3" fill="#dedad2"/>
+      <rect x="0" y="375" width="720" height="3" fill="#dedad2"/>
+      <rect x="108" y="0" width="3" height="420" fill="#dedad2"/>
+      <rect x="400" y="0" width="3" height="420" fill="#dedad2"/>
+      <rect x="510" y="0" width="3" height="420" fill="#dedad2"/>
+      <rect x="620" y="0" width="3" height="420" fill="#dedad2"/>
+      <!-- Labels -->
+      <text transform="translate(209,36) rotate(90)" font-family="Inter,sans-serif" font-size="8" fill="#a09b92" letter-spacing="2">御堂筋</text>
+      <text x="20" y="110" font-family="Inter,sans-serif" font-size="8" fill="#a09b92">長堀通</text>
+      <text x="20" y="290" font-family="Inter,sans-serif" font-size="8" fill="#7a9db5">道頓堀川</text>
+      <text transform="translate(300,26) rotate(90)" font-family="Inter,sans-serif" font-size="8" fill="#a09b92">心斎橋筋</text>
+      <text x="410" y="298" font-family="Inter,sans-serif" font-size="10" fill="#6a96b2" opacity=".9">道頓堀</text>
+      <!-- 心斎橋駅 -->
+      <rect x="194" y="128" width="6" height="22" rx="1" fill="#e60012" opacity=".82"/>
+      <circle cx="209" cy="139" r="8" fill="#464a41" stroke="#f5f2ec" stroke-width="2.5"/>
+      <rect x="220" y="131" width="74" height="18" rx="2" fill="rgba(245,242,236,.95)"/>
+      <text x="225" y="144" font-family="Inter,sans-serif" font-size="11" fill="#464a41" font-weight="500">心斎橋駅</text>
+      <!-- なんば駅 -->
+      <rect x="194" y="358" width="6" height="22" rx="1" fill="#e60012" opacity=".82"/>
+      <circle cx="209" cy="369" r="8" fill="#464a41" stroke="#f5f2ec" stroke-width="2.5"/>
+      <rect x="220" y="361" width="66" height="18" rx="2" fill="rgba(245,242,236,.95)"/>
+      <text x="225" y="374" font-family="Inter,sans-serif" font-size="11" fill="#464a41" font-weight="500">なんば駅</text>
+      <!-- Walking paths -->
+      <line x1="217" y1="139" x2="458" y2="225" stroke="#e6b422" stroke-width="1.8" stroke-dasharray="6,5" opacity=".72"/>
+      <line x1="217" y1="369" x2="458" y2="242" stroke="#e6b422" stroke-width="1.8" stroke-dasharray="6,5" opacity=".72"/>
+      <!-- Badges -->
+      <rect x="286" y="150" width="90" height="19" rx="9.5" fill="#464a41"/>
+      <text x="331" y="163" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="white">心斎橋 約10分</text>
+      <rect x="286" y="300" width="86" height="19" rx="9.5" fill="#464a41"/>
+      <text x="329" y="313" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="white">なんば 約20分</text>
+      <!-- Hotel logo mark -->
+      <circle cx="465" cy="223" r="28" fill="white" opacity="0.92" filter="url(#sh2)"/>
+      <image href="assets/logo-mark.svg" x="437" y="195" width="56" height="56"/>
+      <!-- Hotel label card -->
+      <rect x="480" y="207" width="162" height="56" rx="3" fill="white" filter="url(#sh2)"/>
+      <rect x="480" y="207" width="3.5" height="56" rx="1.5" fill="#e6b422"/>
+      <text x="491" y="226" font-family="Inter,sans-serif" font-size="12" fill="#464a41" font-weight="600">Sakura Sands</text>
+      <text x="491" y="241" font-family="Inter,sans-serif" font-size="10.5" fill="#464a41">Suites Hotel</text>
+      <text x="491" y="255" font-family="Inter,sans-serif" font-size="9" fill="#8a8c87">島之内1-16-3 中央区</text>
+      <!-- North -->
+      <g transform="translate(688,30)">
+        <circle cx="0" cy="0" r="16" fill="white" stroke="#e0dcd4" stroke-width="1.5"/>
+        <polygon points="0,-10 -4,4 0,1.5 4,4" fill="#464a41"/>
+        <polygon points="0,1.5 -4,4 0,10 4,4" fill="#ccc8c0"/>
+        <text x="0" y="-13" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#8a8c87" font-weight="600">N</text>
+      </g>
+      <!-- Scale -->
+      <g transform="translate(20,400)">
+        <rect x="0" y="-2.5" width="30" height="5" rx="2.5" fill="#a09b92"/>
+        <rect x="30" y="-2.5" width="30" height="5" rx="2.5" fill="#ccc8c0"/>
+        <text x="30" y="-8" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#a09b92">250m</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Access -->
+  <span class="label">Access</span>
+  <h2 class="sec-title">どこからでも、アクセス良好。</h2>
+  <div class="access-grid">
+    <div class="access-card" style="border-color:var(--kogane)"><span class="access-card__icon">🚇</span><span class="access-card__from" style="color:var(--kogane)">最寄り駅 / Nearest Station ★</span><p class="access-card__route">大阪メトロ 堺筋線・長堀鶴見緑地線「長堀橋駅」4番出口より東へ徒歩約2分</p><p class="access-card__time" style="color:var(--kogane)">約2分</p></div>
+    <div class="access-card"><span class="access-card__icon">✈</span><span class="access-card__from">From Kansai International Airport</span><p class="access-card__route">関西国際空港 → 南海特急ラピート → なんば駅（南海） → 地下鉄千日前線 → 日本橋駅 → 堺筋線 → 長堀橋駅 → 徒歩約2分</p><p class="access-card__time">約55分</p></div>
+    <div class="access-card"><span class="access-card__icon">✈</span><span class="access-card__from">From Osaka Itami Airport</span><p class="access-card__route">大阪伊丹空港（ホテルより約19km）→ 阪急バスorモノレール → 梅田・天六方面 → 地下鉄堺筋線 → 長堀橋駅 → 徒歩約2分</p><p class="access-card__time">約60分</p></div>
+    <div class="access-card"><span class="access-card__icon">🚅</span><span class="access-card__from">From Shin-Osaka Station</span><p class="access-card__route">新大阪駅 → 地下鉄御堂筋線 → 心斎橋駅 → 長堀鶴見緑地線 → 長堀橋駅 → 徒歩約2分</p><p class="access-card__time">約21分</p></div>
+    <div class="access-card"><span class="access-card__icon">🚅</span><span class="access-card__from">From Tokyo (Shinkansen)</span><p class="access-card__route">東京駅 → 新幹線のぞみ → 新大阪駅 → 心斎橋駅 → 徒歩約6分</p><p class="access-card__time">約2時間50分</p></div>
+  </div>
+
+  <!-- Nearby -->
+  <div class="section" style="border-top:1px solid var(--border)">
+    <span class="label">Nearby</span>
+    <h2 class="sec-title">大阪の魅力が、徒歩圏内に。</h2>
+    <div class="nearby-grid">
+      <div class="nearby-item"><div><p class="nearby-item__name">道頓堀</p><p class="nearby-item__time">徒歩 約5分</p></div></div>
+      <div class="nearby-item"><div><p class="nearby-item__name">心斎橋筋</p><p class="nearby-item__time">徒歩 約6分</p></div></div>
+      <div class="nearby-item"><div><p class="nearby-item__name">アメリカ村</p><p class="nearby-item__time">徒歩 約8分</p></div></div>
+      <div class="nearby-item"><div><p class="nearby-item__name">黒門市場</p><p class="nearby-item__time">徒歩 約10分</p></div></div>
+      <div class="nearby-item"><div><p class="nearby-item__name">なんばグランド花月</p><p class="nearby-item__time">徒歩 約12分</p></div></div>
+      <div class="nearby-item"><div><p class="nearby-item__name">大阪城</p><p class="nearby-item__time">電車 約15分</p></div></div>
+      <div class="nearby-item"><div><p class="nearby-item__name">海遊館</p><p class="nearby-item__time">電車 約15分</p></div></div>
+      <div class="nearby-item"><div><p class="nearby-item__name">USJ</p><p class="nearby-item__time">電車 約35分</p></div></div>
+      <div class="nearby-item"><div><p class="nearby-item__name">京都</p><p class="nearby-item__time">電車 約75分</p></div></div>
+    </div>
+  </div>
+
+  <!-- Hotel Info -->
+  <div class="section" style="border-top:1px solid var(--border)">
+    <span class="label">Hotel Information</span>
+    <h2 class="sec-title">ホテル基本情報</h2>
+    <div class="hotel-info">
+      <div class="info-item"><p class="info-item__label">Address</p><p class="info-item__val">大阪市中央区島之内1-16-3</p><p class="info-item__sub">〒542-0082 / Shimanouchi 1-16-3, Chuo-ku, Osaka</p></div>
+      <div class="info-item"><p class="info-item__label">Check-in / Check-out</p><p class="info-item__val">15:00 〜 / 〜 11:00</p><p class="info-item__sub">アーリーチェックイン・レイトチェックアウトは要相談</p></div>
+      <div class="info-item"><p class="info-item__label">Front Desk</p><p class="info-item__val">24時間対応</p><p class="info-item__sub">English support available</p></div>
+      <div class="info-item"><p class="info-item__label">Nearest Station</p><p class="info-item__val">心斎橋駅 徒歩約6分 / なんば駅 徒歩約9分</p><p class="info-item__sub">地下鉄御堂筋線・千日前線・四つ橋線</p></div>
+    </div>
+  </div>
+
+</div>
+
+<section class="cta-strip">
+  <div class="container">
+    <p class="cta-strip__title">大阪の中心で、色の旅を。</p>
+    <p class="cta-strip__sub">心斎橋・難波エリアを拠点に、大阪を満喫してください。</p>
+    <div class="cta-strip__btns">
+      <a href="booking.html" class="btn btn-kogane">予約する &rarr;</a>
+      <a href="rooms.html"   class="btn btn-ghost">お部屋を見る</a>
+    </div>
+  </div>
+</section>
+<footer class="footer" role="contentinfo"><div class="container">
+<div class="footer__inner">
+  <span class="footer__logo">Sakura Sands Suites Hotel</span>
+  <ul class="footer__links">
+    <li><a href="concept.html" class="footer__link">Concept</a></li>
+    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
+    <li><a href="faq.html" class="footer__link">FAQ</a></li>
+    <li><a href="booking.html" class="footer__link">Book Now</a></li>
+  </ul>
+</div>
+<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
+</div></footer>
+<footer class="footer" role="contentinfo"><div class="container">
+<div class="footer__inner">
+  <span class="footer__logo">Sakura Sands Suites Hotel</span>
+  <ul class="footer__links">
+    <li><a href="concept.html" class="footer__link">Concept</a></li>
+    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
+    <li><a href="faq.html" class="footer__link">FAQ</a></li>
+    <li><a href="booking.html" class="footer__link">Book Now</a></li>
+  </ul>
+</div>
+<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
+</div></footer>
+
+</body>
+</html>

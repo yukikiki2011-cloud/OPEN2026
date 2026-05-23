@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Sands Suites Hotel | 大阪・13 Colors, One Journey.</title>
+    <meta name="description" content="大阪・心斎橋エリア。13の伝統色、13の部屋。日本の色を旅する、都市型ファミリーステイ。Sakura Sands Suites Hotel.">
+    <meta property="og:title" content="Sakura Sands Suites Hotel | 13 Colors, One Journey.">
+    <meta property="og:description" content="大阪・都市型ファミリーステイ。13の伝統色を纏った13室。">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==============================================
+           CSS Variables
+        ============================================== */
+        :root {
+            --bg:          #fafaf8;
+            --text:        #464a41;
+            --text-sub:    #8a8c87;
+            --border:      #e8e8e4;
+            --white:       #ffffff;
+            --kogane:      #e6b422;
+            --sumi:        #464a41;
+
+            /* 13 Room Colors */
+            --c-torinoko:      #fff1cf;
+            --c-usubeni:       #ee827c;
+            --c-kurumi:        #967249;
+            --c-wakakusa:      #d8e698;
+            --c-wasurenagusa:  #89c3eb;
+            --c-fukamidori:    #547443;
+            --c-nanohana:      #ffec47;
+            --c-sakura:        #fef4f4;
+            --c-ruri:          #4b61ba;
+            --c-ayame:         #cc7eb1;
+            --c-koji:          #f6ad49;
+            --c-sumi:          #464a41;
+            --c-kogane:        #e6b422;
+
+            --font-serif-jp: 'Noto Serif JP', serif;
+            --font-sans-jp:  'Noto Sans JP', sans-serif;
+            --font-serif-en: 'Cormorant Garamond', serif;
+            --font-sans-en:  'Inter', sans-serif;
+
+            --nav-h:    72px;
+            --max-w:    1200px;
+            --sp-xs:    0.5rem;
+            --sp-sm:    1rem;
+            --sp-md:    2rem;
+            --sp-lg:    4rem;
+            --sp-xl:    8rem;
+        }
+
+        /* ==============================================
+           Reset & Base
+        ============================================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans-jp);
+            font-weight: 300;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+
+        /* ==============================================
+           Utilities
+        ============================================== */
+        .container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 var(--sp-md);
+        }
+        .section  { padding: var(--sp-lg) 0; }
+        .section-lg { padding: var(--sp-xl) 0; }
+
+        .label {
+            font-family: var(--font-sans-en);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-sub);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Placeholder blocks (replace with real images) */
+        .ph {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-sans-en);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: rgba(70,74,65,0.3);
+        }
+
+        /* ==============================================
+           Buttons
+        ============================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2rem;
+            font-family: var(--font-sans-en);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: none;
+        }
+        .btn-dark {
+            background: var(--text);
+            color: var(--bg);
+        }
+        .btn-dark:hover {
+            background: var(--kogane);
+            color: var(--text);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--text);
+        }
+        .btn-outline:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+        .btn-kogane-inv {
+            background: var(--sumi);
+            color: var(--kogane);
+        }
+        .btn-kogane-inv:hover {
+            background: var(--white);
+            color: var(--sumi);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(70,74,65,0.2);
+        }
+
+        /* ==============================================
+           Navigation
+        ============================================== */
+        .nav {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 100;
+            height: var(--nav-h);
+            background: rgba(250,250,248,0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+        .nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .nav__logo { display: flex; flex-direction: column; line-height: 1.25; }
+        .nav__logo-main {
+            font-family: var(--font-serif-en);
+            font-size: 1.0625rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+        .nav__logo-sub {
+            font-family: var(--font-sans-en);
+            font-size: 0.5625rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-sub);
+        }
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-md);
+        }
+        .nav__link {
+            font-family: var(--font-sans-en);
+            font-size: 0.8125rem;
+            letter-spacing: 0.06em;
+            transition: color 0.2s;
+        }
+        .nav__link:hover { color: var(--kogane); }
+        .nav__right { display: flex; align-items: center; gap: var(--sp-sm); }
+        .nav__cta { padding: 0.625rem 1.5rem; }
+        .nav__burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .nav__burger span {
+            display: block; width: 22px; height: 1.5px;
+            background: var(--text); transition: all 0.3s;
+        }
+
+        /* ==============================================
+           Hero
+        ============================================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 640px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            padding-top: var(--nav-h);
+        }
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .hero__slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        .hero__slide.active { opacity: 1; }
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                rgba(30,32,28,0.25) 0%,
+                rgba(30,32,28,0.45) 55%,
+                rgba(30,32,28,0.75) 100%);
+            z-index: 1;
+        }
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            padding: var(--sp-md);
+        }
+        .hero__eyebrow {
+            font-family: var(--font-sans-en);
+            font-size: 0.6875rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--kogane);
+            margin-bottom: var(--sp-sm);
+        }
+        .hero__title {
+            font-family: var(--font-serif-en);
+            font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.2;
+            letter-spacing: 0.04em;
+            margin-bottom: var(--sp-sm);
+        }
+        .hero__sub-jp {
+            font-family: var(--font-serif-jp);
+            font-size: clamp(0.875rem, 1.8vw, 1.0625rem);
+            font-weight: 300;
+            color: rgba(255,255,255,0.82);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.375rem;
+        }
+        .hero__sub-en {
+            font-family: var(--font-sans-en);
+            font-size: 0.8125rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.12em;
+            margin-bottom: var(--sp-md);
+        }
+        .hero__btns {
+            display: flex;
+            gap: var(--sp-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* 13色スウォッチ帯 */
+        .hero__swatches {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            z-index: 2;
+            display: flex;
+        }
+        .hero__sw {
+            flex: 1;
+            height: 6px;
+            cursor: pointer;
+            position: relative;
+            transition: height 0.2s ease;
+        }
+        .hero__sw:hover { height: 28px; }
+        .hero__sw-tip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(30,32,28,0.88);
+            color: var(--white);
+            font-family: var(--font-sans-en);
+            font-size: 0.5625rem;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            padding: 4px 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+        .hero__sw:hover .hero__sw-tip { opacity: 1; }
+
+        /* ==============================================
+           Concept
+        ============================================== */
+        .concept { background: var(--white); }
+        .concept__inner {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .concept__num {
+            font-family: var(--font-serif-en);
+            font-size: clamp(5rem, 12vw, 9rem);
+            font-weight: 300;
+            color: var(--border);
+            line-height: 1;
+            margin-bottom: var(--sp-sm);
+        }
+        .concept__h-jp {
+            font-family: var(--font-serif-jp);
+            font-size: clamp(1.125rem, 2.5vw, 1.625rem);
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.375rem;
+        }
+        .concept__h-en {
+            font-family: var(--font-serif-en);
+            font-size: clamp(0.9375rem, 2vw, 1.25rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-sub);
+            margin-bottom: var(--sp-md);
+        }
+        .concept__body {
+            font-size: 0.9375rem;
+            line-height: 2.1;
+            color: var(--text-sub);
+            margin-bottom: var(--sp-sm);
+        }
+        .concept__body-en {
+            font-family: var(--font-serif-en);
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-sub);
+            margin-bottom: var(--sp-md);
+        }
+
+        /* ==============================================
+           Rooms Grid
+        ============================================== */
+        .rooms { background: var(--bg); }
+        .sec-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: var(--sp-md);
+            gap: var(--sp-sm);
+        }
+        .sec-title {
+            font-family: var(--font-serif-en);
+            font-size: clamp(1.625rem, 3.5vw, 2.25rem);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+        .sec-subtitle {
+            font-family: var(--font-sans-jp);
+            font-size: 0.875rem;
+            color: var(--text-sub);
+            margin-top: 0.25rem;
+        }
+
+        .rooms__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        .room-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            cursor: pointer;
+        }
+        .room-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        .room-card a { display: block; }
+        .room-card__swatch {
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+        .room-card__swatch-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .room-card:hover .room-card__swatch-img {
+            transform: scale(1.06);
+        }
+        .room-card__f {
+            position: absolute;
+            top: 10px; right: 10px;
+            font-family: var(--font-sans-en);
+            font-size: 0.625rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.95);
+            background: rgba(0,0,0,0.38);
+            backdrop-filter: blur(4px);
+            padding: 3px 8px;
+        }
+        .room-card__f--dark {
+            color: rgba(255,255,255,0.95);
+            background: rgba(0,0,0,0.38);
+        }
+        .room-card__body {
+            padding: 1.125rem 1.25rem 1.25rem;
+            border-left: 3px solid transparent;
+            transition: border-color 0.25s, background 0.25s;
+        }
+        .room-card:hover .room-card__body {
+            border-left-color: var(--room-c, #464a41);
+            background: color-mix(in srgb, var(--room-c, #464a41) 6%, white);
+        }
+        .room-card__jp {
+            font-family: var(--font-serif-jp);
+            font-size: 0.9375rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.2rem;
+        }
+        .room-card__en {
+            font-family: var(--font-serif-en);
+            font-size: 0.8125rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-sub);
+            margin-bottom: 0.875rem;
+        }
+        .room-card__cta {
+            font-family: var(--font-sans-en);
+            font-size: 0.6875rem;
+            letter-spacing: 0.1em;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            transition: color 0.2s, gap 0.2s;
+        }
+        .room-card:hover .room-card__cta {
+            color: var(--text);
+            gap: 0.625rem;
+        }
+
+        /* ==============================================
+           Kogane Exclusive
+        ============================================== */
+        .kogane-sec {
+            background: var(--kogane);
+            padding: var(--sp-lg) 0;
+        }
+        .kogane-sec__inner {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-lg);
+        }
+        .kogane-sec__text { flex: 1; }
+        .kogane-sec__badge {
+            font-family: var(--font-sans-en);
+            font-size: 0.625rem;
+            font-weight: 500;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--sumi);
+            opacity: 0.6;
+            margin-bottom: var(--sp-sm);
+            display: block;
+        }
+        .kogane-sec__title {
+            font-family: var(--font-serif-en);
+            font-size: clamp(2rem, 4.5vw, 3.25rem);
+            font-weight: 300;
+            color: var(--sumi);
+            line-height: 1.15;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.375rem;
+        }
+        .kogane-sec__sub-jp {
+            font-family: var(--font-serif-jp);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            color: var(--sumi);
+            letter-spacing: 0.18em;
+            opacity: 0.75;
+            margin-bottom: 0.25rem;
+        }
+        .kogane-sec__floor {
+            font-family: var(--font-sans-en);
+            font-size: 0.8125rem;
+            letter-spacing: 0.15em;
+            color: var(--sumi);
+            opacity: 0.55;
+            margin-bottom: var(--sp-md);
+            display: block;
+        }
+        .kogane-sec__desc {
+            font-size: 0.9375rem;
+            line-height: 2;
+            color: var(--sumi);
+            opacity: 0.78;
+            max-width: 460px;
+            margin-bottom: var(--sp-md);
+        }
+        .kogane-sec__visual {
+            width: 400px;
+            flex-shrink: 0;
+        }
+        .kogane-sec__ph {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            position: relative;
+        }
+        .kogane-sec__ph img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .kogane-sec__ph:hover img {
+            transform: scale(1.04);
+        }
+
+        /* ==============================================
+           Family Stay
+        ============================================== */
+        .family { background: var(--white); }
+        .family__inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--sp-lg);
+            align-items: center;
+        }
+        .family__ph {
+            overflow: hidden;
+            border-radius: 2px;
+        }
+        .family__ph img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .family__ph:hover img {
+            transform: scale(1.03);
+        }
+        .family__h-jp {
+            font-family: var(--font-serif-jp);
+            font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            line-height: 1.65;
+            margin-bottom: 0.375rem;
+        }
+        .family__h-en {
+            font-family: var(--font-serif-en);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-sub);
+            margin-bottom: var(--sp-md);
+        }
+        .family__list { margin-bottom: var(--sp-md); }
+        .family__item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.875rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+        .family__item:first-child { border-top: 1px solid var(--border); }
+        .family__dash {
+            font-family: var(--font-serif-en);
+            color: var(--kogane);
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        /* ==============================================
+           Location
+        ============================================== */
+        .location { background: var(--bg); }
+        .location__inner {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: var(--sp-lg);
+            align-items: start;
+        }
+        .location__map {
+            aspect-ratio: 4/3;
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .location__map svg { display: block; width: 100%; height: auto; }
+        .location__access-title {
+            font-family: var(--font-serif-en);
+            font-size: 1.1875rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            margin-bottom: var(--sp-sm);
+        }
+        .location__item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9375rem;
+            gap: var(--sp-sm);
+        }
+        .location__item:first-child { border-top: 1px solid var(--border); }
+        .location__time {
+            font-family: var(--font-sans-en);
+            font-size: 0.8125rem;
+            color: var(--text-sub);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* ==============================================
+           Booking CTA
+        ============================================== */
+        .booking-cta {
+            background: var(--sumi);
+            padding: var(--sp-lg) 0;
+            text-align: center;
+        }
+        .booking-cta__h-jp {
+            font-family: var(--font-serif-jp);
+            font-size: clamp(1.125rem, 2.5vw, 1.625rem);
+            font-weight: 400;
+            color: var(--white);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.375rem;
+        }
+        .booking-cta__h-en {
+            font-family: var(--font-serif-en);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            font-style: italic;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: var(--sp-md);
+        }
+        .booking-cta__list {
+            display: flex;
+            justify-content: center;
+            gap: var(--sp-sm);
+            flex-wrap: wrap;
+        }
+        .ota-btn {
+            padding: 0.875rem 2.25rem;
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.35);
+            font-family: var(--font-sans-en);
+            font-size: 0.8125rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .ota-btn:hover {
+            background: var(--kogane);
+            border-color: var(--kogane);
+            color: var(--sumi);
+            transform: translateY(-2px);
+        }
+
+        /* ==============================================
+           Footer
+        ============================================== */
+        .footer {
+            background: var(--sumi);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: var(--sp-md) 0 var(--sp-sm);
+        }
+        .footer__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: var(--sp-sm);
+            margin-bottom: var(--sp-sm);
+        }
+        .footer__logo {
+            font-family: var(--font-serif-en);
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.04em;
+        }
+        .footer__links { display: flex; gap: var(--sp-md); }
+        .footer__link {
+            font-family: var(--font-sans-en);
+            font-size: 0.6875rem;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.4);
+            transition: color 0.2s;
+        }
+        .footer__link:hover { color: rgba(255,255,255,0.8); }
+        .footer__lang { display: flex; gap: 0.875rem; }
+        .footer__lang-btn {
+            font-family: var(--font-sans-en);
+            font-size: 0.6875rem;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.4);
+            background: none; border: none;
+            cursor: pointer; transition: color 0.2s;
+        }
+        .footer__lang-btn.is-active,
+        .footer__lang-btn:hover { color: var(--kogane); }
+        .footer__copy {
+            font-family: var(--font-sans-en);
+            font-size: 0.625rem;
+            color: rgba(255,255,255,0.25);
+            letter-spacing: 0.05em;
+            text-align: center;
+            padding-top: var(--sp-sm);
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        /* ==============================================
+           Responsive
+        ============================================== */
+        @media (max-width: 1024px) {
+            .rooms__grid { grid-template-columns: repeat(2, 1fr); }
+            .kogane-sec__inner { flex-direction: column; }
+            .kogane-sec__visual { width: 100%; max-width: 480px; align-self: center; }
+            .location__inner { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --sp-lg: 3rem; --sp-xl: 5rem; }
+            .nav__links, .nav__cta { display: none; }
+            .nav__burger { display: flex; }
+            .family__inner { grid-template-columns: 1fr; }
+            .sec-head { flex-direction: column; align-items: flex-start; }
+            .hero__btns { flex-direction: column; align-items: center; }
+            .kogane-sec__inner { text-align: center; }
+            .kogane-sec__desc { margin: 0 auto var(--sp-md); }
+            .footer__links { display: none; }
+            .footer__inner { justify-content: space-between; }
+        }
+
+        @media (max-width: 540px) {
+            .rooms__grid { grid-template-columns: repeat(2, 1fr); gap: 0.875rem; }
+            .room-card__swatch { height: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================================================
+     NAVIGATION
+================================================ -->
+<nav class="nav" role="navigation" aria-label="メインナビゲーション">
+    <div class="container">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo" aria-label="Sakura Sands Suites Hotel ホーム">
+                <span class="nav__logo-main">Sakura Sands Suites</span>
+                <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+            </a>
+
+            <ul class="nav__links" role="list">
+                <li><a href="concept.html" class="nav__link">Concept</a></li>
+                <li><a href="rooms.html"   class="nav__link">Rooms</a></li>
+                <li><a href="family.html"  class="nav__link">Family Stay</a></li>
+                <li><a href="osaka.html"   class="nav__link">Osaka</a></li>
+                <li><a href="faq.html"     class="nav__link">FAQ</a></li>
+            </ul>
+
+            <div class="nav__right">
+                <a href="booking.html" class="btn btn-dark nav__cta">Book Now</a>
+                <button class="nav__burger" aria-label="メニューを開く">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<!-- ================================================
+     HERO
+================================================ -->
+<section class="hero" id="top" aria-label="メインビジュアル">
+    <div class="hero__bg" aria-hidden="true">
+        <div class="hero__slide active" style="background-image:url('assets/hero/01_gate.png')"></div>
+        <div class="hero__slide" style="background-image:url('assets/hero/02_sumi_living.png')"></div>
+        <div class="hero__slide" style="background-image:url('assets/hero/03_koji_living.png')"></div>
+        <div class="hero__slide" style="background-image:url('assets/hero/04_sumi_bed.png')"></div>
+        <div class="hero__slide" style="background-image:url('assets/hero/05_ayame_living.png')"></div>
+    </div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <div class="hero__content">
+        <p class="hero__eyebrow">Osaka, Japan</p>
+        <h1 class="hero__title">13 Colors, One Journey.</h1>
+        <p class="hero__sub-jp">日本の色を旅する、都市型ファミリーステイ。</p>
+        <p class="hero__sub-en">A city suite hotel reimagined through 13 traditional Japanese colors.</p>
+        <div class="hero__btns">
+            <a href="rooms.html" class="btn btn-dark">お部屋を選ぶ &rarr;</a>
+            <a href="osaka.html" class="btn btn-ghost">アクセスを見る</a>
+        </div>
+    </div>
+
+    <!-- 13色スウォッチ帯 -->
+    <div class="hero__swatches" role="navigation" aria-label="13色ルームリンク">
+        <a href="rooms/torinoko.html"    class="hero__sw" style="background:#fff1cf;border-top:1px solid rgba(0,0,0,0.06)"><span class="hero__sw-tip">鳥の子色 2F</span></a>
+        <a href="rooms/usubeni.html"     class="hero__sw" style="background:#ee827c"><span class="hero__sw-tip">薄紅 3F</span></a>
+        <a href="rooms/kurumi.html"      class="hero__sw" style="background:#967249"><span class="hero__sw-tip">胡桃色 4F</span></a>
+        <a href="rooms/wakakusa.html"    class="hero__sw" style="background:#d8e698"><span class="hero__sw-tip">若草色 5F</span></a>
+        <a href="rooms/wasurenagusa.html"class="hero__sw" style="background:#89c3eb"><span class="hero__sw-tip">勿忘草色 6F</span></a>
+        <a href="rooms/fukamidori.html"  class="hero__sw" style="background:#547443"><span class="hero__sw-tip">深緑 7F</span></a>
+        <a href="rooms/nanohana.html"    class="hero__sw" style="background:#ffec47"><span class="hero__sw-tip">菜の花色 8F</span></a>
+        <a href="rooms/sakura.html"      class="hero__sw" style="background:#fef4f4;border-top:1px solid rgba(0,0,0,0.06)"><span class="hero__sw-tip">桜色 9F</span></a>
+        <a href="rooms/ruri.html"        class="hero__sw" style="background:#4b61ba"><span class="hero__sw-tip">瑠璃紺 10F</span></a>
+        <a href="rooms/ayame.html"       class="hero__sw" style="background:#cc7eb1"><span class="hero__sw-tip">菖蒲色 11F</span></a>
+        <a href="rooms/koji.html"        class="hero__sw" style="background:#f6ad49"><span class="hero__sw-tip">柑子色 12F</span></a>
+        <a href="rooms/sumi.html"        class="hero__sw" style="background:#464a41"><span class="hero__sw-tip">墨色 13F</span></a>
+        <a href="booking.html#kogane"                 class="hero__sw" style="background:#e6b422"><span class="hero__sw-tip">黄金色 14F ✦</span></a>
+    </div>
+</section>
+
+
+<!-- ================================================
+     CONCEPT
+================================================ -->
+<section class="section-lg concept" id="concept">
+    <div class="container">
+        <div class="concept__inner">
+            <span class="label">Concept</span>
+            <p class="concept__num" aria-hidden="true">13</p>
+            <h2 class="concept__h-jp">13の部屋、13の色、13の旅。</h2>
+            <p class="concept__h-en">13 rooms. 13 colors. 13 journeys.</p>
+            <p class="concept__body">
+                大阪のシティホテルに、日本の伝統色を現代の感覚で宿らせた。<br>
+                鳥の子色から黄金色まで、それぞれの部屋が一つの色の世界を表現する。<br>
+                旅行者は色を選ぶことで、自分だけの大阪滞在を始める。
+            </p>
+            <p class="concept__body-en">
+                A Osaka city hotel reimagined through 13 traditional Japanese colors,<br>
+                interpreted for modern travelers and their families.
+            </p>
+            <a href="concept.html" class="btn btn-outline">コンセプトを読む &rarr;</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================
+     ROOMS
+================================================ -->
+<section class="section rooms" id="rooms">
+    <div class="container">
+        <div class="sec-head">
+            <div>
+                <span class="label">Rooms</span>
+                <h2 class="sec-title">Choose Your Color</h2>
+                <p class="sec-subtitle">あなたの色を見つけてください。2F〜13F、12の部屋から。</p>
+            </div>
+            <a href="rooms.html" class="btn btn-outline" style="flex-shrink:0">全ルームを見る &rarr;</a>
+        </div>
+
+        <div class="rooms__grid">
+
+            <!-- 13F Sumi -->
+            <article class="room-card" style="--room-c:#464a41">
+                <a href="rooms/sumi.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/sumi.png" alt="墨色" class="room-card__swatch-img">
+                        <span class="room-card__f">13F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">墨色</p>
+                        <p class="room-card__en">Sumi Room &mdash; Ink Black</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 12F Koji -->
+            <article class="room-card" style="--room-c:#f6ad49">
+                <a href="rooms/koji.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/koji.png" alt="柑子色" class="room-card__swatch-img">
+                        <span class="room-card__f">12F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">柑子色</p>
+                        <p class="room-card__en">K&omacr;ji Room &mdash; Mandarin Orange</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 11F Ayame -->
+            <article class="room-card" style="--room-c:#cc7eb1">
+                <a href="rooms/ayame.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/ayame.png" alt="菖蒲色" class="room-card__swatch-img">
+                        <span class="room-card__f">11F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">菖蒲色</p>
+                        <p class="room-card__en">Ayame Room &mdash; Iris Purple</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 10F Ruri -->
+            <article class="room-card" style="--room-c:#4b61ba">
+                <a href="rooms/ruri.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/ruri.png" alt="瑠璃紺" class="room-card__swatch-img">
+                        <span class="room-card__f">10F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">瑠璃紺</p>
+                        <p class="room-card__en">Ruri Room &mdash; Lapis Navy</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 9F Sakura -->
+            <article class="room-card" style="--room-c:#ee827c">
+                <a href="rooms/sakura.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/sakura.png" alt="桜色" class="room-card__swatch-img">
+                        <span class="room-card__f">9F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">桜色</p>
+                        <p class="room-card__en">Sakura Room &mdash; Cherry Blossom Pink</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 8F Nanohana -->
+            <article class="room-card" style="--room-c:#c8a600">
+                <a href="rooms/nanohana.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/nanohana.png" alt="菜の花色" class="room-card__swatch-img">
+                        <span class="room-card__f">8F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">菜の花色</p>
+                        <p class="room-card__en">Nanohana Room &mdash; Canola Yellow</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 7F Fukamidori -->
+            <article class="room-card" style="--room-c:#547443">
+                <a href="rooms/fukamidori.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/fukamidori.png" alt="深緑" class="room-card__swatch-img">
+                        <span class="room-card__f">7F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">深緑</p>
+                        <p class="room-card__en">Fukamidori Room &mdash; Deep Green</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 6F Wasurenagusa -->
+            <article class="room-card" style="--room-c:#89c3eb">
+                <a href="rooms/wasurenagusa.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/wasurenagusa.png" alt="勿忘草色" class="room-card__swatch-img">
+                        <span class="room-card__f">6F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">勿忘草色</p>
+                        <p class="room-card__en">Wasurenagusa Room &mdash; Forget-me-not Blue</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 5F Wakakusa -->
+            <article class="room-card" style="--room-c:#7a9820">
+                <a href="rooms/wakakusa.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/wakakusa.png" alt="若草色" class="room-card__swatch-img">
+                        <span class="room-card__f">5F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">若草色</p>
+                        <p class="room-card__en">Wakakusa Room &mdash; Pale Yellow-green</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 4F Kurumi -->
+            <article class="room-card" style="--room-c:#967249">
+                <a href="rooms/kurumi.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/kurumi.png" alt="胡桃色" class="room-card__swatch-img">
+                        <span class="room-card__f">4F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">胡桃色</p>
+                        <p class="room-card__en">Kurumi Room &mdash; Walnut Brown</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 3F Usubeni -->
+            <article class="room-card" style="--room-c:#ee827c">
+                <a href="rooms/usubeni.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/usubeni.png" alt="薄紅" class="room-card__swatch-img">
+                        <span class="room-card__f">3F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">薄紅</p>
+                        <p class="room-card__en">Usubeni Room &mdash; Pale Crimson</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 2F Torinoko -->
+            <article class="room-card" style="--room-c:#c8a640">
+                <a href="rooms/torinoko.html">
+                    <div class="room-card__swatch">
+                        <img src="assets/images/torinoko.png" alt="鳥の子色" class="room-card__swatch-img">
+                        <span class="room-card__f">2F</span>
+                    </div>
+                    <div class="room-card__body">
+                        <p class="room-card__jp">鳥の子色</p>
+                        <p class="room-card__en">Torinoko Room &mdash; Beige</p>
+                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                    </div>
+                </a>
+            </article>
+
+        </div><!-- /.rooms__grid -->
+    </div>
+</section>
+
+
+<!-- ================================================
+     KOGANE EXCLUSIVE
+================================================ -->
+<section class="kogane-sec" id="kogane" aria-label="Kogane Room 特別室">
+    <div class="container">
+        <div class="kogane-sec__inner">
+            <div class="kogane-sec__text">
+                <span class="kogane-sec__badge">&#10022; Exclusive Suite</span>
+                <h2 class="kogane-sec__title">Kogane Room</h2>
+                <p class="kogane-sec__sub-jp">黄金色 &mdash; Radiant Gold</p>
+                <span class="kogane-sec__floor">14F &mdash; The Crown Floor</span>
+                <p class="kogane-sec__desc">
+                    最上階にだけ存在する、特別な黄金の間。<br>
+                    On the 14th floor, one room stands apart from all others.<br>
+                    専用サイトからのみご予約いただけます。
+                </p>
+                <a href="#" class="btn btn-kogane-inv">専用サイトへ &rarr;</a>
+            </div>
+
+            <div class="kogane-sec__visual">
+                <div class="kogane-sec__ph">
+                    <img
+                        src="assets/images/kogane-room.png"
+                        alt="Kogane Room — 黄金色 / Radiant Gold Suite"
+                        loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================
+     FAMILY STAY
+================================================ -->
+<section class="section family" id="family">
+    <div class="container">
+        <div class="family__inner">
+            <div class="family__ph">
+                <img
+                    src="assets/images/family-stay.png"
+                    alt="Sakura Sands Suites — ファミリーステイ / Family Stay"
+                    loading="lazy">
+            </div>
+
+            <div>
+                <span class="label">Family Stay</span>
+                <h2 class="family__h-jp">ファミリーで泊まる、<br>大阪の拠点。</h2>
+                <p class="family__h-en">The perfect Osaka base for families.</p>
+
+                <ul class="family__list">
+                    <li class="family__item">
+                        <span class="family__dash">&mdash;</span>
+                        <span>55〜80㎡のスイートルーム。家族みんなが、伸び伸びと過ごせる広さ。</span>
+                    </li>
+                    <li class="family__item">
+                        <span class="family__dash">&mdash;</span>
+                        <span>キッチン・洗濯機完備、長期滞在にも対応</span>
+                    </li>
+                    <li class="family__item">
+                        <span class="family__dash">&mdash;</span>
+                        <span>道頓堀・心斎橋へ徒歩圏内</span>
+                    </li>
+                    <li class="family__item">
+                        <span class="family__dash">&mdash;</span>
+                        <span>ホテルの安心感 &times; 民泊の自由な暮らし</span>
+                    </li>
+                    <li class="family__item">
+                        <span class="family__dash">&mdash;</span>
+                        <span>バルコニーからのシティビュー</span>
+                    </li>
+                </ul>
+
+                <a href="family.html" class="btn btn-outline">ファミリーステイを見る &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================
+     LOCATION
+================================================ -->
+<section class="section location" id="osaka">
+    <div class="container">
+        <div class="sec-head" style="margin-bottom:var(--sp-md)">
+            <div>
+                <span class="label">Location</span>
+                <h2 class="sec-title">Osaka</h2>
+                <p class="sec-subtitle">大阪の中心、旅の拠点に。</p>
+            </div>
+        </div>
+
+        <div class="location__inner">
+            <div class="location__map" role="img" aria-label="Sakura Sands Suites Hotel アクセスマップ — 大阪市中央区島之内">
+              <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="sh">
+                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.12)"/>
+                  </filter>
+                </defs>
+                <!-- Background -->
+                <rect width="480" height="360" fill="#f5f2ec"/>
+                <!-- 御堂筋 (main N-S artery) -->
+                <rect x="132" y="0" width="22" height="360" fill="#d8d4cc"/>
+                <!-- 長堀通 (E-W) -->
+                <rect x="0" y="98" width="480" height="8" fill="#d4d0c8"/>
+                <!-- 道頓堀川 (river) -->
+                <rect x="0" y="240" width="480" height="14" fill="#b0c8d8" opacity="0.75"/>
+                <!-- 心斎橋筋 (N-S shopping) -->
+                <rect x="205" y="0" width="5" height="242" fill="#dedad2"/>
+                <!-- Minor E-W streets -->
+                <rect x="0" y="140" width="480" height="3" fill="#dedad2"/>
+                <rect x="0" y="178" width="480" height="3" fill="#dedad2"/>
+                <rect x="0" y="214" width="480" height="3" fill="#dedad2"/>
+                <rect x="0" y="280" width="480" height="3" fill="#dedad2"/>
+                <rect x="0" y="316" width="480" height="3" fill="#dedad2"/>
+                <!-- Minor N-S streets -->
+                <rect x="72"  y="0" width="3" height="360" fill="#dedad2"/>
+                <rect x="265" y="0" width="3" height="360" fill="#dedad2"/>
+                <rect x="340" y="0" width="3" height="360" fill="#dedad2"/>
+                <rect x="415" y="0" width="3" height="360" fill="#dedad2"/>
+                <!-- Street labels -->
+                <text transform="translate(143,28) rotate(90)" text-anchor="start" font-family="'Inter',sans-serif" font-size="7" fill="#a09b92" letter-spacing="2">御堂筋</text>
+                <text x="14" y="93"  font-family="'Inter',sans-serif" font-size="7" fill="#a09b92">長堀通</text>
+                <text x="14" y="249" font-family="'Inter',sans-serif" font-size="7" fill="#7a9db5">道頓堀川</text>
+                <text transform="translate(200,20) rotate(90)" text-anchor="start" font-family="'Inter',sans-serif" font-size="7" fill="#a09b92" letter-spacing="1">心斎橋筋</text>
+                <text x="270" y="258" font-family="'Inter',sans-serif" font-size="8.5" fill="#6a96b2" opacity="0.9">道頓堀</text>
+                <!-- 心斎橋駅 -->
+                <rect x="130" y="110" width="5" height="18" rx="1" fill="#e60012" opacity="0.8"/>
+                <circle cx="143" cy="119" r="7" fill="#464a41" stroke="#f5f2ec" stroke-width="2"/>
+                <rect x="153" y="111" width="64" height="16" rx="2" fill="rgba(245,242,236,0.95)"/>
+                <text x="157" y="123" font-family="'Inter',sans-serif" font-size="9.5" fill="#464a41" font-weight="500">心斎橋駅</text>
+                <!-- なんば駅 -->
+                <rect x="130" y="308" width="5" height="18" rx="1" fill="#e60012" opacity="0.8"/>
+                <circle cx="143" cy="317" r="7" fill="#464a41" stroke="#f5f2ec" stroke-width="2"/>
+                <rect x="153" y="309" width="56" height="16" rx="2" fill="rgba(245,242,236,0.95)"/>
+                <text x="157" y="321" font-family="'Inter',sans-serif" font-size="9.5" fill="#464a41" font-weight="500">なんば駅</text>
+                <!-- Walking path lines (kogane dots) -->
+                <line x1="150" y1="119" x2="310" y2="188" stroke="#e6b422" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.7"/>
+                <line x1="150" y1="317" x2="310" y2="205" stroke="#e6b422" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.7"/>
+                <!-- Walking time badges -->
+                <rect x="190" y="128" width="78" height="16" rx="8" fill="#464a41"/>
+                <text x="229" y="140" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="white">心斎橋 約10分</text>
+                <rect x="190" y="280" width="78" height="16" rx="8" fill="#e6b422"/>
+                <text x="229" y="292" text-anchor="middle" font-family="'Inter',sans-serif" font-size="8" fill="#464a41">長堀橋 約2分</text>
+                <!-- Hotel logo mark -->
+                <circle cx="316" cy="190" r="22" fill="white" opacity="0.92" filter="url(#sh)"/>
+                <image href="assets/logo-mark.svg" x="294" y="168" width="44" height="44"/>
+                <!-- Hotel label card -->
+                <rect x="329" y="174" width="136" height="50" rx="3" fill="white" filter="url(#sh)"/>
+                <rect x="329" y="174" width="3"   height="50" rx="1.5" fill="#e6b422"/>
+                <text x="338" y="191" font-family="'Inter',sans-serif" font-size="10.5" fill="#464a41" font-weight="600">Sakura Sands</text>
+                <text x="338" y="204" font-family="'Inter',sans-serif" font-size="9"    fill="#464a41">Suites Hotel</text>
+                <text x="338" y="217" font-family="'Inter',sans-serif" font-size="7.5"  fill="#8a8c87">島之内1-16-3 中央区</text>
+                <!-- North indicator -->
+                <g transform="translate(452,28)">
+                  <circle cx="0" cy="0" r="14" fill="white" stroke="#e0dcd4" stroke-width="1.5"/>
+                  <polygon points="0,-8 -3,3 0,1 3,3"  fill="#464a41"/>
+                  <polygon points="0,1 -3,3 0,8 3,3"   fill="#ccc8c0"/>
+                  <text x="0" y="-11" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#8a8c87" font-weight="600">N</text>
+                </g>
+                <!-- Scale bar -->
+                <g transform="translate(16,342)">
+                  <rect x="0"  y="-2" width="24" height="4" rx="2" fill="#a09b92"/>
+                  <rect x="24" y="-2" width="24" height="4" rx="2" fill="#ccc8c0"/>
+                  <text x="24" y="-7" text-anchor="middle" font-family="'Inter',sans-serif" font-size="7" fill="#a09b92">250m</text>
+                </g>
+              </svg>
+            </div>
+
+            <div>
+                <h3 class="location__access-title">Access</h3>
+                <ul>
+                    <li class="location__item">
+                        <span>道頓堀</span>
+                        <span class="location__time">徒歩 約◯分</span>
+                    </li>
+                    <li class="location__item">
+                        <span>心斎橋ショッピングアーケード</span>
+                        <span class="location__time">徒歩 約◯分</span>
+                    </li>
+                    <li class="location__item">
+                        <span>西大橋駅（大阪メトロ）</span>
+                        <span class="location__time">徒歩 約6分</span>
+                    </li>
+                    <li class="location__item">
+                        <span>本町駅（大阪メトロ）</span>
+                        <span class="location__time">徒歩 約6分</span>
+                    </li>
+                    <li class="location__item">
+                        <span>関西国際空港</span>
+                        <span class="location__time">電車 約◯分</span>
+                    </li>
+                    <li class="location__item">
+                        <span>大阪国際空港（伊丹）</span>
+                        <span class="location__time">電車 約◯分</span>
+                    </li>
+                </ul>
+                <div style="margin-top:var(--sp-sm)">
+                    <a href="osaka.html" class="btn btn-outline">アクセス詳細 &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================
+     BOOKING CTA
+================================================ -->
+<section class="booking-cta" id="booking" aria-label="予約">
+    <div class="container">
+        <h2 class="booking-cta__h-jp">あなたの色で、大阪の旅を。</h2>
+        <p class="booking-cta__h-en">Find your color. Book your stay.</p>
+        <div class="booking-cta__list">
+            <a href="#" class="ota-btn">Booking.com &rarr;</a>
+            <a href="#" class="ota-btn">Airbnb &rarr;</a>
+            <a href="#" class="ota-btn">Expedia &rarr;</a>
+            <a href="#" class="ota-btn">その他 &rarr;</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================
+     FOOTER
+================================================ -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer__inner">
+            <span class="footer__logo">Sakura Sands Suites Hotel</span>
+            <nav aria-label="フッターナビゲーション">
+                <ul class="footer__links">
+                    <li><a href="concept.html"   class="footer__link">Concept</a></li>
+                    <li><a href="rooms.html"      class="footer__link">Rooms</a></li>
+                    <li><a href="faq.html"        class="footer__link">FAQ</a></li>
+                    <li><a href="privacy.html"    class="footer__link">Privacy</a></li>
+                    <li><a href="contact.html"    class="footer__link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="footer__lang">
+                <button class="footer__lang-btn is-active" aria-current="true">JP</button>
+                <button class="footer__lang-btn">EN</button>
+            </div>
+        </div>
+        <p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
+    </div>
+</footer>
+
+
+<script>
+/* Hero slideshow — 5s crossfade */
+(function () {
+    var slides = document.querySelectorAll('.hero__slide');
+    var cur = 0;
+    setInterval(function () {
+        slides[cur].classList.remove('active');
+        cur = (cur + 1) % slides.length;
+        slides[cur].classList.add('active');
+    }, 5000);
+}());
+</script>
+</body>
+</html>
