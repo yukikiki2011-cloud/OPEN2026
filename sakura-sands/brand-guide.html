@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Guide v1.0 — Sakura Sands Suites Hotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sumi:    #464a41;
+  --kogane:  #e6b422;
+  --washi:   #fafaf8;
+  --sakura:  #fef4f4;
+  --border:  #e8e8e4;
+  --sub:     #8a8c87;
+  --ink:     #2e3229;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  color: var(--sumi);
+  background: var(--washi);
+  line-height: 1.8;
+}
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   LAYOUT
+============================================================ */
+.section { padding: 80px 0; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; font-weight: 400;
+  letter-spacing: 0.5em; color: var(--kogane);
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 300;
+  letter-spacing: 0.08em; margin-bottom: 48px;
+  color: var(--sumi);
+}
+.divider { width: 48px; height: 1px; background: var(--kogane); margin: 32px 0; }
+p { font-size: 14px; line-height: 2; color: var(--sumi); margin-bottom: 16px; }
+
+/* ============================================================
+   COVER
+============================================================ */
+.cover {
+  height: 100vh; min-height: 640px;
+  background: var(--ink);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; position: relative;
+  overflow: hidden;
+}
+.cover-colorstrip {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 6px; display: flex;
+}
+.cover-colorstrip span { flex: 1; }
+.cover-colorstrip-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 6px; display: flex;
+}
+.cover-mark { width: 140px; height: 140px; margin-bottom: 28px; }
+.cover-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  color: var(--washi); letter-spacing: 0.32em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.cover-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; font-weight: 300;
+  color: var(--kogane); letter-spacing: 0.55em;
+  text-transform: uppercase; margin-bottom: 32px;
+}
+.cover-guide-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; font-weight: 300;
+  color: rgba(250,250,248,0.4); letter-spacing: 0.3em;
+  border: 1px solid rgba(230,180,34,0.3); padding: 6px 20px;
+}
+.cover-version {
+  position: absolute; bottom: 24px; right: 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 200;
+  color: rgba(250,250,248,0.25); letter-spacing: 0.2em;
+}
+
+/* ============================================================
+   NAV
+============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,250,248,0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+}
+.nav-inner {
+  max-width: 960px; margin: 0 auto;
+  display: flex; align-items: center; gap: 32px;
+  height: 52px;
+}
+.nav-logo { height: 28px; width: auto; }
+.nav-links { display: flex; gap: 24px; margin-left: auto; }
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 300;
+  letter-spacing: 0.2em; color: var(--sub);
+  text-decoration: none; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--sumi); }
+
+/* ============================================================
+   SECTION: BRAND PHILOSOPHY
+============================================================ */
+.philosophy { background: var(--washi); }
+.philosophy-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300;
+  font-style: italic;
+  line-height: 1.8; letter-spacing: 0.06em;
+  color: var(--sumi); margin-bottom: 32px;
+}
+.tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.tag {
+  padding: 6px 14px; border: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 300;
+  letter-spacing: 0.2em; color: var(--sub);
+}
+
+/* ============================================================
+   SECTION: LOGO SYSTEM
+============================================================ */
+.logo-section { background: var(--washi); }
+.logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 48px; }
+.logo-card {
+  padding: 48px 32px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 20px;
+}
+.logo-card-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; letter-spacing: 0.3em; color: var(--sub);
+  text-transform: uppercase; text-align: center;
+}
+.logo-card.light { background: var(--washi); border: 1px solid var(--border); }
+.logo-card.dark  { background: var(--ink); }
+.logo-card.dark .logo-card-label { color: rgba(250,250,248,0.4); }
+.logo-card.sakura { background: var(--sakura); border: 1px solid var(--border); }
+
+.logo-rules { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+.logo-rule-card {
+  padding: 24px; background: var(--washi);
+  border: 1px solid var(--border);
+}
+.logo-rule-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-weight: 400;
+  letter-spacing: 0.1em; margin-bottom: 10px;
+}
+.logo-rule-body { font-size: 12px; line-height: 1.8; color: var(--sub); }
+
+.dont-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.dont-card {
+  padding: 24px; border: 1px solid #f0d0d0;
+  background: #fff8f8; position: relative;
+}
+.dont-card::before {
+  content: '✕';
+  position: absolute; top: 12px; right: 12px;
+  color: #cc4444; font-size: 12px;
+}
+.dont-label { font-size: 11px; color: #cc4444; margin-bottom: 8px; letter-spacing: 0.1em; }
+.dont-body { font-size: 11px; line-height: 1.8; color: var(--sub); }
+
+/* ============================================================
+   SECTION: BRAND COLORS
+============================================================ */
+.color-section { background: #f5f4f0; }
+.brand-palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 48px; }
+.color-swatch-card { }
+.swatch-block { height: 100px; margin-bottom: 12px; }
+.swatch-name-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px; font-weight: 300; margin-bottom: 2px;
+}
+.swatch-name-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 0.12em; color: var(--sub); margin-bottom: 6px;
+}
+.swatch-hex {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 0.1em; color: var(--sub);
+}
+.swatch-usage { font-size: 11px; color: var(--sub); margin-top: 4px; line-height: 1.6; }
+
+/* ============================================================
+   SECTION: 13 ROOM COLORS
+============================================================ */
+.rooms-section { background: var(--washi); }
+.room-color-grid {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 0; margin-bottom: 48px; height: 200px;
+}
+.room-color-bar {
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 8px 6px 12px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 9px; font-weight: 300;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.1em;
+}
+.room-color-bar.light-text { color: rgba(70,74,65,0.7); }
+
+.room-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.room-table th {
+  text-align: left; padding: 8px 12px;
+  border-bottom: 2px solid var(--sumi);
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; letter-spacing: 0.2em;
+  color: var(--sub); text-transform: uppercase; font-weight: 400;
+}
+.room-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.room-table tr:last-child td { border-bottom: none; }
+.color-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.08);
+  display: inline-block; vertical-align: middle;
+}
+.floor-badge {
+  display: inline-block; padding: 2px 8px;
+  background: var(--sumi); color: var(--washi);
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; letter-spacing: 0.15em;
+}
+
+/* ============================================================
+   SECTION: TYPOGRAPHY
+============================================================ */
+.type-section { background: #f5f4f0; }
+.type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 48px; }
+.type-card {
+  padding: 32px; background: var(--washi);
+  border: 1px solid var(--border);
+}
+.type-card-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; letter-spacing: 0.35em;
+  color: var(--kogane); text-transform: uppercase; margin-bottom: 20px;
+}
+.type-specimen { margin-bottom: 16px; }
+.type-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; color: var(--sub); margin-bottom: 8px;
+}
+.type-hierarchy { margin-top: 24px; border-top: 1px solid var(--border); padding-top: 24px; }
+.type-h-row { display: flex; align-items: baseline; gap: 16px; margin-bottom: 12px; }
+.type-h-label { font-family:'Inter',sans-serif; font-size:9px; color:var(--sub); min-width:60px; }
+
+/* ============================================================
+   SECTION: VOICE & TONE
+============================================================ */
+.voice-section { background: var(--washi); }
+.voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.voice-card { padding: 32px; border: 1px solid var(--border); }
+.voice-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 300;
+  letter-spacing: 0.1em; margin-bottom: 16px;
+  color: var(--sumi);
+}
+.voice-list { list-style: none; }
+.voice-list li {
+  font-size: 12px; line-height: 1.8;
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+  color: var(--sumi);
+}
+.voice-list li::before { content: '—  '; color: var(--kogane); }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.guide-footer {
+  background: var(--ink);
+  padding: 48px;
+  text-align: center;
+}
+.guide-footer-mark { width: 60px; height: 60px; margin: 0 auto 20px; }
+.guide-footer-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; font-weight: 300;
+  color: rgba(250,250,248,0.35); letter-spacing: 0.3em;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     COVER
+============================================================ -->
+<section class="cover">
+  <div class="cover-colorstrip">
+    <span style="background:#fff1cf"></span><span style="background:#ee827c"></span>
+    <span style="background:#967249"></span><span style="background:#d8e698"></span>
+    <span style="background:#89c3eb"></span><span style="background:#547443"></span>
+    <span style="background:#ffec47"></span><span style="background:#fef4f4"></span>
+    <span style="background:#4b61ba"></span><span style="background:#cc7eb1"></span>
+    <span style="background:#f6ad49"></span><span style="background:#464a41"></span>
+    <span style="background:#e6b422"></span>
+  </div>
+
+  <img src="assets/logo-mark.svg" class="cover-mark" alt="Sakura Sands mark">
+  <div class="cover-title">Sakura Sands</div>
+  <div class="cover-sub">Suites &nbsp;Hotel</div>
+  <div class="cover-guide-label">Brand Identity Guide &nbsp;—&nbsp; v1.0</div>
+
+  <div class="cover-colorstrip-bottom">
+    <span style="background:#e6b422"></span><span style="background:#464a41"></span>
+    <span style="background:#f6ad49"></span><span style="background:#cc7eb1"></span>
+    <span style="background:#4b61ba"></span><span style="background:#fef4f4"></span>
+    <span style="background:#ffec47"></span><span style="background:#547443"></span>
+    <span style="background:#89c3eb"></span><span style="background:#d8e698"></span>
+    <span style="background:#967249"></span><span style="background:#ee827c"></span>
+    <span style="background:#fff1cf"></span>
+  </div>
+  <div class="cover-version">Brand Guide v1.0 &nbsp;·&nbsp; 2026</div>
+</section>
+
+<!-- ============================================================
+     NAV
+============================================================ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <img src="assets/logo.svg" class="nav-logo" alt="Sakura Sands">
+    <div class="nav-links">
+      <a href="#philosophy">Philosophy</a>
+      <a href="#logo">Logo</a>
+      <a href="#colors">Colors</a>
+      <a href="#rooms">13 Rooms</a>
+      <a href="#type">Typography</a>
+      <a href="#voice">Voice</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     01. BRAND PHILOSOPHY
+============================================================ -->
+<section class="section philosophy" id="philosophy">
+  <div class="container">
+    <div class="section-label">01 &nbsp;—&nbsp; Brand Philosophy</div>
+    <div class="section-title">ブランドの哲学</div>
+
+    <div class="philosophy-lead">
+      "13 Colors, One Journey."<br>
+      日本の色を旅する、都市型ファミリーステイ。
+    </div>
+
+    <div class="divider"></div>
+
+    <p>Sakura Sands Suites Hotel は、大阪市内に位置するシティ型スイートホテルです。2Fから14Fまでの13室それぞれに日本の伝統色を纏わせ、宿泊者がその部屋の色と文化的背景を体験できる唯一無二のホテル体験を提供します。</p>
+
+    <p>私たちのブランドは「現代的な日本美」を追求します。紋様や金箔といったステレオタイプな和の要素を排し、日本人が日常の中で受け継いできた色彩感覚——季節・植物・素材から生まれた13の伝統色——を、現代のファミリーが心地よく体験できる空間として再解釈します。</p>
+
+    <p>ターゲットは、ホテルの安心感と民泊の自由さの両立を求めるインバウンドファミリー、そして日本美を再発見したい日本人旅行者です。高級すぎず、安っぽくない。その絶妙な品位が私たちのポジションです。</p>
+
+    <div class="tag-row">
+      <div class="tag">Modern Japanese</div>
+      <div class="tag">Family Stay</div>
+      <div class="tag">Osaka · Shinsaibashi</div>
+      <div class="tag">13 Traditional Colors</div>
+      <div class="tag">Urban Suites</div>
+      <div class="tag">Inbound + Domestic</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02. LOGO SYSTEM
+============================================================ -->
+<section class="section logo-section" id="logo">
+  <div class="container">
+    <div class="section-label">02 &nbsp;—&nbsp; Logo System</div>
+    <div class="section-title">ロゴシステム</div>
+
+    <p style="margin-bottom:32px;">ロゴは「ロゴマーク（シンボル）」と「ロゴタイプ（テキスト）」で構成されます。シンボルは桜の5花弁と13色のドット外輪を組み合わせた幾何学的紋章です。単独使用・組み合わせ使用の両方が可能です。</p>
+
+    <!-- Logo variants -->
+    <div class="logo-grid">
+      <div class="logo-card light">
+        <img src="assets/logo.svg" style="height:180px;width:auto" alt="Full logo light">
+        <div class="logo-card-label">Primary — Light Background</div>
+      </div>
+      <div class="logo-card dark">
+        <img src="assets/logo.svg" style="height:180px;width:auto;filter:invert(1) sepia(1) saturate(2) hue-rotate(5deg) brightness(1.2)" alt="Full logo dark">
+        <div class="logo-card-label">Primary — Dark Background</div>
+      </div>
+      <div class="logo-card sakura">
+        <img src="assets/logo-mark.svg" style="height:120px;width:120px" alt="Mark sakura">
+        <div class="logo-card-label">Mark Only — Sakura Background</div>
+      </div>
+      <div class="logo-card dark">
+        <img src="assets/logo-mark.svg" style="height:120px;width:120px" alt="Mark dark">
+        <div class="logo-card-label">Mark Only — Dark Background</div>
+      </div>
+    </div>
+
+    <!-- Construction -->
+    <div class="divider"></div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;margin-bottom:24px;">ロゴマーク構造</h3>
+
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start;margin-bottom:48px;">
+      <img src="assets/logo-mark.svg" style="width:200px;height:200px;">
+      <div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px;">
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:10px 12px;font-weight:400;min-width:140px;">外輪</td>
+            <td style="padding:10px 12px;color:var(--sub)">13色ドット（各部屋の伝統色）を時計回りに配置。鳥の子色（2F）から始まり黄金色（14F）で終わる。</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:10px 12px;font-weight:400;">花弁</td>
+            <td style="padding:10px 12px;color:var(--sub)">5弁の桜花弁。黄金色（#e6b422）で描かれた幾何学的なデザイン。Hotel Okura の菊紋を参考にした精密な構造。</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:10px 12px;font-weight:400;">中心</td>
+            <td style="padding:10px 12px;color:var(--sub)">金輪と黄金色のドット。背景色に応じて中心の白を切り替える。</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 12px;font-weight:400;">セパレーター</td>
+            <td style="padding:10px 12px;color:var(--sub)">外輪と花弁を区切る細い金の二重円。</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Rules -->
+    <div class="divider"></div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;margin-bottom:24px;">使用ルール</h3>
+
+    <div class="logo-rules">
+      <div class="logo-rule-card">
+        <div class="logo-rule-title">最小サイズ</div>
+        <div class="logo-rule-body">
+          フルロゴ：高さ 40px 以上<br>
+          ロゴマーク単独：40×40px 以上<br>
+          印刷物：フルロゴ 20mm 以上
+        </div>
+      </div>
+      <div class="logo-rule-card">
+        <div class="logo-rule-title">クリアスペース</div>
+        <div class="logo-rule-body">
+          ロゴマーク直径の 0.5倍以上の余白を全方向に確保する。<br>
+          他の要素がこのゾーンに入らないようにする。
+        </div>
+      </div>
+      <div class="logo-rule-card">
+        <div class="logo-rule-title">推奨背景色</div>
+        <div class="logo-rule-body">
+          和紙白 #fafaf8<br>
+          桜色 #fef4f4<br>
+          墨色 #2e3229（ダーク）<br>
+          単色背景のみ推奨。写真の上への配置は避ける。
+        </div>
+      </div>
+    </div>
+
+    <!-- Don'ts -->
+    <div class="divider"></div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;margin-bottom:24px;color:#cc4444;">禁止事項（Don'ts）</h3>
+
+    <div class="dont-grid">
+      <div class="dont-card">
+        <div class="dont-label">色の変更禁止</div>
+        <div class="dont-body">ロゴマークのカラーを勝手に変更しない。金色（#e6b422）、13色ドットは固定。</div>
+      </div>
+      <div class="dont-card">
+        <div class="dont-label">変形・回転禁止</div>
+        <div class="dont-body">ロゴを引き伸ばす・圧縮する・回転させる・傾けるなどの変形は行わない。</div>
+      </div>
+      <div class="dont-card">
+        <div class="dont-label">低解像度使用禁止</div>
+        <div class="dont-body">最小サイズ以下での使用、および解像度の低いラスター画像での使用は避ける。必ずSVG/PNG高解像度版を使用。</div>
+      </div>
+      <div class="dont-card">
+        <div class="dont-label">写真背景への配置禁止</div>
+        <div class="dont-body">写真や複雑なテクスチャの上への直接配置は避ける。半透明背景パネルを使用すること。</div>
+      </div>
+      <div class="dont-card">
+        <div class="dont-label">元素の分離禁止</div>
+        <div class="dont-body">ロゴマークとロゴタイプを縦横比以外で再配置しない。構成比率は固定。</div>
+      </div>
+      <div class="dont-card">
+        <div class="dont-label">代替フォント禁止</div>
+        <div class="dont-body">ロゴタイプに使用しているCormorant Garamondを他フォントに変更しない。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03. BRAND COLOR PALETTE
+============================================================ -->
+<section class="section color-section" id="colors">
+  <div class="container">
+    <div class="section-label">03 &nbsp;—&nbsp; Brand Color Palette</div>
+    <div class="section-title">ブランドカラー</div>
+
+    <p style="margin-bottom:40px;">ブランドカラーはホテルのすべての制作物に一貫して使用します。各色の役割と使用用途を守ってください。</p>
+
+    <div class="brand-palette">
+      <div class="color-swatch-card">
+        <div class="swatch-block" style="background:#464a41"></div>
+        <div class="swatch-name-jp">墨色</div>
+        <div class="swatch-name-en">Sumi / Ink Black</div>
+        <div class="swatch-hex">#464a41</div>
+        <div class="swatch-usage">メインテキスト、ダーク背景、ロゴタイプ（Light bg）</div>
+      </div>
+      <div class="color-swatch-card">
+        <div class="swatch-block" style="background:#e6b422"></div>
+        <div class="swatch-name-jp">黄金色</div>
+        <div class="swatch-name-en">Kogane / Radiant Gold</div>
+        <div class="swatch-hex">#e6b422</div>
+        <div class="swatch-usage">ロゴマーク、アクセント、CTAボタン、デバイダー</div>
+      </div>
+      <div class="color-swatch-card">
+        <div class="swatch-block" style="background:#fafaf8;border:1px solid #e8e8e4"></div>
+        <div class="swatch-name-jp">和紙白</div>
+        <div class="swatch-name-en">Washi / Off White</div>
+        <div class="swatch-hex">#fafaf8</div>
+        <div class="swatch-usage">ページ背景、テキスト（Dark bg）、メイン背景</div>
+      </div>
+      <div class="color-swatch-card">
+        <div class="swatch-block" style="background:#fef4f4;border:1px solid #e8e8e4"></div>
+        <div class="swatch-name-jp">桜色</div>
+        <div class="swatch-name-en">Sakura / Cherry Blossom Pink</div>
+        <div class="swatch-hex">#fef4f4</div>
+        <div class="swatch-usage">セカンダリ背景、サブパネル、9F 桜色ルーム</div>
+      </div>
+    </div>
+
+    <!-- Neutral / Support colors -->
+    <div class="divider"></div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;margin-bottom:24px;">サポートカラー</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="color-swatch-card">
+        <div class="swatch-block" style="background:#2e3229;height:60px"></div>
+        <div class="swatch-name-en" style="margin-top:10px;">Ink Deep / #2e3229</div>
+        <div class="swatch-usage">カバー背景、最暗部</div>
+      </div>
+      <div class="color-swatch-card">
+        <div class="swatch-block" style="background:#8a8c87;height:60px"></div>
+        <div class="swatch-name-en" style="margin-top:10px;">Ash / #8a8c87</div>
+        <div class="swatch-usage">サブテキスト、キャプション</div>
+      </div>
+      <div class="color-swatch-card">
+        <div class="swatch-block" style="background:#e8e8e4;height:60px"></div>
+        <div class="swatch-name-en" style="margin-top:10px;">Border / #e8e8e4</div>
+        <div class="swatch-usage">ボーダー、区切り線</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04. 13 ROOM COLORS
+============================================================ -->
+<section class="section rooms-section" id="rooms">
+  <div class="container">
+    <div class="section-label">04 &nbsp;—&nbsp; 13 Room Color Palette</div>
+    <div class="section-title">13色 客室カラーパレット</div>
+
+    <p style="margin-bottom:32px;">各客室は日本の伝統色を名称・コンセプト・HEXコードとともに定義します。この13色はブランドアイデンティティの核心です。印刷・Web・サイン・制作物に一貫して使用してください。</p>
+
+    <!-- Color bar -->
+    <div class="room-color-grid">
+      <div class="room-color-bar light-text" style="background:#fff1cf">鳥の子色</div>
+      <div class="room-color-bar" style="background:#ee827c">薄紅</div>
+      <div class="room-color-bar" style="background:#967249">胡桃色</div>
+      <div class="room-color-bar light-text" style="background:#d8e698">若草色</div>
+      <div class="room-color-bar" style="background:#89c3eb">勿忘草色</div>
+      <div class="room-color-bar" style="background:#547443">深緑</div>
+      <div class="room-color-bar light-text" style="background:#ffec47">菜の花色</div>
+      <div class="room-color-bar light-text" style="background:#fef4f4;border:1px solid #e8e8e4">桜色</div>
+      <div class="room-color-bar" style="background:#4b61ba">瑠璃紺</div>
+      <div class="room-color-bar" style="background:#cc7eb1">菖蒲色</div>
+      <div class="room-color-bar" style="background:#f6ad49">柑子色</div>
+      <div class="room-color-bar" style="background:#464a41">墨色</div>
+      <div class="room-color-bar light-text" style="background:#e6b422">黄金色</div>
+    </div>
+
+    <!-- Table -->
+    <table class="room-table">
+      <thead>
+        <tr>
+          <th>FLOOR</th>
+          <th>ROOM NO.</th>
+          <th>COLOR</th>
+          <th>JAPANESE NAME</th>
+          <th>ENGLISH NAME</th>
+          <th>HEX</th>
+          <th>CONCEPT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="floor-badge">2F</span></td><td>2001</td><td><span class="color-dot" style="background:#fff1cf;border:1px solid #c8c0a0"></span></td><td style="font-family:'Noto Serif JP',serif">鳥の子色</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Torinoko / Beige</td><td style="font-family:'Inter',sans-serif;font-size:11px">#fff1cf</td><td style="color:var(--sub);font-size:11px">素朴 × 卵の殻の優しさ</td></tr>
+        <tr><td><span class="floor-badge">3F</span></td><td>3001</td><td><span class="color-dot" style="background:#ee827c"></span></td><td style="font-family:'Noto Serif JP',serif">薄紅</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Usubeni / Pale Crimson</td><td style="font-family:'Inter',sans-serif;font-size:11px">#ee827c</td><td style="color:var(--sub);font-size:11px">愛情 × ふんわりとした頬の赤み</td></tr>
+        <tr><td><span class="floor-badge">4F</span></td><td>4001</td><td><span class="color-dot" style="background:#967249"></span></td><td style="font-family:'Noto Serif JP',serif">胡桃色</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Kurumi / Walnut Brown</td><td style="font-family:'Inter',sans-serif;font-size:11px">#967249</td><td style="color:var(--sub);font-size:11px">大地 × くるみの安らぎ</td></tr>
+        <tr><td><span class="floor-badge">5F</span></td><td>5001</td><td><span class="color-dot" style="background:#d8e698;border:1px solid #b8cc70"></span></td><td style="font-family:'Noto Serif JP',serif">若草色</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Wakakusa / Pale Yellow-green</td><td style="font-family:'Inter',sans-serif;font-size:11px">#d8e698</td><td style="color:var(--sub);font-size:11px">萌芽 × 春の息吹</td></tr>
+        <tr><td><span class="floor-badge">6F</span></td><td>6001</td><td><span class="color-dot" style="background:#89c3eb"></span></td><td style="font-family:'Noto Serif JP',serif">勿忘草色</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Wasurenagusa / Forget-me-not Blue</td><td style="font-family:'Inter',sans-serif;font-size:11px">#89c3eb</td><td style="color:var(--sub);font-size:11px">誠実 × 澄み渡る空</td></tr>
+        <tr><td><span class="floor-badge">7F</span></td><td>7001</td><td><span class="color-dot" style="background:#547443"></span></td><td style="font-family:'Noto Serif JP',serif">深緑</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Fukamidori / Deep Green</td><td style="font-family:'Inter',sans-serif;font-size:11px">#547443</td><td style="color:var(--sub);font-size:11px">癒やし × 深い森の静寂</td></tr>
+        <tr><td><span class="floor-badge">8F</span></td><td>8001</td><td><span class="color-dot" style="background:#ffec47;border:1px solid #c8c030"></span></td><td style="font-family:'Noto Serif JP',serif">菜の花色</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Nanohana / Canola Yellow</td><td style="font-family:'Inter',sans-serif;font-size:11px">#ffec47</td><td style="color:var(--sub);font-size:11px">希望 × 陽だまりの光</td></tr>
+        <tr><td><span class="floor-badge">9F</span></td><td>9001</td><td><span class="color-dot" style="background:#fef4f4;border:1px solid #d8c8c8"></span></td><td style="font-family:'Noto Serif JP',serif">桜色</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Sakura / Cherry Blossom Pink</td><td style="font-family:'Inter',sans-serif;font-size:11px">#fef4f4</td><td style="color:var(--sub);font-size:11px">祝福 × 舞い散る花びら</td></tr>
+        <tr><td><span class="floor-badge">10F</span></td><td>1001</td><td><span class="color-dot" style="background:#4b61ba"></span></td><td style="font-family:'Noto Serif JP',serif">瑠璃紺</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Ruri / Lapis Navy</td><td style="font-family:'Inter',sans-serif;font-size:11px">#4b61ba</td><td style="color:var(--sub);font-size:11px">品格 × 夜明けの静寂</td></tr>
+        <tr><td><span class="floor-badge">11F</span></td><td>1101</td><td><span class="color-dot" style="background:#cc7eb1"></span></td><td style="font-family:'Noto Serif JP',serif">菖蒲色</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Ayame / Iris Purple</td><td style="font-family:'Inter',sans-serif;font-size:11px">#cc7eb1</td><td style="color:var(--sub);font-size:11px">優雅 × 凛とした佇まい</td></tr>
+        <tr><td><span class="floor-badge">12F</span></td><td>1201</td><td><span class="color-dot" style="background:#f6ad49"></span></td><td style="font-family:'Noto Serif JP',serif">柑子色</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Kōji / Mandarin Orange</td><td style="font-family:'Inter',sans-serif;font-size:11px">#f6ad49</td><td style="color:var(--sub);font-size:11px">団らん × 柑橘の温もり</td></tr>
+        <tr><td><span class="floor-badge">13F</span></td><td>1301</td><td><span class="color-dot" style="background:#464a41"></span></td><td style="font-family:'Noto Serif JP',serif">墨色</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Sumi / Ink Black</td><td style="font-family:'Inter',sans-serif;font-size:11px">#464a41</td><td style="color:var(--sub);font-size:11px">知性 × 影の美学</td></tr>
+        <tr><td><span class="floor-badge" style="background:#e6b422;color:#464a41">14F</span></td><td>1401</td><td><span class="color-dot" style="background:#e6b422"></span></td><td style="font-family:'Noto Serif JP',serif">黄金色 ✦</td><td style="font-family:'Cormorant Garamond',serif;font-size:13px">Kogane / Radiant Gold</td><td style="font-family:'Inter',sans-serif;font-size:11px">#e6b422</td><td style="color:var(--sub);font-size:11px">豊穣 × 実りの輝き（14F 特別室）</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================
+     05. TYPOGRAPHY
+============================================================ -->
+<section class="section type-section" id="type">
+  <div class="container">
+    <div class="section-label">05 &nbsp;—&nbsp; Typography</div>
+    <div class="section-title">タイポグラフィ</div>
+
+    <div class="type-grid">
+
+      <div class="type-card">
+        <div class="type-card-label">English Display — Cormorant Garamond</div>
+        <div class="type-specimen">
+          <div class="type-name">Weight 300 / Italic</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;font-style:italic;line-height:1.2">13 Colors,<br>One Journey.</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-name">Weight 400 / Regular</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;letter-spacing:.15em">SAKURA SANDS</div>
+        </div>
+        <div class="type-hierarchy">
+          <div class="type-h-row">
+            <span class="type-h-label">Display</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300">Heading Text</span>
+          </div>
+          <div class="type-h-row">
+            <span class="type-h-label">Heading</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300">Section Title</span>
+          </div>
+          <div class="type-h-row">
+            <span class="type-h-label">Body</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300">Body text and captions</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <div class="type-card-label">Japanese Display — Noto Serif JP</div>
+        <div class="type-specimen">
+          <div class="type-name">Weight 200 / Ultra Light</div>
+          <div style="font-family:'Noto Serif JP',serif;font-size:36px;font-weight:200;line-height:1.3">日本の色を<br>旅する</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-name">Weight 300 / Light</div>
+          <div style="font-family:'Noto Serif JP',serif;font-size:24px;font-weight:300">客室・13色カラーパレット</div>
+        </div>
+        <div class="type-hierarchy">
+          <div class="type-h-row">
+            <span class="type-h-label">大見出し</span>
+            <span style="font-family:'Noto Serif JP',serif;font-size:28px;font-weight:200">黄金色</span>
+          </div>
+          <div class="type-h-row">
+            <span class="type-h-label">小見出し</span>
+            <span style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:300">豊穣 × 実りの輝き</span>
+          </div>
+          <div class="type-h-row">
+            <span class="type-h-label">本文</span>
+            <span style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300">夕陽に照らされた稲穂のような輝き。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <div class="type-card-label">UI & Labels — Inter</div>
+        <div class="type-specimen">
+          <div class="type-name">Weight 300 / Light</div>
+          <div style="font-family:'Inter',sans-serif;font-size:14px;font-weight:300">Room 2001 · 2F · Torinoko Room</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-name">Weight 400 / Regular (Caps)</div>
+          <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:400;letter-spacing:.4em;text-transform:uppercase">COLOR ROOM CONCEPT</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-name">Weight 200 / Mono use (HEX codes)</div>
+          <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:200;letter-spacing:.1em">#e6b422 &nbsp;·&nbsp; #464a41 &nbsp;·&nbsp; #fafaf8</div>
+        </div>
+      </div>
+
+      <div class="type-card">
+        <div class="type-card-label">Body Japanese — Noto Sans JP</div>
+        <div class="type-specimen">
+          <div class="type-name">Weight 300 / Light — Primary body text</div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;line-height:2">赤ちゃんの肌のような温かみと、何も染まっていない安心感を与えるベージュ。ホテルの最初の部屋にふさわしい、静かな出発点の色。</div>
+        </div>
+        <div class="type-hierarchy">
+          <div class="type-h-row">
+            <span class="type-h-label">本文</span>
+            <span style="font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:300">300 / 14px / line-height 2</span>
+          </div>
+          <div class="type-h-row">
+            <span class="type-h-label">キャプション</span>
+            <span style="font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:300;color:var(--sub)">300 / 12px / line-height 1.8</span>
+          </div>
+          <div class="type-h-row">
+            <span class="type-h-label">ラベル</span>
+            <span style="font-family:'Noto Sans JP',sans-serif;font-size:10px;font-weight:300;letter-spacing:.2em;color:var(--sub)">300 / 10px / tracking .2em</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06. BRAND VOICE & TONE
+============================================================ -->
+<section class="section voice-section" id="voice">
+  <div class="container">
+    <div class="section-label">06 &nbsp;—&nbsp; Brand Voice &amp; Tone</div>
+    <div class="section-title">ボイス＆トーン</div>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <div class="voice-card-title">ブランドパーソナリティ</div>
+        <ul class="voice-list">
+          <li>現代的な日本美 — ステレオタイプな和を超える</li>
+          <li>上品だが親しみやすい — 高すぎず、安っぽくない</li>
+          <li>静謐で知的 — 過剰な主張をしない</li>
+          <li>家族への温かさ — ファミリーを歓迎する安心感</li>
+          <li>色の語り部 — 13色に込められた物語を伝える</li>
+        </ul>
+      </div>
+      <div class="voice-card">
+        <div class="voice-card-title">コピーライティング指針</div>
+        <ul class="voice-list">
+          <li>短く、余白を大切に — 言葉を詰め込まない</li>
+          <li>色の名前を積極的に使う — 「薄紅」「瑠璃紺」</li>
+          <li>文化的背景を一言添える — 「墨を水で解いたような」</li>
+          <li>ファミリーへの配慮を見せる — 「お子様と」「家族で」</li>
+          <li>多言語対応 — 日本語・英語の両立を意識する</li>
+        </ul>
+      </div>
+      <div class="voice-card">
+        <div class="voice-card-title">キーメッセージ</div>
+        <ul class="voice-list">
+          <li>13 Colors, One Journey.</li>
+          <li>日本の色を旅する、都市型ファミリーステイ。</li>
+          <li>泊まるだけではなく、色を選び、空間を楽しむ。</li>
+          <li>大阪の空を切り取ったような青、稲穂のような金。</li>
+          <li>あなたの旅に合う、一つの色を選んでください。</li>
+        </ul>
+      </div>
+      <div class="voice-card">
+        <div class="voice-card-title">使用しない表現</div>
+        <ul class="voice-list">
+          <li>「最高級」「No.1」など根拠のない絶対表現</li>
+          <li>派手な絵文字・感嘆符の多用</li>
+          <li>「インスタ映え」「フォトジェニック」などの流行語</li>
+          <li>過度な和風演出（忍者・侍・富士山など）</li>
+          <li>「お得」「激安」などの低価格訴求表現</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="guide-footer">
+  <img src="assets/logo-mark.svg" class="guide-footer-mark" alt="Sakura Sands">
+  <div class="guide-footer-text">
+    SAKURA SANDS SUITES HOTEL &nbsp;—&nbsp; BRAND IDENTITY GUIDE v1.0<br>
+    © 2026 Sakura Sands Suites Hotel &nbsp;·&nbsp; All brand elements are proprietary and protected.
+  </div>
+</footer>
+
+</body>
+</html>

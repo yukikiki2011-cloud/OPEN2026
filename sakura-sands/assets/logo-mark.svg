@@ -1,0 +1,33 @@
+<svg viewBox="44 44 212 212" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer gold ring -->
+  <circle cx="150" cy="148" r="93" fill="none" stroke="#e6b422" stroke-width="0.8" opacity="0.55"/>
+  <!-- Inner separator ring -->
+  <circle cx="150" cy="148" r="60" fill="none" stroke="#e6b422" stroke-width="0.5" opacity="0.30"/>
+
+  <!-- 13 colored dots -->
+  <circle cx="150" cy="55"  r="8.5" fill="#fff1cf" stroke="#c8bfa0" stroke-width="0.8"/>
+  <circle cx="193" cy="66"  r="8.5" fill="#ee827c"/>
+  <circle cx="227" cy="95"  r="8.5" fill="#967249"/>
+  <circle cx="242" cy="137" r="8.5" fill="#d8e698" stroke="#b8cc70" stroke-width="0.8"/>
+  <circle cx="237" cy="181" r="8.5" fill="#89c3eb"/>
+  <circle cx="212" cy="218" r="8.5" fill="#547443"/>
+  <circle cx="172" cy="238" r="8.5" fill="#ffec47" stroke="#c8c030" stroke-width="0.8"/>
+  <circle cx="128" cy="238" r="8.5" fill="#fef4f4" stroke="#d8c8c8" stroke-width="0.8"/>
+  <circle cx="88"  cy="218" r="8.5" fill="#4b61ba"/>
+  <circle cx="63"  cy="181" r="8.5" fill="#cc7eb1"/>
+  <circle cx="58"  cy="137" r="8.5" fill="#f6ad49"/>
+  <circle cx="73"  cy="95"  r="8.5" fill="#464a41"/>
+  <circle cx="107" cy="66"  r="8.5" fill="#e6b422"/>
+
+  <!-- Cherry blossom petals -->
+  <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z" fill="#e6b422" opacity="0.93" transform="rotate(0,   150,148)"/>
+  <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z" fill="#e6b422" opacity="0.93" transform="rotate(72,  150,148)"/>
+  <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z" fill="#e6b422" opacity="0.93" transform="rotate(144, 150,148)"/>
+  <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z" fill="#e6b422" opacity="0.93" transform="rotate(216, 150,148)"/>
+  <path d="M 150,146 C 161,134 162,112 150,98 C 138,112 139,134 150,146 Z" fill="#e6b422" opacity="0.93" transform="rotate(288, 150,148)"/>
+
+  <!-- Center decoration -->
+  <circle cx="150" cy="148" r="17" fill="white" opacity="0.9"/>
+  <circle cx="150" cy="148" r="15" fill="none" stroke="#e6b422" stroke-width="1.5"/>
+  <circle cx="150" cy="148" r="5"  fill="#e6b422"/>
+</svg>
