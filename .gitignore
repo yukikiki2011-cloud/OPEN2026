@@ -1,0 +1,6 @@
+# 作業用Pythonスクリプト（ローカル専用ツール）
+sakura-sands-suites/_*.py
+
+# OS由来のゴミファイル
+.DS_Store
+Thumbs.db

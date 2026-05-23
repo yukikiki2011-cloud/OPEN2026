@@ -48,6 +48,15 @@ ul{list-style:none}
 .nav__link.active{color:var(--kogane);border-bottom:1px solid var(--kogane);padding-bottom:2px}
 .nav__right{display:flex;align-items:center;gap:1rem}
 .nav__cta{padding:.625rem 1.5rem}
+        .nav__logo{display:flex;flex-direction:row;align-items:center;gap:.625rem;line-height:1.25}
+        .nav__logo-mark{width:36px;height:36px;flex-shrink:0}
+        .nav__logo-text{display:flex;flex-direction:column}
+        .nav__lang{display:flex;align-items:center;gap:.125rem}
+        .nav__lang-btn{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.1em;color:var(--text-sub);background:none;border:none;cursor:pointer;transition:color .2s;padding:.25rem .375rem}
+        .nav__lang-btn.is-active,.nav__lang-btn:hover{color:var(--kogane);font-weight:600}
+        .nav__lang-sep{font-size:.625rem;color:var(--border)}
+        .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+        .nav__burger span{display:block;width:22px;height:1.5px;background:var(--text);transition:all .3s}
 /* Page Hero */
 .page-hero{position:relative;padding-top:var(--nav-h);min-height:40vh;display:flex;align-items:center;background:var(--sumi);overflow:hidden}
 .page-hero--light{background:var(--bg)}
@@ -77,6 +86,13 @@ ul{list-style:none}
 /* Responsive */
 @media(max-width:768px){
   .nav__links{display:none}
+            .nav__lang{display:flex}
+            .nav__burger{display:flex}
+            .nav--open .nav__links{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:var(--nav-h);left:0;right:0;background:rgba(250,250,248,.98);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1.25rem 1.5rem;gap:1.125rem}
+            .nav--open .nav__cta{display:inline-flex}
+            .nav--open .nav__burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+            .nav--open .nav__burger span:nth-child(2){opacity:0}
+            .nav--open .nav__burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
   .container{padding:0 1.25rem}
   .section{padding:2.5rem 0}
   .section-lg{padding:4rem 0}
@@ -118,10 +134,25 @@ ul{list-style:none}
 </head>
 <body>
 <nav class="nav" role="navigation" aria-label="メインナビゲーション"><div class="container"><div class="nav__inner">
-<a href="index.html" class="nav__logo"><span class="nav__logo-main">Sakura Sands Suites</span><span class="nav__logo-sub">Hotel &mdash; Osaka</span></a>
+<a href="index.html" class="nav__logo" aria-label="Sakura Sands Suites Hotel ホーム">
+  <img src="assets/logo-mark.svg" class="nav__logo-mark" alt="" aria-hidden="true">
+  <span class="nav__logo-text">
+    <span class="nav__logo-main">Sakura Sands Suites</span>
+    <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+  </span>
+</a>
 <ul class="nav__links" role="list"><li><a href="concept.html" class="nav__link">Concept</a></li><li><a href="rooms.html" class="nav__link">Rooms</a></li><li><a href="family.html" class="nav__link">Family Stay</a></li><li><a href="osaka.html" class="nav__link">Osaka</a></li><li><a href="faq.html" class="nav__link active">FAQ</a></li></ul>
-<div class="nav__right"><a href="booking.html" class="btn btn-dark nav__cta">Book Now</a></div>
+<div class="nav__right">
+  <a href="booking.html" class="btn btn-dark nav__cta">Book Now</a>
+  <div class="nav__lang">
+    <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
+    <span class="nav__lang-sep">|</span>
+    <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+  </div>
+  <button class="nav__burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+</div>
 </div></div></nav>
+
 
 <div style="height:var(--nav-h)"></div>
 
@@ -137,134 +168,136 @@ ul{list-style:none}
   <div class="faq-section"><h2 class="faq-section__title">Check-in & Check-out <span style="font-size:.75em;font-family:var(--font-sans-jp);font-weight:300;color:var(--text-sub)">— チェックイン・チェックアウト</span></h2>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>チェックインは何時からですか？</span>
+    <span class="t-jp">チェックインは何時からですか？</span><span class="t-en">What time is check-in?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">15:00よりご利用いただけます。お部屋の準備が整い次第、早めにご案内できる場合もございますので、フロントまでお問い合わせください。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">15:00よりご利用いただけます。お部屋の準備が整い次第、早めにご案内できる場合もございますので、フロントまでお問い合わせください。</span><span class="t-en">Check-in is available from 15:00. Early check-in may be possible if your room is ready — please ask at the front desk.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>チェックアウトは何時までですか？</span>
+    <span class="t-jp">チェックアウトは何時までですか？</span><span class="t-en">What time is check-out?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">10:00までとなっております。レイトチェックアウトをご希望の場合はフロントへご相談ください（空室状況によって対応いたします）。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">10:00までとなっております。レイトチェックアウトをご希望の場合はフロントへご相談ください（空室状況によって対応いたします）。</span><span class="t-en">Check-out is by 10:00. Late check-out may be available on request, subject to availability.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>深夜・早朝の到着でも問題ありませんか？</span>
+    <span class="t-jp">深夜・早朝の到着でも問題ありませんか？</span><span class="t-en">Is late-night or early-morning arrival okay?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">フロントは24時間対応しております。深夜・早朝のご到着でも安心してお越しください。事前にご連絡いただければ万全の対応が可能です。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">フロントは24時間対応しております。深夜・早朝のご到着でも安心してお越しください。事前にご連絡いただければ万全の対応が可能です。</span><span class="t-en">Our front desk is staffed 24 hours. Late-night and early-morning arrivals are welcome. Prior notice helps us prepare.</span></div></div>
 </div></div><div class="faq-section"><h2 class="faq-section__title">Rooms <span style="font-size:.75em;font-family:var(--font-sans-jp);font-weight:300;color:var(--text-sub)">— 客室について</span></h2>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>13の部屋はそれぞれ異なりますか？</span>
+    <span class="t-jp">13の部屋はそれぞれ異なりますか？</span><span class="t-en">Are all 13 rooms different?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">はい。2F〜14Fの各フロアで、日本の伝統色（鳥の子色・薄紅・胡桃色…黄金色）をテーマにした、それぞれ異なる内装・カラーコーディネートの部屋をご用意しています。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">はい。2F〜14Fの各フロアで、日本の伝統色（鳥の子色・薄紅・胡桃色…黄金色）をテーマにした、それぞれ異なる内装・カラーコーディネートの部屋をご用意しています。</span><span class="t-en">Yes. Each floor from 2F to 14F has a unique room themed around a traditional Japanese color — from Torinoko Beige to Kogane Gold — with distinct interiors and color palettes.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>部屋の広さはどのくらいですか？</span>
+    <span class="t-jp">部屋の広さはどのくらいですか？</span><span class="t-en">How large are the rooms?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">各室55〜80㎡程度のスイートルームです。リビングスペース・独立した寝室・キッチン・バスルームが備わっており、ホテルの安心感と民泊の自由さを両立しています。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">各室55〜80㎡程度のスイートルームです。リビングスペース・独立した寝室・キッチン・バスルームが備わっており、ホテルの安心感と民泊の自由さを両立しています。</span><span class="t-en">Each suite is approximately 55–80 ㎡, with a living area, private bedroom, full kitchen, and bathroom — combining hotel comfort with vacation rental freedom.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>全室禁煙ですか？</span>
+    <span class="t-jp">全室禁煙ですか？</span><span class="t-en">Are all rooms non-smoking?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">はい、全室禁煙です。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">はい、全室禁煙です。</span><span class="t-en">Yes, all rooms are non-smoking.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>ペットは連れてこられますか？</span>
+    <span class="t-jp">ペットは連れてこられますか？</span><span class="t-en">Are pets allowed?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">大変申し訳ありませんが、現在はペット不可となっております。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">大変申し訳ありませんが、現在はペット不可となっております。</span><span class="t-en">We are sorry, but pets are not permitted at this time.</span></div></div>
 </div></div><div class="faq-section"><h2 class="faq-section__title">Facilities <span style="font-size:.75em;font-family:var(--font-sans-jp);font-weight:300;color:var(--text-sub)">— 設備・アメニティ</span></h2>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>キッチンで料理ができますか？</span>
+    <span class="t-jp">キッチンで料理ができますか？</span><span class="t-en">Can we cook in the kitchen?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">はい。IHコンロ（2口）・電子レンジ・オーブントースター・冷蔵庫・食器・調理器具一式を完備しています。近くに黒門市場や心斎橋のスーパーがあり、食材調達も便利です。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">はい。IHコンロ（2口）・電子レンジ・オーブントースター・冷蔵庫・食器・調理器具一式を完備しています。近くに黒門市場や心斎橋のスーパーがあり、食材調達も便利です。</span><span class="t-en">Yes. Each suite has a 2-burner IH stove, microwave, oven toaster, refrigerator, dishes, and cooking utensils. Nearby Kuromon Market and Shinsaibashi supermarkets make grocery shopping easy.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>洗濯機はありますか？</span>
+    <span class="t-jp">洗濯機はありますか？</span><span class="t-en">Is there a washing machine?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">全室に洗濯乾燥機を設置しています。洗剤もご用意していますので、長期滞在や荷物を減らしたい旅行者の方にも安心です。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">全室に洗濯乾燥機を設置しています。洗剤もご用意していますので、長期滞在や荷物を減らしたい旅行者の方にも安心です。</span><span class="t-en">Every room has a washer-dryer with detergent provided — ideal for long stays or travelers who prefer to pack light.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>Wi-Fiは使えますか？</span>
+    <span class="t-jp">Wi-Fiは使えますか？</span><span class="t-en">Is Wi-Fi available?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">全室に高速Wi-Fiを完備しています。料金は無料です。リモートワークや動画視聴も快適にご利用いただけます。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">全室に高速Wi-Fiを完備しています。料金は無料です。リモートワークや動画視聴も快適にご利用いただけます。</span><span class="t-en">High-speed Wi-Fi is available in every room, free of charge. Comfortable for remote work and video streaming.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>駐車場はありますか？</span>
+    <span class="t-jp">駐車場はありますか？</span><span class="t-en">Is there parking?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">専用駐車場はございません。周辺にコインパーキングが複数あります。公共交通機関のご利用をおすすめしています。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">専用駐車場はございません。周辺にコインパーキングが複数あります。公共交通機関のご利用をおすすめしています。</span><span class="t-en">There is no dedicated parking. Several coin-operated lots are available nearby. We recommend using public transportation.</span></div></div>
 </div></div><div class="faq-section"><h2 class="faq-section__title">Family <span style="font-size:.75em;font-family:var(--font-sans-jp);font-weight:300;color:var(--text-sub)">— ファミリーのお客様へ</span></h2>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>子ども連れで泊まれますか？</span>
+    <span class="t-jp">子ども連れで泊まれますか？</span><span class="t-en">Can we stay with children?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">もちろんです。広いリビングスペースがあるため、お子様が室内で自由に過ごしていただけます。ファミリーでのご利用を大歓迎しています。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">もちろんです。広いリビングスペースがあるため、お子様が室内で自由に過ごしていただけます。ファミリーでのご利用を大歓迎しています。</span><span class="t-en">Absolutely. The spacious living area gives children plenty of room to move freely indoors. Families are very welcome.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>ベビーベッドはありますか？</span>
+    <span class="t-jp">ベビーベッドはありますか？</span><span class="t-en">Is a baby cot available?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">ご要望に応じて貸し出しいたします。事前にご予約時またはチェックイン前にフロントへご連絡ください。なお、全室に専用バスルーム（ビデ・無料バスアメニティ・ヘアドライヤー）を完備しています。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">ご要望に応じて貸し出しいたします。事前にご予約時またはチェックイン前にフロントへご連絡ください。なお、全室に専用バスルーム（ビデ・無料バスアメニティ・ヘアドライヤー）を完備しています。</span><span class="t-en">Baby cots are available on request. Please contact the front desk before check-in. All rooms include a private bathroom with bidet, complimentary bath amenities, and hair dryer.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>子ども向けのアメニティはありますか？</span>
+    <span class="t-jp">子ども向けのアメニティはありますか？</span><span class="t-en">Are there child-friendly amenities?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">基本的なアメニティをご用意しています。特別なご要望がある場合は事前にお問い合わせください。できる限り対応いたします。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">基本的なアメニティをご用意しています。特別なご要望がある場合は事前にお問い合わせください。できる限り対応いたします。</span><span class="t-en">Basic amenities are available. For special requests, please contact us in advance and we will do our best to accommodate.</span></div></div>
 </div></div><div class="faq-section"><h2 class="faq-section__title">Payment & Cancellation <span style="font-size:.75em;font-family:var(--font-sans-jp);font-weight:300;color:var(--text-sub)">— お支払い・キャンセル</span></h2>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>支払い方法は？</span>
+    <span class="t-jp">支払い方法は？</span><span class="t-en">What payment methods are accepted?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">各OTA（Booking.com・Airbnb・Expedia等）のご予約に従います。クレジットカード各種対応。詳細はご予約サイトの規定をご確認ください。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">各OTA（Booking.com・Airbnb・Expedia等）のご予約に従います。クレジットカード各種対応。詳細はご予約サイトの規定をご確認ください。</span><span class="t-en">Payment follows your OTA booking (Booking.com, Airbnb, Expedia, etc.). Major credit cards accepted. Please check your booking site's terms for details.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>キャンセルポリシーは？</span>
+    <span class="t-jp">キャンセルポリシーは？</span><span class="t-en">What is the cancellation policy?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">ご予約サイトにより異なります。各OTAの規定をご確認ください。特別な事情がある場合はフロントへご相談ください。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">ご予約サイトにより異なります。各OTAの規定をご確認ください。特別な事情がある場合はフロントへご相談ください。</span><span class="t-en">Policies vary by booking site. Please check your OTA's terms. For special circumstances, contact the front desk.</span></div></div>
 </div></div><div class="faq-section"><h2 class="faq-section__title">Language / Inbound <span style="font-size:.75em;font-family:var(--font-sans-jp);font-weight:300;color:var(--text-sub)">— 多言語・インバウンド対応</span></h2>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>英語で対応してもらえますか？</span>
+    <span class="t-jp">英語で対応してもらえますか？</span><span class="t-en">Is English support available?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">はい、英語でのご対応が可能です。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">はい、英語でのご対応が可能です。</span><span class="t-en">Yes, English support is available.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span>観光情報やアクセスについて相談できますか？</span>
+    <span class="t-jp">観光情報やアクセスについて相談できますか？</span><span class="t-en">Can I ask about sightseeing and transportation?</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner">フロントにて大阪の観光スポット・交通アクセス・おすすめグルメなどをご案内しています。お気軽にご相談ください。</div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">フロントにて大阪の観光スポット・交通アクセス・おすすめグルメなどをご案内しています。お気軽にご相談ください。</span><span class="t-en">Our front desk staff can help with Osaka sightseeing, transportation, and restaurant recommendations. Feel free to ask.</span></div></div>
 </div></div>
   <div class="contact-strip">
-    <p class="contact-strip__title">解決しない場合は、お気軽に。</p>
-    <p class="contact-strip__sub">フロントは24時間対応しております。英語でのご相談も可能です。</p>
-    <a href="booking.html" class="btn btn-dark">ご予約・お問い合わせ &rarr;</a>
+    <p class="contact-strip__title t-jp">解決しない場合は、お気軽に。</p>
+    <p class="contact-strip__title t-en">Still have questions? We're here to help.</p>
+    <p class="contact-strip__sub t-jp">フロントは24時間対応しております。英語でのご相談も可能です。</p>
+    <p class="contact-strip__sub t-en">Our front desk is available 24 hours. English support available.</p>
+    <a href="booking.html" class="btn btn-dark"><span class="t-jp">ご予約・お問い合わせ</span><span class="t-en">Book / Contact Us</span> &rarr;</a>
   </div>
 </div>
 <footer class="footer" role="contentinfo"><div class="container">
@@ -279,18 +312,7 @@ ul{list-style:none}
 </div>
 <p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
 </div></footer>
-<footer class="footer" role="contentinfo"><div class="container">
-<div class="footer__inner">
-  <span class="footer__logo">Sakura Sands Suites Hotel</span>
-  <ul class="footer__links">
-    <li><a href="concept.html" class="footer__link">Concept</a></li>
-    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
-    <li><a href="faq.html" class="footer__link">FAQ</a></li>
-    <li><a href="booking.html" class="footer__link">Book Now</a></li>
-  </ul>
-</div>
-<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
-</div></footer>
+
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('.faq-q').forEach(function(btn){
@@ -304,5 +326,14 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 <script src="assets/lang.js"></script>
+<script>
+(function(){
+  var nav=document.querySelector('.nav');
+  var burger=document.querySelector('.nav__burger');
+  if(!burger) return;
+  burger.addEventListener('click',function(){nav.classList.toggle('nav--open')});
+  document.querySelectorAll('.nav__link').forEach(function(l){l.addEventListener('click',function(){nav.classList.remove('nav--open')})});
+})();
+</script>
 </body>
 </html>

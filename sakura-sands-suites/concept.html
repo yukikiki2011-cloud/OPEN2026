@@ -48,6 +48,15 @@ ul{list-style:none}
 .nav__link.active{color:var(--kogane);border-bottom:1px solid var(--kogane);padding-bottom:2px}
 .nav__right{display:flex;align-items:center;gap:1rem}
 .nav__cta{padding:.625rem 1.5rem}
+        .nav__logo{display:flex;flex-direction:row;align-items:center;gap:.625rem;line-height:1.25}
+        .nav__logo-mark{width:36px;height:36px;flex-shrink:0}
+        .nav__logo-text{display:flex;flex-direction:column}
+        .nav__lang{display:flex;align-items:center;gap:.125rem}
+        .nav__lang-btn{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.1em;color:var(--text-sub);background:none;border:none;cursor:pointer;transition:color .2s;padding:.25rem .375rem}
+        .nav__lang-btn.is-active,.nav__lang-btn:hover{color:var(--kogane);font-weight:600}
+        .nav__lang-sep{font-size:.625rem;color:var(--border)}
+        .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+        .nav__burger span{display:block;width:22px;height:1.5px;background:var(--text);transition:all .3s}
 /* Page Hero */
 .page-hero{position:relative;padding-top:var(--nav-h);min-height:40vh;display:flex;align-items:center;background:var(--sumi);overflow:hidden}
 .page-hero--light{background:var(--bg)}
@@ -77,6 +86,13 @@ ul{list-style:none}
 /* Responsive */
 @media(max-width:768px){
   .nav__links{display:none}
+            .nav__lang{display:flex}
+            .nav__burger{display:flex}
+            .nav--open .nav__links{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:var(--nav-h);left:0;right:0;background:rgba(250,250,248,.98);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1.25rem 1.5rem;gap:1.125rem}
+            .nav--open .nav__cta{display:inline-flex}
+            .nav--open .nav__burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+            .nav--open .nav__burger span:nth-child(2){opacity:0}
+            .nav--open .nav__burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
   .container{padding:0 1.25rem}
   .section{padding:2.5rem 0}
   .section-lg{padding:4rem 0}
@@ -147,10 +163,25 @@ ul{list-style:none}
 </head>
 <body>
 <nav class="nav" role="navigation" aria-label="メインナビゲーション"><div class="container"><div class="nav__inner">
-<a href="index.html" class="nav__logo"><span class="nav__logo-main">Sakura Sands Suites</span><span class="nav__logo-sub">Hotel &mdash; Osaka</span></a>
+<a href="index.html" class="nav__logo" aria-label="Sakura Sands Suites Hotel ホーム">
+  <img src="assets/logo-mark.svg" class="nav__logo-mark" alt="" aria-hidden="true">
+  <span class="nav__logo-text">
+    <span class="nav__logo-main">Sakura Sands Suites</span>
+    <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+  </span>
+</a>
 <ul class="nav__links" role="list"><li><a href="concept.html" class="nav__link active">Concept</a></li><li><a href="rooms.html" class="nav__link">Rooms</a></li><li><a href="family.html" class="nav__link">Family Stay</a></li><li><a href="osaka.html" class="nav__link">Osaka</a></li><li><a href="faq.html" class="nav__link">FAQ</a></li></ul>
-<div class="nav__right"><a href="booking.html" class="btn btn-dark nav__cta">Book Now</a></div>
+<div class="nav__right">
+  <a href="booking.html" class="btn btn-dark nav__cta">Book Now</a>
+  <div class="nav__lang">
+    <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
+    <span class="nav__lang-sep">|</span>
+    <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+  </div>
+  <button class="nav__burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+</div>
 </div></div></nav>
+
 
 <div style="height:var(--nav-h)"></div>
 
@@ -163,8 +194,8 @@ ul{list-style:none}
   <div class="container page-hero__content concept-hero-inner" style="padding-bottom:var(--sp-lg);position:relative;z-index:1">
     <span class="label" style="color:var(--text-sub)">Concept</span>
     <span class="concept-num">13</span>
-    <h1 class="page-hero__h1" style="color:var(--text)">色が、旅になる。</h1>
-    <p class="page-hero__jp" style="color:var(--text-sub)">Color becomes a journey.</p>
+    <h1 class="page-hero__h1 t-jp" style="color:var(--text)">色が、旅になる。</h1>
+    <h1 class="page-hero__h1 t-en" style="color:var(--text)">Color becomes a journey.</h1>
   </div>
 </section>
 
@@ -218,11 +249,13 @@ ul{list-style:none}
   <!-- Choose guide -->
   <div class="section" style="border-top:1px solid var(--border)">
     <span class="label">How to Choose</span>
-    <h2 class="sec-title">自分の旅に合う色を、選ぶ。</h2>
-    <p class="sec-subtitle">旅のテーマで色を絞れます。全13色は Rooms ページで。</p>
-    <div class="choose-grid"><div class="choose-card"><div class="choose-card__swatch" style="background:#fff1cf;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood">はじめての大阪</p><p class="choose-card__room">鳥の子色</p></div><div class="choose-card"><div class="choose-card__swatch" style="background:#d8e698;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood">家族でのびのび</p><p class="choose-card__room">若草色</p></div><div class="choose-card"><div class="choose-card__swatch" style="background:#fef4f4;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood">ロマンティックに</p><p class="choose-card__room">桜色</p></div><div class="choose-card"><div class="choose-card__swatch" style="background:#464a41;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood">クールに、上品に</p><p class="choose-card__room">墨色</p></div></div>
+    <h2 class="sec-title t-jp">自分の旅に合う色を、選ぶ。</h2>
+    <h2 class="sec-title t-en">Find the color for your journey.</h2>
+    <p class="sec-subtitle t-jp">旅のテーマで色を絞れます。全13色は Rooms ページで。</p>
+    <p class="sec-subtitle t-en">Filter by travel theme. All 13 colors on the Rooms page.</p>
+    <div class="choose-grid"><div class="choose-card"><div class="choose-card__swatch" style="background:#fff1cf;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood t-jp">はじめての大阪</p><p class="choose-card__mood t-en">First time in Osaka</p><p class="choose-card__room">鳥の子色</p></div><div class="choose-card"><div class="choose-card__swatch" style="background:#d8e698;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood t-jp">家族でのびのび</p><p class="choose-card__mood t-en">Family &amp; space to breathe</p><p class="choose-card__room">若草色</p></div><div class="choose-card"><div class="choose-card__swatch" style="background:#fef4f4;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood t-jp">ロマンティックに</p><p class="choose-card__mood t-en">Romantic escape</p><p class="choose-card__room">桜色</p></div><div class="choose-card"><div class="choose-card__swatch" style="background:#464a41;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood t-jp">クールに、上品に</p><p class="choose-card__mood t-en">Cool &amp; sophisticated</p><p class="choose-card__room">墨色</p></div></div>
     <div style="text-align:center;margin-top:var(--sp-lg)">
-      <a href="rooms.html" class="btn btn-dark">全13色を見る &rarr;</a>
+      <a href="rooms.html" class="btn btn-dark"><span class="t-jp">全13色を見る</span><span class="t-en">See All 13 Rooms</span> &rarr;</a>
     </div>
   </div>
 
@@ -232,10 +265,11 @@ ul{list-style:none}
 <section class="cta-strip">
   <div class="container">
     <p class="cta-strip__title">13 Colors, One Journey.</p>
-    <p class="cta-strip__sub">日本の色を旅する、都市型ファミリーステイ。大阪・心斎橋。</p>
+    <p class="cta-strip__sub t-jp">日本の色を旅する、都市型ファミリーステイ。大阪・心斎橋。</p>
+    <p class="cta-strip__sub t-en">A city family stay in Osaka — Shinsaibashi. Journey through 13 colors of Japan.</p>
     <div class="cta-strip__btns">
-      <a href="rooms.html"   class="btn btn-kogane">お部屋を選ぶ &rarr;</a>
-      <a href="booking.html" class="btn btn-ghost">予約する</a>
+      <a href="rooms.html"   class="btn btn-kogane"><span class="t-jp">お部屋を選ぶ</span><span class="t-en">Choose a Room</span> &rarr;</a>
+      <a href="booking.html" class="btn btn-ghost"><span class="t-jp">予約する</span><span class="t-en">Book Now</span></a>
     </div>
   </div>
 </section>
@@ -251,19 +285,17 @@ ul{list-style:none}
 </div>
 <p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
 </div></footer>
-<footer class="footer" role="contentinfo"><div class="container">
-<div class="footer__inner">
-  <span class="footer__logo">Sakura Sands Suites Hotel</span>
-  <ul class="footer__links">
-    <li><a href="concept.html" class="footer__link">Concept</a></li>
-    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
-    <li><a href="faq.html" class="footer__link">FAQ</a></li>
-    <li><a href="booking.html" class="footer__link">Book Now</a></li>
-  </ul>
-</div>
-<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
-</div></footer>
+
 
 <script src="assets/lang.js"></script>
+<script>
+(function(){
+  var nav=document.querySelector('.nav');
+  var burger=document.querySelector('.nav__burger');
+  if(!burger) return;
+  burger.addEventListener('click',function(){nav.classList.toggle('nav--open')});
+  document.querySelectorAll('.nav__link').forEach(function(l){l.addEventListener('click',function(){nav.classList.remove('nav--open')})});
+})();
+</script>
 </body>
 </html>

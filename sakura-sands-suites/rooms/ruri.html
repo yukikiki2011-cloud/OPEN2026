@@ -14,12 +14,20 @@ a{color:inherit;text-decoration:none}
 :root{--kogane:#e6b422;--sumi:#464a41;--bg:#fafaf8;--border:#e8e8e4;--nav-h:72px;--max-w:1200px;--room-color:#4b61ba;--room-text:#ffffff}
 .nav{position:fixed;inset:0 0 auto 0;z-index:100;height:var(--nav-h);background:rgba(250,250,248,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center}
 .nav__inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max-w);margin:0 auto;padding:0 2rem}
-.nav__logo{display:flex;flex-direction:column;line-height:1.25}
+.nav__logo{display:flex;flex-direction:row;align-items:center;gap:.625rem;line-height:1.25}
+.nav__logo-mark{width:36px;height:36px;flex-shrink:0}
+.nav__logo-text{display:flex;flex-direction:column}
 .nav__logo-main{font-family:'Cormorant Garamond',serif;font-size:1.0625rem;font-weight:400;letter-spacing:.04em}
 .nav__logo-sub{font-family:'Inter',sans-serif;font-size:.5625rem;letter-spacing:.25em;text-transform:uppercase;color:#8a8c87}
 .nav__links{display:flex;gap:2rem}
 .nav__link{font-family:'Inter',sans-serif;font-size:.8125rem;letter-spacing:.06em;transition:color .2s}
 .nav__link:hover,.nav__link.active{color:var(--kogane)}
+.nav__lang{display:flex;align-items:center;gap:.125rem}
+.nav__lang-btn{font-family:'Inter',sans-serif;font-size:.6875rem;letter-spacing:.1em;color:#8a8c87;background:none;border:none;cursor:pointer;transition:color .2s;padding:.25rem .375rem}
+.nav__lang-btn.is-active,.nav__lang-btn:hover{color:var(--kogane);font-weight:600}
+.nav__lang-sep{font-size:.625rem;color:#e8e8e4}
+.nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav__burger span{display:block;width:22px;height:1.5px;background:#464a41;transition:all .3s}
 .btn{display:inline-flex;align-items:center;padding:.875rem 2rem;font-family:'Inter',sans-serif;font-size:.8125rem;font-weight:500;letter-spacing:.1em;cursor:pointer;transition:all .25s;border:none;text-decoration:none}
 .btn-dark{background:#464a41;color:#fafaf8}
 .btn-dark:hover{background:var(--kogane);color:#464a41;transform:translateY(-2px)}
@@ -67,6 +75,11 @@ a{color:inherit;text-decoration:none}
   .room-hero__panel{min-height:50vh}
   .room-concept__inner{grid-template-columns:1fr}
   .nav__links{display:none}
+  .nav__burger{display:flex}
+  .nav--open .nav__links{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:var(--nav-h);left:0;right:0;background:rgba(250,250,248,.98);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1.25rem 1.5rem;gap:1.125rem}
+  .nav--open .nav__burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .nav--open .nav__burger span:nth-child(2){opacity:0}
+  .nav--open .nav__burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
   .room-nav{flex-direction:column;gap:1rem}
 }
 
@@ -94,9 +107,12 @@ a{color:inherit;text-decoration:none}
 
 <nav class="nav">
   <div class="nav__inner">
-    <a href="../index.html" class="nav__logo">
-      <span class="nav__logo-main">Sakura Sands Suites</span>
-      <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+    <a href="../index.html" class="nav__logo" aria-label="Sakura Sands Suites Hotel">
+      <img src="../assets/logo-mark.svg" class="nav__logo-mark" alt="" aria-hidden="true">
+      <span class="nav__logo-text">
+        <span class="nav__logo-main">Sakura Sands Suites</span>
+        <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+      </span>
     </a>
     <ul class="nav__links">
       <li><a href="../concept.html" class="nav__link">Concept</a></li>
@@ -105,7 +121,15 @@ a{color:inherit;text-decoration:none}
       <li><a href="../osaka.html"   class="nav__link">Osaka</a></li>
       <li><a href="../faq.html"     class="nav__link">FAQ</a></li>
     </ul>
-    <a href="../booking.html" class="btn btn-dark" style="padding:.625rem 1.5rem">Book Now</a>
+    <div class="nav__right" style="display:flex;align-items:center;gap:1rem">
+      <a href="../booking.html" class="btn btn-dark" style="padding:.625rem 1.5rem">Book Now</a>
+      <div class="nav__lang">
+        <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
+        <span class="nav__lang-sep">|</span>
+        <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="nav__burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </nav>
 
@@ -122,8 +146,8 @@ a{color:inherit;text-decoration:none}
     <p class="room-hero__en-sub">Lapis Navy</p>
     <p class="room-hero__hex">#4b61ba</p>
     <div class="room-hero__cta">
-      <a href="../booking.html" class="btn btn-dark">予約する &rarr;</a>
-      <a href="../rooms.html"   class="btn btn-ghost-room">全ルームに戻る</a>
+      <a href="../booking.html" class="btn btn-dark"><span class="t-jp">予約する</span><span class="t-en">Book Now</span> &rarr;</a>
+      <a href="../rooms.html"   class="btn btn-ghost-room"><span class="t-jp">全ルームに戻る</span><span class="t-en">All Rooms</span></a>
     </div>
   </div>
 </section>
@@ -140,11 +164,13 @@ a{color:inherit;text-decoration:none}
         <h2 class="room-concept__h">瑠璃紺</h2>
         <p class="room-concept__kw" style="font-family:'Noto Serif JP',serif;font-size:.875rem;letter-spacing:.1em;color:#8a8c87;margin-bottom:.25rem">品格 × 夜明けの静寂</p>
         <p class="room-concept__kw-en" style="font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.08em;color:#b0aca8;margin-bottom:1.25rem">Dignity × Dawn silence</p>
-        <p class="room-concept__body">深く、かつ透明感のある紺色。大人数の中でも落ち着ける、凛とした静謐な空間を作ります。</p>
-        <p class="room-concept__body" style="color:#b0aca8;font-size:.875rem;margin-top:.5rem">
+        <p class="room-concept__body t-jp">深く、かつ透明感のある紺色。大人数の中でも落ち着ける、凛とした静謐な空間を作ります。</p>
+        <p class="room-concept__body t-en">Deep, yet translucent navy. A composed and quietly serene space — where calm finds you even in a crowd.</p>
+        <p class="room-concept__body t-jp" style="color:#b0aca8;font-size:.875rem;margin-top:.5rem">
           55〜80㎡のスイートルーム。リビング・寝室・フルキッチンが独立。<br>
           家族みんなが、伸び伸びと過ごせる広さ。
         </p>
+        <p class="room-concept__body t-en" style="color:#b0aca8;font-size:.875rem;margin-top:.5rem">55–80 ㎡ suite room. Living area, private bedroom, and full kitchen — all independent. Space for the whole family to truly stretch out.</p>
       </div>
     </div>
   </section>
@@ -168,11 +194,12 @@ a{color:inherit;text-decoration:none}
 <!-- CTA -->
 <section class="cta-strip">
   <div class="container">
-    <p class="cta-strip__title">瑠璃紺の旅へ。</p>
+    <p class="cta-strip__title t-jp">瑠璃紺の旅へ。</p>
+    <p class="cta-strip__title t-en">A Journey in Ruri Navy.</p>
     <p class="cta-strip__sub">Room 1001 &mdash; Ruri Room, 10F</p>
     <div class="cta-strip__btns">
-      <a href="../booking.html" class="btn btn-kogane">予約する &rarr;</a>
-      <a href="../rooms.html"   class="btn" style="background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff">他の色を見る</a>
+      <a href="../booking.html" class="btn btn-kogane"><span class="t-jp">予約する</span><span class="t-en">Book Now</span> &rarr;</a>
+      <a href="../rooms.html"   class="btn" style="background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff"><span class="t-jp">他の色を見る</span><span class="t-en">See All Rooms</span></a>
     </div>
   </div>
 </section>
@@ -184,5 +211,14 @@ a{color:inherit;text-decoration:none}
 </footer>
 
 <script src="../assets/lang.js"></script>
+<script>
+(function(){
+  var nav=document.querySelector('.nav');
+  var burger=document.querySelector('.nav__burger');
+  if(!burger) return;
+  burger.addEventListener('click',function(){nav.classList.toggle('nav--open')});
+  document.querySelectorAll('.nav__link').forEach(function(l){l.addEventListener('click',function(){nav.classList.remove('nav--open')})});
+})();
+</script>
 </body>
 </html>

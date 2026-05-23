@@ -48,6 +48,15 @@ ul{list-style:none}
 .nav__link.active{color:var(--kogane);border-bottom:1px solid var(--kogane);padding-bottom:2px}
 .nav__right{display:flex;align-items:center;gap:1rem}
 .nav__cta{padding:.625rem 1.5rem}
+        .nav__logo{display:flex;flex-direction:row;align-items:center;gap:.625rem;line-height:1.25}
+        .nav__logo-mark{width:36px;height:36px;flex-shrink:0}
+        .nav__logo-text{display:flex;flex-direction:column}
+        .nav__lang{display:flex;align-items:center;gap:.125rem}
+        .nav__lang-btn{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.1em;color:var(--text-sub);background:none;border:none;cursor:pointer;transition:color .2s;padding:.25rem .375rem}
+        .nav__lang-btn.is-active,.nav__lang-btn:hover{color:var(--kogane);font-weight:600}
+        .nav__lang-sep{font-size:.625rem;color:var(--border)}
+        .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+        .nav__burger span{display:block;width:22px;height:1.5px;background:var(--text);transition:all .3s}
 /* Page Hero */
 .page-hero{position:relative;padding-top:var(--nav-h);min-height:40vh;display:flex;align-items:center;background:var(--sumi);overflow:hidden}
 .page-hero--light{background:var(--bg)}
@@ -77,6 +86,13 @@ ul{list-style:none}
 /* Responsive */
 @media(max-width:768px){
   .nav__links{display:none}
+            .nav__lang{display:flex}
+            .nav__burger{display:flex}
+            .nav--open .nav__links{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:var(--nav-h);left:0;right:0;background:rgba(250,250,248,.98);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1.25rem 1.5rem;gap:1.125rem}
+            .nav--open .nav__cta{display:inline-flex}
+            .nav--open .nav__burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+            .nav--open .nav__burger span:nth-child(2){opacity:0}
+            .nav--open .nav__burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
   .container{padding:0 1.25rem}
   .section{padding:2.5rem 0}
   .section-lg{padding:4rem 0}
@@ -138,10 +154,25 @@ ul{list-style:none}
 </head>
 <body>
 <nav class="nav" role="navigation" aria-label="メインナビゲーション"><div class="container"><div class="nav__inner">
-<a href="index.html" class="nav__logo"><span class="nav__logo-main">Sakura Sands Suites</span><span class="nav__logo-sub">Hotel &mdash; Osaka</span></a>
-<ul class="nav__links" role="list"><li><a href="concept.html" class="nav__link">Concept</a></li><li><a href="rooms.html" class="nav__link">Rooms</a></li><li><a href="family.html" class="nav__link">Family Stay</a></li><li><a href="osaka.html" class="nav__link">Osaka</a></li><li><a href="faq.html" class="nav__link active">FAQ</a></li></ul>
-<div class="nav__right"><a href="booking.html" class="btn btn-dark nav__cta">Book Now</a></div>
+<a href="index.html" class="nav__logo" aria-label="Sakura Sands Suites Hotel ホーム">
+  <img src="assets/logo-mark.svg" class="nav__logo-mark" alt="" aria-hidden="true">
+  <span class="nav__logo-text">
+    <span class="nav__logo-main">Sakura Sands Suites</span>
+    <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+  </span>
+</a>
+<ul class="nav__links" role="list"><li><a href="concept.html" class="nav__link">Concept</a></li><li><a href="rooms.html" class="nav__link">Rooms</a></li><li><a href="family.html" class="nav__link">Family Stay</a></li><li><a href="osaka.html" class="nav__link">Osaka</a></li><li><a href="faq.html" class="nav__link">FAQ</a></li></ul>
+<div class="nav__right">
+  <a href="booking.html" class="btn btn-dark nav__cta">Book Now</a>
+  <div class="nav__lang">
+    <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
+    <span class="nav__lang-sep">|</span>
+    <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+  </div>
+  <button class="nav__burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+</div>
 </div></div></nav>
+
 
 <div style="height:var(--nav-h)"></div>
 
@@ -149,7 +180,7 @@ ul{list-style:none}
   <div class="page-hero__content container">
     <span class="label">Book Your Stay</span>
     <h1 class="page-hero__h1">Your Journey Begins Here.</h1>
-    <p class="page-hero__jp">今日から、13色の旅へ。</p>
+    <p class="page-hero__jp t-jp">今日から、13色の旅へ。</p>
   </div>
 </section>
 
@@ -158,30 +189,35 @@ ul{list-style:none}
   <!-- Steps -->
   <div class="section">
     <span class="label">How to Book</span>
-    <h2 class="sec-title">3ステップで予約完了。</h2>
+    <h2 class="sec-title t-jp">3ステップで予約完了。</h2>
+    <h2 class="sec-title t-en">Book in 3 Simple Steps.</h2>
     <div class="steps">
-      <div class="step"><p class="step__title">色を選ぶ</p><p class="step__desc">Rooms ページで13色の部屋をご覧いただき、旅のテーマに合う色を見つけてください。</p><div style="margin-top:1rem"><a href="rooms.html" class="btn btn-outline" style="font-size:.75rem;padding:.625rem 1.25rem">Rooms を見る</a></div></div>
-      <div class="step"><p class="step__title">OTAで検索・予約</p><p class="step__desc">「Sakura Sands Suites」で検索、または下記のリンクから各予約サイトへ。日程・人数を入力してご予約ください。</p></div>
-      <div class="step"><p class="step__title">到着・チェックイン</p><p class="step__desc">15:00よりチェックイン可能。フロントは24時間対応。英語でのご案内も可能です。</p></div>
+      <div class="step"><p class="step__title t-jp">色を選ぶ</p><p class="step__title t-en">Choose Your Color</p><p class="step__desc t-jp">Rooms ページで13色の部屋をご覧いただき、旅のテーマに合う色を見つけてください。</p><p class="step__desc t-en">Browse the 13 rooms and find the color that matches your travel mood.</p><div style="margin-top:1rem"><a href="rooms.html" class="btn btn-outline" style="font-size:.75rem;padding:.625rem 1.25rem"><span class="t-jp">Rooms を見る</span><span class="t-en">Browse Rooms</span></a></div></div>
+      <div class="step"><p class="step__title t-jp">OTAで検索・予約</p><p class="step__title t-en">Search &amp; Book via OTA</p><p class="step__desc t-jp">「Sakura Sands Suites」で検索、または下記のリンクから各予約サイトへ。日程・人数を入力してご予約ください。</p><p class="step__desc t-en">Search "Sakura Sands Suites" or use the links below. Enter your dates and guest count to complete your booking.</p></div>
+      <div class="step"><p class="step__title t-jp">到着・チェックイン</p><p class="step__title t-en">Arrive &amp; Check In</p><p class="step__desc t-jp">15:00よりチェックイン可能。フロントは24時間対応。英語でのご案内も可能です。</p><p class="step__desc t-en">Check-in available from 15:00. 24-hour front desk. English support available.</p></div>
     </div>
-    <p class="notice">現在、公式サイトでの直接予約は受け付けておりません。各OTAサイトよりご予約ください。OTAにて「Sakura Sands Suites Hotel」で検索するか、下記リンクをご利用ください。</p>
+    <p class="notice t-jp">現在、公式サイトでの直接予約は受け付けておりません。各OTAサイトよりご予約ください。OTAにて「Sakura Sands Suites Hotel」で検索するか、下記リンクをご利用ください。</p>
+    <p class="notice t-en">Direct booking via this website is not available. Please book through one of the OTA sites below, or search for "Sakura Sands Suites Hotel."</p>
   </div>
 
   <!-- OTA Links -->
   <div style="border-top:1px solid var(--border);padding-top:var(--sp-lg)">
     <span class="label">Booking Sites</span>
-    <h2 class="sec-title">予約サイト一覧</h2>
-    <div class="ota-grid"><a href="https://www.booking.com/hotel/jp/sakura-sands-suites.ja.html" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">Booking.com</p><p class="ota-btn__note">最多レビュー・直感的な操作</p></div><span class="ota-btn__arr">→</span></a><a href="#" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">Airbnb</p><p class="ota-btn__note">ユニークなスイート体験として掲載</p></div><span class="ota-btn__arr">→</span></a><a href="#" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">Expedia</p><p class="ota-btn__note">海外からの予約に強い</p></div><span class="ota-btn__arr">→</span></a><a href="#" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">じゃらん net</p><p class="ota-btn__note">国内旅行者・日本語対応</p></div><span class="ota-btn__arr">→</span></a></div>
+    <h2 class="sec-title t-jp">予約サイト一覧</h2>
+    <h2 class="sec-title t-en">Booking Sites</h2>
+    <div class="ota-grid"><a href="https://www.booking.com/hotel/jp/sakura-sands-suites.ja.html" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">Booking.com</p><p class="ota-btn__note t-jp">最多レビュー・直感的な操作</p><p class="ota-btn__note t-en">Most reviews &amp; easy to use</p></div><span class="ota-btn__arr">→</span></a><a href="#" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">Airbnb</p><p class="ota-btn__note t-jp">ユニークなスイート体験として掲載</p><p class="ota-btn__note t-en">Listed as a unique suite experience</p></div><span class="ota-btn__arr">→</span></a><a href="#" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">Expedia</p><p class="ota-btn__note t-jp">海外からの予約に強い</p><p class="ota-btn__note t-en">Popular for international bookings</p></div><span class="ota-btn__arr">→</span></a><a href="#" class="ota-btn" target="_blank" rel="noopener"><div><p class="ota-btn__name">じゃらん net</p><p class="ota-btn__note t-jp">国内旅行者・日本語対応</p><p class="ota-btn__note t-en">For domestic travelers in Japan</p></div><span class="ota-btn__arr">→</span></a></div>
   </div>
 
   <!-- Room selection guide -->
   <div class="section" style="border-top:1px solid var(--border)">
     <span class="label">Room Selection Guide</span>
-    <h2 class="sec-title">どの色にするか迷ったら。</h2>
-    <p class="sec-subtitle">旅のテーマ・気分で絞り込めます。</p>
-    <div class="guide-grid"><div class="guide-item"><div class="guide-item__swatch" style="background:#f5f0e8;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood">落ち着いた旅・初めての大阪</p><p class="guide-item__rooms">鳥の子色・胡桃色</p></div></div><div class="guide-item"><div class="guide-item__swatch" style="background:#e8f0e0;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood">家族旅行・子ども連れ</p><p class="guide-item__rooms">若草色・菜の花色</p></div></div><div class="guide-item"><div class="guide-item__swatch" style="background:#fce8f0;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood">カップル・記念日</p><p class="guide-item__rooms">桜色・菖蒲色・薄紅</p></div></div><div class="guide-item"><div class="guide-item__swatch" style="background:#2a2d27;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood">クール・大人のひとり旅</p><p class="guide-item__rooms">墨色・瑠璃紺・深緑</p></div></div></div>
+    <h2 class="sec-title t-jp">どの色にするか迷ったら。</h2>
+    <h2 class="sec-title t-en">Not sure which color to choose?</h2>
+    <p class="sec-subtitle t-jp">旅のテーマ・気分で絞り込めます。</p>
+    <p class="sec-subtitle t-en">Filter by travel theme or mood.</p>
+    <div class="guide-grid"><div class="guide-item"><div class="guide-item__swatch" style="background:#f5f0e8;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood t-jp">落ち着いた旅・初めての大阪</p><p class="guide-item__mood t-en">Relaxed trip · First time in Osaka</p><p class="guide-item__rooms">鳥の子色・胡桃色</p></div></div><div class="guide-item"><div class="guide-item__swatch" style="background:#e8f0e0;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood t-jp">家族旅行・子ども連れ</p><p class="guide-item__mood t-en">Family trip · With children</p><p class="guide-item__rooms">若草色・菜の花色</p></div></div><div class="guide-item"><div class="guide-item__swatch" style="background:#fce8f0;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood t-jp">カップル・記念日</p><p class="guide-item__mood t-en">Couples · Anniversary</p><p class="guide-item__rooms">桜色・菖蒲色・薄紅</p></div></div><div class="guide-item"><div class="guide-item__swatch" style="background:#2a2d27;border:1px solid rgba(0,0,0,.06)"></div><div><p class="guide-item__mood t-jp">クール・大人のひとり旅</p><p class="guide-item__mood t-en">Cool &amp; sophisticated · Solo travel</p><p class="guide-item__rooms">墨色・瑠璃紺・深緑</p></div></div></div>
     <div style="text-align:center;margin-top:var(--sp-lg)">
-      <a href="rooms.html" class="btn btn-outline">全13色を詳しく見る &rarr;</a>
+      <a href="rooms.html" class="btn btn-outline"><span class="t-jp">全13色を詳しく見る</span><span class="t-en">Explore All 13 Rooms</span> &rarr;</a>
     </div>
   </div>
 
@@ -192,26 +228,29 @@ ul{list-style:none}
   <div>
     <span class="label">14F Special Suite</span>
     <h2 class="kogane-inquiry__h2">Kogane Room<br><span style="font-size:.65em">黄金色 / Radiant Gold</span></h2>
-    <p class="kogane-inquiry__jp">最上階は、お問い合わせ・審査制。</p>
-    <p class="kogane-inquiry__desc">14Fの黄金色スイートは、通常のOTA予約では受け付けておりません。お問い合わせフォームよりご連絡いただき、内容を確認のうえ担当者よりご案内いたします（ご希望に添えない場合もございます）。</p>
+    <p class="kogane-inquiry__jp t-jp">最上階は、お問い合わせ・審査制。</p>
+    <p class="kogane-inquiry__jp t-en">Top floor — by inquiry &amp; screening only.</p>
+    <p class="kogane-inquiry__desc t-jp">14Fの黄金色スイートは、通常のOTA予約では受け付けておりません。お問い合わせフォームよりご連絡いただき、内容を確認のうえ担当者よりご案内いたします（ご希望に添えない場合もございます）。</p>
+    <p class="kogane-inquiry__desc t-en">The 14F Kogane Suite is not available via standard OTA booking. Please use the inquiry form. Our team will review your request and respond accordingly (availability not guaranteed).</p>
   </div>
   <form class="inquiry-form" action="#" method="post" onsubmit="return false;">
     <input type="text"  name="name"  placeholder="お名前 / Your Name" required>
     <input type="email" name="email" placeholder="メールアドレス / Email" required>
     <input type="text"  name="dates" placeholder="ご希望日程 / Preferred Dates">
     <textarea name="message" placeholder="ご要望・メッセージ / Message"></textarea>
-    <button type="submit" class="btn btn-kogane">送信する &rarr;</button>
-    <p style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.5rem;text-align:center">送信後、2営業日以内にご連絡いたします。</p>
+    <button type="submit" class="btn btn-kogane"><span class="t-jp">送信する</span><span class="t-en">Send Inquiry</span> &rarr;</button>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.5rem;text-align:center"><span class="t-jp">送信後、2営業日以内にご連絡いたします。</span><span class="t-en">We will reply within 2 business days.</span></p>
   </form>
 </div>
 
 <section class="cta-strip">
   <div class="container">
     <p class="cta-strip__title">13 Colors, One Journey.</p>
-    <p class="cta-strip__sub">大阪・心斎橋。日本の色を旅する、都市型ファミリーステイ。</p>
+    <p class="cta-strip__sub t-jp">大阪・心斎橋。日本の色を旅する、都市型ファミリーステイ。</p>
+    <p class="cta-strip__sub t-en">Shinsaibashi, Osaka. A city family stay — journeying through the colors of Japan.</p>
     <div class="cta-strip__btns">
-      <a href="rooms.html" class="btn btn-kogane">お部屋を選ぶ &rarr;</a>
-      <a href="faq.html"   class="btn btn-ghost">よくある質問</a>
+      <a href="rooms.html" class="btn btn-kogane"><span class="t-jp">お部屋を選ぶ</span><span class="t-en">Choose a Room</span> &rarr;</a>
+      <a href="faq.html"   class="btn btn-ghost"><span class="t-jp">よくある質問</span><span class="t-en">FAQ</span></a>
     </div>
   </div>
 </section>
@@ -227,19 +266,17 @@ ul{list-style:none}
 </div>
 <p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
 </div></footer>
-<footer class="footer" role="contentinfo"><div class="container">
-<div class="footer__inner">
-  <span class="footer__logo">Sakura Sands Suites Hotel</span>
-  <ul class="footer__links">
-    <li><a href="concept.html" class="footer__link">Concept</a></li>
-    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
-    <li><a href="faq.html" class="footer__link">FAQ</a></li>
-    <li><a href="booking.html" class="footer__link">Book Now</a></li>
-  </ul>
-</div>
-<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
-</div></footer>
+
 
 <script src="assets/lang.js"></script>
+<script>
+(function(){
+  var nav=document.querySelector('.nav');
+  var burger=document.querySelector('.nav__burger');
+  if(!burger) return;
+  burger.addEventListener('click',function(){nav.classList.toggle('nav--open')});
+  document.querySelectorAll('.nav__link').forEach(function(l){l.addEventListener('click',function(){nav.classList.remove('nav--open')})});
+})();
+</script>
 </body>
 </html>
