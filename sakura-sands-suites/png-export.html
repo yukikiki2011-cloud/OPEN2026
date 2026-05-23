@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-lang="jp">
 <head>
 <meta charset="UTF-8">
 <title>Logo PNG Export — Sakura Sands</title>
@@ -17,6 +17,25 @@
     cursor:pointer; border:none; border-radius:2px; text-decoration:none;
   }
   #status { margin-top:24px; font-size:11px; color:#e6b422; }
+
+/* ---- Language switch ---- */
+[data-lang="en"] .t-jp { display:none !important }
+[data-lang="jp"] .t-en { display:none !important }
+/* 既存の JP/EN クラスも制御 */
+[data-lang="en"] .hero__sub-jp,
+[data-lang="en"] .concept__h-jp,
+[data-lang="en"] .concept__body:not(.concept__body-en),
+[data-lang="en"] .bilingual__jp,
+[data-lang="en"] .page-hero__jp,
+[data-lang="en"] .sec-subtitle.t-jp,
+[data-lang="en"] .room-concept__body.t-jp { display:none !important }
+
+[data-lang="jp"] .hero__sub-en,
+[data-lang="jp"] .concept__h-en,
+[data-lang="jp"] .concept__body-en,
+[data-lang="jp"] .bilingual__en,
+[data-lang="jp"] .sec-subtitle.t-en,
+[data-lang="jp"] .room-concept__body.t-en { display:none !important }
 </style>
 </head>
 <body>
@@ -106,5 +125,6 @@ function exportPng(id) {
     });
 }
 </script>
+<script src="assets/lang.js"></script>
 </body>
 </html>

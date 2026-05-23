@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-lang="jp">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -124,6 +124,25 @@ ul{list-style:none}
 .choose-card__mood{font-family:var(--font-sans-jp);font-size:.8125rem;color:var(--text-sub);margin-bottom:.25rem}
 .choose-card__room{font-family:var(--font-serif-jp);font-size:1rem;font-weight:400}
 @media(max-width:900px){.bilingual,.feat-row,.choose-grid{grid-template-columns:1fr}.feat-row--rev{direction:ltr}}
+
+/* ---- Language switch ---- */
+[data-lang="en"] .t-jp { display:none !important }
+[data-lang="jp"] .t-en { display:none !important }
+/* 既存の JP/EN クラスも制御 */
+[data-lang="en"] .hero__sub-jp,
+[data-lang="en"] .concept__h-jp,
+[data-lang="en"] .concept__body:not(.concept__body-en),
+[data-lang="en"] .bilingual__jp,
+[data-lang="en"] .page-hero__jp,
+[data-lang="en"] .sec-subtitle.t-jp,
+[data-lang="en"] .room-concept__body.t-jp { display:none !important }
+
+[data-lang="jp"] .hero__sub-en,
+[data-lang="jp"] .concept__h-en,
+[data-lang="jp"] .concept__body-en,
+[data-lang="jp"] .bilingual__en,
+[data-lang="jp"] .sec-subtitle.t-en,
+[data-lang="jp"] .room-concept__body.t-en { display:none !important }
 </style>
 </head>
 <body>
@@ -245,5 +264,6 @@ ul{list-style:none}
 <p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
 </div></footer>
 
+<script src="assets/lang.js"></script>
 </body>
 </html>

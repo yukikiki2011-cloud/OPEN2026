@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-lang="jp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -804,7 +804,26 @@
             .rooms__grid { grid-template-columns: repeat(2, 1fr); gap: 0.875rem; }
             .room-card__swatch { height: 80px; }
         }
-    </style>
+    
+/* ---- Language switch ---- */
+[data-lang="en"] .t-jp { display:none !important }
+[data-lang="jp"] .t-en { display:none !important }
+/* 既存の JP/EN クラスも制御 */
+[data-lang="en"] .hero__sub-jp,
+[data-lang="en"] .concept__h-jp,
+[data-lang="en"] .concept__body:not(.concept__body-en),
+[data-lang="en"] .bilingual__jp,
+[data-lang="en"] .page-hero__jp,
+[data-lang="en"] .sec-subtitle.t-jp,
+[data-lang="en"] .room-concept__body.t-jp { display:none !important }
+
+[data-lang="jp"] .hero__sub-en,
+[data-lang="jp"] .concept__h-en,
+[data-lang="jp"] .concept__body-en,
+[data-lang="jp"] .bilingual__en,
+[data-lang="jp"] .sec-subtitle.t-en,
+[data-lang="jp"] .room-concept__body.t-en { display:none !important }
+</style>
 </head>
 <body>
 
@@ -855,10 +874,11 @@
         <p class="hero__eyebrow">Osaka, Japan</p>
         <h1 class="hero__title">13 Colors, One Journey.</h1>
         <p class="hero__sub-jp">日本の色を旅する、都市型ファミリーステイ。</p>
+        <p class="hero__sub-jp t-en" style="display:none">A journey through Japanese color. Urban suites for families.</p>
         <p class="hero__sub-en">A city suite hotel reimagined through 13 traditional Japanese colors.</p>
         <div class="hero__btns">
-            <a href="rooms.html" class="btn btn-dark">お部屋を選ぶ &rarr;</a>
-            <a href="osaka.html" class="btn btn-ghost">アクセスを見る</a>
+            <a href="rooms.html" class="btn btn-dark"><span class="t-jp"><span class="t-jp">お部屋を選ぶ &rarr;</span><span class="t-en">Choose Your Room &rarr;</span></span><span class="t-en">Choose Your Room &rarr;</span></a>
+            <a href="osaka.html" class="btn btn-ghost"><span class="t-jp">アクセスを見る</span><span class="t-en">Access Guide</span></a>
         </div>
     </div>
 
@@ -876,7 +896,7 @@
         <a href="rooms/ayame.html"       class="hero__sw" style="background:#cc7eb1"><span class="hero__sw-tip">菖蒲色 11F</span></a>
         <a href="rooms/koji.html"        class="hero__sw" style="background:#f6ad49"><span class="hero__sw-tip">柑子色 12F</span></a>
         <a href="rooms/sumi.html"        class="hero__sw" style="background:#464a41"><span class="hero__sw-tip">墨色 13F</span></a>
-        <a href="booking.html#kogane"                 class="hero__sw" style="background:#e6b422"><span class="hero__sw-tip">黄金色 14F ✦</span></a>
+        <a href="#kogane"                 class="hero__sw" style="background:#e6b422"><span class="hero__sw-tip">黄金色 14F ✦</span></a>
     </div>
 </section>
 
@@ -900,7 +920,7 @@
                 A Osaka city hotel reimagined through 13 traditional Japanese colors,<br>
                 interpreted for modern travelers and their families.
             </p>
-            <a href="concept.html" class="btn btn-outline">コンセプトを読む &rarr;</a>
+            <a href="concept.html" class="btn btn-outline"><span class="t-jp">コンセプトを読む &rarr;</span><span class="t-en">Our Story &rarr;</span></a>
         </div>
     </div>
 </section>
@@ -915,9 +935,10 @@
             <div>
                 <span class="label">Rooms</span>
                 <h2 class="sec-title">Choose Your Color</h2>
-                <p class="sec-subtitle">あなたの色を見つけてください。2F〜13F、12の部屋から。</p>
+                <p class="sec-subtitle t-jp">あなたの色を見つけてください。2F〜13F、12の部屋から。</p>
+                <p class="sec-subtitle t-en">Find your color. 12 rooms across floors 2 to 13.</p>
             </div>
-            <a href="rooms.html" class="btn btn-outline" style="flex-shrink:0">全ルームを見る &rarr;</a>
+            <a href="rooms.html" class="btn btn-outline" style="flex-shrink:0"><span class="t-jp">全ルームを見る &rarr;</span><span class="t-en">View All Rooms &rarr;</span></a>
         </div>
 
         <div class="rooms__grid">
@@ -932,7 +953,7 @@
                     <div class="room-card__body">
                         <p class="room-card__jp">墨色</p>
                         <p class="room-card__en">Sumi Room &mdash; Ink Black</p>
-                        <span class="room-card__cta">詳細を見る <span>&rarr;</span></span>
+                        <span class="room-card__cta"><span class="t-jp">詳細を見る <span>&rarr;</span></span><span class="t-en">Details <span>&rarr;</span></span></span>
                     </div>
                 </a>
             </article>
@@ -1118,12 +1139,15 @@
                 <h2 class="kogane-sec__title">Kogane Room</h2>
                 <p class="kogane-sec__sub-jp">黄金色 &mdash; Radiant Gold</p>
                 <span class="kogane-sec__floor">14F &mdash; The Crown Floor</span>
-                <p class="kogane-sec__desc">
+                <p class="kogane-sec__desc t-jp">
                     最上階にだけ存在する、特別な黄金の間。<br>
-                    On the 14th floor, one room stands apart from all others.<br>
                     専用サイトからのみご予約いただけます。
                 </p>
-                <a href="#" class="btn btn-kogane-inv">専用サイトへ &rarr;</a>
+                <p class="kogane-sec__desc t-en">
+                    One room at the very top. Singular. Exclusive.<br>
+                    Available by inquiry only.
+                </p>
+                <a href="#" class="btn btn-kogane-inv"><span class="t-jp">専用サイトへ &rarr;</span><span class="t-en">Make an Inquiry &rarr;</span></a>
             </div>
 
             <div class="kogane-sec__visual">
@@ -1154,33 +1178,34 @@
 
             <div>
                 <span class="label">Family Stay</span>
-                <h2 class="family__h-jp">ファミリーで泊まる、<br>大阪の拠点。</h2>
+                <h2 class="family__h-jp t-jp">ファミリーで泊まる、<br>大阪の拠点。</h2>
+                <h2 class="family__h-jp t-en">Stay as a family.<br>Your Osaka home base.</h2>
                 <p class="family__h-en">The perfect Osaka base for families.</p>
 
                 <ul class="family__list">
                     <li class="family__item">
                         <span class="family__dash">&mdash;</span>
-                        <span>55〜80㎡のスイートルーム。家族みんなが、伸び伸びと過ごせる広さ。</span>
+                        <span class="t-jp">55〜80㎡のスイートルーム。家族みんなが、伸び伸びと過ごせる広さ。</span><span class="t-en">55–80m² suites. Room for the whole family to breathe.</span>
                     </li>
                     <li class="family__item">
                         <span class="family__dash">&mdash;</span>
-                        <span>キッチン・洗濯機完備、長期滞在にも対応</span>
+                        <span class="t-jp">キッチン・洗濯機完備、長期滞在にも対応</span><span class="t-en">Full kitchen &amp; washer included. Great for extended stays.</span>
                     </li>
                     <li class="family__item">
                         <span class="family__dash">&mdash;</span>
-                        <span>道頓堀・心斎橋へ徒歩圏内</span>
+                        <span class="t-jp">道頓堀・心斎橋へ徒歩圏内</span><span class="t-en">Walking distance to Dotonbori &amp; Shinsaibashi.</span>
                     </li>
                     <li class="family__item">
                         <span class="family__dash">&mdash;</span>
-                        <span>ホテルの安心感 &times; 民泊の自由な暮らし</span>
+                        <span class="t-jp">ホテルの安心感 &times; 民泊の自由な暮らし</span><span class="t-en">Hotel comfort meets the freedom of home.</span>
                     </li>
                     <li class="family__item">
                         <span class="family__dash">&mdash;</span>
-                        <span>バルコニーからのシティビュー</span>
+                        <span class="t-jp">バルコニーからのシティビュー</span><span class="t-en">City views from your balcony.</span>
                     </li>
                 </ul>
 
-                <a href="family.html" class="btn btn-outline">ファミリーステイを見る &rarr;</a>
+                <a href="family.html" class="btn btn-outline"><span class="t-jp">ファミリーステイを見る &rarr;</span><span class="t-en">Family Stay &rarr;</span></a>
             </div>
         </div>
     </div>
@@ -1196,7 +1221,8 @@
             <div>
                 <span class="label">Location</span>
                 <h2 class="sec-title">Osaka</h2>
-                <p class="sec-subtitle">大阪の中心、旅の拠点に。</p>
+                <p class="sec-subtitle t-jp">大阪の中心、旅の拠点に。</p>
+                <p class="sec-subtitle t-en">In the heart of Osaka.</p>
             </div>
         </div>
 
@@ -1326,7 +1352,7 @@
             <a href="#" class="ota-btn">Booking.com &rarr;</a>
             <a href="#" class="ota-btn">Airbnb &rarr;</a>
             <a href="#" class="ota-btn">Expedia &rarr;</a>
-            <a href="#" class="ota-btn">その他 &rarr;</a>
+            <a href="#" class="ota-btn"><span class="t-jp">その他のOTA &rarr;</span><span class="t-en">More Sites &rarr;</span></a>
         </div>
     </div>
 </section>
@@ -1349,8 +1375,7 @@
                 </ul>
             </nav>
             <div class="footer__lang">
-                <button class="footer__lang-btn is-active" aria-current="true">JP</button>
-                <button class="footer__lang-btn">EN</button>
+                <button class="footer__lang-btn lang-btn is-active" data-lang="jp" aria-current="true">JP</button><button class="footer__lang-btn lang-btn" data-lang="en" aria-current="false">EN</button>
             </div>
         </div>
         <p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
@@ -1370,5 +1395,6 @@
     }, 5000);
 }());
 </script>
+<script src="assets/lang.js"></script>
 </body>
 </html>

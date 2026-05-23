@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-lang="jp">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -95,6 +95,25 @@ ul{list-style:none}
 .contact-strip{background:#f0ede8;padding:var(--sp-lg);text-align:center;margin-top:var(--sp-xl)}
 .contact-strip__title{font-family:var(--font-serif-en);font-size:1.5rem;font-weight:300;margin-bottom:.5rem}
 .contact-strip__sub{font-family:var(--font-sans-jp);font-size:.9375rem;color:var(--text-sub);margin-bottom:var(--sp-md)}
+
+/* ---- Language switch ---- */
+[data-lang="en"] .t-jp { display:none !important }
+[data-lang="jp"] .t-en { display:none !important }
+/* 既存の JP/EN クラスも制御 */
+[data-lang="en"] .hero__sub-jp,
+[data-lang="en"] .concept__h-jp,
+[data-lang="en"] .concept__body:not(.concept__body-en),
+[data-lang="en"] .bilingual__jp,
+[data-lang="en"] .page-hero__jp,
+[data-lang="en"] .sec-subtitle.t-jp,
+[data-lang="en"] .room-concept__body.t-jp { display:none !important }
+
+[data-lang="jp"] .hero__sub-en,
+[data-lang="jp"] .concept__h-en,
+[data-lang="jp"] .concept__body-en,
+[data-lang="jp"] .bilingual__en,
+[data-lang="jp"] .sec-subtitle.t-en,
+[data-lang="jp"] .room-concept__body.t-en { display:none !important }
 </style>
 </head>
 <body>
@@ -284,5 +303,6 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 </script>
+<script src="assets/lang.js"></script>
 </body>
 </html>
