@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Osaka — ロケーション・アクセス | Sakura Sands Suites Hotel</title>
+<title>Osaka — Location &amp; Access | Sakura Sands Suites Hotel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -48,19 +48,18 @@ ul{list-style:none}
 .nav__link.active{color:var(--kogane);border-bottom:1px solid var(--kogane);padding-bottom:2px}
 .nav__right{display:flex;align-items:center;gap:1rem}
 .nav__cta{padding:.625rem 1.5rem}
+/* Lang switcher */
+.lang-switcher{display:flex;gap:.25rem}
+.lang-btn{font-family:var(--font-sans-en);font-size:.6875rem;font-weight:500;letter-spacing:.08em;padding:.25rem .5rem;border:1px solid var(--border);background:transparent;color:var(--text-sub);cursor:pointer;transition:all .2s;line-height:1}
+.lang-btn.is-active{background:var(--text);color:var(--white);border-color:var(--text)}
 /* Page Hero */
 .page-hero{position:relative;padding-top:var(--nav-h);min-height:40vh;display:flex;align-items:center;background:var(--sumi);overflow:hidden}
-.page-hero--light{background:var(--bg)}
-.page-hero--kogane{background:linear-gradient(135deg,#2e2a1a 0%,#464010 50%,#2e2a1a 100%)}
 .page-hero__bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.25}
 .page-hero__overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(46,50,41,.85) 0%,rgba(46,50,41,.5) 100%)}
 .page-hero__content{position:relative;z-index:2;padding:var(--sp-lg) 0}
 .page-hero .label{color:var(--kogane)}
-.page-hero--light .label{color:var(--text-sub)}
 .page-hero__h1{font-family:var(--font-serif-en);font-size:clamp(2rem,5vw,3.75rem);font-weight:300;color:var(--white);line-height:1.15;letter-spacing:.04em;margin-bottom:.5rem}
-.page-hero--light .page-hero__h1{color:var(--text)}
 .page-hero__jp{font-family:var(--font-serif-jp);font-size:clamp(.9375rem,2vw,1.125rem);font-weight:300;color:rgba(255,255,255,.7);letter-spacing:.2em}
-.page-hero--light .page-hero__jp{color:var(--text-sub)}
 /* CTA Strip */
 .cta-strip{background:var(--sumi);padding:var(--sp-lg) 0;text-align:center}
 .cta-strip__title{font-family:var(--font-serif-en);font-size:clamp(1.25rem,2.5vw,2rem);font-weight:300;color:var(--white);letter-spacing:.06em;margin-bottom:.5rem}
@@ -106,28 +105,25 @@ ul{list-style:none}
 /* ---- Language switch ---- */
 [data-lang="en"] .t-jp { display:none !important }
 [data-lang="jp"] .t-en { display:none !important }
-/* 既存の JP/EN クラスも制御 */
-[data-lang="en"] .hero__sub-jp,
-[data-lang="en"] .concept__h-jp,
-[data-lang="en"] .concept__body:not(.concept__body-en),
-[data-lang="en"] .bilingual__jp,
-[data-lang="en"] .page-hero__jp,
-[data-lang="en"] .sec-subtitle.t-jp,
-[data-lang="en"] .room-concept__body.t-jp { display:none !important }
-
-[data-lang="jp"] .hero__sub-en,
-[data-lang="jp"] .concept__h-en,
-[data-lang="jp"] .concept__body-en,
-[data-lang="jp"] .bilingual__en,
-[data-lang="jp"] .sec-subtitle.t-en,
-[data-lang="jp"] .room-concept__body.t-en { display:none !important }
 </style>
 </head>
 <body>
-<nav class="nav" role="navigation" aria-label="メインナビゲーション"><div class="container"><div class="nav__inner">
-<a href="index.html" class="nav__logo"><span class="nav__logo-main">Sakura Sands Suites</span><span class="nav__logo-sub">Hotel &mdash; Osaka</span></a>
-<ul class="nav__links" role="list"><li><a href="concept.html" class="nav__link">Concept</a></li><li><a href="rooms.html" class="nav__link">Rooms</a></li><li><a href="family.html" class="nav__link">Family Stay</a></li><li><a href="osaka.html" class="nav__link active">Osaka</a></li><li><a href="faq.html" class="nav__link">FAQ</a></li></ul>
-<div class="nav__right"><a href="booking.html" class="btn btn-dark nav__cta">Book Now</a></div>
+<nav class="nav" role="navigation" aria-label="Main Navigation"><div class="container"><div class="nav__inner">
+<a href="/" class="nav__logo"><span class="nav__logo-main">Sakura Sands Suites</span><span class="nav__logo-sub">Hotel &mdash; Osaka</span></a>
+<ul class="nav__links" role="list">
+  <li><a href="concept.html" class="nav__link">Concept</a></li>
+  <li><a href="rooms.html" class="nav__link">Rooms</a></li>
+  <li><a href="family.html" class="nav__link">Family Stay</a></li>
+  <li><a href="osaka.html" class="nav__link active">Osaka</a></li>
+  <li><a href="faq.html" class="nav__link">FAQ</a></li>
+</ul>
+<div class="nav__right">
+  <div class="lang-switcher">
+    <button class="lang-btn" data-lang="jp" aria-current="true">JP</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+  <a href="booking.html" class="btn btn-dark nav__cta">Book Now</a>
+</div>
 </div></div></nav>
 
 <div style="height:var(--nav-h)"></div>
@@ -136,14 +132,15 @@ ul{list-style:none}
   <div class="page-hero__content container">
     <span class="label">Location &amp; Access</span>
     <h1 class="page-hero__h1">Osaka, Japan.</h1>
-    <p class="page-hero__jp">大阪市中央区島之内 — 心斎橋・難波エリア</p>
+    <p class="page-hero__jp t-jp">大阪市中央区島之内 — 心斎橋・難波エリア</p>
+    <p class="page-hero__jp t-en" style="display:none">Shimanouchi, Chuo-ku, Osaka — Shinsaibashi &amp; Namba Area</p>
   </div>
 </section>
 
 <div class="container">
 
   <!-- Design Map -->
-  <div class="map-wrap" role="img" aria-label="Sakura Sands Suites Hotel アクセスマップ">
+  <div class="map-wrap" role="img" aria-label="Sakura Sands Suites Hotel Access Map">
     <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
       <defs><filter id="sh2"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.12)"/></filter></defs>
       <rect width="720" height="420" fill="#f5f2ec"/>
@@ -171,22 +168,22 @@ ul{list-style:none}
       <text x="20" y="290" font-family="Inter,sans-serif" font-size="8" fill="#7a9db5">道頓堀川</text>
       <text transform="translate(300,26) rotate(90)" font-family="Inter,sans-serif" font-size="8" fill="#a09b92">心斎橋筋</text>
       <text x="410" y="298" font-family="Inter,sans-serif" font-size="10" fill="#6a96b2" opacity=".9">道頓堀</text>
-      <!-- 心斎橋駅 -->
-      <rect x="194" y="128" width="6" height="22" rx="1" fill="#e60012" opacity=".82"/>
-      <circle cx="209" cy="139" r="8" fill="#464a41" stroke="#f5f2ec" stroke-width="2.5"/>
-      <rect x="220" y="131" width="74" height="18" rx="2" fill="rgba(245,242,236,.95)"/>
-      <text x="225" y="144" font-family="Inter,sans-serif" font-size="11" fill="#464a41" font-weight="500">心斎橋駅</text>
+      <!-- 長堀橋駅 (nearest) -->
+      <rect x="194" y="105" width="6" height="22" rx="1" fill="#e60012" opacity=".82"/>
+      <circle cx="209" cy="116" r="8" fill="#464a41" stroke="#f5f2ec" stroke-width="2.5"/>
+      <rect x="220" y="108" width="80" height="18" rx="2" fill="rgba(245,242,236,.95)"/>
+      <text x="225" y="121" font-family="Inter,sans-serif" font-size="11" fill="#464a41" font-weight="500">長堀橋駅 ★</text>
       <!-- なんば駅 -->
       <rect x="194" y="358" width="6" height="22" rx="1" fill="#e60012" opacity=".82"/>
       <circle cx="209" cy="369" r="8" fill="#464a41" stroke="#f5f2ec" stroke-width="2.5"/>
       <rect x="220" y="361" width="66" height="18" rx="2" fill="rgba(245,242,236,.95)"/>
       <text x="225" y="374" font-family="Inter,sans-serif" font-size="11" fill="#464a41" font-weight="500">なんば駅</text>
       <!-- Walking paths -->
-      <line x1="217" y1="139" x2="458" y2="225" stroke="#e6b422" stroke-width="1.8" stroke-dasharray="6,5" opacity=".72"/>
-      <line x1="217" y1="369" x2="458" y2="242" stroke="#e6b422" stroke-width="1.8" stroke-dasharray="6,5" opacity=".72"/>
+      <line x1="217" y1="116" x2="458" y2="225" stroke="#e6b422" stroke-width="1.8" stroke-dasharray="6,5" opacity=".72"/>
+      <line x1="217" y1="369" x2="458" y2="242" stroke="#e6b422" stroke-width="1.8" stroke-dasharray="6,5" opacity=".52"/>
       <!-- Badges -->
-      <rect x="286" y="150" width="90" height="19" rx="9.5" fill="#464a41"/>
-      <text x="331" y="163" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="white">心斎橋 約10分</text>
+      <rect x="286" y="130" width="90" height="19" rx="9.5" fill="#e6b422"/>
+      <text x="331" y="143" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#464a41" font-weight="600">長堀橋 約2分</text>
       <rect x="286" y="300" width="86" height="19" rx="9.5" fill="#464a41"/>
       <text x="329" y="313" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="white">なんば 約20分</text>
       <!-- Hotel logo mark -->
@@ -216,41 +213,143 @@ ul{list-style:none}
 
   <!-- Access -->
   <span class="label">Access</span>
-  <h2 class="sec-title">どこからでも、アクセス良好。</h2>
+  <h2 class="sec-title t-jp">どこからでも、アクセス良好。</h2>
+  <h2 class="sec-title t-en" style="display:none">Conveniently located from anywhere.</h2>
   <div class="access-grid">
-    <div class="access-card" style="border-color:var(--kogane)"><span class="access-card__icon">🚇</span><span class="access-card__from" style="color:var(--kogane)">最寄り駅 / Nearest Station ★</span><p class="access-card__route">大阪メトロ 堺筋線・長堀鶴見緑地線「長堀橋駅」4番出口より東へ徒歩約2分</p><p class="access-card__time" style="color:var(--kogane)">約2分</p></div>
-    <div class="access-card"><span class="access-card__icon">✈</span><span class="access-card__from">From Kansai International Airport</span><p class="access-card__route">関西国際空港 → 南海特急ラピート → なんば駅（南海） → 地下鉄千日前線 → 日本橋駅 → 堺筋線 → 長堀橋駅 → 徒歩約2分</p><p class="access-card__time">約55分</p></div>
-    <div class="access-card"><span class="access-card__icon">✈</span><span class="access-card__from">From Osaka Itami Airport</span><p class="access-card__route">大阪伊丹空港（ホテルより約19km）→ 阪急バスorモノレール → 梅田・天六方面 → 地下鉄堺筋線 → 長堀橋駅 → 徒歩約2分</p><p class="access-card__time">約60分</p></div>
-    <div class="access-card"><span class="access-card__icon">🚅</span><span class="access-card__from">From Shin-Osaka Station</span><p class="access-card__route">新大阪駅 → 地下鉄御堂筋線 → 心斎橋駅 → 長堀鶴見緑地線 → 長堀橋駅 → 徒歩約2分</p><p class="access-card__time">約21分</p></div>
-    <div class="access-card"><span class="access-card__icon">🚅</span><span class="access-card__from">From Tokyo (Shinkansen)</span><p class="access-card__route">東京駅 → 新幹線のぞみ → 新大阪駅 → 心斎橋駅 → 徒歩約6分</p><p class="access-card__time">約2時間50分</p></div>
+    <div class="access-card" style="border-color:var(--kogane)">
+      <span class="access-card__icon">🚇</span>
+      <span class="access-card__from" style="color:var(--kogane)">Nearest Station ★</span>
+      <p class="access-card__route t-jp">大阪メトロ 堺筋線・長堀鶴見緑地線「長堀橋駅」4番出口より東へ徒歩約2分</p>
+      <p class="access-card__route t-en" style="display:none">Osaka Metro Sakaisuji &amp; Nagahoritsurumiryokuchi Line — Nagahoribashi Sta. Exit 4, approx. 2 min walk east</p>
+      <p class="access-card__time" style="color:var(--kogane)"><span class="t-jp">約</span>2 <span class="t-en" style="display:none">min / </span><span class="t-jp">分</span><span class="t-en" style="display:none">walk</span></p>
+    </div>
+    <div class="access-card">
+      <span class="access-card__icon">✈</span>
+      <span class="access-card__from">From Kansai International Airport (KIX)</span>
+      <p class="access-card__route t-jp">関西国際空港 → 南海特急ラピート → なんば駅 → 地下鉄千日前線 → 日本橋駅 → 堺筋線 → 長堀橋駅 → 徒歩約2分</p>
+      <p class="access-card__route t-en" style="display:none">KIX → Nankai Rapi:t Express → Namba → Sakaisuji Line → Nagahoribashi Sta. → 2 min walk</p>
+      <p class="access-card__time t-jp">約55分</p>
+      <p class="access-card__time t-en" style="display:none">Approx. 55 min</p>
+    </div>
+    <div class="access-card">
+      <span class="access-card__icon">✈</span>
+      <span class="access-card__from">From Osaka Itami Airport (ITM)</span>
+      <p class="access-card__route t-jp">大阪伊丹空港 → 阪急バスorモノレール → 梅田・天六方面 → 地下鉄堺筋線 → 長堀橋駅 → 徒歩約2分</p>
+      <p class="access-card__route t-en" style="display:none">ITM → Hankyu Bus or Monorail → Umeda/Tenjimbashisuji direction → Sakaisuji Line → Nagahoribashi Sta. → 2 min walk</p>
+      <p class="access-card__time t-jp">約60分</p>
+      <p class="access-card__time t-en" style="display:none">Approx. 60 min</p>
+    </div>
+    <div class="access-card">
+      <span class="access-card__icon">🚅</span>
+      <span class="access-card__from">From Shin-Osaka Station</span>
+      <p class="access-card__route t-jp">新大阪駅 → 地下鉄御堂筋線 → 心斎橋駅 → 長堀鶴見緑地線 → 長堀橋駅 → 徒歩約2分</p>
+      <p class="access-card__route t-en" style="display:none">Shin-Osaka → Midosuji Line → Shinsaibashi → Nagahoritsurumiryokuchi Line → Nagahoribashi Sta. → 2 min walk</p>
+      <p class="access-card__time t-jp">約21分</p>
+      <p class="access-card__time t-en" style="display:none">Approx. 21 min</p>
+    </div>
+    <div class="access-card">
+      <span class="access-card__icon">🚅</span>
+      <span class="access-card__from">From Tokyo (Shinkansen)</span>
+      <p class="access-card__route t-jp">東京駅 → 新幹線のぞみ → 新大阪駅 → 御堂筋線 → 心斎橋駅 → 長堀橋駅 → 徒歩約2分</p>
+      <p class="access-card__route t-en" style="display:none">Tokyo → Nozomi Shinkansen → Shin-Osaka → Midosuji Line → Nagahoribashi Sta. → 2 min walk</p>
+      <p class="access-card__time t-jp">約2時間50分</p>
+      <p class="access-card__time t-en" style="display:none">Approx. 2 hr 50 min</p>
+    </div>
   </div>
 
   <!-- Nearby -->
   <div class="section" style="border-top:1px solid var(--border)">
     <span class="label">Nearby</span>
-    <h2 class="sec-title">大阪の魅力が、徒歩圏内に。</h2>
+    <h2 class="sec-title t-jp">大阪の魅力が、徒歩圏内に。</h2>
+    <h2 class="sec-title t-en" style="display:none">The best of Osaka, within walking distance.</h2>
     <div class="nearby-grid">
-      <div class="nearby-item"><div><p class="nearby-item__name">道頓堀</p><p class="nearby-item__time">徒歩 約5分</p></div></div>
-      <div class="nearby-item"><div><p class="nearby-item__name">心斎橋筋</p><p class="nearby-item__time">徒歩 約6分</p></div></div>
-      <div class="nearby-item"><div><p class="nearby-item__name">アメリカ村</p><p class="nearby-item__time">徒歩 約8分</p></div></div>
-      <div class="nearby-item"><div><p class="nearby-item__name">黒門市場</p><p class="nearby-item__time">徒歩 約10分</p></div></div>
-      <div class="nearby-item"><div><p class="nearby-item__name">なんばグランド花月</p><p class="nearby-item__time">徒歩 約12分</p></div></div>
-      <div class="nearby-item"><div><p class="nearby-item__name">大阪城</p><p class="nearby-item__time">電車 約15分</p></div></div>
-      <div class="nearby-item"><div><p class="nearby-item__name">海遊館</p><p class="nearby-item__time">電車 約15分</p></div></div>
-      <div class="nearby-item"><div><p class="nearby-item__name">USJ</p><p class="nearby-item__time">電車 約35分</p></div></div>
-      <div class="nearby-item"><div><p class="nearby-item__name">京都</p><p class="nearby-item__time">電車 約75分</p></div></div>
+      <div class="nearby-item"><div>
+        <p class="nearby-item__name t-jp">道頓堀</p>
+        <p class="nearby-item__name t-en" style="display:none">Dotonbori</p>
+        <p class="nearby-item__time t-jp">徒歩 約5分</p>
+        <p class="nearby-item__time t-en" style="display:none">5 min walk</p>
+      </div></div>
+      <div class="nearby-item"><div>
+        <p class="nearby-item__name t-jp">心斎橋ショッピングアーケード</p>
+        <p class="nearby-item__name t-en" style="display:none">Shinsaibashi Shopping Arcade</p>
+        <p class="nearby-item__time t-jp">徒歩 約6分</p>
+        <p class="nearby-item__time t-en" style="display:none">6 min walk</p>
+      </div></div>
+      <div class="nearby-item"><div>
+        <p class="nearby-item__name t-jp">アメリカ村</p>
+        <p class="nearby-item__name t-en" style="display:none">Amerika-mura</p>
+        <p class="nearby-item__time t-jp">徒歩 約8分</p>
+        <p class="nearby-item__time t-en" style="display:none">8 min walk</p>
+      </div></div>
+      <div class="nearby-item"><div>
+        <p class="nearby-item__name t-jp">西大橋駅（大阪メトロ）</p>
+        <p class="nearby-item__name t-en" style="display:none">Nishiohashi Sta. (Osaka Metro)</p>
+        <p class="nearby-item__time t-jp">徒歩 約6分</p>
+        <p class="nearby-item__time t-en" style="display:none">6 min walk</p>
+      </div></div>
+      <div class="nearby-item"><div>
+        <p class="nearby-item__name t-jp">本町駅（大阪メトロ）</p>
+        <p class="nearby-item__name t-en" style="display:none">Honmachi Sta. (Osaka Metro)</p>
+        <p class="nearby-item__time t-jp">徒歩 約6分</p>
+        <p class="nearby-item__time t-en" style="display:none">6 min walk</p>
+      </div></div>
+      <div class="nearby-item"><div>
+        <p class="nearby-item__name t-jp">黒門市場</p>
+        <p class="nearby-item__name t-en" style="display:none">Kuromon Market</p>
+        <p class="nearby-item__time t-jp">徒歩 約10分</p>
+        <p class="nearby-item__time t-en" style="display:none">10 min walk</p>
+      </div></div>
+      <div class="nearby-item"><div>
+        <p class="nearby-item__name t-jp">なんばグランド花月</p>
+        <p class="nearby-item__name t-en" style="display:none">Namba Grand Kagetsu</p>
+        <p class="nearby-item__time t-jp">徒歩 約12分</p>
+        <p class="nearby-item__time t-en" style="display:none">12 min walk</p>
+      </div></div>
+      <div class="nearby-item"><div>
+        <p class="nearby-item__name t-jp">大阪城</p>
+        <p class="nearby-item__name t-en" style="display:none">Osaka Castle</p>
+        <p class="nearby-item__time t-jp">電車 約15分</p>
+        <p class="nearby-item__time t-en" style="display:none">15 min by train</p>
+      </div></div>
+      <div class="nearby-item"><div>
+        <p class="nearby-item__name">USJ</p>
+        <p class="nearby-item__time t-jp">電車 約35分</p>
+        <p class="nearby-item__time t-en" style="display:none">35 min by train</p>
+      </div></div>
     </div>
   </div>
 
   <!-- Hotel Info -->
   <div class="section" style="border-top:1px solid var(--border)">
     <span class="label">Hotel Information</span>
-    <h2 class="sec-title">ホテル基本情報</h2>
+    <h2 class="sec-title t-jp">ホテル基本情報</h2>
+    <h2 class="sec-title t-en" style="display:none">Hotel Details</h2>
     <div class="hotel-info">
-      <div class="info-item"><p class="info-item__label">Address</p><p class="info-item__val">大阪市中央区島之内1-16-3</p><p class="info-item__sub">〒542-0082 / Shimanouchi 1-16-3, Chuo-ku, Osaka</p></div>
-      <div class="info-item"><p class="info-item__label">Check-in / Check-out</p><p class="info-item__val">15:00 〜 / 〜 11:00</p><p class="info-item__sub">アーリーチェックイン・レイトチェックアウトは要相談</p></div>
-      <div class="info-item"><p class="info-item__label">Front Desk</p><p class="info-item__val">24時間対応</p><p class="info-item__sub">English support available</p></div>
-      <div class="info-item"><p class="info-item__label">Nearest Station</p><p class="info-item__val">心斎橋駅 徒歩約6分 / なんば駅 徒歩約9分</p><p class="info-item__sub">地下鉄御堂筋線・千日前線・四つ橋線</p></div>
+      <div class="info-item">
+        <p class="info-item__label">Address</p>
+        <p class="info-item__val t-jp">大阪市中央区島之内1-16-3</p>
+        <p class="info-item__val t-en" style="display:none">Shimanouchi 1-16-3, Chuo-ku, Osaka</p>
+        <p class="info-item__sub">〒542-0082</p>
+      </div>
+      <div class="info-item">
+        <p class="info-item__label">Check-in / Check-out</p>
+        <p class="info-item__val">15:00 〜 / 〜 10:00</p>
+        <p class="info-item__sub t-jp">アーリーチェックイン・レイトチェックアウトは要相談</p>
+        <p class="info-item__sub t-en" style="display:none">Early check-in / late check-out available upon request</p>
+      </div>
+      <div class="info-item">
+        <p class="info-item__label">Front Desk</p>
+        <p class="info-item__val t-jp">24時間対応</p>
+        <p class="info-item__val t-en" style="display:none">24-hour front desk</p>
+        <p class="info-item__sub">English support available</p>
+      </div>
+      <div class="info-item">
+        <p class="info-item__label">Nearest Station</p>
+        <p class="info-item__val t-jp">長堀橋駅 徒歩約2分</p>
+        <p class="info-item__val t-en" style="display:none">Nagahoribashi Sta. approx. 2 min walk</p>
+        <p class="info-item__sub t-jp">大阪メトロ 堺筋線・長堀鶴見緑地線</p>
+        <p class="info-item__sub t-en" style="display:none">Osaka Metro Sakaisuji &amp; Nagahoritsurumiryokuchi Lines</p>
+      </div>
     </div>
   </div>
 
@@ -258,26 +357,21 @@ ul{list-style:none}
 
 <section class="cta-strip">
   <div class="container">
-    <p class="cta-strip__title">大阪の中心で、色の旅を。</p>
-    <p class="cta-strip__sub">心斎橋・難波エリアを拠点に、大阪を満喫してください。</p>
+    <p class="cta-strip__title t-jp">大阪の中心で、色の旅を。</p>
+    <p class="cta-strip__title t-en" style="display:none">A colorful stay in the heart of Osaka.</p>
+    <p class="cta-strip__sub t-jp">心斎橋・難波エリアを拠点に、大阪を満喫してください。</p>
+    <p class="cta-strip__sub t-en" style="display:none">Explore the city freely from our Shinsaibashi &amp; Namba base.</p>
     <div class="cta-strip__btns">
-      <a href="booking.html" class="btn btn-kogane">予約する &rarr;</a>
-      <a href="rooms.html"   class="btn btn-ghost">お部屋を見る</a>
+      <a href="booking.html" class="btn btn-kogane">
+        <span class="t-jp">予約する</span><span class="t-en" style="display:none">Book Now</span> &rarr;
+      </a>
+      <a href="rooms.html" class="btn btn-ghost">
+        <span class="t-jp">お部屋を見る</span><span class="t-en" style="display:none">View Rooms</span>
+      </a>
     </div>
   </div>
 </section>
-<footer class="footer" role="contentinfo"><div class="container">
-<div class="footer__inner">
-  <span class="footer__logo">Sakura Sands Suites Hotel</span>
-  <ul class="footer__links">
-    <li><a href="concept.html" class="footer__link">Concept</a></li>
-    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
-    <li><a href="faq.html" class="footer__link">FAQ</a></li>
-    <li><a href="booking.html" class="footer__link">Book Now</a></li>
-  </ul>
-</div>
-<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
-</div></footer>
+
 <footer class="footer" role="contentinfo"><div class="container">
 <div class="footer__inner">
   <span class="footer__logo">Sakura Sands Suites Hotel</span>
