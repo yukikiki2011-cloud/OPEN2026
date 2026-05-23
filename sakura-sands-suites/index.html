@@ -178,7 +178,9 @@
             justify-content: space-between;
             width: 100%;
         }
-        .nav__logo { display: flex; flex-direction: column; line-height: 1.25; }
+        .nav__logo { display: flex; flex-direction: row; align-items: center; gap: 0.625rem; line-height: 1.25; }
+        .nav__logo-mark { width: 36px; height: 36px; flex-shrink: 0; }
+        .nav__logo-text { display: flex; flex-direction: column; }
         .nav__logo-main {
             font-family: var(--font-serif-en);
             font-size: 1.0625rem;
@@ -206,6 +208,19 @@
         .nav__link:hover { color: var(--kogane); }
         .nav__right { display: flex; align-items: center; gap: var(--sp-sm); }
         .nav__cta { padding: 0.625rem 1.5rem; }
+        .nav__lang { display: flex; align-items: center; gap: 0.125rem; }
+        .nav__lang-btn {
+            font-family: var(--font-sans-en);
+            font-size: 0.6875rem;
+            letter-spacing: 0.1em;
+            color: var(--text-sub);
+            background: none; border: none;
+            cursor: pointer; transition: color 0.2s;
+            padding: 0.25rem 0.375rem;
+        }
+        .nav__lang-btn.is-active,
+        .nav__lang-btn:hover { color: var(--kogane); font-weight: 600; }
+        .nav__lang-sep { font-size: 0.625rem; color: var(--border); }
         .nav__burger {
             display: none;
             flex-direction: column;
@@ -798,6 +813,24 @@
             .kogane-sec__desc { margin: 0 auto var(--sp-md); }
             .footer__links { display: none; }
             .footer__inner { justify-content: space-between; }
+
+            .nav--open .nav__links {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                position: absolute;
+                top: var(--nav-h);
+                left: 0; right: 0;
+                background: rgba(250,250,248,0.98);
+                backdrop-filter: blur(8px);
+                border-bottom: 1px solid var(--border);
+                padding: 1.25rem 1.5rem;
+                gap: 1.125rem;
+            }
+            .nav--open .nav__cta { display: inline-flex; }
+            .nav--open .nav__burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+            .nav--open .nav__burger span:nth-child(2) { opacity: 0; }
+            .nav--open .nav__burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
         }
 
         @media (max-width: 540px) {
@@ -834,8 +867,11 @@
     <div class="container">
         <div class="nav__inner">
             <a href="index.html" class="nav__logo" aria-label="Sakura Sands Suites Hotel ホーム">
-                <span class="nav__logo-main">Sakura Sands Suites</span>
-                <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+                <img src="assets/logo-mark.svg" class="nav__logo-mark" alt="" aria-hidden="true">
+                <span class="nav__logo-text">
+                    <span class="nav__logo-main">Sakura Sands Suites</span>
+                    <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+                </span>
             </a>
 
             <ul class="nav__links" role="list">
@@ -848,6 +884,11 @@
 
             <div class="nav__right">
                 <a href="booking.html" class="btn btn-dark nav__cta">Book Now</a>
+                <div class="nav__lang">
+                    <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
+                    <span class="nav__lang-sep">|</span>
+                    <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+                </div>
                 <button class="nav__burger" aria-label="メニューを開く">
                     <span></span><span></span><span></span>
                 </button>
@@ -873,11 +914,11 @@
     <div class="hero__content">
         <p class="hero__eyebrow">Osaka, Japan</p>
         <h1 class="hero__title">13 Colors, One Journey.</h1>
-        <p class="hero__sub-jp">日本の色を旅する、都市型ファミリーステイ。</p>
-        <p class="hero__sub-jp t-en" style="display:none">A journey through Japanese color. Urban suites for families.</p>
+        <p class="hero__sub-jp t-jp">日本の色を旅する、都市型ファミリーステイ。</p>
+        <p class="hero__sub-jp t-en">A journey through Japanese color. Urban suites for families.</p>
         <p class="hero__sub-en">A city suite hotel reimagined through 13 traditional Japanese colors.</p>
         <div class="hero__btns">
-            <a href="rooms.html" class="btn btn-dark"><span class="t-jp"><span class="t-jp">お部屋を選ぶ &rarr;</span><span class="t-en">Choose Your Room &rarr;</span></span><span class="t-en">Choose Your Room &rarr;</span></a>
+            <a href="rooms.html" class="btn btn-dark"><span class="t-jp">お部屋を選ぶ &rarr;</span><span class="t-en">Choose Your Room &rarr;</span></a>
             <a href="osaka.html" class="btn btn-ghost"><span class="t-jp">アクセスを見る</span><span class="t-en">Access Guide</span></a>
         </div>
     </div>
@@ -1308,32 +1349,32 @@
                 <h3 class="location__access-title">Access</h3>
                 <ul>
                     <li class="location__item">
-                        <span>道頓堀</span>
-                        <span class="location__time">徒歩 約◯分</span>
+                        <span class="t-jp">道頓堀</span><span class="t-en">Dotonbori</span>
+                        <span class="location__time t-jp">徒歩 約5分</span><span class="location__time t-en">5 min walk</span>
                     </li>
                     <li class="location__item">
-                        <span>心斎橋ショッピングアーケード</span>
-                        <span class="location__time">徒歩 約◯分</span>
+                        <span class="t-jp">心斎橋ショッピングアーケード</span><span class="t-en">Shinsaibashi Shopping Arcade</span>
+                        <span class="location__time t-jp">徒歩 約6分</span><span class="location__time t-en">6 min walk</span>
                     </li>
                     <li class="location__item">
-                        <span>西大橋駅（大阪メトロ）</span>
-                        <span class="location__time">徒歩 約6分</span>
+                        <span class="t-jp">西大橋駅（大阪メトロ）</span><span class="t-en">Nishiohashi Sta. (Osaka Metro)</span>
+                        <span class="location__time t-jp">徒歩 約6分</span><span class="location__time t-en">6 min walk</span>
                     </li>
                     <li class="location__item">
-                        <span>本町駅（大阪メトロ）</span>
-                        <span class="location__time">徒歩 約6分</span>
+                        <span class="t-jp">本町駅（大阪メトロ）</span><span class="t-en">Honmachi Sta. (Osaka Metro)</span>
+                        <span class="location__time t-jp">徒歩 約6分</span><span class="location__time t-en">6 min walk</span>
                     </li>
                     <li class="location__item">
-                        <span>関西国際空港</span>
-                        <span class="location__time">電車 約◯分</span>
+                        <span class="t-jp">関西国際空港</span><span class="t-en">Kansai Int'l Airport (KIX)</span>
+                        <span class="location__time t-jp">電車 約55分</span><span class="location__time t-en">55 min by train</span>
                     </li>
                     <li class="location__item">
-                        <span>大阪国際空港（伊丹）</span>
-                        <span class="location__time">電車 約◯分</span>
+                        <span class="t-jp">大阪国際空港（伊丹）</span><span class="t-en">Osaka Itami Airport (ITM)</span>
+                        <span class="location__time t-jp">電車 約60分</span><span class="location__time t-en">60 min by train</span>
                     </li>
                 </ul>
                 <div style="margin-top:var(--sp-sm)">
-                    <a href="osaka.html" class="btn btn-outline">アクセス詳細 &rarr;</a>
+                    <a href="osaka.html" class="btn btn-outline"><span class="t-jp">アクセス詳細 &rarr;</span><span class="t-en">Access Guide &rarr;</span></a>
                 </div>
             </div>
         </div>
@@ -1346,8 +1387,9 @@
 ================================================ -->
 <section class="booking-cta" id="booking" aria-label="予約">
     <div class="container">
-        <h2 class="booking-cta__h-jp">あなたの色で、大阪の旅を。</h2>
-        <p class="booking-cta__h-en">Find your color. Book your stay.</p>
+        <h2 class="booking-cta__h-jp t-jp">あなたの色で、大阪の旅を。</h2>
+        <p class="booking-cta__h-en t-jp">Find your color. Book your stay.</p>
+        <h2 class="booking-cta__h-jp t-en">Find your color. Book your Osaka stay.</h2>
         <div class="booking-cta__list">
             <a href="#" class="ota-btn">Booking.com &rarr;</a>
             <a href="#" class="ota-btn">Airbnb &rarr;</a>
@@ -1396,5 +1438,19 @@
 }());
 </script>
 <script src="assets/lang.js"></script>
+<script>
+(function () {
+    var nav = document.querySelector('.nav');
+    var burger = document.querySelector('.nav__burger');
+    burger.addEventListener('click', function () {
+        nav.classList.toggle('nav--open');
+    });
+    document.querySelectorAll('.nav__link').forEach(function (link) {
+        link.addEventListener('click', function () {
+            nav.classList.remove('nav--open');
+        });
+    });
+})();
+</script>
 </body>
 </html>
