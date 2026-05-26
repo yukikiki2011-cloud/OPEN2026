@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>FAQ — よくある質問 | Sakura Sands Suites Hotel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth}
@@ -115,6 +115,16 @@ ul{list-style:none}
 /* ---- Language switch ---- */
 [data-lang="en"] .t-jp { display:none !important }
 [data-lang="jp"] .t-en { display:none !important }
+[data-lang="jp"] .t-ko { display:none !important }
+[data-lang="jp"] .t-zh { display:none !important }
+[data-lang="en"] .t-ko { display:none !important }
+[data-lang="en"] .t-zh { display:none !important }
+[data-lang="ko"] .t-jp { display:none !important }
+[data-lang="ko"] .t-en { display:none !important }
+[data-lang="ko"] .t-zh { display:none !important }
+[data-lang="zh"] .t-jp { display:none !important }
+[data-lang="zh"] .t-en { display:none !important }
+[data-lang="zh"] .t-ko { display:none !important }
 /* 既存の JP/EN クラスも制御 */
 [data-lang="en"] .hero__sub-jp,
 [data-lang="en"] .concept__h-jp,
@@ -130,6 +140,7 @@ ul{list-style:none}
 [data-lang="jp"] .bilingual__en,
 [data-lang="jp"] .sec-subtitle.t-en,
 [data-lang="jp"] .room-concept__body.t-en { display:none !important }
+.nav .container{width:100%;max-width:none;padding-left:0.75rem;padding-right:0.75rem}
 </style>
 </head>
 <body>
@@ -148,6 +159,10 @@ ul{list-style:none}
     <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
     <span class="nav__lang-sep">|</span>
     <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+  <span class="nav__lang-sep">|</span>
+  <button class="nav__lang-btn lang-btn" data-lang="ko">KO</button>
+  <span class="nav__lang-sep">|</span>
+  <button class="nav__lang-btn lang-btn" data-lang="zh">ZH</button>
   </div>
   <button class="nav__burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
 </div>
@@ -168,21 +183,21 @@ ul{list-style:none}
   <div class="faq-section"><h2 class="faq-section__title">Check-in & Check-out <span style="font-size:.75em;font-family:var(--font-sans-jp);font-weight:300;color:var(--text-sub)">— チェックイン・チェックアウト</span></h2>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span class="t-jp">チェックインは何時からですか？</span><span class="t-en">What time is check-in?</span>
+    <span class="t-jp">チェックインは何時からですか？</span><span class="t-en">What time is check-in?</span><span class="t-ko">体크인은 몇 시부터 가능한가요?</span><span class="t-zh">几点可以办理入住？</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">15:00よりご利用いただけます。お部屋の準備が整い次第、早めにご案内できる場合もございますので、フロントまでお問い合わせください。</span><span class="t-en">Check-in is available from 15:00. Early check-in may be possible if your room is ready — please ask at the front desk.</span></div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">15:00よりご利用いただけます。お部屋の準備が整い次第、早めにご案内できる場合もございますので、フロントまでお問い合わせください。</span><span class="t-en">Check-in is available from 15:00. Early check-in may be possible if your room is ready — please ask at the front desk.</span><span class="t-ko">15:00부터 체크인 가능합니다. 객실 준비가 완료되면 조기 입실도 가능한 경우가 있으니 프런트로 문의해 주세요.</span><span class="t-zh">15:00起可入住。如客房提前准备好，有时可提前入住，请向前台咨询。</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span class="t-jp">チェックアウトは何時までですか？</span><span class="t-en">What time is check-out?</span>
+    <span class="t-jp">チェックアウトは何時までですか？</span><span class="t-en">What time is check-out?</span><span class="t-ko">체크아웃은 몇 시까지인가요?</span><span class="t-zh">退房时间是几点？</span>
     <span class="faq-icon">+</span>
   </button>
-  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">10:00までとなっております。レイトチェックアウトをご希望の場合はフロントへご相談ください（空室状況によって対応いたします）。</span><span class="t-en">Check-out is by 10:00. Late check-out may be available on request, subject to availability.</span></div></div>
+  <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">10:00までとなっております。レイトチェックアウトをご希望の場合はフロントへご相談ください（空室状況によって対応いたします）。</span><span class="t-en">Check-out is by 10:00. Late check-out may be available on request, subject to availability.</span><span class="t-ko">10:00까지입니다. 레이트 체크아웃을 원하시면 프런트에 문의해 주세요 (공실 상황에 따라 대응합니다).</span><span class="t-zh">最晚10:00退房。如需延迟退房，请向前台咨询（视客房空闲情况而定）。</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span class="t-jp">深夜・早朝の到着でも問題ありませんか？</span><span class="t-en">Is late-night or early-morning arrival okay?</span>
+    <span class="t-jp">深夜・早朝の到着でも問題ありませんか？</span><span class="t-en">Is late-night or early-morning arrival okay?</span><span class="t-ko">심야·이른 아침 도착도 괜찮나요?</span><span class="t-zh">深夜或清晨抵达也没问题吗？</span>
     <span class="faq-icon">+</span>
   </button>
   <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">フロントは24時間対応しております。深夜・早朝のご到着でも安心してお越しください。事前にご連絡いただければ万全の対応が可能です。</span><span class="t-en">Our front desk is staffed 24 hours. Late-night and early-morning arrivals are welcome. Prior notice helps us prepare.</span></div></div>
@@ -210,7 +225,7 @@ ul{list-style:none}
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span class="t-jp">ペットは連れてこられますか？</span><span class="t-en">Are pets allowed?</span>
+    <span class="t-jp">ペットは連れてこられますか？</span><span class="t-en">Are pets allowed?</span><span class="t-ko">반려동물과 함께 숙박 가능한가요?</span><span class="t-zh">可以携带宠物入住吗？</span>
     <span class="faq-icon">+</span>
   </button>
   <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">大変申し訳ありませんが、現在はペット不可となっております。</span><span class="t-en">We are sorry, but pets are not permitted at this time.</span></div></div>
@@ -231,14 +246,14 @@ ul{list-style:none}
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span class="t-jp">Wi-Fiは使えますか？</span><span class="t-en">Is Wi-Fi available?</span>
+    <span class="t-jp">Wi-Fiは使えますか？</span><span class="t-en">Is Wi-Fi available?</span><span class="t-ko">Wi-Fi는 사용 가능한가요?</span><span class="t-zh">有Wi-Fi吗？</span>
     <span class="faq-icon">+</span>
   </button>
   <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">全室に高速Wi-Fiを完備しています。料金は無料です。リモートワークや動画視聴も快適にご利用いただけます。</span><span class="t-en">High-speed Wi-Fi is available in every room, free of charge. Comfortable for remote work and video streaming.</span></div></div>
 </div>
 <div class="faq-item">
   <button class="faq-q" aria-expanded="false">
-    <span class="t-jp">駐車場はありますか？</span><span class="t-en">Is there parking?</span>
+    <span class="t-jp">駐車場はありますか？</span><span class="t-en">Is there parking?</span><span class="t-ko">주차장은 있나요?</span><span class="t-zh">有停车场吗？</span>
     <span class="faq-icon">+</span>
   </button>
   <div class="faq-a"><div class="faq-a__inner"><span class="t-jp">専用駐車場はございません。周辺にコインパーキングが複数あります。公共交通機関のご利用をおすすめしています。</span><span class="t-en">There is no dedicated parking. Several coin-operated lots are available nearby. We recommend using public transportation.</span></div></div>

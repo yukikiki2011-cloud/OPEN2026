@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Booking — 予約ガイド | Sakura Sands Suites Hotel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth}
@@ -135,6 +135,16 @@ ul{list-style:none}
 /* ---- Language switch ---- */
 [data-lang="en"] .t-jp { display:none !important }
 [data-lang="jp"] .t-en { display:none !important }
+[data-lang="jp"] .t-ko { display:none !important }
+[data-lang="jp"] .t-zh { display:none !important }
+[data-lang="en"] .t-ko { display:none !important }
+[data-lang="en"] .t-zh { display:none !important }
+[data-lang="ko"] .t-jp { display:none !important }
+[data-lang="ko"] .t-en { display:none !important }
+[data-lang="ko"] .t-zh { display:none !important }
+[data-lang="zh"] .t-jp { display:none !important }
+[data-lang="zh"] .t-en { display:none !important }
+[data-lang="zh"] .t-ko { display:none !important }
 /* 既存の JP/EN クラスも制御 */
 [data-lang="en"] .hero__sub-jp,
 [data-lang="en"] .concept__h-jp,
@@ -150,6 +160,7 @@ ul{list-style:none}
 [data-lang="jp"] .bilingual__en,
 [data-lang="jp"] .sec-subtitle.t-en,
 [data-lang="jp"] .room-concept__body.t-en { display:none !important }
+.nav .container{width:100%;max-width:none;padding-left:0.75rem;padding-right:0.75rem}
 </style>
 </head>
 <body>
@@ -168,6 +179,10 @@ ul{list-style:none}
     <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
     <span class="nav__lang-sep">|</span>
     <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+  <span class="nav__lang-sep">|</span>
+  <button class="nav__lang-btn lang-btn" data-lang="ko">KO</button>
+  <span class="nav__lang-sep">|</span>
+  <button class="nav__lang-btn lang-btn" data-lang="zh">ZH</button>
   </div>
   <button class="nav__burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
 </div>

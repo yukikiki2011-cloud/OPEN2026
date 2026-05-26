@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Rooms — 13色一覧 | Sakura Sands Suites Hotel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth}
@@ -128,6 +128,16 @@ ul{list-style:none}
 /* ---- Language switch ---- */
 [data-lang="en"] .t-jp { display:none !important }
 [data-lang="jp"] .t-en { display:none !important }
+[data-lang="jp"] .t-ko { display:none !important }
+[data-lang="jp"] .t-zh { display:none !important }
+[data-lang="en"] .t-ko { display:none !important }
+[data-lang="en"] .t-zh { display:none !important }
+[data-lang="ko"] .t-jp { display:none !important }
+[data-lang="ko"] .t-en { display:none !important }
+[data-lang="ko"] .t-zh { display:none !important }
+[data-lang="zh"] .t-jp { display:none !important }
+[data-lang="zh"] .t-en { display:none !important }
+[data-lang="zh"] .t-ko { display:none !important }
 /* 既存の JP/EN クラスも制御 */
 [data-lang="en"] .hero__sub-jp,
 [data-lang="en"] .concept__h-jp,
@@ -143,6 +153,7 @@ ul{list-style:none}
 [data-lang="jp"] .bilingual__en,
 [data-lang="jp"] .sec-subtitle.t-en,
 [data-lang="jp"] .room-concept__body.t-en { display:none !important }
+.nav .container{width:100%;max-width:none;padding-left:0.75rem;padding-right:0.75rem}
 </style>
 </head>
 <body>
@@ -161,6 +172,10 @@ ul{list-style:none}
     <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
     <span class="nav__lang-sep">|</span>
     <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+  <span class="nav__lang-sep">|</span>
+  <button class="nav__lang-btn lang-btn" data-lang="ko">KO</button>
+  <span class="nav__lang-sep">|</span>
+  <button class="nav__lang-btn lang-btn" data-lang="zh">ZH</button>
   </div>
   <button class="nav__burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
 </div>
@@ -174,8 +189,10 @@ ul{list-style:none}
 <section class="page-hero" style="min-height:36vh">
   <div class="page-hero__content container">
     <span class="label">Rooms</span>
-    <h1 class="page-hero__h1">Choose Your Color.</h1>
-    <p class="page-hero__jp t-jp">あなたの色を、選んでください。</p>
+    <h1 class="page-hero__h1 t-jp">あなたの色を、選んでください。</h1>
+    <h1 class="page-hero__h1 t-en">Choose Your Color.</h1>
+    <h1 class="page-hero__h1 t-ko">색을 선택하세요.</h1>
+    <h1 class="page-hero__h1 t-zh">请选择您的色彩。</h1>
   </div>
 </section>
 
@@ -194,9 +211,13 @@ ul{list-style:none}
       <h2 class="kogane-banner__h2">Kogane Room<br><span style="font-size:.6em;letter-spacing:.1em">黄金色 / Radiant Gold</span></h2>
       <p class="kogane-banner__jp t-jp">最上階に宿る、黄金の時間。</p>
       <p class="kogane-banner__jp t-en">Golden hours at the top floor.</p>
+      <p class="kogane-banner__jp t-ko">최상층에서 보내는 황금빛 시간.</p>
+      <p class="kogane-banner__jp t-zh">栖居顶层，流金岁月。</p>
       <p class="kogane-banner__desc t-jp">14階のペントハウス・スイートは、お問い合わせ・審査制。<br>大阪の夜景を独り占めにする、唯一無二の滞在を。</p>
       <p class="kogane-banner__desc t-en">The 14F penthouse is by inquiry &amp; screening only.<br>Osaka's night view — all to yourself.</p>
-      <a href="/booking.html#kogane" class="btn btn-kogane"><span class="t-jp">お問い合わせ</span><span class="t-en">Inquire Now</span> &rarr;</a>
+      <p class="kogane-banner__desc t-ko">14층 펜트하우스 스위트는 문의 · 심사제입니다.<br>오사카의 야경을 독점하는, 단 하나뿐인 체류를.</p>
+      <p class="kogane-banner__desc t-zh">14楼顶层套房采用预约审查制。<br>独享大阪夜景，无与伦比的住宿体验。</p>
+      <a href="/booking.html#kogane" class="btn btn-kogane"><span class="t-jp">お問い合わせ</span><span class="t-en">Inquire Now</span><span class="t-ko">문의하기</span><span class="t-zh">立即咨询</span> &rarr;</a>
     </div>
   </div>
 
@@ -206,6 +227,8 @@ ul{list-style:none}
     <h2 class="sec-title">13 Colors, 13 Rooms.</h2>
     <p class="sec-subtitle t-jp">2F〜13F、12室から色を選んでください。</p>
     <p class="sec-subtitle t-en">Choose from 12 rooms across floors 2F–13F.</p>
+    <p class="sec-subtitle t-ko">2F〜13F, 12개의 객실 중 색을 선택하세요.</p>
+    <p class="sec-subtitle t-zh">从2楼至13楼共12间客房中，选择您的色彩。</p>
   </div>
   <div class="rooms-grid">
 <article class="room-card">
@@ -385,6 +408,8 @@ ul{list-style:none}
     <p class="cta-strip__title">Your Journey Awaits.</p>
     <p class="cta-strip__sub t-jp">色を選んだら、予約へ。</p>
     <p class="cta-strip__sub t-en">Once you've chosen your color, it's time to book.</p>
+    <p class="cta-strip__sub t-ko">색을 선택했으면 예약으로.</p>
+    <p class="cta-strip__sub t-zh">选好颜色后，就去预订吧。</p>
     <div class="cta-strip__btns">
       <a href="booking.html" class="btn btn-kogane"><span class="t-jp">予約する</span><span class="t-en">Book Now</span> &rarr;</a>
       <a href="concept.html" class="btn btn-ghost"><span class="t-jp">コンセプトを読む</span><span class="t-en">Read the Concept</span></a>

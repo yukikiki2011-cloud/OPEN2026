@@ -12,7 +12,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         /* ==============================================
@@ -841,6 +841,16 @@
 /* ---- Language switch ---- */
 [data-lang="en"] .t-jp { display:none !important }
 [data-lang="jp"] .t-en { display:none !important }
+[data-lang="jp"] .t-ko { display:none !important }
+[data-lang="jp"] .t-zh { display:none !important }
+[data-lang="en"] .t-ko { display:none !important }
+[data-lang="en"] .t-zh { display:none !important }
+[data-lang="ko"] .t-jp { display:none !important }
+[data-lang="ko"] .t-en { display:none !important }
+[data-lang="ko"] .t-zh { display:none !important }
+[data-lang="zh"] .t-jp { display:none !important }
+[data-lang="zh"] .t-en { display:none !important }
+[data-lang="zh"] .t-ko { display:none !important }
 /* 既存の JP/EN クラスも制御 */
 [data-lang="en"] .hero__sub-jp,
 [data-lang="en"] .concept__h-jp,
@@ -856,6 +866,7 @@
 [data-lang="jp"] .bilingual__en,
 [data-lang="jp"] .sec-subtitle.t-en,
 [data-lang="jp"] .room-concept__body.t-en { display:none !important }
+.nav .container{width:100%;max-width:none;padding-left:0.75rem;padding-right:0.75rem}
 </style>
 </head>
 <body>
@@ -888,6 +899,10 @@
                     <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
                     <span class="nav__lang-sep">|</span>
                     <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+                <span class="nav__lang-sep">|</span>
+                <button class="nav__lang-btn lang-btn" data-lang="ko">KO</button>
+                <span class="nav__lang-sep">|</span>
+                <button class="nav__lang-btn lang-btn" data-lang="zh">ZH</button>
                 </div>
                 <button class="nav__burger" aria-label="メニューを開く">
                     <span></span><span></span><span></span>
@@ -916,10 +931,12 @@
         <h1 class="hero__title">13 Colors, One Journey.</h1>
         <p class="hero__sub-jp t-jp">日本の色を旅する、都市型ファミリーステイ。</p>
         <p class="hero__sub-jp t-en">A journey through Japanese color. Urban suites for families.</p>
+        <p class="hero__sub-jp t-ko">일본의 색을 여행하다. 도시형 패밀리 스위트.</p>
+        <p class="hero__sub-jp t-zh">探寻日本色彩之旅。都市家庭套房。</p>
         <p class="hero__sub-en">A city suite hotel reimagined through 13 traditional Japanese colors.</p>
         <div class="hero__btns">
-            <a href="rooms.html" class="btn btn-dark"><span class="t-jp">お部屋を選ぶ &rarr;</span><span class="t-en">Choose Your Room &rarr;</span></a>
-            <a href="osaka.html" class="btn btn-ghost"><span class="t-jp">アクセスを見る</span><span class="t-en">Access Guide</span></a>
+            <a href="rooms.html" class="btn btn-dark"><span class="t-jp">お部屋を選ぶ &rarr;</span><span class="t-en">Choose Your Room &rarr;</span><span class="t-ko">객실 선택 &rarr;</span><span class="t-zh">选择客房 &rarr;</span></a>
+            <a href="osaka.html" class="btn btn-ghost"><span class="t-jp">アクセスを見る</span><span class="t-en">Access Guide</span><span class="t-ko">오시는 길</span><span class="t-zh">交通指南</span></a>
         </div>
     </div>
 
@@ -961,7 +978,7 @@
                 A Osaka city hotel reimagined through 13 traditional Japanese colors,<br>
                 interpreted for modern travelers and their families.
             </p>
-            <a href="concept.html" class="btn btn-outline"><span class="t-jp">コンセプトを読む &rarr;</span><span class="t-en">Our Story &rarr;</span></a>
+            <a href="concept.html" class="btn btn-outline"><span class="t-jp">コンセプトを読む &rarr;</span><span class="t-en">Our Story &rarr;</span><span class="t-ko">더 알아보기 &rarr;</span><span class="t-zh">了解更多 &rarr;</span></a>
         </div>
     </div>
 </section>
@@ -979,7 +996,7 @@
                 <p class="sec-subtitle t-jp">あなたの色を見つけてください。2F〜13F、12の部屋から。</p>
                 <p class="sec-subtitle t-en">Find your color. 12 rooms across floors 2 to 13.</p>
             </div>
-            <a href="rooms.html" class="btn btn-outline" style="flex-shrink:0"><span class="t-jp">全ルームを見る &rarr;</span><span class="t-en">View All Rooms &rarr;</span></a>
+            <a href="rooms.html" class="btn btn-outline" style="flex-shrink:0"><span class="t-jp">全ルームを見る &rarr;</span><span class="t-en">View All Rooms &rarr;</span><span class="t-ko">전체 객실 보기 &rarr;</span><span class="t-zh">查看全部客房 &rarr;</span></a>
         </div>
 
         <div class="rooms__grid">
@@ -994,7 +1011,7 @@
                     <div class="room-card__body">
                         <p class="room-card__jp">墨色</p>
                         <p class="room-card__en">Sumi Room &mdash; Ink Black</p>
-                        <span class="room-card__cta"><span class="t-jp">詳細を見る <span>&rarr;</span></span><span class="t-en">Details <span>&rarr;</span></span></span>
+                        <span class="room-card__cta"><span class="t-jp">詳細を見る <span>&rarr;</span></span><span class="t-en">Details <span>&rarr;</span></span><span class="t-ko">자세히 보기 <span>&rarr;</span></span><span class="t-zh">查看详情 <span>&rarr;</span></span></span>
                     </div>
                 </a>
             </article>
@@ -1417,7 +1434,7 @@
                 </ul>
             </nav>
             <div class="footer__lang">
-                <button class="footer__lang-btn lang-btn is-active" data-lang="jp" aria-current="true">JP</button><button class="footer__lang-btn lang-btn" data-lang="en" aria-current="false">EN</button>
+                <button class="footer__lang-btn lang-btn is-active" data-lang="jp" aria-current="true">JP</button><button class="footer__lang-btn lang-btn" data-lang="en" aria-current="false">EN</button><button class="footer__lang-btn lang-btn" data-lang="ko" aria-current="false">KO</button><button class="footer__lang-btn lang-btn" data-lang="zh" aria-current="false">ZH</button>
             </div>
         </div>
         <p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
