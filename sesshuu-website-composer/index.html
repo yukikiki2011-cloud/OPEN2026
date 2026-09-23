@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>雪舟 Website Composer</title>
+    <script type="text/javascript">
+      // public/404.html が押し込んだクエリ文字列を元のパスへ戻す（GitHub Pages SPA対応）。
+      // ローカル開発（npm run dev）では発火しない（このクエリ形式が付かないため無害）。
+      ;(function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&')
+            })
+            .join('?')
+          window.history.replaceState(null, '', l.pathname.slice(0, -1) + decoded + l.hash)
+        }
+      })(window.location)
+    </script>
+    <script type="module" crossorigin src="/OPEN2026/sesshuu-website-composer/assets/index-BBPSVNK6.js"></script>
+    <link rel="stylesheet" crossorigin href="/OPEN2026/sesshuu-website-composer/assets/index-BT8PCzBl.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
