@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>雪舟 Website Composer</title>
+    <script type="text/javascript">
+      // GitHub Pagesはサーバー側リライトができないSPAホスティングなので、
+      // 存在しないパス（例: /OPEN2026/sesshuu-website-composer/gallery を直接開く／リロードする）は
+      // 404.htmlとしてここに落ちる。パスをクエリ文字列に押し込めてindex.htmlへ戻し、
+      // index.html側の対応スクリプト（history.replaceState）で元のパスに復元する。
+      // 出典: https://github.com/rafgraph/spa-github-pages（雪舟 Website Composer独自の変更なし）
+      // pathSegmentsToKeep=2 は "/OPEN2026/sesshuu-website-composer" の2セグメント分。
+      // 注意: このファイルはOPEN2026リポジトリのルート直下に置く必要がある
+      // （GitHub Pagesはサイト全体のルートに置いた404.htmlしか使わないため、
+      //   サブフォルダ内の404.htmlは機能しない）。
+      var pathSegmentsToKeep = 2
+
+      var l = window.location
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      )
+    </script>
+  </head>
+  <body></body>
+</html>
