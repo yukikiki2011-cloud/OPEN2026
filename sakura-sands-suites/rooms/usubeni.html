@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="jp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>3F 薄紅 — Usubeni Room | Sakura Sands Suites Hotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+KR:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:#fafaf8;color:#464a41;font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+:root{--kogane:#e6b422;--sumi:#464a41;--bg:#fafaf8;--border:#e8e8e4;--nav-h:72px;--max-w:1200px;--room-color:#ee827c;--room-text:#ffffff}
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;height:var(--nav-h);background:rgba(250,250,248,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+.nav__logo{display:flex;flex-direction:row;align-items:center;gap:.625rem;line-height:1.25}
+.nav__logo-mark{width:36px;height:36px;flex-shrink:0}
+.nav__logo-text{display:flex;flex-direction:column}
+.nav__logo-main{font-family:'Cormorant Garamond',serif;font-size:1.0625rem;font-weight:400;letter-spacing:.04em}
+.nav__logo-sub{font-family:'Inter',sans-serif;font-size:.5625rem;letter-spacing:.25em;text-transform:uppercase;color:#8a8c87}
+.nav__links{display:flex;gap:2rem}
+.nav__link{font-family:'Inter',sans-serif;font-size:.8125rem;letter-spacing:.06em;transition:color .2s}
+.nav__link:hover,.nav__link.active{color:var(--kogane)}
+.nav__lang{display:flex;align-items:center;gap:.125rem}
+.nav__lang-btn{font-family:'Inter',sans-serif;font-size:.6875rem;letter-spacing:.1em;color:#8a8c87;background:none;border:none;cursor:pointer;transition:color .2s;padding:.25rem .375rem}
+.nav__lang-btn.is-active,.nav__lang-btn:hover{color:var(--kogane);font-weight:600}
+.nav__lang-sep{font-size:.625rem;color:#e8e8e4}
+.nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav__burger span{display:block;width:22px;height:1.5px;background:#464a41;transition:all .3s}
+.btn{display:inline-flex;align-items:center;padding:.875rem 2rem;font-family:'Inter',sans-serif;font-size:.8125rem;font-weight:500;letter-spacing:.1em;cursor:pointer;transition:all .25s;border:none;text-decoration:none}
+.btn-dark{background:#464a41;color:#fafaf8}
+.btn-dark:hover{background:var(--kogane);color:#464a41;transform:translateY(-2px)}
+.btn-kogane{background:var(--kogane);color:#464a41}
+.btn-kogane:hover{background:#fff;transform:translateY(-2px)}
+.btn-ghost-room{background:transparent;border:1px solid var(--room-text);color:var(--room-text);opacity:.7}
+.btn-ghost-room:hover{opacity:1}
+.room-hero{display:grid;grid-template-columns:3fr 2fr;min-height:calc(100vh - var(--nav-h));margin-top:var(--nav-h)}
+.room-hero__photo{position:relative;overflow:hidden}
+.room-hero__photo img{width:100%;height:100%;object-fit:cover}
+.room-hero__panel{background:var(--room-color);display:flex;flex-direction:column;justify-content:center;padding:3rem 2.5rem;position:relative;overflow:hidden}
+.room-hero__bg-num{position:absolute;bottom:-2rem;right:-1rem;font-family:'Cormorant Garamond',serif;font-size:12rem;font-weight:300;color:var(--room-text);opacity:.06;line-height:1;pointer-events:none;user-select:none}
+.room-hero__label{font-family:'Inter',sans-serif;font-size:.6875rem;letter-spacing:.25em;text-transform:uppercase;color:var(--room-text);opacity:.65;margin-bottom:1rem}
+.room-hero__jp{font-family:'Noto Serif JP',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--room-text);letter-spacing:.12em;margin-bottom:.375rem}
+.room-hero__en{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:var(--room-text);opacity:.75;letter-spacing:.06em;margin-bottom:.25rem}
+.room-hero__en-sub{font-family:'Inter',sans-serif;font-size:.8125rem;color:var(--room-text);opacity:.5;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem}
+.room-hero__hex{font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.15em;color:var(--room-text);opacity:.4;margin-bottom:2.5rem}
+.room-hero__cta{display:flex;flex-direction:column;gap:.75rem}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+.room-concept{padding:5rem 0;border-top:1px solid var(--border)}
+.room-concept__inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.room-concept__illust{overflow:hidden;aspect-ratio:4/3}
+.room-concept__illust img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.room-concept__illust:hover img{transform:scale(1.03)}
+.room-concept__label{font-family:'Inter',sans-serif;font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;color:#8a8c87;display:block;margin-bottom:1rem}
+.room-concept__h{font-family:'Noto Serif JP',serif;font-size:1.5rem;font-weight:300;letter-spacing:.1em;margin-bottom:1rem}
+.room-concept__body{font-size:.9375rem;line-height:2;color:#8a8c87;margin-bottom:.75rem}
+.room-art{padding:4rem 0;text-align:center;background:#f0ede8}
+.room-art__circle{width:180px;height:180px;border-radius:50%;overflow:hidden;margin:0 auto 1.5rem;box-shadow:0 4px 24px rgba(70,74,65,.12)}
+.room-art__circle img{width:100%;height:100%;object-fit:cover}
+.room-art__no{font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#8a8c87}
+.room-nav{display:flex;justify-content:space-between;align-items:center;padding:2.5rem 0;border-top:1px solid var(--border)}
+.room-nav__center a{font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:#8a8c87}
+.room-nav__center a:hover{color:var(--kogane)}
+.room-nav__btn{font-family:'Noto Serif JP',serif;font-size:.875rem;padding:.5rem 1.25rem;border:1px solid var(--border);transition:all .2s;color:#464a41}
+.room-nav__btn:hover{border-color:var(--kogane);color:var(--kogane)}
+.cta-strip{background:#464a41;padding:4rem 0;text-align:center}
+.cta-strip__title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.25rem);font-weight:300;color:#fff;letter-spacing:.06em;margin-bottom:.5rem}
+.cta-strip__sub{font-family:'Noto Sans JP',sans-serif;font-size:.9375rem;color:rgba(255,255,255,.5);margin-bottom:2rem}
+.cta-strip__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.footer{background:#464a41;padding:2rem 0;border-top:1px solid rgba(255,255,255,.08)}
+.footer__copy{font-family:'Inter',sans-serif;font-size:.6875rem;letter-spacing:.06em;color:rgba(255,255,255,.3);text-align:center}
+@media(max-width:768px){
+  .room-hero{grid-template-columns:1fr}
+  .room-hero__panel{min-height:50vh}
+  .room-concept__inner{grid-template-columns:1fr}
+  .nav__links{display:none}
+  .nav__burger{display:flex}
+  .nav--open .nav__links{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:var(--nav-h);left:0;right:0;background:rgba(250,250,248,.98);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1.25rem 1.5rem;gap:1.125rem}
+  .nav--open .nav__burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .nav--open .nav__burger span:nth-child(2){opacity:0}
+  .nav--open .nav__burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  .room-nav{flex-direction:column;gap:1rem}
+}
+
+/* ---- Language switch ---- */
+[data-lang="en"] .t-jp { display:none !important }
+[data-lang="jp"] .t-en { display:none !important }
+[data-lang="jp"] .t-ko { display:none !important }
+[data-lang="jp"] .t-zh { display:none !important }
+[data-lang="en"] .t-ko { display:none !important }
+[data-lang="en"] .t-zh { display:none !important }
+[data-lang="ko"] .t-jp { display:none !important }
+[data-lang="ko"] .t-en { display:none !important }
+[data-lang="ko"] .t-zh { display:none !important }
+[data-lang="zh"] .t-jp { display:none !important }
+[data-lang="zh"] .t-en { display:none !important }
+[data-lang="zh"] .t-ko { display:none !important }
+/* 既存の JP/EN クラスも制御 */
+[data-lang="en"] .hero__sub-jp,
+[data-lang="en"] .concept__h-jp,
+[data-lang="en"] .concept__body:not(.concept__body-en),
+[data-lang="en"] .bilingual__jp,
+[data-lang="en"] .page-hero__jp,
+[data-lang="en"] .sec-subtitle.t-jp,
+[data-lang="en"] .room-concept__body.t-jp { display:none !important }
+
+[data-lang="jp"] .hero__sub-en,
+[data-lang="jp"] .concept__h-en,
+[data-lang="jp"] .concept__body-en,
+[data-lang="jp"] .bilingual__en,
+[data-lang="jp"] .sec-subtitle.t-en,
+[data-lang="jp"] .room-concept__body.t-en { display:none !important }
+.nav .container{width:100%;max-width:none;padding-left:0.75rem;padding-right:0.75rem}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="../index.html" class="nav__logo" aria-label="Sakura Sands Suites Hotel">
+      <img src="../assets/logo-mark.svg" class="nav__logo-mark" alt="" aria-hidden="true">
+      <span class="nav__logo-text">
+        <span class="nav__logo-main">Sakura Sands Suites</span>
+        <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+      </span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="../concept.html" class="nav__link">Concept</a></li>
+      <li><a href="../rooms.html"   class="nav__link active">Rooms</a></li>
+      <li><a href="../family.html"  class="nav__link">Family Stay</a></li>
+      <li><a href="../osaka.html"   class="nav__link">Osaka</a></li>
+      <li><a href="../faq.html"     class="nav__link">FAQ</a></li>
+    </ul>
+    <div class="nav__right" style="display:flex;align-items:center;gap:1rem">
+      <a href="../booking.html" class="btn btn-dark" style="padding:.625rem 1.5rem">Book Now</a>
+      <div class="nav__lang">
+        <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
+        <span class="nav__lang-sep">|</span>
+        <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+      <span class="nav__lang-sep">|</span>
+      <button class="nav__lang-btn lang-btn" data-lang="ko">KO</button>
+      <span class="nav__lang-sep">|</span>
+      <button class="nav__lang-btn lang-btn" data-lang="zh">ZH</button>
+      </div>
+      <button class="nav__burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SPLIT -->
+<section class="room-hero">
+  <div class="room-hero__photo">
+    <img src="../assets/rooms/02_usubeni.png" alt="薄紅 Usubeni Room" loading="eager">
+  </div>
+  <div class="room-hero__panel">
+    <span class="room-hero__bg-num">3</span>
+    <span class="room-hero__label">Room 3001 &nbsp;&middot;&nbsp; 3F</span>
+    <h1 class="room-hero__jp">薄紅</h1>
+    <p class="room-hero__en">Usubeni Room</p>
+    <p class="room-hero__en-sub">Pale Crimson</p>
+    <p class="room-hero__hex">#ee827c</p>
+    <div class="room-hero__cta">
+      <a href="../booking.html" class="btn btn-dark"><span class="t-jp">予約する</span><span class="t-en">Book Now</span><span class="t-ko">예약하기</span><span class="t-zh">立即预订</span> &rarr;</a>
+      <a href="../rooms.html"   class="btn btn-ghost-room"><span class="t-jp">全ルームに戻る</span><span class="t-en">All Rooms</span><span class="t-ko">전체 객실</span><span class="t-zh">全部客房</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<div class="container">
+  <section class="room-concept">
+    <div class="room-concept__inner">
+      <div class="room-concept__illust">
+        <img src="../assets/illustrations/02_usubeni.jpg" alt="薄紅 Geminiイラスト" loading="lazy">
+      </div>
+      <div>
+        <span class="room-concept__label">Room Story</span>
+        <h2 class="room-concept__h">薄紅</h2>
+        <p class="room-concept__kw" style="font-family:'Noto Serif JP',serif;font-size:.875rem;letter-spacing:.1em;color:#8a8c87;margin-bottom:.25rem">愛情 × ふんわりとした頬の赤み</p>
+        <p class="room-concept__kw-en" style="font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.08em;color:#b0aca8;margin-bottom:1.25rem">Affection × Soft cheek redness</p>
+        <p class="room-concept__body t-jp">誰にでもスッと伝わる、光を透かしたような優しく淡い赤。強すぎる「紅」ではなく「薄紅」とすることで、透明感と人肌の温もりを感じさせる、親しみやすい表現にしました。</p>
+        <p class="room-concept__body t-en">A gentle, translucent red that speaks to everyone instinctively. Not the intensity of crimson — the subtlety of usubeni, where pale blush meets human warmth.</p>
+        <p class="room-concept__body t-ko">얇은 홍색. 수줍은 듯, 그러나 확실히 존재를 주장하는 섬세한 핑크.</p>
+        <p class="room-concept__body t-zh">淡淡的绯红。羞涩却又确实存在的细腻粉红。</p>
+        <p class="room-concept__body t-jp" style="color:#b0aca8;font-size:.875rem;margin-top:.5rem">
+          55〜80㎡のスイートルーム。リビング・寝室・フルキッチンが独立。<br>
+          家族みんなが、伸び伸びと過ごせる広さ。
+        </p>
+        <p class="room-concept__body t-en" style="color:#b0aca8;font-size:.875rem;margin-top:.5rem">55–80 ㎡ suite room. Living area, private bedroom, and full kitchen — all independent. Space for the whole family to truly stretch out.</p>
+        <p class="room-concept__body t-ko" style="color:#b0aca8;font-size:.875rem;margin-top:.5rem">55~80㎡ 스위트룸. 거실·침실·풀 키친이 독립 구성. 온 가족이 여유롭게 지낼 수 있는 넓은 공간.</p>
+        <p class="room-concept__body t-zh" style="color:#b0aca8;font-size:.875rem;margin-top:.5rem">55～80㎡套房。起居室、卧室、全功能厨房各自独立，让全家人都能尽情舒展。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT -->
+  <nav class="room-nav" aria-label="前後の部屋">
+    <a href="torinoko.html" class="room-nav__btn">&larr; 鳥の子色</a>
+    <span class="room-nav__center"><a href="../rooms.html">All Rooms</a></span>
+    <a href="kurumi.html" class="room-nav__btn">胡桃色 &rarr;</a>
+  </nav>
+</div>
+
+<!-- ART -->
+<section class="room-art">
+  <div class="room-art__circle">
+    <img src="../assets/chatgpt-art/02_usubeni.png" alt="薄紅 アート" loading="lazy">
+  </div>
+  <p class="room-art__no">3F &nbsp;&middot;&nbsp; 薄紅 &nbsp;&middot;&nbsp; #ee827c</p>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <div class="container">
+    <p class="cta-strip__title t-jp">薄紅の旅へ。</p>
+    <p class="cta-strip__title t-en">A Journey in Usubeni Rose.</p>
+    <p class="cta-strip__sub">Room 3001 &mdash; Usubeni Room, 3F</p>
+    <div class="cta-strip__btns">
+      <a href="../booking.html" class="btn btn-kogane"><span class="t-jp">予約する</span><span class="t-en">Book Now</span><span class="t-ko">예약하기</span><span class="t-zh">立即预订</span> &rarr;</a>
+      <a href="../rooms.html"   class="btn" style="background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff"><span class="t-jp">他の色を見る</span><span class="t-en">See All Rooms</span><span class="t-ko">다른 색 보기</span><span class="t-zh">查看其他客房</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../assets/lang.js"></script>
+<script>
+(function(){
+  var nav=document.querySelector('.nav');
+  var burger=document.querySelector('.nav__burger');
+  if(!burger) return;
+  burger.addEventListener('click',function(){nav.classList.toggle('nav--open')});
+  document.querySelectorAll('.nav__link').forEach(function(l){l.addEventListener('click',function(){nav.classList.remove('nav--open')})});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="jp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Concept — ブランドストーリー | Sakura Sands Suites Hotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans-jp);font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:root{
+  --bg:#fafaf8;--text:#464a41;--text-sub:#8a8c87;--border:#e8e8e4;
+  --white:#ffffff;--kogane:#e6b422;--sumi:#464a41;
+  --font-serif-jp:'Noto Serif JP',serif;--font-sans-jp:'Noto Sans JP',sans-serif;
+  --font-serif-en:'Cormorant Garamond',serif;--font-sans-en:'Inter',sans-serif;
+  --nav-h:72px;--max-w:1200px;
+  --sp-sm:1rem;--sp-md:2rem;--sp-lg:4rem;--sp-xl:8rem;
+}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+.section{padding:var(--sp-lg) 0}
+.section-lg{padding:var(--sp-xl) 0}
+.label{font-family:var(--font-sans-en);font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text-sub);display:block;margin-bottom:.5rem}
+.sec-title{font-family:var(--font-serif-en);font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;letter-spacing:.04em;margin-bottom:.5rem}
+.sec-subtitle{font-family:var(--font-sans-jp);font-size:.9375rem;color:var(--text-sub);margin-bottom:var(--sp-md)}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;font-family:var(--font-sans-en);font-size:.8125rem;font-weight:500;letter-spacing:.1em;cursor:pointer;transition:all .25s ease;border:none;text-decoration:none}
+.btn-dark{background:var(--text);color:var(--bg)}
+.btn-dark:hover{background:var(--kogane);color:var(--text);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--text)}
+.btn-outline:hover{background:var(--text);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-kogane{background:var(--kogane);color:var(--sumi)}
+.btn-kogane:hover{background:var(--white);color:var(--sumi);transform:translateY(-2px);box-shadow:0 8px 24px rgba(70,74,65,.2)}
+/* Nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;height:var(--nav-h);background:rgba(250,250,248,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;align-items:center}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav__logo{display:flex;flex-direction:column;line-height:1.25}
+.nav__logo-main{font-family:var(--font-serif-en);font-size:1.0625rem;font-weight:400;letter-spacing:.04em}
+.nav__logo-sub{font-family:var(--font-sans-en);font-size:.5625rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-sub)}
+.nav__links{display:flex;align-items:center;gap:2rem}
+.nav__link{font-family:var(--font-sans-en);font-size:.8125rem;letter-spacing:.06em;transition:color .2s}
+.nav__link:hover{color:var(--kogane)}
+.nav__link.active{color:var(--kogane);border-bottom:1px solid var(--kogane);padding-bottom:2px}
+.nav__right{display:flex;align-items:center;gap:1rem}
+.nav__cta{padding:.625rem 1.5rem}
+        .nav__logo{display:flex;flex-direction:row;align-items:center;gap:.625rem;line-height:1.25}
+        .nav__logo-mark{width:36px;height:36px;flex-shrink:0}
+        .nav__logo-text{display:flex;flex-direction:column}
+        .nav__lang{display:flex;align-items:center;gap:.125rem}
+        .nav__lang-btn{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.1em;color:var(--text-sub);background:none;border:none;cursor:pointer;transition:color .2s;padding:.25rem .375rem}
+        .nav__lang-btn.is-active,.nav__lang-btn:hover{color:var(--kogane);font-weight:600}
+        .nav__lang-sep{font-size:.625rem;color:var(--border)}
+        .nav__burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+        .nav__burger span{display:block;width:22px;height:1.5px;background:var(--text);transition:all .3s}
+/* Page Hero */
+.page-hero{position:relative;padding-top:var(--nav-h);min-height:40vh;display:flex;align-items:center;background:var(--sumi);overflow:hidden}
+.page-hero--light{background:var(--bg)}
+.page-hero--kogane{background:linear-gradient(135deg,#2e2a1a 0%,#464010 50%,#2e2a1a 100%)}
+.page-hero__bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.25}
+.page-hero__overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(46,50,41,.85) 0%,rgba(46,50,41,.5) 100%)}
+.page-hero__content{position:relative;z-index:2;padding:var(--sp-lg) 0}
+.page-hero .label{color:var(--kogane)}
+.page-hero--light .label{color:var(--text-sub)}
+.page-hero__h1{font-family:var(--font-serif-en);font-size:clamp(2rem,5vw,3.75rem);font-weight:300;color:var(--white);line-height:1.15;letter-spacing:.04em;margin-bottom:.5rem}
+.page-hero--light .page-hero__h1{color:var(--text)}
+.page-hero__jp{font-family:var(--font-serif-jp);font-size:clamp(.9375rem,2vw,1.125rem);font-weight:300;color:rgba(255,255,255,.7);letter-spacing:.2em}
+.page-hero--light .page-hero__jp{color:var(--text-sub)}
+/* CTA Strip */
+.cta-strip{background:var(--sumi);padding:var(--sp-lg) 0;text-align:center}
+.cta-strip__title{font-family:var(--font-serif-en);font-size:clamp(1.25rem,2.5vw,2rem);font-weight:300;color:var(--white);letter-spacing:.06em;margin-bottom:.5rem}
+.cta-strip__sub{font-family:var(--font-sans-jp);font-size:.9375rem;color:rgba(255,255,255,.55);margin-bottom:var(--sp-md)}
+.cta-strip__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+/* Footer */
+.footer{background:var(--sumi);padding:var(--sp-md) 0}
+.footer__inner{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+.footer__logo{font-family:var(--font-serif-en);font-size:.9375rem;font-weight:400;letter-spacing:.08em;color:rgba(255,255,255,.7)}
+.footer__links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer__link{font-family:var(--font-sans-en);font-size:.75rem;letter-spacing:.08em;color:rgba(255,255,255,.45);transition:color .2s}
+.footer__link:hover{color:var(--kogane)}
+.footer__copy{font-family:var(--font-sans-en);font-size:.6875rem;letter-spacing:.06em;color:rgba(255,255,255,.3);text-align:center;padding-top:var(--sp-sm);border-top:1px solid rgba(255,255,255,.08)}
+/* Responsive */
+@media(max-width:768px){
+  .nav__links{display:none}
+            .nav__lang{display:flex}
+            .nav__burger{display:flex}
+            .nav--open .nav__links{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:var(--nav-h);left:0;right:0;background:rgba(250,250,248,.98);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:1.25rem 1.5rem;gap:1.125rem}
+            .nav--open .nav__cta{display:inline-flex}
+            .nav--open .nav__burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+            .nav--open .nav__burger span:nth-child(2){opacity:0}
+            .nav--open .nav__burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  .container{padding:0 1.25rem}
+  .section{padding:2.5rem 0}
+  .section-lg{padding:4rem 0}
+  .page-hero__h1{font-size:clamp(1.625rem,6vw,2.25rem)}
+}
+
+.concept-num{
+  font-family:var(--font-serif-en);font-size:clamp(6rem,16vw,12rem);font-weight:300;
+  line-height:1;display:block;
+  padding-bottom:0.12em;
+  margin-bottom:var(--sp-sm);
+  background:linear-gradient(120deg,
+    #ee827c 0%,#967249 8%,#d8e698 17%,#89c3eb 25%,
+    #547443 33%,#ffec47 42%,#4b61ba 50%,
+    #cc7eb1 58%,#f6ad49 67%,#e6b422 75%,
+    #ee827c 83%,#967249 92%,#4b61ba 100%
+  );
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.concept-hero-inner{max-width:760px}
+.concept-hero-inner .page-hero__h1{font-size:clamp(1.75rem,4.5vw,3.25rem)}
+.bilingual{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-lg)}
+.bilingual__jp{font-family:var(--font-serif-jp);font-size:1.0625rem;font-weight:400;line-height:2;letter-spacing:.08em}
+.bilingual__en{font-family:var(--font-sans-en);font-size:.9375rem;font-weight:300;line-height:1.9;color:var(--text-sub)}
+/* Palette strip */
+.palette-strip{display:flex;height:56px;border-radius:2px;overflow:hidden;margin:var(--sp-lg) 0}
+.palette-strip__cell{flex:1;position:relative;cursor:default;transition:flex .2s}
+.palette-strip__cell:hover{flex:2.5}
+.palette-strip__tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--sumi);color:var(--white);font-family:var(--font-sans-en);font-size:.625rem;letter-spacing:.06em;white-space:nowrap;padding:3px 8px;opacity:0;pointer-events:none;transition:opacity .2s}
+.palette-strip__cell:hover .palette-strip__tip{opacity:1}
+/* Feature row */
+.feat-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-xl);align-items:center;padding:var(--sp-xl) 0;border-top:1px solid var(--border)}
+.feat-row--rev{direction:rtl}.feat-row--rev>*{direction:ltr}
+.feat-row__img{aspect-ratio:4/3;overflow:hidden}
+.feat-row__img img{width:100%;height:100%;object-fit:cover}
+.feat-row__body{}
+.feat-row__h2{font-family:var(--font-serif-en);font-size:clamp(1.375rem,2.5vw,2rem);font-weight:300;letter-spacing:.04em;margin-bottom:.75rem}
+.feat-row__jp{font-family:var(--font-serif-jp);font-size:1rem;letter-spacing:.15em;color:var(--text-sub);margin-bottom:1rem}
+.feat-row__p{font-family:var(--font-sans-jp);font-size:.9375rem;line-height:1.9;margin-bottom:.5rem}
+/* Choose guide */
+.choose-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:var(--sp-md)}
+.choose-card{border:1px solid var(--border);padding:1.25rem 1rem;text-align:center}
+.choose-card__swatch{width:40px;height:40px;border-radius:50%;margin:0 auto .75rem}
+.choose-card__mood{font-family:var(--font-sans-jp);font-size:.8125rem;color:var(--text-sub);margin-bottom:.25rem}
+.choose-card__room{font-family:var(--font-serif-jp);font-size:1rem;font-weight:400}
+@media(max-width:900px){.bilingual,.feat-row,.choose-grid{grid-template-columns:1fr}.feat-row--rev{direction:ltr}}
+
+/* ---- Language switch ---- */
+[data-lang="en"] .t-jp { display:none !important }
+[data-lang="jp"] .t-en { display:none !important }
+[data-lang="jp"] .t-ko { display:none !important }
+[data-lang="jp"] .t-zh { display:none !important }
+[data-lang="en"] .t-ko { display:none !important }
+[data-lang="en"] .t-zh { display:none !important }
+[data-lang="ko"] .t-jp { display:none !important }
+[data-lang="ko"] .t-en { display:none !important }
+[data-lang="ko"] .t-zh { display:none !important }
+[data-lang="zh"] .t-jp { display:none !important }
+[data-lang="zh"] .t-en { display:none !important }
+[data-lang="zh"] .t-ko { display:none !important }
+/* 既存の JP/EN クラスも制御 */
+[data-lang="en"] .hero__sub-jp,
+[data-lang="en"] .concept__h-jp,
+[data-lang="en"] .concept__body:not(.concept__body-en),
+[data-lang="en"] .bilingual__jp,
+[data-lang="en"] .page-hero__jp,
+[data-lang="en"] .sec-subtitle.t-jp,
+[data-lang="en"] .room-concept__body.t-jp { display:none !important }
+
+[data-lang="jp"] .hero__sub-en,
+[data-lang="jp"] .concept__h-en,
+[data-lang="jp"] .concept__body-en,
+[data-lang="jp"] .bilingual__en,
+        [data-lang="jp"] .bilingual__ko,
+        [data-lang="jp"] .bilingual__zh,
+        [data-lang="en"] .bilingual__ko,
+        [data-lang="en"] .bilingual__zh,
+        [data-lang="ko"] .bilingual__jp,
+        [data-lang="ko"] .bilingual__en,
+        [data-lang="ko"] .bilingual__zh,
+        [data-lang="zh"] .bilingual__jp,
+        [data-lang="zh"] .bilingual__en,
+        [data-lang="zh"] .bilingual__ko,
+[data-lang="jp"] .sec-subtitle.t-en,
+[data-lang="jp"] .room-concept__body.t-en { display:none !important }
+.nav .container{width:100%;max-width:none;padding-left:0.75rem;padding-right:0.75rem}
+</style>
+</head>
+<body>
+<nav class="nav" role="navigation" aria-label="メインナビゲーション"><div class="container"><div class="nav__inner">
+<a href="index.html" class="nav__logo" aria-label="Sakura Sands Suites Hotel ホーム">
+  <img src="assets/logo-mark.svg" class="nav__logo-mark" alt="" aria-hidden="true">
+  <span class="nav__logo-text">
+    <span class="nav__logo-main">Sakura Sands Suites</span>
+    <span class="nav__logo-sub">Hotel &mdash; Osaka</span>
+  </span>
+</a>
+<ul class="nav__links" role="list"><li><a href="concept.html" class="nav__link active">Concept</a></li><li><a href="rooms.html" class="nav__link">Rooms</a></li><li><a href="family.html" class="nav__link">Family Stay</a></li><li><a href="osaka.html" class="nav__link">Osaka</a></li><li><a href="faq.html" class="nav__link">FAQ</a></li></ul>
+<div class="nav__right">
+  <a href="booking.html" class="btn btn-dark nav__cta">Book Now</a>
+  <div class="nav__lang">
+    <button class="nav__lang-btn lang-btn" data-lang="jp">JP</button>
+    <span class="nav__lang-sep">|</span>
+    <button class="nav__lang-btn lang-btn" data-lang="en">EN</button>
+  <span class="nav__lang-sep">|</span>
+  <button class="nav__lang-btn lang-btn" data-lang="ko">KO</button>
+  <span class="nav__lang-sep">|</span>
+  <button class="nav__lang-btn lang-btn" data-lang="zh">ZH</button>
+  </div>
+  <button class="nav__burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+</div>
+</div></div></nav>
+
+
+<div style="height:var(--nav-h)"></div>
+
+<!-- PAGE HERO (light) -->
+<section class="page-hero page-hero--light" style="min-height:50vh;align-items:flex-end;padding-bottom:0">
+  <!-- ロゴマーク背景ウォーターマーク -->
+  <img src="assets/logo-mark.svg" aria-hidden="true" alt=""
+       style="position:absolute;right:15%;top:58%;transform:translateY(-50%);
+              width:416px;height:416px;opacity:0.22;pointer-events:none;z-index:0">
+  <div class="container page-hero__content concept-hero-inner" style="padding-bottom:var(--sp-lg);position:relative;z-index:1">
+    <span class="label" style="color:var(--text-sub)">Concept</span>
+    <span class="concept-num">13</span>
+    <h1 class="page-hero__h1 t-jp" style="color:var(--text)">色が、旅になる。</h1>
+    <h1 class="page-hero__h1 t-en" style="color:var(--text)">Color becomes a journey.</h1>
+    <h1 class="page-hero__h1 t-ko" style="color:var(--text)">색이 여행이 된다.</h1>
+    <h1 class="page-hero__h1 t-zh" style="color:var(--text)">色彩，成为旅程。</h1>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Brand philosophy -->
+  <div class="section">
+    <div class="bilingual">
+      <p class="bilingual__jp">大阪のシティホテルに、日本の伝統色を現代の感覚が宿った。<br>
+      鳥の子色から黄金色まで、それぞれの部屋が一つの色の世界を提供します。<br>
+      あなた好みの色を選ぶことから、自分だけの大阪滞在を始めてください。</p>
+      <p class="bilingual__en">A city hotel in Osaka reimagined through 13 traditional Japanese colors, interpreted for modern travelers and their families. Each room is a world defined by a single color — from the quiet warmth of Torinoko Beige to the radiant depth of Kogane Gold.</p>
+      <p class="bilingual__ko">오사카의 시티 호텔에 일본의 전통색이 현대적 감각으로 깃들었습니다. 토리노코 베이지부터 코가네 골드까지, 각각의 방이 하나의 색의 세계를 선사합니다. 자신이 좋아하는 색을 선택하는 것에서, 나만의 오사카 체류가 시작됩니다.</p>
+      <p class="bilingual__zh">大阪都市酒店，融入了日本传统色彩的现代演绎。从鸟子色到黄金色，每间客房呈现一个属于单一色彩的世界。从选择您喜爱的色彩开始，开启专属于您的大阪之旅。</p>
+    </div>
+  </div>
+
+  <!-- 13色パレットストリップ -->
+  <div>
+    <span class="label">13 Colors</span>
+    <div class="palette-strip"><div class="palette-strip__cell" style="background:#fff1cf" title="鳥の子色"><span class="palette-strip__tip">鳥の子色 2F</span></div><div class="palette-strip__cell" style="background:#ee827c" title="薄紅"><span class="palette-strip__tip">薄紅 3F</span></div><div class="palette-strip__cell" style="background:#967249" title="胡桃色"><span class="palette-strip__tip">胡桃色 4F</span></div><div class="palette-strip__cell" style="background:#d8e698" title="若草色"><span class="palette-strip__tip">若草色 5F</span></div><div class="palette-strip__cell" style="background:#89c3eb" title="勿忘草色"><span class="palette-strip__tip">勿忘草色 6F</span></div><div class="palette-strip__cell" style="background:#547443" title="深緑"><span class="palette-strip__tip">深緑 7F</span></div><div class="palette-strip__cell" style="background:#ffec47" title="菜の花色"><span class="palette-strip__tip">菜の花色 8F</span></div><div class="palette-strip__cell" style="background:#fef4f4" title="桜色"><span class="palette-strip__tip">桜色 9F</span></div><div class="palette-strip__cell" style="background:#4b61ba" title="瑠璃紺"><span class="palette-strip__tip">瑠璃紺 10F</span></div><div class="palette-strip__cell" style="background:#cc7eb1" title="菖蒲色"><span class="palette-strip__tip">菖蒲色 11F</span></div><div class="palette-strip__cell" style="background:#f6ad49" title="柑子色"><span class="palette-strip__tip">柑子色 12F</span></div><div class="palette-strip__cell" style="background:#464a41" title="墨色"><span class="palette-strip__tip">墨色 13F</span></div></div>
+    <p style="font-family:var(--font-sans-en);font-size:.75rem;color:var(--text-sub);letter-spacing:.08em">Hover to explore each color</p>
+  </div>
+
+  <!-- 伝統色について -->
+  <div class="feat-row">
+    <div class="feat-row__img">
+      <img src="assets/illustrations/08_sakura.jpg" alt="桜色 イラスト" loading="lazy">
+    </div>
+    <div class="feat-row__body">
+      <span class="label">Traditional Colors of Japan</span>
+      <h2 class="feat-row__h2 t-jp">日本の色が持つ、固有の意味。</h2>
+      <h2 class="feat-row__h2 t-en">The Language of Japanese Color.</h2>
+      <h2 class="feat-row__h2 t-ko">일본 색채가 지닌 고유한 의미.</h2>
+      <h2 class="feat-row__h2 t-zh">日本色彩所蕴含的独特意义。</h2>
+      <p class="feat-row__jp t-jp">The language of Japanese color.</p>
+      <p class="feat-row__jp t-en">日本の色の言語</p>
+      <p class="feat-row__jp t-ko">일본 색의 언어</p>
+      <p class="feat-row__jp t-zh">日本色彩的语言</p>
+      <p class="feat-row__p t-jp">日本の伝統色は、自然・季節・文化から生まれた色の言語です。「桜色」は散り際の桜の一瞬を、「墨色」は筆の一引きを、「勿忘草色」は野に咲く小花の青を表します。</p>
+      <p class="feat-row__p t-en" style="color:var(--text-sub);font-size:.875rem">Japanese traditional colors are a visual language born from nature, seasons, and culture — each name carrying a specific story and feeling.</p>
+      <p class="feat-row__p t-ko">일본 전통색은 자연, 계절, 문화에서 태어난 색의 언어입니다. 「사쿠라색」은 지는 벚꽃의 순간을, 「스미색」은 붓 한 획을, 「와스레나구사색」은 들판 작은 꽃의 파랑을 표현합니다.</p>
+      <p class="feat-row__p t-zh">日本传统色彩是诞生于自然、季节与文化的色彩语言。「樱花色」代表飘落樱花的瞬间，「墨色」承载笔墨一挥，「勿忘草色」呈现野地小花的蓝色。</p>
+    </div>
+  </div>
+
+  <!-- Modern Japan -->
+  <div class="feat-row feat-row--rev">
+    <div class="feat-row__img">
+      <img src="assets/living/sumi.png" alt="13F墨色リビング" loading="lazy">
+    </div>
+    <div class="feat-row__body">
+      <span class="label">Design Approach</span>
+      <h2 class="feat-row__h2 t-en">Modern Japan, Not a Museum.</h2>
+      <h2 class="feat-row__h2 t-jp">ベタな和風にしない、現代の日本。</h2>
+      <h2 class="feat-row__h2 t-ko">박물관이 아닌, 현대의 일본.</h2>
+      <h2 class="feat-row__h2 t-zh">现代日本，而非博物馆。</h2>
+      <p class="feat-row__jp t-en">ベタな和風にしない、現代の日本。</p>
+      <p class="feat-row__jp t-jp">Modern Japan, Not a Museum.</p>
+      <p class="feat-row__jp t-ko">과거에 얽매이지 않는 현대 일본</p>
+      <p class="feat-row__jp t-zh">不拘于传统，现代日本的诠释</p>
+      <p class="feat-row__p t-jp">伝統色を纏いながら、装飾は引き算で。余白・素材・光で色を際立たせ、「博物館のような和」ではなく「今日の大阪」を体験する空間を設計しました。</p>
+      <p class="feat-row__p t-en" style="color:var(--text-sub);font-size:.875rem">We draw on Japanese color heritage while keeping spaces minimal, modern, and liveable. No heavy ornamentation — just color, light, and space.</p>
+      <p class="feat-row__p t-ko">전통색을 입히면서도 장식은 최소화했습니다. 여백, 소재, 빛으로 색을 돋보이게 하여 「박물관 같은 일본풍」이 아닌 「오늘의 오사카」를 체험하는 공간을 설계했습니다.</p>
+      <p class="feat-row__p t-zh">以传统色彩为基调，装饰减法为要。以留白、材质、光线衬托色彩，打造的不是「博物馆式的和风」，而是「当代大阪」的体验空间。</p>
+    </div>
+  </div>
+
+  <!-- Choose guide -->
+  <div class="section" style="border-top:1px solid var(--border)">
+    <span class="label">How to Choose</span>
+    <h2 class="sec-title t-jp">自分の旅に合う色を、選ぶ。</h2>
+    <h2 class="sec-title t-en">Find the color for your journey.</h2>
+    <h2 class="sec-title t-ko">나의 여행에 맞는 색을 고르다.</h2>
+    <h2 class="sec-title t-zh">选择适合您旅程的色彩。</h2>
+    <p class="sec-subtitle t-jp">旅のテーマで色を絞れます。全13色は Rooms ページで。</p>
+    <p class="sec-subtitle t-en">Filter by travel theme. All 13 colors on the Rooms page.</p>
+    <p class="sec-subtitle t-ko">여행 테마로 색을 좁혀보세요. 전 13색은 Rooms 페이지에서.</p>
+    <p class="sec-subtitle t-zh">按旅行主题筛选色彩。全部13种色彩请访问 Rooms 页面。</p>
+    <div class="choose-grid"><div class="choose-card"><div class="choose-card__swatch" style="background:#fff1cf;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood t-jp">はじめての大阪</p><p class="choose-card__mood t-en">First time in Osaka</p><p class="choose-card__mood t-ko">오사카 첫 방문</p><p class="choose-card__mood t-zh">初次到访大阪</p><p class="choose-card__room">鳥の子色</p></div><div class="choose-card"><div class="choose-card__swatch" style="background:#d8e698;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood t-jp">家族でのびのび</p><p class="choose-card__mood t-en">Family &amp; space to breathe</p><p class="choose-card__mood t-ko">가족과 함께 여유롭게</p><p class="choose-card__mood t-zh">与家人舒适放松</p><p class="choose-card__room">若草色</p></div><div class="choose-card"><div class="choose-card__swatch" style="background:#fef4f4;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood t-jp">ロマンティックに</p><p class="choose-card__mood t-en">Romantic escape</p><p class="choose-card__mood t-ko">로맨틱하게</p><p class="choose-card__mood t-zh">浪漫之旅</p><p class="choose-card__room">桜色</p></div><div class="choose-card"><div class="choose-card__swatch" style="background:#464a41;border:1px solid rgba(0,0,0,.08)"></div><p class="choose-card__mood t-jp">クールに、上品に</p><p class="choose-card__mood t-en">Cool &amp; sophisticated</p><p class="choose-card__mood t-ko">세련되고 품격 있게</p><p class="choose-card__mood t-zh">沉稳而优雅</p><p class="choose-card__room">墨色</p></div></div>
+    <div style="text-align:center;margin-top:var(--sp-lg)">
+      <a href="rooms.html" class="btn btn-dark"><span class="t-jp">全13色を見る</span><span class="t-en">See All 13 Rooms</span><span class="t-ko">전 13색 보기</span><span class="t-zh">查看全部13种色彩</span> &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <div class="container">
+    <p class="cta-strip__title t-jp">13の色、一つの旅。</p>
+    <p class="cta-strip__title t-en">13 Colors, One Journey.</p>
+    <p class="cta-strip__title t-ko">13가지 색, 하나의 여정.</p>
+    <p class="cta-strip__title t-zh">13种色彩，一段旅程。</p>
+    <p class="cta-strip__sub t-jp">日本の色を旅する、都市型ファミリーステイ。大阪・心斎橋。</p>
+    <p class="cta-strip__sub t-en">A city family stay in Osaka — Shinsaibashi. Journey through 13 colors of Japan.</p>
+    <p class="cta-strip__sub t-ko">일본의 색을 여행하는 도시형 패밀리 스테이. 오사카 · 신사이바시.</p>
+    <p class="cta-strip__sub t-zh">穿越日本色彩的都市家庭住宿。大阪 · 心斋桥。</p>
+    <div class="cta-strip__btns">
+      <a href="rooms.html"   class="btn btn-kogane"><span class="t-jp">お部屋を選ぶ</span><span class="t-en">Choose a Room</span><span class="t-ko">객실 선택</span><span class="t-zh">选择客房</span> &rarr;</a>
+      <a href="booking.html" class="btn btn-ghost"><span class="t-jp">予約する</span><span class="t-en">Book Now</span><span class="t-ko">예약하기</span><span class="t-zh">立即预订</span></a>
+    </div>
+  </div>
+</section>
+<footer class="footer" role="contentinfo"><div class="container">
+<div class="footer__inner">
+  <span class="footer__logo">Sakura Sands Suites Hotel</span>
+  <ul class="footer__links">
+    <li><a href="concept.html" class="footer__link">Concept</a></li>
+    <li><a href="rooms.html" class="footer__link">Rooms</a></li>
+    <li><a href="faq.html" class="footer__link">FAQ</a></li>
+    <li><a href="booking.html" class="footer__link">Book Now</a></li>
+  </ul>
+</div>
+<p class="footer__copy">&copy; 2026 Sakura Sands Suites Hotel. All rights reserved.</p>
+</div></footer>
+
+
+<script src="assets/lang.js"></script>
+<script>
+(function(){
+  var nav=document.querySelector('.nav');
+  var burger=document.querySelector('.nav__burger');
+  if(!burger) return;
+  burger.addEventListener('click',function(){nav.classList.toggle('nav--open')});
+  document.querySelectorAll('.nav__link').forEach(function(l){l.addEventListener('click',function(){nav.classList.remove('nav--open')})});
+})();
+</script>
+</body>
+</html>

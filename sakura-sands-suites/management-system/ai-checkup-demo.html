@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ホテル業務AI化デモ ご提案</title>
+<style>
+  :root {
+    --zinc-900: #18181b;
+    --zinc-700: #3f3f46;
+    --zinc-500: #71717a;
+    --zinc-200: #e4e4e7;
+    --zinc-50: #fafafa;
+    --amber-100: #fef3c7;
+    --amber-700: #b45309;
+    --accent: #b45309;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", sans-serif;
+    background: var(--zinc-200);
+    color: var(--zinc-900);
+  }
+  .deck {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 32px 16px 80px;
+  }
+  .slide {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    padding: 48px 56px;
+    margin-bottom: 28px;
+    min-height: 630px;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide-label {
+    font-size: 12px;
+    color: var(--zinc-500);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 30px;
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 24px;
+    margin: 0 0 20px;
+    font-weight: 700;
+    border-left: 6px solid var(--accent);
+    padding-left: 12px;
+  }
+  h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+    font-weight: 700;
+    color: var(--zinc-700);
+  }
+  p { line-height: 1.8; margin: 0 0 12px; }
+  ul { line-height: 1.9; margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .subtitle { font-size: 16px; color: var(--zinc-500); margin-bottom: 4px; }
+  .cover {
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #1f2937 0%, #3f3f46 100%);
+    color: #fff;
+  }
+  .cover h1 { font-size: 40px; }
+  .cover .subtitle { color: #d4d4d8; }
+  .cover .date { margin-top: 32px; font-size: 14px; color: #a1a1aa; }
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 999px;
+    padding: 2px 12px;
+    margin-top: 24px;
+    background: var(--amber-100);
+    color: var(--amber-700);
+    font-weight: 700;
+    align-self: flex-start;
+  }
+  .cover .badge { align-self: center; }
+  .annotation {
+    font-size: 13px;
+    color: var(--amber-700);
+    background: var(--amber-100);
+    border-radius: 6px;
+    padding: 6px 12px;
+    display: inline-block;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .shot {
+    width: 100%;
+    border: 1px solid var(--zinc-200);
+    border-radius: 8px;
+    display: block;
+  }
+  .shot-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .shot-row .shot-col { flex: 1; }
+  .shot-caption {
+    font-size: 12px;
+    color: var(--zinc-500);
+    margin-top: 6px;
+    text-align: center;
+  }
+  .two-col {
+    display: flex;
+    gap: 32px;
+    flex: 1;
+  }
+  .two-col > div { flex: 1; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  th, td {
+    border: 1px solid var(--zinc-200);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--zinc-50);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--zinc-700);
+  }
+  .card {
+    border: 1px solid var(--zinc-200);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .card.warn { border-color: #fca5a5; background: #fef2f2; }
+  .card.ok { border-color: #bbf7d0; background: #f0fdf4; }
+  .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .step { display: flex; align-items: flex-start; margin-bottom: 10px; }
+  .footer-note {
+    margin-top: auto;
+    font-size: 12px;
+    color: var(--zinc-500);
+    border-top: 1px solid var(--zinc-200);
+    padding-top: 10px;
+  }
+  @media print {
+    body { background: #fff; }
+    .slide { box-shadow: none; page-break-after: always; margin-bottom: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 1. 表紙 -->
+  <section class="slide cover">
+    <div class="subtitle">AI業務診断・研修 ご提案</div>
+    <h1>ホテル業務AI化デモ<br>フロント・清掃・請求書・月次確認をつなぐ簡易サンプル</h1>
+    <p class="subtitle">完成アプリではなく、AIを現場業務に入れるための「見える化デモ」です。</p>
+    <span class="badge">デモ環境（数値はサンプルデータ）</span>
+    <div class="date">2026年6月14日版</div>
+  </section>
+
+  <!-- 2. このデモについて -->
+  <section class="slide">
+    <div class="slide-label">ABOUT THIS DEMO</div>
+    <h2>このデモについて</h2>
+    <p>ホテル業務を題材にしたデモです。フロント、清掃、請求書、売上確認を分けて考えず、現場と管理者が同じ情報を見られる形にしています。</p>
+    <div class="card ok">
+      本番導入前に、まず御社の業務でAI化できる作業を洗い出す診断から始められます。
+    </div>
+    <p>Sakura Sands Suitesのデモは、診断の説明用サンプルです。完成品ではなく「診断の入口」として、次のページから画面構成と操作方法を紹介します。</p>
+  </section>
+
+  <!-- 3. システム構成 -->
+  <section class="slide">
+    <div class="slide-label">SYSTEM OVERVIEW</div>
+    <h2>システム構成と画面の使い分け</h2>
+    <p>本システムは3つの画面で構成し、画面ごとに必要な権限を分けています。</p>
+    <table>
+      <thead>
+        <tr><th>画面</th><th>URL</th><th>用途</th><th>必要な権限</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>トップページ</td>
+          <td>/</td>
+          <td>現場用・管理者用画面への入口（ログインページへのリンクのみ）</td>
+          <td>不要（公開）</td>
+        </tr>
+        <tr>
+          <td>現場用画面</td>
+          <td>/front</td>
+          <td>客室ごとの清掃状況・担当者・メモの更新</td>
+          <td>front または admin</td>
+        </tr>
+        <tr>
+          <td>管理者用画面</td>
+          <td>/admin/dashboard ほか</td>
+          <td>全体集計・売上ランキング・領収書・請求書の発行</td>
+          <td>admin</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>ログイン方式</h3>
+    <p>ユーザー名とパスワードの組み合わせではなく、役割（front／admin）ごとに1つの共有パスコードを入力する方式です。adminのパスコードでログインすると、front画面・admin画面の両方にアクセスできます。front用パスコードでは/front画面のみ利用できます。</p>
+    <div class="card warn">
+      <strong>ご案内：</strong>今回はデモなので共有パスコード方式です。本番では担当者別ログイン、操作履歴、権限分離が必要です。
+    </div>
+    <div class="footer-note">対象: 全スタッフ・管理担当者</div>
+  </section>
+
+  <!-- 4. 現場用画面 -->
+  <section class="slide">
+    <div class="slide-label">FRONT SCREEN</div>
+    <h2>現場用画面：客室ステータス管理</h2>
+    <img class="shot" src="front-rooms.png" alt="客室ステータス管理画面">
+    <p class="shot-caption">/front - 客室ステータス（フロアごとに色分け表示）</p>
+    <ul style="margin-top:12px;">
+      <li>各フロアのカードでステータス（清掃前／清掃中／清掃完了／入室準備OK／修理・確認必要）を選択し、担当者を記録します。</li>
+      <li>メモ欄（200文字まで）に申し送り事項を入力できます。</li>
+      <li>更新後に画面の内容が反映されない場合は、ブラウザの再読み込みを行ってください（キャッシュの影響で表示が遅れる場合があります）。</li>
+    </ul>
+  </section>
+
+  <!-- 5. 管理ダッシュボード -->
+  <section class="slide">
+    <div class="slide-label">ADMIN DASHBOARD</div>
+    <h2>管理者用画面：管理ダッシュボード</h2>
+    <div class="annotation">※デモの数値を入れています。実際の運用画面とは異なります。</div>
+    <img class="shot" src="dashboard-1.png" alt="管理ダッシュボード（ステータス集計・売上ランキング・売上グラフ上部）" style="margin-bottom:10px;">
+    <img class="shot" src="dashboard-2.png" alt="管理ダッシュボード（売上グラフ・客室一覧テーブル）">
+    <ul style="margin-top:12px;">
+      <li>客室ステータスの件数集計（清掃前／清掃中／清掃完了／修理・確認必要／入室準備OK／未更新）を一覧表示します。</li>
+      <li>累計宿泊売上の上位3室を「人気ランキング」として表示します。</li>
+      <li>客室別の累計売上を降順のグラフで表示し、客室一覧テーブルでメモ・売上・領収書件数を確認できます。</li>
+    </ul>
+  </section>
+
+  <!-- 6. 領収書・請求書の発行 -->
+  <section class="slide">
+    <div class="slide-label">RECEIPT / INVOICE</div>
+    <h2>領収書・請求書の発行と権限</h2>
+    <div class="two-col">
+      <div>
+        <img class="shot" src="receipt-draft.png" alt="領収書ドラフト画面">
+        <p class="shot-caption">/admin/receipt - 領収書ドラフト</p>
+      </div>
+      <div>
+        <h3>発行できる画面</h3>
+        <ul>
+          <li><strong>/admin/receipt</strong>（領収書ドラフト）</li>
+          <li><strong>/admin/invoice</strong>（請求書ドラフト）</li>
+        </ul>
+        <h3>必要な権限</h3>
+        <div class="card warn">
+          <strong>管理者パスコード（admin）でログインした場合のみ</strong>アクセスできます。現場用パスコード（front）でログインした場合は、これらの画面に入れません。
+        </div>
+        <h3>ランキングへの反映</h3>
+        <p>領収書ドラフトで「客室の累計売上に記録する」を実行すると、ダッシュボードの売上ランキング・グラフに反映されます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6b. 領収書PDF出力例 -->
+  <section class="slide">
+    <div class="slide-label">RECEIPT OUTPUT</div>
+    <h2>領収書PDF 出力例（ホテルロゴ入り）</h2>
+    <div class="annotation">※デモの数値を入れています。</div>
+    <p>「PDFとして保存（印刷）」を実行すると、ホテルロゴ（上部）とロゴマーク（捺印欄）が入った領収書PDFを出力します。</p>
+    <img class="shot" src="receipt-demo.png" alt="領収書PDF出力例（ホテルロゴ入り）" style="max-width:480px; margin:0 auto;">
+    <p class="shot-caption">
+      <a href="receipt-demo.pdf" target="_blank">PDFファイルを開く（receipt-demo.pdf）</a>
+    </p>
+  </section>
+
+  <!-- 7. アクセス権限まとめ -->
+  <section class="slide">
+    <div class="slide-label">ACCESS CONTROL</div>
+    <h2>アクセス権限・公開範囲のまとめ</h2>
+    <table>
+      <thead>
+        <tr><th>画面・API</th><th>必要な権限</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>/、/login、/api/login、/api/logout</td>
+          <td>不要（公開）</td>
+          <td>データを含まないログイン入口</td>
+        </tr>
+        <tr>
+          <td>/front、/api/rooms/*</td>
+          <td>front または admin</td>
+          <td>客室ステータス・メモの更新</td>
+        </tr>
+        <tr>
+          <td>/admin/dashboard</td>
+          <td>admin</td>
+          <td>全体集計・売上ランキング・グラフ</td>
+        </tr>
+        <tr>
+          <td>/admin/receipt、/admin/invoice</td>
+          <td>admin</td>
+          <td>領収書・請求書ドラフトの発行</td>
+        </tr>
+        <tr>
+          <td>/api/receipts/*</td>
+          <td>admin</td>
+          <td>領収書データの登録・取得</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card ok">
+      <strong>ポイント：</strong>adminパスコードはfront画面の操作も含めて全権限を持ちます。front画面の担当者がadmin画面（売上・領収書・請求書）を見ることはできません。
+    </div>
+  </section>
+
+  <!-- 7b. よくある質問と本番での対応 -->
+  <section class="slide">
+    <div class="slide-label">FAQ / BEFORE GOING LIVE</div>
+    <h2>よくある質問と本番での対応</h2>
+    <p>共有パスコード方式について、本番提案では次のような質問を受けます。それぞれに対応方針があります。</p>
+    <table>
+      <thead>
+        <tr><th>想定される質問</th><th>本番での対応</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>誰が変更したか分からないのでは</td><td>担当者別ログインと操作履歴の記録</td></tr>
+        <tr><td>パスコードが漏れたら</td><td>該当アカウントのみ無効化できる仕組み</td></tr>
+        <tr><td>退職者が出たら</td><td>該当アカウントの削除・権限剥奪</td></tr>
+        <tr><td>売上情報を見られる人をどう管理するか</td><td>ロールごとの権限分離</td></tr>
+      </tbody>
+    </table>
+    <div class="card ok">
+      今回はデモのため共有パスコード方式です。本番では、質問への対応を含めた権限設計から着手します。
+    </div>
+    <p>権限設計は、診断のなかで御社の組織体制に合わせて整理します。誰が何を見られるかを最初に決めておくことで、運用開始後の混乱を防げます。</p>
+  </section>
+
+  <!-- 8. 本番運用に向けた注意点 -->
+  <section class="slide">
+    <div class="slide-label">BEFORE GOING LIVE</div>
+    <h2>本番運用（Vercelデプロイ）に向けた注意点</h2>
+    <p>現在のデモ画面のまま公開環境（Vercel）へデプロイすると、以下の3点で問題が発生します。</p>
+    <div class="card warn">
+      <div class="step"><span class="num">1</span><div>デモデータ（room-revenue.jsonなど）はGit管理対象外のため、デプロイ後はランキング・グラフが空の状態で表示されます。</div></div>
+      <div class="step"><span class="num">2</span><div>Vercel本番環境はファイルシステムが読み取り専用です。Redis（Upstash）を設定しない状態では、客室ステータスの更新や領収書の登録が保存できません。</div></div>
+      <div class="step"><span class="num">3</span><div>パスコードは役割ごとに1つの共有パスコードです。「誰が」操作したかの記録は、客室一覧の担当者欄の手入力に依存します。</div></div>
+    </div>
+    <h3>対応の順序</h3>
+    <ul>
+      <li>Upstash Redis を準備し、環境変数（UPSTASH_REDIS_REST_URL／UPSTASH_REDIS_REST_TOKEN）を設定する</li>
+      <li>ADMIN_PASSCODE／FRONT_PASSCODE／AUTH_SECRET を本番用の値に変更する</li>
+      <li>環境変数の設定を確認したうえでデプロイし、デモデータではなく実際の記録から運用を開始する</li>
+    </ul>
+  </section>
+
+  <!-- 9. 運用上の注意点まとめ -->
+  <section class="slide">
+    <div class="slide-label">CHECKLIST</div>
+    <h2>運用上の注意点まとめ</h2>
+    <ul>
+      <li>パスコードは役割ごとの共有情報です。関係者以外に伝わらないよう管理してください。</li>
+      <li>画面の更新内容が反映されない場合は、ブラウザの再読み込みを行ってください。</li>
+      <li>領収書・請求書の発行は、管理者パスコードでログインした担当者のみ実施してください。</li>
+      <li>客室ステータスの更新は現場担当者が/frontで実施し、管理者は/admin/dashboardで全体の状況を確認してください。</li>
+      <li>本番環境への移行前にRedisの設定を完了し、デモデータが表示されないことを確認してください。</li>
+    </ul>
+    <div class="footer-note">ホテル業務AI化デモ / 2026年6月14日版</div>
+  </section>
+
+  <!-- 10. AIでできること -->
+  <section class="slide">
+    <div class="slide-label">WHAT AI CAN DO</div>
+    <h2>AIでできること</h2>
+    <p>デモの裏側では、AIが次のような作業を担えます。AI活用ポイントとして、御社の業務にも当てはめて検討できます。</p>
+    <ul>
+      <li>メモの要約</li>
+      <li>修理・確認事項の抽出</li>
+      <li>領収書・請求書ドラフトの確認</li>
+      <li>月次レポートの自動要約</li>
+      <li>フロント向けFAQの作成</li>
+    </ul>
+    <p>各項目は単独でも導入でき、現場の入力負担を増やさずに情報整理の手間を減らせます。御社の業務に当てはめて、優先順位を一緒に検討します。</p>
+  </section>
+
+  <!-- 11. 提供できる支援 -->
+  <section class="slide">
+    <div class="slide-label">WHAT WE OFFER</div>
+    <h2>提供できる支援</h2>
+    <ul>
+      <li>60分 AI業務診断</li>
+      <li>小規模事業者向けAI研修</li>
+      <li>業務フロー整理</li>
+      <li>簡易デモ作成</li>
+      <li>本番化前の要件整理</li>
+    </ul>
+    <p>診断では、御社の業務を確認し、AI化できる作業の洗い出しと優先順位づけをします。今回のデモのような簡易プロトタイプ作成も含めて、本番化までの進め方を一緒に整理します。</p>
+    <div class="footer-note">ホテル業務AI化デモ / 2026年6月14日版</div>
+  </section>
+
+</div>
+</body>
+</html>

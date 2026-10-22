@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>AI秘書エージェント ご提案 — カケタス 苗代社長様</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <link rel="stylesheet" href="slides.css">
+  <script src="deck-stage.js" defer></script>
+  <style>
+    /* === PDF ボタン === */
+    .pdf-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 2147483600;
+      appearance: none;
+      margin: 0;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 4px;
+      color: rgba(51, 51, 51, 0.7);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    body:hover .pdf-btn {
+      opacity: 0.5;
+    }
+
+    .pdf-btn:hover {
+      opacity: 1;
+    }
+
+    @media print {
+      .pdf-btn {
+        display: none !important;
+      }
+    }
+
+    /* === カテゴリテーブル === */
+    .email-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 22px;
+      line-height: 1.4;
+    }
+
+    .email-table th {
+      background: var(--accent-gradient);
+      color: #fff;
+      padding: 14px 20px;
+      text-align: left;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .email-table td {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--neutral-9);
+      color: var(--neutral-1);
+    }
+
+    .email-table tr:nth-child(even) td {
+      background: var(--primary-9);
+    }
+
+    .email-table tr:hover td {
+      background: var(--primary-8);
+    }
+
+    /* フラグバッジ */
+    .flag {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 3px 14px;
+      font-size: 18px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .flag-hisho {
+      background: #2A9D8F;
+      color: #fff;
+    }
+
+    .flag-shacho {
+      background: #F4A261;
+      color: #fff;
+    }
+
+    .flag-critical {
+      background: #E76F51;
+      color: #fff;
+    }
+
+    /* 緊急度 */
+    .kyu-high {
+      color: #E76F51;
+      font-weight: 700;
+    }
+
+    .kyu-mid {
+      color: #F4A261;
+      font-weight: 700;
+    }
+
+    .kyu-low {
+      color: #2A9D8F;
+      font-weight: 700;
+    }
+
+    /* === デモスライド 2カラム === */
+    .demo-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      height: calc(1080px - 120px - 160px);
+      padding: 0 80px 0;
+    }
+
+    .demo-box {
+      border-radius: 20px;
+      padding: 40px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    .demo-box.received {
+      background: #F5F5F5;
+      border: 2px solid var(--neutral-8);
+    }
+
+    .demo-box.reply {
+      background: var(--primary-9);
+      border: 2px solid var(--primary-7);
+    }
+
+    .demo-label {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--neutral-4);
+      margin-bottom: 4px;
+    }
+
+    .demo-subject {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--fg-strong);
+      border-bottom: 1px solid var(--neutral-8);
+      padding-bottom: 16px;
+    }
+
+    .demo-body {
+      font-size: 26px;
+      line-height: 1.7;
+      color: var(--neutral-1);
+      white-space: pre-line;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .demo-alert {
+      background: #E76F51;
+      color: #fff;
+      border-radius: 12px;
+      padding: 24px 32px;
+      font-size: 26px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* === Discord 通知モック === */
+    .discord-mock {
+      background: #36393F;
+      border-radius: 16px;
+      padding: 32px 40px;
+      font-family: 'Whitney', 'Helvetica Neue', sans-serif;
+      max-width: 820px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .discord-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .discord-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      background: var(--accent-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .discord-name {
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .discord-time {
+      color: #72767D;
+      font-size: 18px;
+      margin-left: 8px;
+    }
+
+    .discord-msg {
+      color: #DCDDDE;
+      font-size: 24px;
+      line-height: 1.6;
+    }
+
+    .discord-embed {
+      border-left: 4px solid #E76F51;
+      background: #2F3136;
+      border-radius: 4px;
+      padding: 16px 20px;
+      margin-top: 12px;
+    }
+
+    .discord-embed-title {
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .discord-embed-field {
+      color: #DCDDDE;
+      font-size: 20px;
+      line-height: 1.8;
+    }
+
+    /* === 料金スライド === */
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 64px;
+      align-items: center;
+      height: calc(1080px - 120px - 160px);
+      padding: 0 80px;
+    }
+
+    .price-main {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .price-tag {
+      font-size: 200px;
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      background: var(--accent-gradient-diagonal);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .price-unit {
+      font-size: 80px;
+    }
+
+    .price-caption {
+      font-size: 28px;
+      color: var(--neutral-4);
+      letter-spacing: 0.02em;
+    }
+
+    .price-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .price-card {
+      background: var(--primary-9);
+      border-radius: 16px;
+      padding: 28px 36px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .price-card-num {
+      font-size: 72px;
+      font-weight: 900;
+      color: var(--primary-0);
+      line-height: 1;
+    }
+
+    .price-card-unit {
+      font-size: 36px;
+      margin-left: 4px;
+    }
+
+    .price-card-lbl {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--neutral-2);
+    }
+
+    .roi-box {
+      background: var(--accent-gradient);
+      border-radius: 20px;
+      padding: 32px 40px;
+      color: #fff;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .roi-box .roi-num {
+      font-size: 80px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .roi-box .roi-lbl {
+      font-size: 26px;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    /* === 導入ステップ === */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      padding: 0 80px;
+      height: calc(1080px - 120px - 200px);
+      align-items: center;
+    }
+
+    .step-card {
+      background: #fff;
+      border: 1px solid var(--neutral-9);
+      border-radius: 24px;
+      padding: 48px 40px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-height: 420px;
+    }
+
+    .step-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary-2);
+      letter-spacing: 0.04em;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+    }
+
+    .step-title {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--fg-strong);
+      line-height: 1.2;
+    }
+
+    .step-desc {
+      font-size: 28px;
+      line-height: 1.6;
+      color: var(--neutral-2);
+      flex: 1;
+    }
+
+    .step-days {
+      display: inline-block;
+      background: var(--primary-9);
+      color: var(--primary-0);
+      font-size: 22px;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 999px;
+    }
+
+    /* === アジェンダ時間なし版 === */
+    .agenda-notimed li {
+      gap: 32px;
+      padding: 36px 8px;
+      font-size: 44px;
+    }
+
+    /* === ロゴimg === */
+    .logo-img {
+      height: 56px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .logo-img-dark {
+      height: 48px;
+      object-fit: contain;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="pdf-btn" onclick="window.print()">PDF</button>
+
+  <deck-stage width="1920" height="1080">
+
+    <!-- ============================================================ -->
+    <!-- 01 · 表紙 -->
+    <!-- ============================================================ -->
+    <section class="slide cover" data-label="Title">
+      <div class="band">
+        <img src="https://kaketasu.jp/wp-content/uploads/2024/12/logo-1.png" class="logo-img" alt="カケタスロゴ"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span style="display:none;color:#fff;font-size:28px;font-weight:900;">株式会社カケタス</span>
+        <span class="band-meta">2026.05</span>
+      </div>
+      <div class="cover-body">
+        <div class="eyebrow">AI SECRETARY PROPOSAL</div>
+        <h1 class="cover-title">AI秘書エージェント<br><span class="gradient-text">ご提案</span></h1>
+        <p class="cover-sub">メール対応の8割を自動化し、社長の時間を取り戻す</p>
+        <div class="cover-meta">
+          <span>Prepared for カケタス社長 苗代様</span>
+          <span class="sep">・</span>
+          <span>2026年5月</span>
+        </div>
+      </div>
+      <div class="corner-blob"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 02 · アジェンダ -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="Agenda">
+      <header class="header-band"><span>本日の内容</span><span class="pageno">02 / 24</span></header>
+      <div class="body">
+        <h3 class="slide-title">Agenda</h3>
+        <ol class="agenda agenda-notimed">
+          <li><span class="num">01</span><span class="name">課題 — 社長の時間が奪われている</span></li>
+          <li><span class="num">02</span><span class="name">解決策 — AI秘書エージェントができること</span></li>
+          <li><span class="num">03</span><span class="name">対応メールカテゴリ一覧</span></li>
+          <li><span class="num">04</span><span class="name">実際の動き（デモ）</span></li>
+          <li><span class="num">05</span><span class="name">料金・導入の流れ</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 03 · Section: 課題 -->
+    <!-- ============================================================ -->
+    <section class="slide section-divider" data-label="Section-課題">
+      <div class="sd-number">01</div>
+      <div class="sd-title">
+        <div class="sd-en">PROBLEM</div>
+        <h2>課題</h2>
+      </div>
+      <div class="sd-rule"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 04 · 課題 Before / After -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="Before-After">
+      <header class="header-band"><span>課題</span><span class="pageno">04 / 24</span></header>
+      <div class="body" style="padding-top:56px;">
+        <h3 class="slide-title" style="margin-bottom:48px;">社長の時間が、メール対応に奪われている</h3>
+        <div class="compare">
+          <div class="c-side before">
+            <div class="c-tag">現状 BEFORE</div>
+            <h4>毎日くり返す3つの負担</h4>
+            <ul>
+              <li>メール確認・返信に1日2時間以上</li>
+              <li>緊急・重要案件の見極めに時間がかかる</li>
+              <li>ホテル・入居・採用・法人と種類がバラバラ</li>
+            </ul>
+          </div>
+          <div class="c-vs">→</div>
+          <div class="c-side after">
+            <div class="c-tag">導入後 AFTER</div>
+            <h4>社長がやるのは「判断」だけ</h4>
+            <ul>
+              <li>ルーティンは秘書が自動で返信下書き</li>
+              <li>重要案件は「社長要対応」フラグで即キャッチ</li>
+              <li>対応状況をスプレッドシートで一元管理</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 05 · Section: 解決策 -->
+    <!-- ============================================================ -->
+    <section class="slide section-divider" data-label="Section-解決策">
+      <div class="sd-number">02</div>
+      <div class="sd-title">
+        <div class="sd-en">SOLUTION</div>
+        <h2>解決策</h2>
+      </div>
+      <div class="sd-rule"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 06 · 解決策（4機能） -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="4つの機能">
+      <header class="header-band"><span>解決策</span><span class="pageno">06 / 24</span></header>
+      <div class="body" style="padding-top:48px;">
+        <h3 class="slide-title" style="margin-bottom:48px;">AI秘書エージェントの4つの機能</h3>
+        <div class="three-col" style="grid-template-columns:repeat(4,1fr);gap:32px;">
+          <div class="col-card">
+            <div class="col-num">01</div>
+            <div class="col-head" style="font-size:44px;">自動<br>トリアージ</div>
+            <p>メールを受け取るたびに緊急度・重要度・カテゴリを自動判定</p>
+          </div>
+          <div class="col-card">
+            <div class="col-num">02</div>
+            <div class="col-head" style="font-size:44px;">返信下書き<br>即生成</div>
+            <p>カテゴリ別テンプレートで秘書担当名義の返信を即座に作成</p>
+          </div>
+          <div class="col-card">
+            <div class="col-num">03</div>
+            <div class="col-head" style="font-size:44px;">フラグで<br>明示</div>
+            <p>「社長確認」「社長要対応」を色分けフラグで即座に伝達</p>
+          </div>
+          <div class="col-card">
+            <div class="col-num">04</div>
+            <div class="col-head" style="font-size:44px;">スプシ<br>自動記録</div>
+            <p>対応履歴・判定結果をスプレッドシートに蓄積して一覧管理</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 07 · Discord 通知（将来計画） -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="Discord通知計画">
+      <header class="header-band"><span>将来計画</span><span class="pageno">07 / 24</span></header>
+      <div class="body" style="padding-top:48px;display:flex;gap:80px;align-items:flex-start;">
+        <div style="flex:1;">
+          <div class="eyebrow-inline">FUTURE PLAN</div>
+          <h3 class="slide-title" style="font-size:60px;margin-bottom:32px;">Discord通知で<br>即キャッチ</h3>
+          <p class="lead" style="font-size:28px;">"社長要対応"フラグが立った瞬間、<br>社長のDiscordに自動通知。<br>メールを見に行かなくても<br>スマホで即キャッチできる。
+          </p>
+        </div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+          <div class="discord-mock">
+            <div class="discord-header">
+              <div class="discord-icon">秘</div>
+              <span>
+                <span class="discord-name">カケタス秘書</span>
+                <span class="discord-time">今日 9:03</span>
+              </span>
+            </div>
+            <div class="discord-msg">🔴 【社長要対応】新着メールがあります</div>
+            <div class="discord-embed">
+              <div class="discord-embed-title">📧 設備クレーム — エアコン故障</div>
+              <div class="discord-embed-field">
+                送信者：山田様（ホテル宿泊中）<br>
+                カテゴリ：設備クレーム<br>
+                緊急度：高　／　重要度：高<br>
+                ─────────────<br>
+                → 秘書が一時対応済み。<br>　 社長の直接対応が必要です。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 08 · Section: カテゴリ一覧 -->
+    <!-- ============================================================ -->
+    <section class="slide section-divider" data-label="Section-カテゴリ">
+      <div class="sd-number">03</div>
+      <div class="sd-title">
+        <div class="sd-en">EMAIL CATEGORIES</div>
+        <h2>対応メール<br>カテゴリ一覧</h2>
+      </div>
+      <div class="sd-rule"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 09 · ホテル運営カテゴリ（通常） -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="ホテル運営-通常">
+      <header class="header-band"><span>対応カテゴリ — Sakura Sands Suites（通常運営）</span><span class="pageno">09 / 24</span>
+      </header>
+      <div class="body" style="padding-top:40px;">
+        <table class="email-table">
+          <thead>
+            <tr>
+              <th width="44%">パターン</th>
+              <th width="12%">緊急度</th>
+              <th width="12%">重要度</th>
+              <th width="18%">判定</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>チェックイン時間・鍵の受け取り方法</td>
+              <td class="kyu-mid">中</td>
+              <td class="kyu-low">低</td>
+              <td><span class="flag flag-hisho">秘書対応</span></td>
+            </tr>
+            <tr>
+              <td>Wi-Fi・設備の使い方</td>
+              <td class="kyu-mid">中</td>
+              <td class="kyu-low">低</td>
+              <td><span class="flag flag-hisho">秘書対応</span></td>
+            </tr>
+            <tr>
+              <td>早期チェックイン・レイトチェックアウト</td>
+              <td class="kyu-mid">中</td>
+              <td class="kyu-mid">中</td>
+              <td><span class="flag flag-hisho">秘書対応</span></td>
+            </tr>
+            <tr>
+              <td>キャンセル・日程変更</td>
+              <td class="kyu-mid">中</td>
+              <td class="kyu-mid">中</td>
+              <td><span class="flag flag-hisho">秘書対応</span></td>
+            </tr>
+            <tr>
+              <td>団体・法人予約の相談</td>
+              <td class="kyu-low">低</td>
+              <td class="kyu-high">高</td>
+              <td><span class="flag flag-shacho">社長確認</span></td>
+            </tr>
+            <tr>
+              <td>設備不具合・クレーム</td>
+              <td class="kyu-high">高</td>
+              <td class="kyu-high">高</td>
+              <td><span class="flag flag-critical">社長要対応</span></td>
+            </tr>
+            <tr>
+              <td>外国語（英語・中国語）での問い合わせ</td>
+              <td class="kyu-mid">中</td>
+              <td class="kyu-mid">中</td>
+              <td><span class="flag flag-hisho">秘書対応</span></td>
+            </tr>
+            <tr>
+              <td>領収書・請求書の発行依頼</td>
+              <td class="kyu-low">低</td>
+              <td class="kyu-mid">中</td>
+              <td><span class="flag flag-hisho">秘書対応</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 10 · ホテル運営カテゴリ（工事・リニューアル） -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="ホテル運営-工事">
+      <header class="header-band"><span>対応カテゴリ — Sakura Sands Suites（工事・リニューアル関連）</span><span class="pageno">10 /
+          24</span></header>
+      <div class="body" style="padding-top:32px;">
+        <table class="email-table" style="font-size:21px;">
+          <thead>
+            <tr>
+              <th width="44%">パターン</th>
+              <th width="12%">緊急度</th>
+              <th width="12%">重要度</th>
+              <th width="18%">判定</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>施工業者からの工程・日程調整連絡</td>
+              <td class="kyu-mid">中</td>
+              <td class="kyu-high">高</td>
+              <td><span class="flag flag-shacho">社長確認</span></td>
+            </tr>
+            <tr>
+              <td>業者からの見積もり・請求書送付</td>
+              <td class="kyu-low">低</td>
+              <td class="kyu-high">高</td>
+              <td><span class="flag flag-shacho">社長確認</span></td>
+            </tr>
+            <tr>
+              <td>資材・備品の納品調整連絡</td>
+              <td class="kyu-mid">中</td>
+              <td class="kyu-mid">中</td>
+              <td><span class="flag flag-hisho">秘書対応</span></td>
+            </tr>
+            <tr>
+              <td>工事完了・検収確認の連絡</td>
+              <td class="kyu-mid">中</td>
+              <td class="kyu-high">高</td>
+              <td><span class="flag flag-shacho">社長確認</span></td>
+            </tr>
+            <tr>
+              <td>工事遅延・トラブルの報告</td>
+              <td class="kyu-high">高</td>
+              <td class="kyu-high">高</td>
+              <td><span class="flag flag-critical">社長要対応</span></td>
+            </tr>
+            <tr>
+              <td>工事中の予約受付可否の問い合わせ</td>
+              <td class="kyu-mid">中</td>
+              <td class="kyu-mid">中</td>
+              <td><span class="flag flag-hisho">秘書対応</span></td>
+            </tr>
+            <tr>
+              <td>既存予約者へのリスケ・キャンセル対応</td>
+              <td class="kyu-high">高</td>
+              <td class="kyu-high">高</td>
+              <td><span class="flag flag-critical">社長要対応</span></td>
+            </tr>
+            <tr>
+              <td>OTA情報更新依頼・メディア掲載依頼</td>
+              <td class="kyu-low">低</td>
+              <td class="kyu-high">高</td>
+              <td><span class="flag flag-shacho">社長確認</span></td>
+            </tr>
+            <tr>
+              <td>新料金・新プランへの問い合わせ</td>
+              <td class="kyu-low">低</td>
+              <td class="kyu-mid">中</td>
+              <td><span class="flag flag-hisho">秘書対応</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 11 · その他3事業カテゴリ -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="その他3事業">
+      <header class="header-band"><span>対応カテゴリ — サポタスハイツ／法人サポート／採用・事務代行</span><span class="pageno">11 / 24</span>
+      </header>
+      <div class="body" style="padding-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+        <div>
+          <div style="font-size:28px;font-weight:700;color:var(--primary-0);margin-bottom:12px;letter-spacing:0.04em;">
+            🏠 サポタスハイツ（高齢者賃貸）</div>
+          <table class="email-table" style="font-size:20px;">
+            <thead>
+              <tr>
+                <th width="56%">パターン</th>
+                <th>緊急度</th>
+                <th>判定</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>入居初回相談・資料請求</td>
+                <td class="kyu-low">低</td>
+                <td><span class="flag flag-hisho" style="font-size:16px;">秘書対応</span></td>
+              </tr>
+              <tr>
+                <td>初期費用・月額費用の確認</td>
+                <td class="kyu-low">低</td>
+                <td><span class="flag flag-hisho" style="font-size:16px;">秘書対応</span></td>
+              </tr>
+              <tr>
+                <td>生活保護受給者の入居可否</td>
+                <td class="kyu-low">低</td>
+                <td><span class="flag flag-shacho" style="font-size:16px;">社長確認</span></td>
+              </tr>
+              <tr>
+                <td>退去・解約の連絡</td>
+                <td class="kyu-mid">中</td>
+                <td><span class="flag flag-shacho" style="font-size:16px;">社長確認</span></td>
+              </tr>
+              <tr>
+                <td>設備不具合・緊急連絡</td>
+                <td class="kyu-high">高</td>
+                <td><span class="flag flag-critical" style="font-size:16px;">社長要対応</span></td>
+              </tr>
+              <tr>
+                <td>ご家族からの緊急連絡</td>
+                <td class="kyu-high">高</td>
+                <td><span class="flag flag-critical" style="font-size:16px;">社長要対応</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div style="font-size:28px;font-weight:700;color:var(--primary-0);margin-bottom:12px;letter-spacing:0.04em;">
+            💼 法人サポート</div>
+          <table class="email-table" style="font-size:20px;margin-bottom:28px;">
+            <thead>
+              <tr>
+                <th width="56%">パターン</th>
+                <th>緊急度</th>
+                <th>判定</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>助成金・補助金サポートの問い合わせ</td>
+                <td class="kyu-low">低</td>
+                <td><span class="flag flag-shacho" style="font-size:16px;">社長確認</span></td>
+              </tr>
+              <tr>
+                <td>MEO・HP制作の見積もり依頼</td>
+                <td class="kyu-low">低</td>
+                <td><span class="flag flag-shacho" style="font-size:16px;">社長確認</span></td>
+              </tr>
+              <tr>
+                <td>経営相談のアポ依頼</td>
+                <td class="kyu-low">低</td>
+                <td><span class="flag flag-shacho" style="font-size:16px;">社長確認</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="font-size:28px;font-weight:700;color:var(--primary-0);margin-bottom:12px;letter-spacing:0.04em;">
+            👥 採用・事務代行</div>
+          <table class="email-table" style="font-size:20px;">
+            <thead>
+              <tr>
+                <th width="56%">パターン</th>
+                <th>緊急度</th>
+                <th>判定</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>採用代行・経理代行の問い合わせ</td>
+                <td class="kyu-low">低</td>
+                <td><span class="flag flag-shacho" style="font-size:16px;">社長確認</span></td>
+              </tr>
+              <tr>
+                <td>採用ツール「トルー」の説明依頼</td>
+                <td class="kyu-low">低</td>
+                <td><span class="flag flag-hisho" style="font-size:16px;">秘書対応</span></td>
+              </tr>
+              <tr>
+                <td>求人応募者からの連絡</td>
+                <td class="kyu-mid">中</td>
+                <td><span class="flag flag-hisho" style="font-size:16px;">秘書対応</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 12 · Section: デモ -->
+    <!-- ============================================================ -->
+    <section class="slide section-divider" data-label="Section-デモ">
+      <div class="sd-number">04</div>
+      <div class="sd-title">
+        <div class="sd-en">DEMO</div>
+        <h2>実際の<br>動き</h2>
+      </div>
+      <div class="sd-rule"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 13 · 例1 チェックイン確認 [ホテル通常／秘書対応] -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="例1-チェックイン">
+      <header class="header-band"><span>デモ ① チェックイン時間確認 — ホテル通常 → <span
+            style="background:rgba(255,255,255,0.2);border-radius:4px;padding:2px 12px;">秘書対応</span></span><span
+          class="pageno">13 / 24</span></header>
+      <div
+        style="padding:40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;height:calc(1080px - 120px - 40px);">
+        <div class="demo-box received">
+          <div class="demo-label">📨 受信メール</div>
+          <div class="demo-subject">件名：チェックインについて</div>
+          <div class="demo-body">田中と申します。5月15日より2泊でお世話になります。
+
+            当日16時頃到着予定ですが、
+            チェックインは何時からでしょうか？
+            また、鍵のお受け取り方法も
+            教えていただけますと幸いです。
+
+            田中 一郎</div>
+          <div class="demo-badge">
+            <span class="flag flag-hisho">秘書対応</span>
+            <span style="font-size:22px;color:var(--neutral-4);">緊急度：低　重要度：低</span>
+          </div>
+        </div>
+        <div class="demo-box reply">
+          <div class="demo-label">✉️ 返信下書き（自動生成）</div>
+          <div class="demo-subject">件名：Re: チェックインについて</div>
+          <div class="demo-body">田中 一郎 様
+
+            お問い合わせいただきありがとうございます。
+            Sakura Sands Suitesを運営しております
+            カケタス 秘書担当でございます。
+
+            チェックインは【15:00】からご利用いただけます。
+            チェックアウトは【11:00】までとなっております。
+
+            ■ 鍵のお受け取りについて
+            スマートロックを採用しております。
+            チェックイン当日に暗証番号をメールにて
+            お送りいたします。
+
+            ご不明な点はお気軽にお申し付けください。
+            ご来泊を心よりお待ちしております。
+
+            カケタス 秘書担当</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 14 · 例2 設備クレーム [ホテル通常／社長要対応] -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="例2-クレーム">
+      <header class="header-band"><span>デモ ② 設備クレーム — ホテル通常 → <span
+            style="background:rgba(231,111,81,0.3);border-radius:4px;padding:2px 12px;">社長要対応</span></span><span
+          class="pageno">14 / 24</span></header>
+      <div
+        style="padding:40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;height:calc(1080px - 120px - 40px);">
+        <div class="demo-box received">
+          <div class="demo-label">📨 受信メール</div>
+          <div class="demo-subject">件名：エアコンが壊れています</div>
+          <div class="demo-body">今日からチェックインしたのですが、
+            エアコンが全く動きません。
+
+            外は暑いのに部屋が使えない状態です。
+            すぐに対応してもらえますか？
+
+            山田</div>
+          <div class="demo-alert">🔴 社長要対応：下書きなし・即時フラグ<br><span
+              style="font-size:22px;font-weight:500;margin-top:4px;display:block;">理由：設備クレーム（緊急度 高 ／ 重要度 高）</span></div>
+        </div>
+        <div class="demo-box reply">
+          <div class="demo-label">✉️ 一時対応テンプレート（自動生成）</div>
+          <div class="demo-subject">件名：Re: エアコンが壊れています</div>
+          <div class="demo-body">山田 様
+
+            この度はご不便をおかけして、
+            誠に申し訳ございません。
+
+            現在、担当者に連絡を取っております。
+            本日中に担当者より直接ご連絡いたします。
+
+            大変ご迷惑をおかけしております。
+            引き続きどうぞよろしくお願いいたします。
+
+            カケタス 秘書担当</div>
+          <div
+            style="font-size:22px;color:var(--primary-0);font-weight:700;background:var(--primary-9);padding:12px 20px;border-radius:10px;">
+            ✓ 一時対応で時間を確保しつつ、社長へ即フラグ
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 15 · 例3 サポタスハイツ入居相談 [サポタス／秘書対応] -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="例3-入居相談">
+      <header class="header-band"><span>デモ ③ サポタスハイツ 入居相談 — 高齢者賃貸 → <span
+            style="background:rgba(255,255,255,0.2);border-radius:4px;padding:2px 12px;">秘書対応</span></span><span
+          class="pageno">15 / 24</span></header>
+      <div
+        style="padding:40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;height:calc(1080px - 120px - 40px);">
+        <div class="demo-box received">
+          <div class="demo-label">📨 受信メール</div>
+          <div class="demo-subject">件名：入居についてのご相談</div>
+          <div class="demo-body">はじめまして。
+            78歳の母の住まいを探しております。
+            サポタスハイツさんのことを
+            ネットで拝見しました。
+
+            一人暮らしで不安があり、
+            安否確認サービスがあると聞いて
+            気になっています。
+
+            初期費用や月々の費用を
+            教えていただけますか？
+
+            鈴木 美子</div>
+          <div class="demo-badge">
+            <span class="flag flag-hisho">秘書対応</span>
+            <span style="font-size:22px;color:var(--neutral-4);">緊急度：低　重要度：中</span>
+          </div>
+        </div>
+        <div class="demo-box reply">
+          <div class="demo-label">✉️ 返信下書き（自動生成）</div>
+          <div class="demo-subject">件名：Re: 入居についてのご相談</div>
+          <div class="demo-body">鈴木 美子 様
+
+            はじめまして。
+            サポタスハイツを運営しております
+            カケタス 秘書担当でございます。
+
+            お母様のお住まいについてご検討いただき、
+            ありがとうございます。
+
+            サポタスハイツでは、スタッフによる
+            安否確認や生活相談など、安心してお過ごし
+            いただけるサポートをご用意しております。
+
+            ■ 費用について
+            ・初期費用：0円〜
+            ・生活保護にも対応しております
+
+            詳しい資料のご送付や、
+            ご見学のご案内も承っております。
+            お気軽にご連絡ください。
+
+            カケタス 秘書担当
+            TEL：[電話番号]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 16 · 例4 施工業者 工事遅延 [ホテル工事／社長要対応] -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="例4-工事遅延">
+      <header class="header-band"><span>デモ ④ 施工業者 工事遅延報告 — ホテル工事 → <span
+            style="background:rgba(231,111,81,0.3);border-radius:4px;padding:2px 12px;">社長要対応</span></span><span
+          class="pageno">16 / 24</span></header>
+      <div
+        style="padding:40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;height:calc(1080px - 120px - 40px);">
+        <div class="demo-box received">
+          <div class="demo-label">📨 受信メール</div>
+          <div class="demo-subject">件名：工事日程の変更について【重要】</div>
+          <div class="demo-body">株式会社カケタス 担当者様
+
+            いつもお世話になっております。
+            〇〇工務店の松本です。
+
+            先般ご依頼いただいた内装工事の件ですが、
+            資材の入荷遅延により、予定していた
+            6月3日の着工が1週間ほど
+            遅れる見込みとなりました。
+
+            ご迷惑をおかけして大変申し訳ございません。
+            改めてお電話でもご説明させていただきたく
+            存じます。
+
+            〇〇工務店 松本</div>
+          <div class="demo-alert">🔴 社長要対応：下書きなし・即時フラグ<br><span
+              style="font-size:22px;font-weight:500;margin-top:4px;display:block;">理由：工事遅延トラブル（緊急度 高 ／ 重要度 高）</span>
+          </div>
+        </div>
+        <div class="demo-box reply" style="background:var(--neutral-9);border-color:var(--neutral-7);">
+          <div class="demo-label" style="color:var(--neutral-4);">🚫 返信テンプレートなし（社長直接対応）</div>
+          <div style="background:#fff;border-radius:16px;padding:32px;margin-top:16px;border:2px solid #E76F51;">
+            <div style="font-size:26px;font-weight:700;color:#E76F51;margin-bottom:20px;">社長へのフラグ通知内容</div>
+            <div style="font-size:24px;line-height:1.8;color:var(--neutral-1);">
+              件名：工事遅延【要対応】<br>
+              送信者：〇〇工務店 松本様<br>
+              カテゴリ：工事遅延トラブル<br>
+              緊急度：高　／　重要度：高<br>
+              ──────────────<br>
+              着工予定 6/3 → 1週間遅延の見込み。<br>
+              社長による直接対応・意思決定が必要です。
+            </div>
+          </div>
+          <div
+            style="font-size:22px;color:var(--primary-0);font-weight:700;background:var(--primary-9);padding:12px 20px;border-radius:10px;margin-top:16px;">
+            ✓ 秘書は判断せず、社長に即エスカレ
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 17 · 例5 求人応募 [採用・事務代行／秘書対応] -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="例5-求人応募">
+      <header class="header-band"><span>デモ ⑤ 求人応募受付 — 採用・事務代行 → <span
+            style="background:rgba(255,255,255,0.2);border-radius:4px;padding:2px 12px;">秘書対応</span></span><span
+          class="pageno">17 / 24</span></header>
+      <div
+        style="padding:40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;height:calc(1080px - 120px - 40px);">
+        <div class="demo-box received">
+          <div class="demo-label">📨 受信メール</div>
+          <div class="demo-subject">件名：アルバイト応募について</div>
+          <div class="demo-body">はじめまして、大学2年の佐藤と申します。
+            求人サイトでカケタス様のアルバイト
+            募集を拝見し、ぜひ応募させていただきたく
+            メールいたしました。
+
+            週3〜4日、土日も勤務可能です。
+            選考についてご案内いただけますでしょうか。
+
+            佐藤 健太
+            TEL：090-XXXX-XXXX</div>
+          <div class="demo-badge">
+            <span class="flag flag-hisho">秘書対応</span>
+            <span style="font-size:22px;color:var(--neutral-4);">緊急度：低　重要度：中</span>
+          </div>
+        </div>
+        <div class="demo-box reply">
+          <div class="demo-label">✉️ 返信下書き（自動生成）</div>
+          <div class="demo-subject">件名：Re: アルバイト応募について</div>
+          <div class="demo-body">佐藤 健太 様
+
+            この度はカケタスへご応募いただき、
+            ありがとうございます。
+
+            応募を受け付けいたしました。
+            書類確認のうえ、【3営業日以内】に
+            担当者よりご連絡差し上げます。
+
+            選考についてご不明な点がございましたら
+            お気軽にお問い合わせください。
+
+            カケタス 秘書担当</div>
+          <div
+            style="font-size:22px;color:var(--primary-0);font-weight:700;background:var(--primary-9);padding:12px 20px;border-radius:10px;">
+            ✓ 社長の手を煩わせず、応募者に即返信
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 18 · 例6 キャンセル・日程変更 [ホテル通常／秘書対応] -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="例6-キャンセル">
+      <header class="header-band"><span>デモ ⑥ キャンセル・日程変更 — ホテル通常 → <span
+            style="background:rgba(255,255,255,0.2);border-radius:4px;padding:2px 12px;">秘書対応</span></span><span
+          class="pageno">18 / 24</span></header>
+      <div
+        style="padding:40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;height:calc(1080px - 120px - 40px);">
+        <div class="demo-box received">
+          <div class="demo-label">📨 受信メール</div>
+          <div class="demo-subject">件名：予約のキャンセルをお願いしたいです</div>
+          <div class="demo-body">お世話になっております。
+            6月10日〜12日で予約しております
+            中村と申します。
+
+            急な仕事の都合でキャンセルを
+            お願いしたいのですが、
+            手続きを教えていただけますでしょうか。
+
+            中村 誠</div>
+          <div class="demo-badge">
+            <span class="flag flag-hisho">秘書対応</span>
+            <span style="font-size:22px;color:var(--neutral-4);">緊急度：中　重要度：中</span>
+          </div>
+        </div>
+        <div class="demo-box reply">
+          <div class="demo-label">✉️ 返信下書き（自動生成）</div>
+          <div class="demo-subject">件名：Re: 予約のキャンセルをお願いしたいです</div>
+          <div class="demo-body">中村 誠 様
+
+            お問い合わせいただきありがとうございます。
+            カケタス 秘書担当でございます。
+
+            6月10日〜12日のご予約について、
+            キャンセルのお手続きを承りました。
+
+            ■ キャンセルポリシー
+            ・3日前まで：キャンセル料なし
+            ・前日：宿泊料金の50%
+            ・当日：宿泊料金の100%
+
+            現時点（3日前以上）はキャンセル料は
+            発生しません。手続きを完了いたします。
+
+            またの機会をお待ちしております。
+
+            カケタス 秘書担当</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 19 · 例7 家族からの緊急連絡 [サポタス／社長要対応] -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="例7-家族緊急">
+      <header class="header-band"><span>デモ ⑦ 入居者家族からの緊急連絡 — サポタスハイツ → <span
+            style="background:rgba(231,111,81,0.3);border-radius:4px;padding:2px 12px;">社長要対応</span></span><span
+          class="pageno">19 / 24</span></header>
+      <div
+        style="padding:40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;height:calc(1080px - 120px - 40px);">
+        <div class="demo-box received">
+          <div class="demo-label">📨 受信メール</div>
+          <div class="demo-subject">件名：母の様子が心配です【至急】</div>
+          <div class="demo-body">お世話になっております。
+            302号室の伊藤花子の娘です。
+
+            昨日から母と連絡が取れておらず、
+            とても心配しています。
+
+            安否確認をしていただくことは
+            できますでしょうか。
+
+            至急ご連絡をいただけると
+            助かります。
+
+            伊藤 幸子（娘）
+            TEL：080-XXXX-XXXX</div>
+          <div class="demo-alert">🔴 社長要対応：下書きなし・即時フラグ<br><span
+              style="font-size:22px;font-weight:500;margin-top:4px;display:block;">理由：入居者安否に関わる家族緊急連絡</span></div>
+        </div>
+        <div class="demo-box reply" style="background:var(--neutral-9);border-color:var(--neutral-7);">
+          <div class="demo-label" style="color:var(--neutral-4);">🚫 返信テンプレートなし（社長直接対応）</div>
+          <div style="background:#fff;border-radius:16px;padding:32px;margin-top:16px;border:2px solid #E76F51;">
+            <div style="font-size:26px;font-weight:700;color:#E76F51;margin-bottom:20px;">社長へのフラグ通知内容</div>
+            <div style="font-size:24px;line-height:1.8;color:var(--neutral-1);">
+              件名：【緊急】入居者安否確認依頼<br>
+              送信者：伊藤様（302号室ご家族）<br>
+              カテゴリ：家族からの緊急連絡<br>
+              緊急度：高　／　重要度：高<br>
+              ──────────────<br>
+              昨日より入居者と連絡取れず。<br>
+              安否確認・折り返し連絡が必要。
+            </div>
+          </div>
+          <div
+            style="font-size:22px;color:var(--primary-0);font-weight:700;background:var(--primary-9);padding:12px 20px;border-radius:10px;margin-top:16px;">
+            ✓ 人命に関わる案件は秘書は判断せず即エスカレ
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 20 · 例8 法人サポート MEO問い合わせ [法人サポート／社長確認] -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="例8-法人MEO">
+      <header class="header-band"><span>デモ ⑧ MEO対策問い合わせ — 法人サポート → <span
+            style="background:rgba(244,162,97,0.3);border-radius:4px;padding:2px 12px;">社長確認</span></span><span
+          class="pageno">20 / 24</span></header>
+      <div
+        style="padding:40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;height:calc(1080px - 120px - 40px);">
+        <div class="demo-box received">
+          <div class="demo-label">📨 受信メール</div>
+          <div class="demo-subject">件名：MEO対策についてご相談したいです</div>
+          <div class="demo-body">はじめまして。
+            大阪市内で飲食店を3店舗経営しております
+            株式会社〇〇の高橋と申します。
+
+            Googleマップでの集客を強化したく、
+            MEO対策をご支援いただける会社を
+            探しておりました。
+
+            一度、詳しくお話を聞かせていただけますか。
+            お見積もりもお願いしたいです。
+
+            高橋 太郎
+            TEL：06-XXXX-XXXX</div>
+          <div class="demo-badge">
+            <span class="flag flag-shacho">社長確認</span>
+            <span style="font-size:22px;color:var(--neutral-4);">緊急度：低　重要度：高</span>
+          </div>
+        </div>
+        <div class="demo-box reply" style="background:#FFF8F0;border-color:#F4A261;">
+          <div class="demo-label">✉️ 返信下書き（自動生成）＋ 社長確認フラグ</div>
+          <div class="demo-subject">件名：Re: MEO対策についてご相談したいです</div>
+          <div class="demo-body">高橋 太郎 様
+
+            はじめまして。
+            カケタス 秘書担当でございます。
+
+            この度はMEO対策についてお問い合わせ
+            いただきありがとうございます。
+
+            担当者より改めてご連絡を差し上げますので、
+            少々お時間をいただけますでしょうか。
+
+            ご希望の日程等がございましたら、
+            お知らせいただけますと幸いです。
+
+            カケタス 秘書担当</div>
+          <div
+            style="font-size:22px;color:#F4A261;font-weight:700;background:#FFF3E6;padding:12px 20px;border-radius:10px;border:1px solid #F4A261;">
+            ✓ 一次受付は秘書が対応。商談判断は社長へ確認
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 21 · Section: 料金・導入 -->
+    <!-- ============================================================ -->
+    <section class="slide section-divider" data-label="Section-料金">
+      <div class="sd-number">05</div>
+      <div class="sd-title">
+        <div class="sd-en">PRICING</div>
+        <h2>料金・<br>導入の流れ</h2>
+      </div>
+      <div class="sd-rule"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 18 · 料金スライド -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="料金提案">
+      <header class="header-band"><span>料金提案</span><span class="pageno">22 / 24</span></header>
+      <div class="price-grid">
+        <div class="price-main">
+          <div style="font-size:36px;font-weight:700;color:var(--neutral-2);">月10,000円で、社長の時間を月40時間取り戻す</div>
+          <div class="price-tag">¥10,000<span class="price-unit">/月</span></div>
+          <div class="price-caption">※お試し秘書エージェント月額料金　（出典：日本ビジネスメール協会「ビジネスメール実態調査2025」をもとに算出）</div>
+        </div>
+        <div class="price-cards">
+          <div class="price-card">
+            <div>
+              <div class="price-card-num">2<span class="price-card-unit">時間</span></div>
+              <div class="price-card-lbl">1日の削減時間</div>
+            </div>
+          </div>
+          <div class="price-card">
+            <div>
+              <div class="price-card-num">40<span class="price-card-unit">時間</span></div>
+              <div class="price-card-lbl">月間削減時間（×20日）</div>
+            </div>
+          </div>
+          <div class="price-card">
+            <div>
+              <div class="price-card-num">80<span class="price-card-unit">%</span></div>
+              <div class="price-card-lbl">対応メール網羅率</div>
+            </div>
+          </div>
+          <div class="roi-box">
+            <div class="roi-num">¥120,000</div>
+            <div class="roi-lbl">月間削減価値（時給3,000円換算）</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 19 · 導入の流れ -->
+    <!-- ============================================================ -->
+    <section class="slide std" data-label="導入の流れ">
+      <header class="header-band"><span>導入の流れ</span><span class="pageno">23 / 24</span></header>
+      <div class="body" style="padding-top:56px;">
+        <h3 class="slide-title" style="margin-bottom:48px;">最短1日で稼働開始</h3>
+        <div class="steps" style="padding:0;height:auto;">
+          <div class="step-card">
+            <div class="step-num">STEP 01</div>
+            <div class="step-title">メールパターン確認</div>
+            <div class="step-desc">よく来るメール・定型文の最終確認。カケタスの実情に合わせて微調整。</div>
+            <span class="step-days">0.5日</span>
+          </div>
+          <div class="step-card">
+            <div class="step-num">STEP 02</div>
+            <div class="step-title">秘書設定・スプシ作成</div>
+            <div class="step-desc">トリアージルール・テンプレート・スプレッドシートをセットアップ。</div>
+            <span class="step-days">0.5日</span>
+          </div>
+          <div class="step-card">
+            <div class="step-num">STEP 03</div>
+            <div class="step-title">試運転・微調整</div>
+            <div class="step-desc">実際のメールで動作確認。返信文体・フラグ精度を調整。</div>
+            <span class="step-days">1週間</span>
+          </div>
+          <div class="step-card">
+            <div class="step-num">STEP 04</div>
+            <div class="step-title">本格稼働</div>
+            <div class="step-desc">毎日の秘書業務がスタート。将来的にDiscord通知も追加予定。</div>
+            <span class="step-days">継続</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 20 · クロージング -->
+    <!-- ============================================================ -->
+    <section class="slide closing" data-label="Closing">
+      <div class="closing-body">
+        <div class="closing-thanks gradient-text">ありがとうございました。</div>
+        <div class="closing-jp" style="font-size:40px;margin-bottom:64px;">ご質問・ご不明点はお気軽にどうぞ</div>
+        <div class="closing-contact">
+          <div class="c-row">
+            <img src="https://kaketasu.jp/wp-content/uploads/2024/12/logo-1.png" class="logo-img-dark" alt="カケタス"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+            <span style="display:none;font-size:28px;font-weight:900;color:var(--primary-0);">株式会社カケタス</span>
+          </div>
+          <div class="c-row"><span class="c-lbl">Web</span><span class="c-val">kaketasu.jp</span></div>
+        </div>
+      </div>
+      <div class="closing-band"></div>
+    </section>
+
+  </deck-stage>
+</body>
+
+</html>

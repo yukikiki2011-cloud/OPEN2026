@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>案件コーチ ELITE — agents &amp; modules</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --font: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
+  --mono: 'SF Mono', Menlo, Consolas, monospace;
+  --grad: linear-gradient(135deg, #1E1B4B 0%, #4C1D95 55%, #7C3AED 100%);
+  --bg:      #F5F3FF;
+  --surface: #FFFFFF;
+  --border:  #DDD6FE;
+  --text:    #1E1B4B;
+  --muted:   #7C6FA0;
+  --faint:   #C4B5FD;
+  --c-analyze:  #3B82F6;
+  --c-coaching: #10B981;
+  --c-techsales:#8B5CF6;
+  --c-action:   #F59E0B;
+  --c-module:   #EC4899;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Hero ── */
+.hero {
+  background: var(--grad);
+  padding: 72px 40px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 80%, rgba(255,255,255,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 15%, rgba(255,255,255,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.30);
+  border-radius: 999px;
+  padding: 6px 20px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+  color: #fff; text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-title {
+  font-size: clamp(32px, 5vw, 68px);
+  font-weight: 900; line-height: 1.1; letter-spacing: -0.02em;
+  color: #fff; margin-bottom: 20px;
+}
+.hero-title .accent {
+  background: rgba(255,255,255,0.18);
+  border-radius: 8px;
+  padding: 2px 14px;
+  display: inline-block;
+}
+.hero-sub {
+  font-size: clamp(13px, 2vw, 17px); font-weight: 500;
+  color: rgba(255,255,255,0.80); letter-spacing: 0.04em;
+  margin-bottom: 44px;
+}
+.hero-stats {
+  display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-num { font-size: 40px; font-weight: 900; letter-spacing: -0.02em; color: #fff; display: block; }
+.stat-lbl { font-size: 12px; color: rgba(255,255,255,0.72); letter-spacing: 0.08em; margin-top: 4px; }
+
+/* ── Filter bar ── */
+.filter-wrap {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,243,255,0.93);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+}
+.filter-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; gap: 8px; padding: 14px 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.filter-inner::-webkit-scrollbar { display: none; }
+.filter-btn {
+  flex-shrink: 0;
+  appearance: none;
+  border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--muted);
+  font-family: var(--font); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 8px 18px; border-radius: 999px;
+  cursor: pointer; white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.filter-btn:hover { border-color: #7C3AED; color: #7C3AED; }
+.filter-btn.active { background: var(--grad); color: #fff; border-color: transparent; box-shadow: 0 2px 12px rgba(76,29,149,0.30); transform: scale(1.03); }
+.filter-btn[data-cat="analyze"].active  { background: var(--c-analyze);  box-shadow: 0 2px 12px rgba(59,130,246,0.32); }
+.filter-btn[data-cat="coaching"].active { background: var(--c-coaching); box-shadow: 0 2px 12px rgba(16,185,129,0.32); }
+.filter-btn[data-cat="techsales"].active{ background: var(--c-techsales);box-shadow: 0 2px 12px rgba(139,92,246,0.32); }
+.filter-btn[data-cat="action"].active   { background: var(--c-action);   box-shadow: 0 2px 12px rgba(245,158,11,0.32); }
+.filter-btn[data-cat="module"].active   { background: var(--c-module);   box-shadow: 0 2px 12px rgba(236,72,153,0.32); }
+.filter-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; flex-shrink: 0; }
+
+/* ── Grid ── */
+.grid-wrap { max-width: 1400px; margin: 0 auto; padding: 40px 40px 80px; }
+.grid-header { margin-bottom: 28px; }
+.grid-count { font-size: 14px; color: var(--muted); letter-spacing: 0.04em; }
+.grid-count span { color: var(--text); font-weight: 700; }
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ── Card ── */
+.skill-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(76,29,149,0.11);
+  border-color: rgba(124,58,237,0.25);
+}
+.skill-card[data-cat="analyze"]:hover  { box-shadow: 0 14px 36px rgba(59,130,246,0.12);  border-color: rgba(59,130,246,0.30); }
+.skill-card[data-cat="coaching"]:hover { box-shadow: 0 14px 36px rgba(16,185,129,0.12);  border-color: rgba(16,185,129,0.30); }
+.skill-card[data-cat="techsales"]:hover{ box-shadow: 0 14px 36px rgba(139,92,246,0.12);  border-color: rgba(139,92,246,0.30); }
+.skill-card[data-cat="action"]:hover   { box-shadow: 0 14px 36px rgba(245,158,11,0.12);  border-color: rgba(245,158,11,0.30); }
+.skill-card[data-cat="module"]:hover   { box-shadow: 0 14px 36px rgba(236,72,153,0.12);  border-color: rgba(236,72,153,0.30); }
+
+.card-illus {
+  width: 100%; height: 90px;
+  overflow: hidden; flex-shrink: 0;
+}
+.card-illus svg { width: 100%; height: 100%; display: block; }
+
+.card-body { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.card-icon { font-size: 26px; line-height: 1; flex-shrink: 0; }
+.card-cat-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 999px;
+}
+.card-name-en {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--faint); letter-spacing: 0.02em;
+}
+.card-name-ja {
+  font-size: 17px; font-weight: 900; letter-spacing: -0.01em;
+  color: var(--text); line-height: 1.25;
+}
+.card-tagline {
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  line-height: 1.55; flex: 1;
+}
+.card-foot {
+  display: flex; align-items: center;
+  margin-top: 6px;
+}
+.card-type {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--muted); background: var(--bg);
+  border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px;
+}
+
+.skill-card.hidden { display: none; }
+
+/* ── Footer ── */
+.page-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 40px; text-align: center;
+  color: var(--faint); font-size: 13px;
+}
+.page-footer strong {
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--faint); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-badge">✦ Claude Code Skill</div>
+  <h1 class="hero-title">案件コーチ <span class="accent">ELITE</span></h1>
+  <p class="hero-sub">高単価案件獲得のための AIコーチングスキル — agents &amp; modules</p>
+  <div class="hero-stats">
+    <div class="stat-item"><span class="stat-num">13</span><div class="stat-lbl">エージェント</div></div>
+    <div class="stat-item"><span class="stat-num">3</span><div class="stat-lbl">モジュール</div></div>
+    <div class="stat-item"><span class="stat-num">5</span><div class="stat-lbl">カテゴリ</div></div>
+  </div>
+</header>
+
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <button class="filter-btn active" data-cat="all">
+      <span class="filter-dot" style="background:#7C3AED"></span>すべて (16)
+    </button>
+    <button class="filter-btn" data-cat="analyze">
+      <span class="filter-dot" style="background:var(--c-analyze)"></span>診断・設計 (3)
+    </button>
+    <button class="filter-btn" data-cat="coaching">
+      <span class="filter-dot" style="background:var(--c-coaching)"></span>マインド・伴走 (3)
+    </button>
+    <button class="filter-btn" data-cat="techsales">
+      <span class="filter-dot" style="background:var(--c-techsales)"></span>技術営業 (5)
+    </button>
+    <button class="filter-btn" data-cat="action">
+      <span class="filter-dot" style="background:var(--c-action)"></span>行動設計 (2)
+    </button>
+    <button class="filter-btn" data-cat="module">
+      <span class="filter-dot" style="background:var(--c-module)"></span>出力モジュール (3)
+    </button>
+  </div>
+</div>
+
+<div class="grid-wrap">
+  <div class="grid-header">
+    <div class="grid-count"><span id="visible-count">16</span> 件</div>
+  </div>
+  <div class="card-grid" id="card-grid"></div>
+</div>
+
+<footer class="page-footer">
+  <p><strong>案件コーチ ELITE</strong> &nbsp;|&nbsp; yukikiki2011-cloud / OPEN2026</p>
+</footer>
+
+<script>
+const CATS = {
+  analyze:  { label: '診断・設計',    color: '#3B82F6' },
+  coaching: { label: 'マインド・伴走', color: '#10B981' },
+  techsales:{ label: '技術営業',      color: '#8B5CF6' },
+  action:   { label: '行動設計',      color: '#F59E0B' },
+  module:   { label: '出力モジュール', color: '#EC4899' },
+};
+
+function makeIllus(inner, c) {
+  return `<svg viewBox="0 0 280 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="280" height="90" fill="${c}" fill-opacity=".06"/>
+    <circle cx="16" cy="14" r="44" fill="${c}" fill-opacity=".07"/>
+    <circle cx="264" cy="80" r="48" fill="${c}" fill-opacity=".05"/>
+    ${inner}
+  </svg>`;
+}
+
+const ILLUS = {
+  'diagnosis': c => makeIllus(`
+    <rect x="44" y="14" width="72" height="64" rx="6" fill="white" stroke="${c}" stroke-opacity=".3" stroke-width="1.5"/>
+    <rect x="56" y="26" width="48" height="4" rx="2" fill="${c}" fill-opacity=".4"/>
+    <rect x="56" y="38" width="38" height="3" rx="1.5" fill="${c}" fill-opacity=".2"/>
+    <rect x="56" y="48" width="44" height="3" rx="1.5" fill="${c}" fill-opacity=".2"/>
+    <rect x="56" y="58" width="32" height="3" rx="1.5" fill="${c}" fill-opacity=".2"/>
+    <circle cx="190" cy="46" r="26" fill="${c}" fill-opacity=".1" stroke="${c}" stroke-width="1.5"/>
+    <circle cx="190" cy="46" r="16" fill="${c}" fill-opacity=".15"/>
+    <circle cx="190" cy="46" r="7"  fill="${c}" fill-opacity=".5"/>
+  `, c),
+  'target-designer': c => makeIllus(`
+    <circle cx="150" cy="46" r="32" fill="${c}" fill-opacity=".07" stroke="${c}" stroke-width="1.5" stroke-opacity=".25"/>
+    <circle cx="150" cy="46" r="21" fill="${c}" fill-opacity=".10" stroke="${c}" stroke-width="1.5" stroke-opacity=".3"/>
+    <circle cx="150" cy="46" r="10" fill="${c}" fill-opacity=".20" stroke="${c}" stroke-width="1.5" stroke-opacity=".5"/>
+    <circle cx="150" cy="46" r="4"  fill="${c}"/>
+    <path d="M210 16 L220 8 L238 6 L236 24 L226 26 Z" fill="${c}" fill-opacity=".15"/>
+    <line x1="150" y1="46" x2="226" y2="16" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+  `, c),
+  'subpath-navigator': c => makeIllus(`
+    <circle cx="80"  cy="46" r="13" fill="${c}" fill-opacity=".18" stroke="${c}" stroke-width="1.5"/>
+    <circle cx="148" cy="22" r="11" fill="${c}" fill-opacity=".15" stroke="${c}" stroke-width="1.5"/>
+    <circle cx="148" cy="70" r="11" fill="${c}" fill-opacity=".15" stroke="${c}" stroke-width="1.5"/>
+    <circle cx="214" cy="34" r="11" fill="${c}" fill-opacity=".20" stroke="${c}" stroke-width="2"/>
+    <circle cx="214" cy="58" r="11" fill="${c}" fill-opacity=".20" stroke="${c}" stroke-width="2"/>
+    <path d="M93 42 L137 26 M93 50 L137 66 M159 26 L203 34 M159 66 L203 58" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+  `, c),
+  'mindset-coach': c => makeIllus(`
+    <circle cx="150" cy="44" r="28" fill="${c}" fill-opacity=".12" stroke="${c}" stroke-width="1.5" stroke-opacity=".4"/>
+    <path d="M138 44 Q150 30 162 44 Q162 58 150 62 Q138 58 138 44Z" fill="${c}" fill-opacity=".35"/>
+    <circle cx="144" cy="38" r="3" fill="${c}" fill-opacity=".6"/>
+    <circle cx="156" cy="38" r="3" fill="${c}" fill-opacity=".6"/>
+    <path d="M143 50 Q150 55 157 50" stroke="${c}" stroke-width="2" stroke-linecap="round" fill="none" opacity=".7"/>
+  `, c),
+  'runway-coach': c => makeIllus(`
+    <rect x="32" y="64" width="216" height="4" rx="2" fill="${c}" fill-opacity=".2"/>
+    <path d="M56 62 L90 42 L118 48 L148 30 L180 38 L210 18" stroke="${c}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="210" cy="18" r="6" fill="${c}" fill-opacity=".6"/>
+    <circle cx="56"  cy="62" r="4" fill="${c}" fill-opacity=".4"/>
+  `, c),
+  'starter-path': c => makeIllus(`
+    <circle cx="82"  cy="46" r="15" fill="${c}" fill-opacity=".08" stroke="${c}" stroke-width="1.5" stroke-opacity=".3"/>
+    <circle cx="140" cy="46" r="15" fill="${c}" fill-opacity=".12" stroke="${c}" stroke-width="1.5" stroke-opacity=".3"/>
+    <circle cx="198" cy="46" r="15" fill="${c}" fill-opacity=".20" stroke="${c}" stroke-width="2" stroke-opacity=".5"/>
+    <path d="M97 46 L125 46 M155 46 L183 46" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity=".4"/>
+    <path d="M192 40 L198 34 L204 40" stroke="${c}" stroke-width="2" stroke-linecap="round" fill="none" opacity=".6"/>
+  `, c),
+  'elite-positioning': c => makeIllus(`
+    <polygon points="150,12 167,40 200,40 174,60 183,90 150,70 117,90 126,60 100,40 133,40" fill="${c}" fill-opacity=".15" stroke="${c}" stroke-width="1.5" stroke-opacity=".4"/>
+    <polygon points="150,26 161,42 176,42 164,52 169,68 150,56 131,68 136,52 124,42 139,42" fill="${c}" fill-opacity=".4"/>
+  `, c),
+  'ai-positioning-coach': c => makeIllus(`
+    <rect x="58" y="22" width="78" height="50" rx="7" fill="${c}" fill-opacity=".12" stroke="${c}" stroke-width="1.5" stroke-opacity=".35"/>
+    <rect x="144" y="22" width="78" height="50" rx="7" fill="${c}" fill-opacity=".05" stroke="${c}" stroke-width="1.5" stroke-opacity=".2"/>
+    <text x="97"  y="52" font-size="14" fill="${c}" font-weight="900" text-anchor="middle" opacity=".8">ON</text>
+    <text x="183" y="52" font-size="14" fill="${c}" font-weight="700" text-anchor="middle" opacity=".3">OFF</text>
+  `, c),
+  'meeting-roleplay': c => makeIllus(`
+    <rect x="42" y="20" width="78" height="56" rx="7" fill="${c}" fill-opacity=".12" stroke="${c}" stroke-width="1.5" stroke-opacity=".35"/>
+    <rect x="160" y="20" width="78" height="56" rx="7" fill="${c}" fill-opacity=".07" stroke="${c}" stroke-width="1.5" stroke-opacity=".25"/>
+    <circle cx="81"  cy="40" r="9" fill="${c}" fill-opacity=".4"/>
+    <circle cx="199" cy="40" r="9" fill="${c}" fill-opacity=".25"/>
+    <path d="M120 46 L160 46" stroke="${c}" stroke-width="2" stroke-linecap="round" opacity=".4"/>
+    <path d="M132 40 L126 46 L132 52" stroke="${c}" stroke-width="2" stroke-linecap="round" fill="none" opacity=".4"/>
+    <path d="M148 40 L154 46 L148 52" stroke="${c}" stroke-width="2" stroke-linecap="round" fill="none" opacity=".4"/>
+  `, c),
+  'objection-roleplay': c => makeIllus(`
+    <circle cx="150" cy="46" r="30" fill="${c}" fill-opacity=".08" stroke="${c}" stroke-width="1.5" stroke-opacity=".3"/>
+    <path d="M134 46 L166 46 M150 30 L150 62" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <circle cx="150" cy="46" r="9" fill="${c}" fill-opacity=".35"/>
+    <text x="150" y="50" font-size="9" fill="${c}" font-weight="900" text-anchor="middle" opacity=".9">切返</text>
+    <rect x="44" y="34" width="58" height="24" rx="5" fill="${c}" fill-opacity=".07" stroke="${c}" stroke-width="1" stroke-opacity=".25"/>
+  `, c),
+  'tactics-researcher': c => makeIllus(`
+    <circle cx="150" cy="46" r="26" fill="${c}" fill-opacity=".08" stroke="${c}" stroke-width="1.5" stroke-opacity=".3"/>
+    <circle cx="150" cy="46" r="5"  fill="${c}" fill-opacity=".6"/>
+    <path d="M150 20 L150 72 M124 46 L176 46" stroke="${c}" stroke-width="1" stroke-opacity=".25"/>
+    <path d="M166 62 L190 82" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <circle cx="64" cy="28" r="7" fill="${c}" fill-opacity=".18" stroke="${c}" stroke-width="1.5" stroke-opacity=".3"/>
+    <circle cx="64" cy="64" r="7" fill="${c}" fill-opacity=".18" stroke="${c}" stroke-width="1.5" stroke-opacity=".3"/>
+    <circle cx="238" cy="28" r="7" fill="${c}" fill-opacity=".18" stroke="${c}" stroke-width="1.5" stroke-opacity=".3"/>
+    <path d="M71 28 L124 38 M71 64 L124 54 M231 28 L176 38" stroke="${c}" stroke-width="1" stroke-opacity=".25" stroke-dasharray="3,3"/>
+  `, c),
+  'action-planner': c => makeIllus(`
+    <rect x="48" y="14" width="184" height="64" rx="6" fill="white" stroke="${c}" stroke-opacity=".3" stroke-width="1.5"/>
+    <rect x="48" y="14" width="184" height="16" rx="6" fill="${c}" fill-opacity=".18"/>
+    <rect x="48" y="22" width="184" height="8" fill="${c}" fill-opacity=".18"/>
+    <rect x="60" y="40" width="36" height="12" rx="3" fill="${c}" fill-opacity=".5"/>
+    <rect x="102" y="40" width="36" height="12" rx="3" fill="${c}" fill-opacity=".35"/>
+    <rect x="144" y="40" width="36" height="12" rx="3" fill="${c}" fill-opacity=".25"/>
+    <rect x="186" y="40" width="34" height="12" rx="3" fill="${c}" fill-opacity=".15"/>
+    <rect x="60"  y="60" width="20" height="7" rx="2" fill="${c}" fill-opacity=".2"/>
+    <rect x="86"  y="60" width="20" height="7" rx="2" fill="${c}" fill-opacity=".2"/>
+    <rect x="112" y="60" width="20" height="7" rx="2" fill="${c}" fill-opacity=".2"/>
+  `, c),
+  'business-improvement-coach': c => makeIllus(`
+    <rect x="56" y="54" width="20" height="26" rx="2" fill="${c}" fill-opacity=".3"/>
+    <rect x="84" y="44" width="20" height="36" rx="2" fill="${c}" fill-opacity=".4"/>
+    <rect x="112" y="32" width="20" height="48" rx="2" fill="${c}" fill-opacity=".5"/>
+    <rect x="140" y="20" width="20" height="60" rx="2" fill="${c}" fill-opacity=".6"/>
+    <path d="M56 72 L84 62 L112 52 L140 42" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="4,3" opacity=".5"/>
+    <circle cx="198" cy="42" r="18" fill="${c}" fill-opacity=".12" stroke="${c}" stroke-width="1.5" stroke-opacity=".35"/>
+    <path d="M190 42 L196 48 L207 37" stroke="${c}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".8"/>
+  `, c),
+  'demo-script-writer': c => makeIllus(`
+    <rect x="44" y="16" width="78" height="64" rx="6" fill="white" stroke="${c}" stroke-opacity=".3" stroke-width="1.5"/>
+    <rect x="44" y="16" width="78" height="15" rx="6" fill="${c}" fill-opacity=".18"/>
+    <rect x="44" y="23" width="78" height="8" fill="${c}" fill-opacity=".18"/>
+    <rect x="54" y="40" width="50" height="3.5" rx="1.75" fill="${c}" fill-opacity=".25"/>
+    <rect x="54" y="50" width="40" height="3.5" rx="1.75" fill="${c}" fill-opacity=".25"/>
+    <rect x="54" y="60" width="46" height="3.5" rx="1.75" fill="${c}" fill-opacity=".25"/>
+    <rect x="138" y="16" width="100" height="64" rx="6" fill="${c}" fill-opacity=".06" stroke="${c}" stroke-opacity=".3" stroke-width="1.5"/>
+    <polygon points="174,38 174,62 196,50" fill="${c}" fill-opacity=".5"/>
+    <circle cx="188" cy="48" r="20" fill="none" stroke="${c}" stroke-width="1.5" stroke-opacity=".3"/>
+  `, c),
+  'meeting-invite-writer': c => makeIllus(`
+    <rect x="52" y="20" width="176" height="54" rx="7" fill="white" stroke="${c}" stroke-opacity=".35" stroke-width="1.5"/>
+    <path d="M52 32 L140 50 L228 32" stroke="${c}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".4"/>
+    <rect x="70" y="40" width="80" height="3" rx="1.5" fill="${c}" fill-opacity=".22"/>
+    <rect x="70" y="50" width="60" height="3" rx="1.5" fill="${c}" fill-opacity=".18"/>
+    <rect x="70" y="60" width="70" height="3" rx="1.5" fill="${c}" fill-opacity=".18"/>
+  `, c),
+  'roadmap-report-writer': c => makeIllus(`
+    <rect x="60" y="12" width="100" height="72" rx="6" fill="white" stroke="${c}" stroke-opacity=".35" stroke-width="1.5"/>
+    <rect x="60" y="12" width="100" height="16" rx="6" fill="${c}" fill-opacity=".18"/>
+    <rect x="60" y="20" width="100" height="8" fill="${c}" fill-opacity=".18"/>
+    <rect x="72" y="36" width="44" height="3" rx="1.5" fill="${c}" fill-opacity=".3"/>
+    <rect x="72" y="46" width="32" height="14" rx="2" fill="${c}" fill-opacity=".45"/>
+    <rect x="110" y="46" width="32" height="9"  rx="2" fill="${c}" fill-opacity=".3"/>
+    <rect x="72" y="66" width="72" height="3" rx="1.5" fill="${c}" fill-opacity=".18"/>
+    <rect x="172" y="28" width="52" height="56" rx="5" fill="${c}" fill-opacity=".06" stroke="${c}" stroke-opacity=".18" stroke-width="1"/>
+    <rect x="180" y="40" width="36" height="2" rx="1" fill="${c}" fill-opacity=".3"/>
+    <rect x="180" y="50" width="30" height="2" rx="1" fill="${c}" fill-opacity=".3"/>
+    <rect x="180" y="60" width="34" height="2" rx="1" fill="${c}" fill-opacity=".3"/>
+    <rect x="180" y="70" width="28" height="2" rx="1" fill="${c}" fill-opacity=".3"/>
+  `, c),
+};
+
+const CARDS = [
+  { id: 'diagnosis',                 cat: 'analyze',   icon: '🔍', nameJa: '現状診断',           nameEn: 'diagnosis',                 tagline: '現状をLv.1〜10で採点し、6モードで詰まりポイントを可視化', type: 'agent'  },
+  { id: 'target-designer',           cat: 'analyze',   icon: '🎯', nameJa: '目標・KPI設計',       nameEn: 'target-designer',           tagline: '願望をSMART目標＋週次KPIに変換し、本業時給と比較',       type: 'agent'  },
+  { id: 'subpath-navigator',         cat: 'analyze',   icon: '🗺️', nameJa: 'パス診断・選択',      nameEn: 'subpath-navigator',         tagline: '9本のサブパスから自分に合う実行ルートを絞り込む',         type: 'agent'  },
+  { id: 'mindset-coach',             cat: 'coaching',  icon: '🧠', nameJa: 'マインドコーチ',       nameEn: 'mindset-coach',             tagline: '技術者特有のブロック（営業卑下・インポスター症候群）を解除', type: 'agent'  },
+  { id: 'runway-coach',              cat: 'coaching',  icon: '🛫', nameJa: '助走パスコーチ',       nameEn: 'runway-coach',              tagline: '「動けない」状態から最初の行動実感を作る助走サポート',    type: 'agent'  },
+  { id: 'starter-path',              cat: 'coaching',  icon: '🌱', nameJa: 'AI初心者スタート',    nameEn: 'starter-path',              tagline: 'AI未経験から「今夜から使える何か」を1つ決めて動き出す',   type: 'agent'  },
+  { id: 'elite-positioning',         cat: 'techsales', icon: '💎', nameJa: '技術力→価格化戦略',   nameEn: 'elite-positioning',         tagline: '技術力を単価30〜200万に価格化する根拠とSOWを生成',      type: 'agent'  },
+  { id: 'ai-positioning-coach',      cat: 'techsales', icon: '🎭', nameJa: 'AI推し/非推し戦略',   nameEn: 'ai-positioning-coach',      tagline: '案件ごとに「AIを売り文句にするか伏せるか」を判断',        type: 'agent'  },
+  { id: 'meeting-roleplay',          cat: 'techsales', icon: '🎤', nameJa: '技術面談ロープレ',     nameEn: 'meeting-roleplay',          tagline: 'CTO・意思決定者を相手にした技術案件面談を練習',          type: 'agent'  },
+  { id: 'objection-roleplay',        cat: 'techsales', icon: '🛡️', nameJa: '反論対応ロープレ',     nameEn: 'objection-roleplay',        tagline: '「内製化」「精度保証」「相見積もり」技術案件特有の反論を練習', type: 'agent'  },
+  { id: 'tactics-researcher',        cat: 'techsales', icon: '🔭', nameJa: 'コミュニティリサーチ', nameEn: 'tactics-researcher',        tagline: '登壇・紹介ベースの高単価接点になる技術コミュニティを調査', type: 'agent'  },
+  { id: 'action-planner',            cat: 'action',    icon: '📅', nameJa: '30日プラン作成',      nameEn: 'action-planner',            tagline: '目標から逆算した30日プラン＋週次タスク＋日次ToDoを生成',  type: 'agent'  },
+  { id: 'business-improvement-coach',cat: 'action',    icon: '⚙️', nameJa: '業務改善王道コーチ',   nameEn: 'business-improvement-coach',tagline: '本業の業務圧縮から始めて外部提供・副業化まで段階的に導く', type: 'agent'  },
+  { id: 'demo-script-writer',        cat: 'module',    icon: '🎬', nameJa: '技術PoC・デモ骨子生成',nameEn: 'demo-script-writer',        tagline: '動くPoC＋アーキテクチャ提案＋10分プレゼン構成を生成',   type: 'module' },
+  { id: 'meeting-invite-writer',     cat: 'module',    icon: '✉️', nameJa: '面談打診文生成',       nameEn: 'meeting-invite-writer',     tagline: '技術力を前面に出したDM・LinkedIn DM・紹介依頼文を生成',  type: 'module' },
+  { id: 'roadmap-report-writer',     cat: 'module',    icon: '📊', nameJa: 'ELITEロードマップPDF', nameEn: 'roadmap-report-writer',     tagline: '全情報を統合してELITEプラン専用PDFロードマップを出力',   type: 'module' },
+];
+
+function catColor(cat) {
+  const m = { analyze:'#3B82F6', coaching:'#10B981', techsales:'#8B5CF6', action:'#F59E0B', module:'#EC4899' };
+  return m[cat] || '#8B5CF6';
+}
+
+function renderCards(filter) {
+  const grid = document.getElementById('card-grid');
+  grid.innerHTML = '';
+  let count = 0;
+  CARDS.forEach(card => {
+    if (filter !== 'all' && card.cat !== filter) return;
+    count++;
+    const c = catColor(card.cat);
+    const illusFn = ILLUS[card.id];
+    const illusHtml = illusFn ? illusFn(c) : '';
+    const el = document.createElement('article');
+    el.className = 'skill-card';
+    el.dataset.cat = card.cat;
+    el.innerHTML = `
+      <div class="card-illus">${illusHtml}</div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-icon">${card.icon}</div>
+          <span class="card-cat-badge" style="background:${c}18;color:${c}">${CATS[card.cat].label}</span>
+        </div>
+        <div class="card-name-en">${card.nameEn}</div>
+        <div class="card-name-ja">${card.nameJa}</div>
+        <div class="card-tagline">${card.tagline}</div>
+        <div class="card-foot">
+          <span class="card-type">${card.type === 'module' ? 'MODULE' : 'AGENT'}</span>
+        </div>
+      </div>`;
+    grid.appendChild(el);
+  });
+  document.getElementById('visible-count').textContent = count;
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards(btn.dataset.cat);
+  });
+});
+
+renderCards('all');
+</script>
+</body>
+</html>
